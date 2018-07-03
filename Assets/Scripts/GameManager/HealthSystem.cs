@@ -4,18 +4,38 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour {
     [SerializeField]
-    private int playerHP;
+    private int currentHP;
+    [SerializeField]
+    private int maxHP;
 
-	public int PlayerHP
+    void Start ()
+    {
+        currentHP = maxHP;
+    }
+
+	public int HP
     {
         get
         {
-            return PlayerHP;
+            return currentHP;
         }
 
         set
         {
-            playerHP += value;
+            currentHP += value;
+        }
+    }
+
+    public int MaxHP
+    {
+        get
+        {
+            return maxHP;
+        }
+
+        set
+        {
+            maxHP += value;
         }
     }
 }
