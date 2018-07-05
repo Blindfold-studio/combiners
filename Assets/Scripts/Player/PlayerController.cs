@@ -71,11 +71,11 @@ public class PlayerController : MonoBehaviour {
             MeleeAttack();
         }
 
-        if (Input.GetButtonDown(button.rangeAtkButton) && playerAttr.Arrow > 0)
+        if (Input.GetButtonDown(button.rangeAtkButton) && playerAttr.ArrowCapacity > 0)
         {
             RangeAttack();
-            playerAttr.Arrow = -1;
-            Debug.Log("Arrow: " + playerAttr.Arrow);
+            playerAttr.ArrowCapacity = -1;
+            Debug.Log("Arrow capacity: " + playerAttr.ArrowCapacity);
         }
     }
 

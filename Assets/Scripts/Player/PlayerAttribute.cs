@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class PlayerAttribute : MonoBehaviour {
-    public TextMeshProUGUI arrowText;
-    public TextMeshProUGUI speedText;
 
     [SerializeField]
     private float arrowCapacity;
@@ -18,32 +15,16 @@ public class PlayerAttribute : MonoBehaviour {
     [SerializeField]
     private float shootSpeed;
 
-    private float curruntArrow;
-
-    void Start()
-    {
-        curruntArrow = arrowCapacity;
-
-        arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + arrowCapacity.ToString();
-        speedText.text = "Speed: " + speed.ToString();
-    }
-
-    void Update ()
-    {
-        arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + arrowCapacity.ToString();
-        speedText.text = "Speed: " + speed.ToString();
-    }
-
-    public float Arrow
+    public float ArrowCapacity
     {
         get
         {
-            return curruntArrow;
+            return arrowCapacity;
         }
 
         set
         {
-            curruntArrow += value;
+            arrowCapacity += value;
         }
     }
 
