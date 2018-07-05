@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
     private bool isOnGround;
     private bool faceRight;
     private bool jumpRequest;
+    private bool isInvicible;
     private Rigidbody2D rb;
     private Vector2 playerSize;
     private Vector2 boxSize;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour {
     void Start()
     {
         faceRight = true;
+        isInvicible = false;
         isOnGround = false;
         jumpRequest = false; 
     }
@@ -139,5 +141,23 @@ public class PlayerController : MonoBehaviour {
             arrow.GetComponent<Arrow>().SetDirection(Vector2.left);
             arrow.GetComponent<Arrow>().Speed = playerAttr.ShootSpeed;
         }
+    }
+
+    public bool IsInvicble()
+    {
+        return isInvicible;
+    }
+
+    public IEnumerator Hurt(float duration)
+    {
+        isInvicible = true;
+        GetComponent<Animation>().Play("GetDamage");
+
+        yield return new WaitForSeconds(duration);
+
+        isInvicible = false;
+        GetComponent<Animation>().Stop("GetDamage");
+
+        yield return null;
     }
 }
