@@ -29,7 +29,6 @@ public class SpeedUpBoot : MonoBehaviour {
             GameObject o = GameObject.Find("Player1");
             BoostPlayerSpeed(o);
         }
-
     }
 
     private void Update() {
@@ -44,13 +43,15 @@ public class SpeedUpBoot : MonoBehaviour {
         playerAttribute.Speed = speed;
         Color tmp = spriteRenderer.color;
         tmp.a = 0f;
-        spriteRenderer.color = tmp;
+        spriteRenderer.color = tmp;      
+        GetComponent<BoxCollider2D> ().enabled = false;
     }
 
     public void CancelPlayBoostSpeed() {
         realDuration = 0;
         Debug.Log("Speedup Boost lost effects.");
         playerAttribute.Speed = -1*speed;
+        GetComponent<BoxCollider2D> ().enabled = true;
         this.gameObject.SetActive(false);
     }
 
