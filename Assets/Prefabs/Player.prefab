@@ -334,6 +334,7 @@ MonoBehaviour:
   firingRate: 0.5
   jumpPower: 7.5
   speed: 5
+  maxSpeed: 8
   shootSpeed: 10
 --- !u!114 &114967847217103792
 MonoBehaviour:

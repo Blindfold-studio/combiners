@@ -8,7 +8,7 @@ public class PlayerAttribute : MonoBehaviour {
     public TextMeshProUGUI speedText;
 
     [SerializeField]
-    private float arrowCapacity;
+    private int arrowCapacity;
     [SerializeField]
     private float firingRate;
     [SerializeField]
@@ -16,9 +16,11 @@ public class PlayerAttribute : MonoBehaviour {
     [SerializeField]
     private float speed;
     [SerializeField]
+    private float maxSpeed;
+    [SerializeField]
     private float shootSpeed;
 
-    private float curruntArrow;
+    private int curruntArrow;
 
     void Start()
     {
@@ -34,7 +36,7 @@ public class PlayerAttribute : MonoBehaviour {
         speedText.text = "Speed: " + speed.ToString();
     }
 
-    public float Arrow
+    public int Arrow
     {
         get
         {
@@ -43,7 +45,23 @@ public class PlayerAttribute : MonoBehaviour {
 
         set
         {
-            curruntArrow += value;
+            if (curruntArrow < arrowCapacity)
+            {
+                curruntArrow += value;
+            }
+        }
+    }
+
+    public int MaxArrow
+    {
+        get
+        {
+            return arrowCapacity;
+        }
+
+        set
+        {
+            arrowCapacity += value;
         }
     }
 
@@ -83,6 +101,11 @@ public class PlayerAttribute : MonoBehaviour {
         set
         {
             speed += value;
+
+            if (speed > maxSpeed)
+            {
+                speed = maxSpeed;
+            }
         }
     }
 
