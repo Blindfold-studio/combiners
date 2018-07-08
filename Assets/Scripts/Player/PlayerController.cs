@@ -139,7 +139,6 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.Log(arrowPool);
             GameObject arrow = arrowPool.GetElementInPool(tag, transform.position + offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, -90f))) as GameObject;
-            arrow.transform.SetParent(transform);
             arrow.GetComponent<Arrow>().SetDirection(Vector2.right);
             arrow.GetComponent<Arrow>().Speed = playerAttr.ShootSpeed;
         }
@@ -147,7 +146,6 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.Log(arrowPool);
             GameObject arrow = arrowPool.GetElementInPool(tag, transform.position - offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, 90f))) as GameObject;
-            arrow.transform.SetParent(transform);
             arrow.GetComponent<Arrow>().SetDirection(Vector2.left);
             arrow.GetComponent<Arrow>().Speed = playerAttr.ShootSpeed;
         }
