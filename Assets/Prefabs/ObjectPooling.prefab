@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1868891376093554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0705297, y: 11.898382, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,8 +52,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: Arrow
+  - tag: Arrow_P1
     elements:
     - {fileID: 1218613727301220, guid: e102a44137289f14d89c7e7e0f5dc474, type: 2}
+    sizeOfEachElement: 10
+    canExpand: 1
+  - tag: Arrow_P2
+    elements:
     - {fileID: 1279825735518926, guid: f12a68008dfcf164688fce45627cd115, type: 2}
     sizeOfEachElement: 10
+    canExpand: 1

@@ -54,14 +54,14 @@ public class Arrow : MonoBehaviour {
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Tile"))
+        if (collision.CompareTag("Tile") || collision.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

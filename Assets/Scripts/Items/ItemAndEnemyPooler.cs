@@ -9,7 +9,19 @@ public class ItemAndEnemyPooler : MonoBehaviour {
         public string tag;
         public List<GameObject> elements = new List<GameObject>();
         public int sizeOfEachElement;
+        public bool canExpand;
     }
+
+    #region Singleton
+
+    public static ItemAndEnemyPooler Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion
 
     public List<Pool> pools;
     public Dictionary<string, List<GameObject>> elementPooler;
@@ -33,20 +45,23 @@ public class ItemAndEnemyPooler : MonoBehaviour {
         }
 	}
 
-    public void GetElementInPool(string tag, Vector2 position) {
+    public GameObject GetElementInPool(string tag, Vector2 position, Quaternion rotation) {
         if(!elementPooler.ContainsKey(tag)) {
             Debug.LogWarning("No " + tag + " exists in the pool.");
-            return;
+            return null;
         }
 
         List<GameObject> list = elementPooler[tag];
-        while(true) {
-            int index = Random.Range(0, list.Count);
-            if(!list[index].activeInHierarchy) {
-                list[index].transform.position = position;
-                list[index].SetActive(true);
-                break;
+        foreach (GameObject go in list) {
+            if(!go.activeInHierarchy) {
+                go.transform.position = position;
+                go.transform.rotation = rotation;
+                go.SetActive(true);
+                return go;
             }
         }
+
+        Debug.Log("Not found");
+        return null;
     }
 }
