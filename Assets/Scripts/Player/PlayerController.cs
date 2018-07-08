@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject arrowPrefab;
 
     [SerializeField]
+    private string tag;
+    [SerializeField]
     private float groundedSkin = 0.05f;
     [SerializeField]
     private float xMin = -21.5f;
@@ -35,6 +37,8 @@ public class PlayerController : MonoBehaviour {
     private Vector2 boxSize;
     private PlayerAttribute playerAttr;
     private PlayerAttack playerAttack;
+
+    ItemAndEnemyPooler arrowPool;
 
     void Awake()
     {
@@ -58,7 +62,9 @@ public class PlayerController : MonoBehaviour {
         faceRight = true;
         isInvicible = false;
         isOnGround = false;
-        jumpRequest = false; 
+        jumpRequest = false;
+
+        arrowPool = ItemAndEnemyPooler.Instance;
     }
 
     void Update()
@@ -131,13 +137,17 @@ public class PlayerController : MonoBehaviour {
     {
         if (faceRight)
         {
-            GameObject arrow = Instantiate(arrowPrefab, transform.position + offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, -90f))) as GameObject;
+            Debug.Log(arrowPool);
+            GameObject arrow = arrowPool.GetElementInPool(tag, transform.position + offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, -90f))) as GameObject;
+            arrow.transform.SetParent(transform);
             arrow.GetComponent<Arrow>().SetDirection(Vector2.right);
             arrow.GetComponent<Arrow>().Speed = playerAttr.ShootSpeed;
         }
         else if (!faceRight)
         {
-            GameObject arrow = Instantiate(arrowPrefab, transform.position - offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, 90f))) as GameObject;
+            Debug.Log(arrowPool);
+            GameObject arrow = arrowPool.GetElementInPool(tag, transform.position - offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, 90f))) as GameObject;
+            arrow.transform.SetParent(transform);
             arrow.GetComponent<Arrow>().SetDirection(Vector2.left);
             arrow.GetComponent<Arrow>().Speed = playerAttr.ShootSpeed;
         }
