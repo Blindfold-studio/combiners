@@ -10,9 +10,8 @@ public class EnemyFollow : MonoBehaviour {
     private float speed;
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
-        target = new Vector2(player.transform.position.x, player.transform.position.y);
-	}
+                
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,9 +20,30 @@ public class EnemyFollow : MonoBehaviour {
 
     void FollowPlayer()
     {
+
+        player = FindClosetPlayer();
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+
     }
 
+    public GameObject FindClosetPlayer()
+    {
+        GameObject[] playerTarget;
+        playerTarget = GameObject.FindGameObjectsWithTag("Player");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        foreach (GameObject target in playerTarget)
+        {
+            Vector3 diff = target.transform.position - this.transform.position;
+            float curDis = diff.sqrMagnitude;
+            if(curDis < distance)
+            {
+                closest = target;
+                distance = curDis;
+            }
+        }
+        return closest;
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

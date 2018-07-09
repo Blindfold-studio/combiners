@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyFlip : MonoBehaviour {
 
 
-    
+    private GameObject player;
     private Transform distanceToPlayer;
 
     private float distance;
@@ -14,14 +14,14 @@ public class EnemyFlip : MonoBehaviour {
 
     void Start()
     {
-        distanceToPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+        
         facingR = false;    
     }
 
     // Update is called once per frame
     void Update () {
-        distance = (distanceToPlayer.position.x - transform.position.x);
-        
+        player = FindClosetPlayer();
+        distance = player.transform.position.x - transform.position.x;
         FlipSide();
 	}
 
@@ -44,5 +44,24 @@ public class EnemyFlip : MonoBehaviour {
             facingR = false;
             
         }
+    }
+
+    public GameObject FindClosetPlayer()
+    {
+        GameObject[] playerTarget;
+        playerTarget = GameObject.FindGameObjectsWithTag("Player");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        foreach (GameObject target in playerTarget)
+        {
+            Vector3 diff = target.transform.position - this.transform.position;
+            float curDis = diff.sqrMagnitude;
+            if (curDis < distance)
+            {
+                closest = target;
+                distance = curDis;
+            }
+        }
+        return closest;
     }
 }
