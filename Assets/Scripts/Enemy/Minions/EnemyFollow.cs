@@ -23,6 +23,7 @@ public class EnemyFollow : MonoBehaviour {
 
         player = FindClosetPlayer();
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+       
 
     }
 
@@ -36,7 +37,7 @@ public class EnemyFollow : MonoBehaviour {
         {
             Vector3 diff = target.transform.position - this.transform.position;
             float curDis = diff.sqrMagnitude;
-            if(curDis < distance)
+            if (curDis < distance)
             {
                 closest = target;
                 distance = curDis;
@@ -46,8 +47,9 @@ public class EnemyFollow : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Weapon"))
         {
+            Debug.Log("dead");
             gameObject.SetActive(false);
         }
     }

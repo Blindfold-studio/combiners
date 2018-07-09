@@ -18,4 +18,13 @@ public class ArrowOfEnemy : MonoBehaviour {
 	void FixedUpdate () {
         rb2d.velocity = Vector2.left * speed;
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Weapon") || other.CompareTag("Player"))
+        {
+            Debug.Log("dead");
+            gameObject.SetActive(false);
+        }
+    }
 }

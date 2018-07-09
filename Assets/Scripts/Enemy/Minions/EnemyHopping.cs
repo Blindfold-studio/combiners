@@ -29,11 +29,11 @@ public class EnemyHopping : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        
         isOnGround = IsGround();
         if (isOnGround)
-        {
-           
-            rb2d.AddForce(new Vector2(0, jumpforce));
+        {       
+            rb2d.velocity += Vector2.up * jumpforce;
         }
        
 	}
@@ -41,13 +41,14 @@ public class EnemyHopping : MonoBehaviour {
     private bool IsGround()
     {
         if (rb2d.velocity.y <= 0)
-        {
+        { 
             foreach (Transform point in GroundDetect)
             {
                 Collider2D[] col2d = Physics2D.OverlapCircleAll(point.position, groundRadius, isGroundnow);
 
                 for (int i = 0; i < col2d.Length; i++)
                 {
+                    
                     if (col2d[i].gameObject != gameObject)
                     {
                         return true;
