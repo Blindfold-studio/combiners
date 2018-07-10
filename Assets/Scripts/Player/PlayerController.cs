@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
     private PlayerAttribute playerAttr;
     private PlayerAttack playerAttack;
 
-    ItemAndEnemyPooler arrowPool;
+    ProjectilePool arrowPool;
 
     void Awake()
     {
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour {
         isOnGround = false;
         jumpRequest = false;
 
-        arrowPool = ItemAndEnemyPooler.Instance;
+        arrowPool = ProjectilePool.Instance;
     }
 
     void Update()
@@ -138,14 +138,14 @@ public class PlayerController : MonoBehaviour {
         if (faceRight)
         {
             Debug.Log(arrowPool);
-            GameObject arrow = arrowPool.GetArrowInPool(tag, transform.position + offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, -90f))) as GameObject;
+            GameObject arrow = arrowPool.GetElementInPool(tag, transform.position + offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, -90f))) as GameObject;
             arrow.GetComponent<Arrow>().SetDirection(Vector2.right);
             arrow.GetComponent<Arrow>().Speed = playerAttr.ShootSpeed;
         }
         else if (!faceRight)
         {
             Debug.Log(arrowPool);
-            GameObject arrow = arrowPool.GetArrowInPool(tag, transform.position - offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, 90f))) as GameObject;
+            GameObject arrow = arrowPool.GetElementInPool(tag, transform.position - offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, 90f))) as GameObject;
             arrow.GetComponent<Arrow>().SetDirection(Vector2.left);
             arrow.GetComponent<Arrow>().Speed = playerAttr.ShootSpeed;
         }
