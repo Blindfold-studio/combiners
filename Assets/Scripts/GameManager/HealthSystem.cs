@@ -22,6 +22,8 @@ public class HealthSystem : MonoBehaviour {
 
         set
         {
+            currentHP += value;
+
             if (currentHP >= maxHP)
             {
                 currentHP = maxHP;
@@ -29,10 +31,6 @@ public class HealthSystem : MonoBehaviour {
             else if (currentHP <= 0)
             {
                 currentHP = 0;
-            }
-            else
-            {
-                currentHP += value;
             }
         }
     }
