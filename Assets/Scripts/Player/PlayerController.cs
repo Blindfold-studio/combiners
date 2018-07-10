@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float groundedSkin = 0.05f;
     [SerializeField]
+    private float shotDelay = 0.1f;
+    [SerializeField]
     private float xMin = -21.5f;
     [SerializeField]
     private float xMax = 21.5f;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     private bool faceRight;
     private bool jumpRequest;
     private bool isInvicible;
+    private float timeStamp;
     private Rigidbody2D rb;
     private Vector2 playerSize;
     private Vector2 boxSize;
@@ -79,11 +82,13 @@ public class PlayerController : MonoBehaviour {
             MeleeAttack();
         }
 
-        if (Input.GetButtonDown(button.rangeAtkButton) && playerAttr.Arrow > 0)
+        if (Input.GetButtonDown(button.rangeAtkButton) && playerAttr.Arrow > 0 && Time.time >= timeStamp)
         {
             RangeAttack();
             playerAttr.Arrow = -1;
             Debug.Log("Arrow: " + playerAttr.Arrow);
+
+            timeStamp = Time.time + shotDelay;
         }
     }
 
