@@ -23,45 +23,63 @@ public class ItemAndEnemyPooler : MonoBehaviour {
 
     #endregion
 
-    public List<Pool> pools;
-    public Dictionary<string, List<GameObject>> elementPooler;
+    public List<Pool> elementPools;
 
-	// Use this for initialization
-	void Start () {
-		elementPooler = new Dictionary<string, List<GameObject>>();
+    Dictionary<string, List<GameObject>> elementDictionary;
+    Dictionary<string, bool> expandDictionary;
 
-        foreach(Pool p in pools) {
+    void Start () {
+        elementDictionary = new Dictionary<string, List<GameObject>>();
+        expandDictionary = new Dictionary<string, bool>();
+
+        initialElementPool();
+	}
+
+    void initialElementPool ()
+    {
+        foreach (Pool p in elementPools)
+        {
             List<GameObject> list = new List<GameObject>();
 
-            foreach(GameObject go in p.elements) {
-                for(int i = 0 ; i < p.sizeOfEachElement ; i++) {
+            foreach (GameObject go in p.elements)
+            {
+                for (int i = 0; i < p.sizeOfEachElement; i++)
+                {
                     GameObject o = Instantiate(go);
                     o.SetActive(false);
                     list.Add(o);
                 }
             }
 
-            elementPooler.Add(p.tag, list);
+            elementDictionary.Add(p.tag, list);
         }
-	}
+    }
 
-    public GameObject GetElementInPool(string tag, Vector2 position, Quaternion rotation) {
-        if(!elementPooler.ContainsKey(tag)) {
+    public GameObject GetElementInPool(string tag, Vector2 position, Quaternion rotation)
+    {
+        if (!elementDictionary.ContainsKey(tag))
+        {
             Debug.LogWarning("No " + tag + " exists in the pool.");
             return null;
         }
 
-        List<GameObject> list = elementPooler[tag];
-        foreach (GameObject go in list) {
-            if(!go.activeInHierarchy) {
-                go.transform.position = position;
-                go.transform.rotation = rotation;
-                go.SetActive(true);
-                return go;
+        List<GameObject> list = elementDictionary[tag];
+        GameObject itemToSpawn = null;
+
+        while (true)
+        {
+            int index = Random.Range(0, list.Count);
+
+            itemToSpawn = list[index];
+
+            if (!itemToSpawn.activeInHierarchy)
+            {
+                itemToSpawn.transform.position = position;
+                itemToSpawn.SetActive(true);
+                break;
             }
         }
 
-        Debug.Log("Not found");
-        return null;
+        return itemToSpawn;
     }
 }

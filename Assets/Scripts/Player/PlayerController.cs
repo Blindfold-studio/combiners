@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
     private PlayerAttribute playerAttr;
     private PlayerAttack playerAttack;
 
-    ItemAndEnemyPooler arrowPool;
+    ProjectilePool arrowPool;
 
     void Awake()
     {
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour {
         isOnGround = false;
         jumpRequest = false;
 
-        arrowPool = ItemAndEnemyPooler.Instance;
+        arrowPool = ProjectilePool.Instance;
     }
 
     void Update()
