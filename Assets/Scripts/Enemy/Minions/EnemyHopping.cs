@@ -21,9 +21,15 @@ public class EnemyHopping : MonoBehaviour {
     [SerializeField]
     private float jumpforce;
 
+    private GameObject player;
+    public float speed;
+    EnemyFlip flip;
+
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
+        flip = GameObject.Find("PinkMon").GetComponent<EnemyFlip>();
+        player = flip.FindClosetPlayer();
         
 	}
 	
@@ -35,8 +41,22 @@ public class EnemyHopping : MonoBehaviour {
         {       
             rb2d.velocity += Vector2.up * jumpforce;
         }
-       
-	}
+        Movement();
+
+    }
+
+    private void Movement()
+    {
+        if (flip.facingR)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
+        }
+        else if (!flip.facingR)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
+
+        }
+    }
 
     private bool IsGround()
     {

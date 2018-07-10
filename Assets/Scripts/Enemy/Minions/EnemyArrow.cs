@@ -30,7 +30,7 @@ public class EnemyArrow : MonoBehaviour {
     {
         if(reloadShot <= 0)
         {
-            Debug.Log("Createarrow");
+            
             Instantiate(arrow, transform.position,Quaternion.identity);
             reloadShot = startShotReload;
         }

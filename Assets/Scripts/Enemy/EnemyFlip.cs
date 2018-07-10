@@ -9,42 +9,75 @@ public class EnemyFlip : MonoBehaviour {
     private Transform distanceToPlayer;
 
     private float distance;
+    
 
-    private bool facingR;
+    public bool facingR;
 
     void Start()
     {
         
-        facingR = false;    
+        facingR = true;
+        StartCoroutine(Flip());
     }
 
     // Update is called once per frame
     void Update () {
+        
         player = FindClosetPlayer();
         distance = player.transform.position.x - transform.position.x;
-        FlipSide();
+        //FlipSide();
+        
 	}
 
-    private void FlipSide()
+    IEnumerator Flip()
     {
-        
-        if(!facingR && (distance <= 0))
+        while (true)
         {
+            yield return new WaitForSeconds(.3f);
+            
+            if (facingR && (distance < -0.5))
+            {
+                Vector3 Scale = transform.localScale;
+                Scale.x *= -1;
+                transform.localScale = Scale;
+
+                facingR = false;
+
+            }
+            else if (!facingR && (distance > 0.5))
+            {
+
+                Vector3 Scale = transform.localScale;
+                Scale.x *= -1;
+                transform.localScale = Scale;
+                facingR = true;
+
+            }
+        }
+        
+    }
+   /* private void FlipSide()
+    {
+
+        if (facingR && (distance < 0))
+        {
+            Vector3 Scale = transform.localScale;
+            Scale.x *= -1;
+            transform.localScale = Scale;
+            
+            facingR = false;
+            
+        }
+        else if (!facingR && (distance > 0))
+        {
+            
             Vector3 Scale = transform.localScale;
             Scale.x *= -1;
             transform.localScale = Scale;
             facingR = true;
             
         }
-        else if (facingR && (distance > 0))
-        {
-            Vector3 Scale = transform.localScale;
-            Scale.x *= -1;
-            transform.localScale = Scale;
-            facingR = false;
-            
-        }
-    }
+    }*/
 
     public GameObject FindClosetPlayer()
     {
@@ -64,4 +97,6 @@ public class EnemyFlip : MonoBehaviour {
         }
         return closest;
     }
+
+    
 }

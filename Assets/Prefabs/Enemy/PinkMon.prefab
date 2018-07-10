@@ -39,10 +39,9 @@ GameObject:
   - component: {fileID: 61319452250638254}
   - component: {fileID: 50632180320247240}
   - component: {fileID: 114650867077561314}
-  - component: {fileID: 114451832463574986}
   m_Layer: 0
   m_Name: PinkMon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,18 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9acbbdeae318f4a4f8d723c44905c567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114451832463574986
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1607767056712162}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd21bdb302c3bb4e93e99db70ebf0bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
+  facingR: 0
 --- !u!114 &114650867077561314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,6 +148,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   jumpforce: 4
+  speed: 2
 --- !u!212 &212021406060917170
 SpriteRenderer:
   m_ObjectHideFlags: 1

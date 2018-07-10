@@ -8,6 +8,8 @@ public class EnemyFollow : MonoBehaviour {
     private Vector2 target;
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float stop;
 	// Use this for initialization
 	void Start () {
                 
@@ -22,9 +24,21 @@ public class EnemyFollow : MonoBehaviour {
     {
 
         player = FindClosetPlayer();
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        Movement();
        
 
+    }
+
+    void Movement()
+    {
+        if(Vector2.Distance(player.transform.position, transform.position) > stop)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = this.transform.position;
+        }
     }
 
     public GameObject FindClosetPlayer()
