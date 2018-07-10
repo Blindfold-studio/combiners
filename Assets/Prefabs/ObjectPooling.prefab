@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9848e8cba6d4041df8716bf110ee0aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools:
+  arrowPools:
   - tag: Arrow_P1
     elements:
     - {fileID: 1218613727301220, guid: e102a44137289f14d89c7e7e0f5dc474, type: 2}
@@ -62,3 +62,5 @@ MonoBehaviour:
     - {fileID: 1279825735518926, guid: f12a68008dfcf164688fce45627cd115, type: 2}
     sizeOfEachElement: 10
     canExpand: 1
+  enemyPools: []
+  itemPools: []

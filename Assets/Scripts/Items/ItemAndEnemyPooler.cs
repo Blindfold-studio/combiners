@@ -23,53 +23,82 @@ public class ItemAndEnemyPooler : MonoBehaviour {
 
     #endregion
 
-    public List<Pool> pools;
-    //public Dictionary<string, List<GameObject>> elementPooler;
-    public Dictionary<string, Queue<GameObject>> elementPooler;
+    public List<Pool> arrowPools;
+    public List<Pool> enemyPools;
+    public List<Pool> itemPools;
+    public Dictionary<string, List<GameObject>> itemDictionary;
+    public Dictionary<string, Queue<GameObject>> arrowDictionary;
     public Dictionary<string, bool> expandDictionary;
 
     // Use this for initialization
     void Start () {
-		//elementPooler = new Dictionary<string, List<GameObject>>();
-        elementPooler = new Dictionary<string, Queue<GameObject>>();
+        arrowDictionary = new Dictionary<string, Queue<GameObject>>();
+        itemDictionary = new Dictionary<string, List<GameObject>>();
         expandDictionary = new Dictionary<string, bool>();
 
-        foreach (Pool p in pools) {
-            //List<GameObject> list = new List<GameObject>();
+        initialArrowPool();
+        initialItemPool();
+        
+	}
+
+    void initialArrowPool ()
+    {
+        foreach (Pool p in arrowPools)
+        {
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
-            foreach(GameObject go in p.elements) {
-                for(int i = 0 ; i < p.sizeOfEachElement ; i++) {
+            foreach (GameObject go in p.elements)
+            {
+                for (int i = 0; i < p.sizeOfEachElement; i++)
+                {
                     GameObject o = Instantiate(go);
                     o.SetActive(false);
-                    //list.Add(o);
                     objectPool.Enqueue(o);
                 }
             }
 
-            //elementPooler.Add(p.tag, list);
-            elementPooler.Add(p.tag, objectPool);
+            arrowDictionary.Add(p.tag, objectPool);
             expandDictionary.Add(p.tag, p.canExpand);
         }
-	}
+    }
 
-    public GameObject GetElementInPool(string tag, Vector2 position, Quaternion rotation) {
-        if(!elementPooler.ContainsKey(tag)) {
+    void initialItemPool ()
+    {
+        foreach (Pool p in itemPools)
+        {
+            List<GameObject> list = new List<GameObject>();
+
+            foreach (GameObject go in p.elements)
+            {
+                for (int i = 0; i < p.sizeOfEachElement; i++)
+                {
+                    GameObject o = Instantiate(go);
+                    o.SetActive(false);
+                    list.Add(o);
+                }
+            }
+
+            itemDictionary.Add(p.tag, list);
+        }
+    }
+
+    public GameObject GetArrowInPool(string tag, Vector2 position, Quaternion rotation) {
+        if(!arrowDictionary.ContainsKey(tag)) {
             Debug.LogWarning("No " + tag + " exists in the pool.");
             return null;
         }
 
-        if (elementPooler[tag].Count != 0)
+        if (arrowDictionary[tag].Count != 0)
         {
-            if (!elementPooler[tag].Peek().activeSelf)
+            if (!arrowDictionary[tag].Peek().activeSelf)
             {
-                GameObject objectToSpawn = elementPooler[tag].Dequeue();
+                GameObject objectToSpawn = arrowDictionary[tag].Dequeue();
 
                 objectToSpawn.SetActive(true);
                 objectToSpawn.transform.position = position;
                 objectToSpawn.transform.rotation = rotation;
 
-                elementPooler[tag].Enqueue(objectToSpawn);
+                arrowDictionary[tag].Enqueue(objectToSpawn);
 
                 Debug.Log("Return object: " + objectToSpawn);
 
@@ -80,13 +109,13 @@ public class ItemAndEnemyPooler : MonoBehaviour {
             {
                 if (expandDictionary[tag])
                 {
-                    GameObject objectToSpawn = Instantiate(elementPooler[tag].Peek());
+                    GameObject objectToSpawn = Instantiate(arrowDictionary[tag].Peek());
 
                     objectToSpawn.SetActive(true);
                     objectToSpawn.transform.position = position;
                     objectToSpawn.transform.rotation = rotation;
 
-                    elementPooler[tag].Enqueue(objectToSpawn);
+                    arrowDictionary[tag].Enqueue(objectToSpawn);
 
                     Debug.Log("Return object: " + objectToSpawn);
 
@@ -95,20 +124,34 @@ public class ItemAndEnemyPooler : MonoBehaviour {
             }
         }
 
-        
+        return null;
+    }
 
-        /*
-        List<GameObject> list = elementPooler[tag];
-        foreach (GameObject go in list) {
-            if(!go.activeInHierarchy) {
-                go.transform.position = position;
-                go.transform.rotation = rotation;
-                go.SetActive(true);
-                return go;
+    public GameObject GetRandomItemInPool(Vector2 position, Quaternion rotation)
+    {
+        if (!itemDictionary.ContainsKey(tag))
+        {
+            Debug.LogWarning("No " + tag + " exists in the pool.");
+            return null;
+        }
+
+        List<GameObject> list = itemDictionary[tag];
+        GameObject itemToSpawn = null;
+
+        while (true)
+        {
+            int index = Random.Range(0, list.Count);
+
+            itemToSpawn = list[index];
+
+            if (!itemToSpawn.activeInHierarchy)
+            {
+                itemToSpawn.transform.position = position;
+                itemToSpawn.SetActive(true);
+                break;
             }
         }
-        */
 
-        return null;
+        return itemToSpawn;
     }
 }
