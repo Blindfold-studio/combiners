@@ -22,7 +22,7 @@ public class HealthSystem : MonoBehaviour {
 
         set
         {
-            if (currentHP > maxHP)
+            if (currentHP >= maxHP)
             {
                 currentHP = maxHP;
             }
