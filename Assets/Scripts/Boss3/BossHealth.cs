@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using TMPro;
 
 public class BossHealth : MonoBehaviour {
 
     public Image bossHpBar;
-    private float max_health = 39f;
+    public TextMeshProUGUI hp1;
+    public TextMeshProUGUI hp2;
+    private float max_health = 3f;
     private float current_health;
     private Boss3Movement boss3Movement;
 
@@ -29,6 +32,7 @@ public class BossHealth : MonoBehaviour {
 	void Start () {
 		current_health = max_health;
         boss3Movement = GetComponent<Boss3Movement>();
+        UpdateHpText();
 	}
 	
 	void CheckingBossHealth() {
@@ -36,11 +40,17 @@ public class BossHealth : MonoBehaviour {
             if(DeathEvent != null) {
                 DeathEvent();
             }
-        } else if(current_health % 13 == 0 && current_health < max_health) {    
+        } else if(current_health % (max_health/3) == 0 && current_health < max_health) {    
             // SwapBoss();
             if(SwapingEvent != null) {
                 StartCoroutine(SwapingEvent());
+                UpdateHpText();
             }
         }
+    }
+
+    void UpdateHpText() {
+        hp1.text = "BHP: " + current_health;
+        hp2.text = "BHP: " + current_health;
     }
 }
