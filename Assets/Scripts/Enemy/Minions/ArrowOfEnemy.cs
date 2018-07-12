@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowOfEnemy : MonoBehaviour {
+public class ArrowOfEnemy : MonoBehaviour
+{
 
     Rigidbody2D rb2d;
 
@@ -14,7 +15,8 @@ public class ArrowOfEnemy : MonoBehaviour {
 
     private Transform player;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb2d = GetComponent<Rigidbody2D>();
         flip = GameObject.Find("cat").GetComponent<EnemyFlip>();
         if (flip.facingR)
@@ -29,11 +31,12 @@ public class ArrowOfEnemy : MonoBehaviour {
             transform.localScale = Scale;
         }
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         Dir();
-	}
+    }
 
     void Dir()
     {
@@ -47,12 +50,8 @@ public class ArrowOfEnemy : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnBecameInvisible()
     {
-        if (other.CompareTag("Weapon") || other.CompareTag("Player"))
-        {
-            Debug.Log("dead");
-            gameObject.SetActive(false);
-        }
+        gameObject.SetActive(false); 
     }
 }

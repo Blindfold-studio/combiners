@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skeliton : MonoBehaviour {
+public class Skeliton : EnemyManager {
     Rigidbody2D rg2d;
     EnemyFlip flip;
     [SerializeField]
@@ -27,8 +27,9 @@ public class Skeliton : MonoBehaviour {
         }
         else if(!flip.facingR)
         {
-            rg2d.velocity = Vector2.left * speed * Time.deltaTime;
-
+            rg2d.velocity = Vector2.left * speed * Time.deltaTime;   
         }
+        
     }
+    
 }

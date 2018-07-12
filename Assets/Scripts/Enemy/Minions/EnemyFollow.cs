@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFollow : MonoBehaviour {
+public class EnemyFollow : EnemyManager {
 
     private GameObject player;
     private Vector2 target;
@@ -12,7 +12,7 @@ public class EnemyFollow : MonoBehaviour {
     private float stop;
 	// Use this for initialization
 	void Start () {
-                
+        heal = 10;
     }
 	
 	// Update is called once per frame
@@ -59,12 +59,5 @@ public class EnemyFollow : MonoBehaviour {
         }
         return closest;
     }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Weapon"))
-        {
-            Debug.Log("dead");
-            gameObject.SetActive(false);
-        }
-    }
+    
 }
