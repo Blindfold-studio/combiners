@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArrow : EnemyManager {
+public class EnemyArrow : Minions
+{
 
     //Rigidbody2D rb2d;
 

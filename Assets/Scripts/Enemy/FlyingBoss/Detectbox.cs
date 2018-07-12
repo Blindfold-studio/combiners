@@ -8,11 +8,12 @@ public class Detectbox : MonoBehaviour {
     public float horSpeed;
     public float verSpeed;
     public float range;
-    private Vector2 CurPosition;
+    private Vector3 CurPosition;
     private int numRound;
     private bool rotateMove;
     private bool waitSec;
     private bool MoveR;
+    private Vector3 axisX;
 
     public Transform[] destination;
 
@@ -20,12 +21,13 @@ public class Detectbox : MonoBehaviour {
     void Start () {
         CurPosition = transform.position;
         horSpeed = 8;
-        verSpeed = 4;
-        range = 1;
+        verSpeed = 10f;
+        range = 2f;
         numRound = 0;
         waitSec = true;
         rotateMove = true;
         MoveR = true;
+        
     }
 	
 	// Update is called once per frame
@@ -41,16 +43,23 @@ public class Detectbox : MonoBehaviour {
         {
 
             //Move();
-            if(MoveR)
+            if (MoveR)
+            {
                 CurPosition.x += horSpeed * Time.deltaTime;
+                //axisX = Vector3.right;
+            }
+                
             else if (!MoveR)
+            {
                 CurPosition.x -= horSpeed * Time.deltaTime;
+                //axisX = Vector3.left;
+            }
 
-
+            //CurPosition += Vector3.up * Time.deltaTime * verSpeed;
+            //transform.position = CurPosition + axisX * Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
             CurPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
             transform.position = CurPosition;
         }
-        
     }
 
 

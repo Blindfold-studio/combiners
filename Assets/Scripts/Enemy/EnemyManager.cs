@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour {
 
-    public int  heal = 1;
+    public int  heal;
 	
-    public virtual void TakeDamage()
-    {
-        heal -= 1;
-    }
-
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowOfEnemy : MonoBehaviour
+public class ArrowOfEnemy : Minions
 {
 
     Rigidbody2D rb2d;

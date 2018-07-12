@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHopping : EnemyManager {
+public class EnemyHopping : Minions
+{
 
     Rigidbody2D rb2d;
 

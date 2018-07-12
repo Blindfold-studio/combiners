@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFollow : EnemyManager {
+public class EnemyFollow : Minions {
 
     private GameObject player;
     private Vector2 target;

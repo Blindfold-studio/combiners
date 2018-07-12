@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skeliton : EnemyManager {
+public class Skeliton : Minions
+{
     Rigidbody2D rg2d;
     EnemyFlip flip;
     [SerializeField]
