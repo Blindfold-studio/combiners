@@ -65,3 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ad5bec8cc49424eb9422fad0c0f201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData:
+    maxHealth: 5
+    arrowCapacity: 5
+    speed: 5
