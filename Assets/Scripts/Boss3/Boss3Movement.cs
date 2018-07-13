@@ -124,4 +124,9 @@ public class Boss3Movement : MonoBehaviour {
         BossHealth.DeathEvent -= Die;
         rg.velocity = new Vector2(0f, rg.velocity.y);   
     }
+
+    private void OnDisable() {
+        BossHealth.SwapingEvent -= SwapBoss;
+        BossHealth.DeathEvent -= Die;
+    }
 }
