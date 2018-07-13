@@ -49,7 +49,7 @@ public class HealthSystem : MonoBehaviour {
 
         set
         {
-            maxHealth += value;
+            maxHealth = value;
         }
     }
 }
