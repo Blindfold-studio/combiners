@@ -39,11 +39,11 @@ public class Projectiles : MonoBehaviour, IFPoolObject {
         }
     }
     [SerializeField]
-    public int numOfProjectile;
+    public int numOfProjectile =3;
     [SerializeField]
-    public float range;
+    public float range =3 ;
     [SerializeField]
-    public float speedBullet;
+    public float speedBullet=3;
     Rigidbody2D rg2d;
 
     public static Projectiles instance;
@@ -60,9 +60,11 @@ public class Projectiles : MonoBehaviour, IFPoolObject {
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rg2d = GetComponent<Rigidbody2D>();
-        Debug.Log("NumOF"+ numOfProjectile);
-        Debug.Log("Range" + range);
-        Debug.Log("Speed" + speedBullet);
+        SetProjectile(numOfProjectile, range, speedBullet);
+        Debug.Log("***************");
+        Debug.Log("NumOF"+ NumberOfProjectile);
+        //Debug.Log("Range" + range);
+        //Debug.Log("Speed" + speedBullet);
         
 	}
 	
@@ -71,11 +73,11 @@ public class Projectiles : MonoBehaviour, IFPoolObject {
         
     }
     //Manyprojectile
-    public void SetProjectile(int numOfP, float range, float speedBullet)
+    void SetProjectile(int numOfP, float range, float speedBullet)
     {
         float angleTotal = 360f / numOfP;
         float angle = 0f;
-        
+        Debug.Log("-----------");
         for (int i = 0; i <= numOfP - 1; i++)
         {
             float projectileX = player.transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180) * range;
@@ -84,7 +86,11 @@ public class Projectiles : MonoBehaviour, IFPoolObject {
             Vector3 projectileVec = new Vector3(projectileX, projectileY, 0);
             Vector3 projectileDir = Vector3.Normalize(projectileVec - this.transform.position) * speedBullet;
 
-
+            Debug.Log("-----------");
+            Debug.Log("numOfP" + numOfP);
+            Debug.Log("range" + range);
+            Debug.Log("speedBullet" + speedBullet);
+            
             //var proj = Instantiate(bullet3Pro, this.transform.position, Quaternion.identity);
             //proj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDir.x, projectileDir.y);
             rg2d.velocity = new Vector2(projectileDir.x, projectileDir.y);

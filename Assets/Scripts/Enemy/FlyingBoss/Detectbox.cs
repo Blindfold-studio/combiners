@@ -4,194 +4,52 @@ using UnityEngine;
 
 public class Detectbox : MonoBehaviour {
 
-    //Movement
-    //public float horSpeed;
-   // public float verSpeed;
-    //public float range;
-    private Vector3 CurPosition;
-    private int numRound;
-    private bool rotateMove;
-    private bool waitSec;
-    private bool MoveR;
-    private Vector3 axisX;
+    [SerializeField]
+    private float amplitudeX = 10.0f;
+    [SerializeField]
+    private float amplitudeY = 1.0f;
+    [SerializeField]
+    private float omegaX = 1f;
+    [SerializeField]
+    private float omegaY = 2.5f;
+    private float index;
 
-    float amplitudeX = 10.0f;
-    float amplitudeY = 1.0f;
-    float omegaX = 1f;
-    float omegaY = 2.5f;
-    float index;
-    
-    public Transform[] destination;
-
-    // Use this for initialization
-    void Start () {
-        CurPosition = transform.position;
-        //horSpeed = 8;
-        //verSpeed = 10f;
-        //range = 2f;
-        numRound = 0;
-        waitSec = true;
-        rotateMove = true;
-        MoveR = true;
-        
+    private bool backward;
+    private int count = 0;
+    void Awake()
+    {
+        backward = false;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
-        index -= Time.deltaTime;
-        float x = amplitudeX * Mathf.Cos(omegaX * index);
-        float y = amplitudeY * Mathf.Sin(omegaY * index);
-        transform.localPosition = new Vector3(x, y, 0);
-        //Controll();
+
+    void Update () {
+        Controll();
     }
 
     void Controll()
     {
-
-        if (waitSec)
+        if (count%2==0)
         {
-
-            //Move();
-            if (MoveR)
-            {
-                //CurPosition.x += horSpeed * Time.deltaTime;
-                axisX = Vector3.right;
-            }
-                
-            else if (!MoveR)
-            {
-               // CurPosition.x -= horSpeed * Time.deltaTime;
-                axisX = Vector3.left;
-            }
-
-            //CurPosition += Vector3.up * Time.deltaTime * verSpeed;
-           // transform.position = CurPosition + axisX * Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
-            //CurPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
-            //transform.position = CurPosition;
+            index -= Time.deltaTime;
         }
+        else if(count%2==1)
+        {
+            index += Time.deltaTime;
+        }
+        
+        float x = amplitudeX * Mathf.Cos(omegaX * index);
+        float y = amplitudeY * Mathf.Sin(omegaY * index) + 3;
+        transform.localPosition = new Vector3(x, y, 0);
+
     }
 
-
-    /*void Move()
-    {
-        if (CurPosition.y <= 0)
-        {
-            if (!check)
-            {
-
-                numRound++;
-                check = true;
-            }
-            if (numRound % 4 == 2)
-            {
-                CurPosition.x -= horSpeed * Time.deltaTime;
-            }
-            else if (numRound % 4 == 0)
-            {
-                CurPosition.x += horSpeed * Time.deltaTime;
-            }
-        }
-        else if (CurPosition.y > 0)
-        {
-            if (check)
-            {
-
-                numRound++;
-                check = false;
-            }
-            if (numRound % 4 == 1)
-            {
-                CurPosition.x += horSpeed * Time.deltaTime;
-            }
-            else if (numRound % 4 == 3)
-            {
-                CurPosition.x -= horSpeed * Time.deltaTime;
-            }
-        }
-        CurPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
-        transform.position = CurPosition;
-    }
-    void MoveOp()
-    {
-        if (CurPosition.y <= 0)
-        {
-            if (!check)
-            {
-
-                numRound++;
-                check = true;
-            }
-            if (numRound % 4 == 2)
-            {
-                CurPosition.x += horSpeed * Time.deltaTime;
-            }
-            else if (numRound % 4 == 0)
-            {
-                CurPosition.x -= horSpeed * Time.deltaTime;
-            }
-        }
-        else if (CurPosition.y > 0)
-        {
-            if (check)
-            {
-
-                numRound++;
-                check = false;
-            }
-            if (numRound % 4 == 1)
-            {
-                CurPosition.x -= horSpeed * Time.deltaTime;
-            }
-            else if (numRound % 4 == 3)
-            {
-                CurPosition.x += horSpeed * Time.deltaTime;
-            }
-        }
-        CurPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
-        transform.position = CurPosition;
-    }
-    */
-
-    
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("WallEast"))
+        if (collision.CompareTag("Player"))
         {
-           
-            MoveR = false;
-            waitSec = false;
-           // StartCoroutine(MoveTo(destination[0].position, 2f));
-            
-            
+            count++;
+            Debug.Log("testttttttttttttttttttttt"+count);
         }
-        else if (collision.CompareTag("WallWest"))
-        {
-            
-            MoveR = true;
-            waitSec = false;
-            //StartCoroutine(MoveTo(destination[1].position, 2f));
-            
-        }
-        
+        Debug.Log("testttttttttttttttttttttt");
     }
 
-    IEnumerator StopforASec()
-    {
-        
-        yield return new WaitForSeconds(3);
-        waitSec = true;
-        
-    }
-    IEnumerator MoveTo(Vector3 des, float speed)
-    {
-        Debug.Log("Move1");
-        while (transform.position != des)
-        {
-            Debug.Log("Move2");
-            transform.position = Vector3.MoveTowards(transform.position, des, speed);
-            yield return null; 
-        }
-    }
-    
 }
