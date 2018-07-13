@@ -21,9 +21,15 @@ public class PlayerAttribute : MonoBehaviour {
     private float shootSpeed;
 
     private int curruntArrow;
+    private GameManager gameManager;
 
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
+        arrowCapacity = gameManager.MaxArrow;
+        speed = gameManager.Speed;
+
         curruntArrow = arrowCapacity;
 
         arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + arrowCapacity.ToString();

@@ -59,8 +59,13 @@ public class Arrow : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Tile") || collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Tile"))
         {
+            gameObject.SetActive(false);
+        } 
+        else if (collision.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<BossHealth>().Health = -damage;
             gameObject.SetActive(false);
         }
     }

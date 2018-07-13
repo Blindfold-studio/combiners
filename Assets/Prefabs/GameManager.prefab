@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb507a3e701c21b45bec3c004dc7255c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 0
-  maxHP: 5
+  currentHealth: 0
+  maxHealth: 0
 --- !u!114 &114855052239744156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,3 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ad5bec8cc49424eb9422fad0c0f201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData:
+    maxHealth: 5
+    arrowCapacity: 5
+    speed: 5
