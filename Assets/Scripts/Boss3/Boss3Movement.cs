@@ -58,7 +58,7 @@ public class Boss3Movement : MonoBehaviour {
     private void FixedUpdate() {
         if(!onHoldForPlayerJump && state == State.Moving) {
             MoveTowardPlayer();
-        } else if(state != State.Moving) {
+        } else if(state != State.Moving && state != State.IsMiddleRangeAttacking) {
             rg.velocity = new Vector2(0f, rg.velocity.y);   
         }
     }

@@ -2004,16 +2004,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
-    - target: {fileID: 114461667864487634, guid: 1d092e3ee7a2542afadd1182ee72e6af,
-        type: 2}
-      propertyPath: hp1
-      value: 
-      objectReference: {fileID: 583302513}
-    - target: {fileID: 114461667864487634, guid: 1d092e3ee7a2542afadd1182ee72e6af,
-        type: 2}
-      propertyPath: hp2
-      value: 
-      objectReference: {fileID: 481376185}
     - target: {fileID: 114374916323965918, guid: 1d092e3ee7a2542afadd1182ee72e6af,
         type: 2}
       propertyPath: player1_screen
@@ -2024,6 +2014,16 @@ Prefab:
       propertyPath: player2_screen
       value: 
       objectReference: {fileID: 887675351}
+    - target: {fileID: 114461667864487634, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: hp1
+      value: 
+      objectReference: {fileID: 583302513}
+    - target: {fileID: 114461667864487634, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: hp2
+      value: 
+      objectReference: {fileID: 481376185}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
   m_IsPrefabParent: 0
