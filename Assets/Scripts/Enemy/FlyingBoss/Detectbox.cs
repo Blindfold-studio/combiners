@@ -5,9 +5,9 @@ using UnityEngine;
 public class Detectbox : MonoBehaviour {
 
     //Movement
-    public float horSpeed;
-    public float verSpeed;
-    public float range;
+    //public float horSpeed;
+   // public float verSpeed;
+    //public float range;
     private Vector3 CurPosition;
     private int numRound;
     private bool rotateMove;
@@ -15,14 +15,20 @@ public class Detectbox : MonoBehaviour {
     private bool MoveR;
     private Vector3 axisX;
 
+    float amplitudeX = 10.0f;
+    float amplitudeY = 1.0f;
+    float omegaX = 1f;
+    float omegaY = 2.5f;
+    float index;
+    
     public Transform[] destination;
 
     // Use this for initialization
     void Start () {
         CurPosition = transform.position;
-        horSpeed = 8;
-        verSpeed = 10f;
-        range = 2f;
+        //horSpeed = 8;
+        //verSpeed = 10f;
+        //range = 2f;
         numRound = 0;
         waitSec = true;
         rotateMove = true;
@@ -32,8 +38,12 @@ public class Detectbox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        Controll();
+        
+        index -= Time.deltaTime;
+        float x = amplitudeX * Mathf.Cos(omegaX * index);
+        float y = amplitudeY * Mathf.Sin(omegaY * index);
+        transform.localPosition = new Vector3(x, y, 0);
+        //Controll();
     }
 
     void Controll()
@@ -45,20 +55,20 @@ public class Detectbox : MonoBehaviour {
             //Move();
             if (MoveR)
             {
-                CurPosition.x += horSpeed * Time.deltaTime;
-                //axisX = Vector3.right;
+                //CurPosition.x += horSpeed * Time.deltaTime;
+                axisX = Vector3.right;
             }
                 
             else if (!MoveR)
             {
-                CurPosition.x -= horSpeed * Time.deltaTime;
-                //axisX = Vector3.left;
+               // CurPosition.x -= horSpeed * Time.deltaTime;
+                axisX = Vector3.left;
             }
 
             //CurPosition += Vector3.up * Time.deltaTime * verSpeed;
-            //transform.position = CurPosition + axisX * Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
-            CurPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
-            transform.position = CurPosition;
+           // transform.position = CurPosition + axisX * Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
+            //CurPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
+            //transform.position = CurPosition;
         }
     }
 

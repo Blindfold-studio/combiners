@@ -612,7 +612,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4299461693141798, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1092482261280152, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
       propertyPath: m_TagString
@@ -1176,7 +1176,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4668151069675064, guid: 8b8fbcdf82f79e44184fda5558379f14, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114955440198983428, guid: 8b8fbcdf82f79e44184fda5558379f14,
         type: 2}
@@ -1232,7 +1232,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4299461693141798, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1092482261280152, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
       propertyPath: m_TagString
@@ -1885,7 +1885,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4438604724248290, guid: 7dac9de0347ee4d2298de8f429c7ec18, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7dac9de0347ee4d2298de8f429c7ec18, type: 2}
@@ -1932,7 +1932,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4198851489577088, guid: 634440a7c97d6ef418ef9ce610c97fcd, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
@@ -2318,7 +2318,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4874401990361610, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
@@ -2332,11 +2332,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4981535624600740, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.586993
+      value: -7.4
       objectReference: {fileID: 0}
     - target: {fileID: 4981535624600740, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.2242727
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 4981535624600740, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2361,6 +2361,15 @@ Prefab:
     - target: {fileID: 4981535624600740, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1917106043646068, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
+      propertyPath: m_Name
+      value: BossFlying
+      objectReference: {fileID: 0}
+    - target: {fileID: 114335037547676640, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: range
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
@@ -2656,7 +2665,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4919310507023706, guid: 417286cbd3b804d1da8df9ec5210034f, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 417286cbd3b804d1da8df9ec5210034f, type: 2}
@@ -2760,7 +2769,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4668151069675064, guid: 8b8fbcdf82f79e44184fda5558379f14, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1569254059368552, guid: 8b8fbcdf82f79e44184fda5558379f14, type: 2}
       propertyPath: m_Name
