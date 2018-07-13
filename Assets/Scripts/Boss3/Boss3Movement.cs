@@ -52,13 +52,14 @@ public class Boss3Movement : MonoBehaviour {
 	}
 
     private void Update() {
-        if(state != State.Idle) {
-            StartCoroutine(FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x));
-        }
+        StartCoroutine(FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x));
+        
     }
     private void FixedUpdate() {
         if(!onHoldForPlayerJump && state == State.Moving) {
             MoveTowardPlayer();
+        } else if(state != State.Moving) {
+            rg.velocity = new Vector2(0f, rg.velocity.y);   
         }
     }
 
