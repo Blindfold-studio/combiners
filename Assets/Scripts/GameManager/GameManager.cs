@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour {
     [System.Serializable]
     public class PlayerData
     {
-        public int maxHealth;
-        public int arrowCapacity;
-        public float speed;
+        public int maxHealth = 5;
+        public int arrowCapacity = 5;
+        public float speed = 5f;
     }
 
     public PlayerData playerData;

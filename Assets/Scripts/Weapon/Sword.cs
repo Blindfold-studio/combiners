@@ -26,7 +26,7 @@ public class Sword : Weapon {
     {
         if (collision.CompareTag("Enemy"))
         {
-            // Hit Enemy
+            collision.gameObject.GetComponent<BossHealth>().Health = damage;
         }
 
         else
