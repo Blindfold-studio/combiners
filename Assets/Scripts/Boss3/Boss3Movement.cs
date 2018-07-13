@@ -52,7 +52,9 @@ public class Boss3Movement : MonoBehaviour {
 	}
 
     private void Update() {
-        StartCoroutine(FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x));
+        if(state != State.Idle) {
+            StartCoroutine(FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x));
+        }
     }
     private void FixedUpdate() {
         if(!onHoldForPlayerJump && state == State.Moving) {
@@ -80,7 +82,6 @@ public class Boss3Movement : MonoBehaviour {
         } else if(isFacingRight && speed < 0) {
             vel *= -1;
         }
-        
         rg.velocity = new Vector2(vel, rg.velocity.y);
     }
 
@@ -118,8 +119,9 @@ public class Boss3Movement : MonoBehaviour {
 
     void Die() {
         Debug.Log("Die");
+        CurrentState = State.Idle;
         BossHealth.SwapingEvent -= SwapBoss;
         BossHealth.DeathEvent -= Die;
-        CurrentState = State.Idle;
+        rg.velocity = new Vector2(0f, rg.velocity.y);   
     }
 }

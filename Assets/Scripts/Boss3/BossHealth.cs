@@ -36,6 +36,7 @@ public class BossHealth : MonoBehaviour {
 	}
 	
 	void CheckingBossHealth() {
+        UpdateHpText();
         if(current_health <= 0) {
             if(DeathEvent != null) {
                 DeathEvent();
@@ -44,7 +45,6 @@ public class BossHealth : MonoBehaviour {
             // SwapBoss();
             if(SwapingEvent != null) {
                 StartCoroutine(SwapingEvent());
-                UpdateHpText();
             }
         }
     }
