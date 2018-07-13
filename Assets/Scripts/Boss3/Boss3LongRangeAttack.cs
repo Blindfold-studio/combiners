@@ -92,6 +92,7 @@ public class Boss3LongRangeAttack : MonoBehaviour {
         boss3Movement.CurrentState = Boss3Movement.State.IsLongRangeAttacking;  
         //do something
         Debug.Log("Start throwing an axe in a straight line.");
+        straightAxe.transform.position = new Vector2(straightAxe.transform.position.x, targetPlayer.transform.position.y);
         straightAxe.SetActive(true);
         if(targetPlayer.transform.position.x - transform.position.x < 0) {
             straightAxeRb.velocity = new Vector2(-10f, straightAxeRb.velocity.y);
