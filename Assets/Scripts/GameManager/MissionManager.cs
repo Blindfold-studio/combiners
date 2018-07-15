@@ -13,8 +13,22 @@ public class MissionManager : MonoBehaviour {
     }
     #endregion
 
+    [SerializeField]
+    private Transform bossPosition_P1;
+    [SerializeField]
+    private Transform bossPosition_P2;
+
     void Start () {
 		
 	}
 
+    public Transform GetBossPosition_P1 ()
+    {
+        return bossPosition_P1;
+    }
+
+    public Transform GetBossPosition_P2()
+    {
+        return bossPosition_P2;
+    }
 }
