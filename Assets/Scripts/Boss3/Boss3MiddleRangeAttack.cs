@@ -8,6 +8,12 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
 	private Boss3Movement boss3Movement;
     private Rigidbody2D rb;
     private bool isPlayerInRange;
+    [SerializeField]
+    private float beforeChargingTime = 1.5f;
+    [SerializeField]
+    private float afterChargingTime = 1f;
+    [SerializeField]
+    private float chargedPower = 5f;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +24,7 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
 	
 	void FixedUpdate () {
 		if(isPlayerInRange && boss3Movement.CurrentState == Boss3Movement.State.Moving) {
-            StartCoroutine(ChargingToPlayer());
+            StartCoroutine("ChargingToPlayer");
         }
 	}
 
@@ -35,16 +41,24 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
     }
 
     IEnumerator ChargingToPlayer() {
+        Boss3Movement.StopCoroutineEvent += StopAttack;
         boss3Movement.CurrentState = Boss3Movement.State.IsMiddleRangeAttacking;  
         Debug.Log("Start charging!");
         float vel = rb.velocity.x;
         rb.velocity = new Vector2(0, rb.velocity.y);
-        yield return new WaitForSeconds(2f);
-        rb.velocity = new Vector2(vel*5, rb.velocity.y);
-        // rb.AddForce(new Vector2(2000, 0));
+        yield return new WaitForSeconds(beforeChargingTime);
+        rb.velocity = new Vector2(vel*chargedPower, rb.velocity.y);
         Debug.Log("Charging attack stops!");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(afterChargingTime);
         rb.velocity = new Vector2(vel, rb.velocity.y);
         boss3Movement.CurrentState = Boss3Movement.State.Moving;
+        Boss3Movement.StopCoroutineEvent -= StopAttack;
+    }
+
+    void StopAttack() {
+        isPlayerInRange = false;
+        StopCoroutine("ChargingToPlayer");
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 }
