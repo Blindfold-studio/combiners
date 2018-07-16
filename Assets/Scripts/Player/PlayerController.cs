@@ -28,13 +28,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float xMax = 21.5f;
     [SerializeField]
-    private Vector3 offsetArrow;
+    private Vector3 offsetArrow; 
 
     private bool isOnGround;
     private bool faceRight;
     private bool jumpRequest;
     private bool isInvicible;
     private float timeStamp;
+    private BoxCollider2D playerBox;
     private Rigidbody2D rb;
     private Vector2 playerSize;
     private Vector2 boxSize;
@@ -46,7 +47,8 @@ public class PlayerController : MonoBehaviour {
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerSize = GetComponent<BoxCollider2D>().size;
+        playerBox = GetComponent<BoxCollider2D>();
+        playerSize = playerBox.size;
         boxSize = new Vector2(playerSize.x, groundedSkin);
 
         playerAttr = GetComponent<PlayerAttribute>();
@@ -172,5 +174,14 @@ public class PlayerController : MonoBehaviour {
         GetComponent<Animation>().Stop("GetDamage");
 
         yield return null;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Debug.Log("Ignore collision");
+            Physics2D.IgnoreCollision(playerBox, collision, true);
+        }    
     }
 }
