@@ -51,12 +51,12 @@ public class Boss3Movement : MonoBehaviour {
         missionManager = MissionManager.instance;
 
 		rg = GetComponent<Rigidbody2D>();
-        isFacingRight = true;
         onHoldForPlayerJump = false;
         state = State.Moving;
         targetPlayer = FindTheClosestPlayer();
         BossHealth.SwapingEvent += SwapBoss;
         BossHealth.DeathEvent += Die;
+        FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x);
         player1_screen = missionManager.GetBossPosition_P1();
         player2_screen = missionManager.GetBossPosition_P2();
 	}
