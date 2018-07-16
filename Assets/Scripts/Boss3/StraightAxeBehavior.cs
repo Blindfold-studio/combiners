@@ -28,8 +28,4 @@ public class StraightAxeBehavior : MonoBehaviour {
         }
     }
 
-    void Stop() {
-
-    }
-
 }

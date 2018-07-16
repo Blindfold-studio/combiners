@@ -52,6 +52,7 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 
     IEnumerator ThrowProjectileAxeToPlayer() {
         Boss3Movement.StopCoroutineEvent += StopAttack;
+        projectileAxe.transform.position = this.transform.position;
         boss3Movement.CurrentState = Boss3Movement.State.IsLongRangeAttacking;
         Debug.Log("Start throwing an axe in a projectile line.");
         projectileAxe.SetActive(true);
@@ -66,6 +67,7 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 
     IEnumerator ThrowStraightAxeToPlayer() {
         Boss3Movement.StopCoroutineEvent += StopAttack;
+        straightAxe.transform.position = this.transform.position;
         boss3Movement.CurrentState = Boss3Movement.State.IsLongRangeAttacking;  
         Debug.Log("Start throwing an axe in a straight line.");
         straightAxe.transform.position = new Vector2(straightAxe.transform.position.x, boss3Movement.TargetPlayer.transform.position.y);
