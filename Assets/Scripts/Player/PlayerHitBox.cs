@@ -19,7 +19,7 @@ public class PlayerHitBox : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && !player.IsInvicble())
+        if ((collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !player.IsInvicble())
         {
             Debug.Log("Player is hit by enemy");
             playerHP.HP = -1;

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Item
   - EnemyWeapon
+  - MissionManager
   layers:
   - Default
   - TransparentFX

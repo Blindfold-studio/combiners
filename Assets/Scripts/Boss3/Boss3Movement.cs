@@ -16,8 +16,14 @@ public class Boss3Movement : MonoBehaviour {
     public enum State {Idle, Moving, IsShortRangeAttacking, IsMiddleRangeAttacking, IsLongRangeAttacking};
     private State state;
 
+    /*
     public GameObject player1_screen;
     public GameObject player2_screen;
+    */
+
+    private MissionManager missionManager;
+    private Transform player1_screen;
+    private Transform player2_screen;
 
     public State CurrentState {
         get { return state; } 
@@ -42,6 +48,8 @@ public class Boss3Movement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        missionManager = MissionManager.instance;
+
 		rg = GetComponent<Rigidbody2D>();
         isFacingRight = true;
         onHoldForPlayerJump = false;
@@ -49,6 +57,8 @@ public class Boss3Movement : MonoBehaviour {
         targetPlayer = FindTheClosestPlayer();
         BossHealth.SwapingEvent += SwapBoss;
         BossHealth.DeathEvent += Die;
+        player1_screen = missionManager.GetBossPosition_P1();
+        player2_screen = missionManager.GetBossPosition_P2();
 	}
 
     private void Update() {
@@ -110,9 +120,11 @@ public class Boss3Movement : MonoBehaviour {
         }
 
         if(TargetPlayer.name == "Player1") {
-            this.transform.position = player2_screen.transform.position;
+            //this.transform.position = player2_screen.transform.position;
+            this.transform.position = player2_screen.position;
         } else if(TargetPlayer.name == "Player2") {
-            this.transform.position = player1_screen.transform.position;
+            //this.transform.position = player1_screen.transform.position;
+            this.transform.position = player1_screen.position;
         }
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
