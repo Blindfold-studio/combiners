@@ -39,11 +39,11 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
         Debug.Log("Start charging!");
         float vel = rb.velocity.x;
         rb.velocity = new Vector2(0, rb.velocity.y);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         rb.velocity = new Vector2(vel*5, rb.velocity.y);
         // rb.AddForce(new Vector2(2000, 0));
         Debug.Log("Charging attack stops!");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         rb.velocity = new Vector2(vel, rb.velocity.y);
         boss3Movement.CurrentState = Boss3Movement.State.Moving;
     }
