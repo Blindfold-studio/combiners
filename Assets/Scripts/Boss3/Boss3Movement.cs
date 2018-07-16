@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
 public class Boss3Movement : MonoBehaviour {
@@ -20,7 +21,8 @@ public class Boss3Movement : MonoBehaviour {
     private MissionManager missionManager;
     private Transform player1_screen;
     private Transform player2_screen;
-    public IEnumerator recentCoroutine;
+
+    public static event Action StopCoroutineEvent;
 
     public State CurrentState {
         get { return state; } 
@@ -109,15 +111,7 @@ public class Boss3Movement : MonoBehaviour {
 
     void SwapBoss() {
         Debug.Log("Swaping");
-        Debug.Log(recentCoroutine);
-        StopCoroutine(recentCoroutine);
-        // yield return new WaitForSeconds(0.1f);
-        // if(CurrentState == State.Moving) {
-        //     // CurrentState = State.Idle;
-        // } else if(CurrentState != State.Idle && CurrentState != State.Moving) {
-        //     yield return new WaitUntil(() => CurrentState == State.Moving);
-        // }
-
+        StopCoroutineEvent();
         if(TargetPlayer.name == "Player1") {
             this.transform.position = player2_screen.position;
         } else if(TargetPlayer.name == "Player2") {
@@ -139,4 +133,5 @@ public class Boss3Movement : MonoBehaviour {
         BossHealth.SwapingEvent -= SwapBoss;
         BossHealth.DeathEvent -= Die;
     }
+
 }

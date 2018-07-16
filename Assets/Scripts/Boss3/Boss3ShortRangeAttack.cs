@@ -6,12 +6,12 @@ using UnityEngine;
 public class Boss3ShortRangeAttack : MonoBehaviour {
 
 	private bool isPlayerInRange;
-    private GameObject targetPlayer;
+    // private GameObject targetPlayer;
     private Boss3Movement boss3Movement;
 
     private void Start() {
         isPlayerInRange = false;
-        targetPlayer = null;
+        // targetPlayer = null;
         
         boss3Movement = GetComponentInParent<Boss3Movement>();
     }
@@ -19,21 +19,21 @@ public class Boss3ShortRangeAttack : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             isPlayerInRange = true;
-            targetPlayer = other.gameObject;
+            // targetPlayer = other.gameObject;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             isPlayerInRange = false;
-            targetPlayer = null;
+            // targetPlayer = null;
         }
     }
 
     private void Update() {
         
-        if(isPlayerInRange && boss3Movement.CurrentState == Boss3Movement.State.Moving && targetPlayer != null) {
-            StartCoroutine(SlashPlayer(targetPlayer));
+        if(isPlayerInRange && boss3Movement.CurrentState == Boss3Movement.State.Moving /*&& targetPlayer != null*/) {
+            StartCoroutine(SlashPlayer(boss3Movement.TargetPlayer));
         }
     }
 

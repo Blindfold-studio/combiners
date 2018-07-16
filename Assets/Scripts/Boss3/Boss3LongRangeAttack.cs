@@ -22,6 +22,8 @@ public class Boss3LongRangeAttack : MonoBehaviour {
                 projectileAxe = transform.GetChild(i).gameObject;
             }
         }
+
+        Boss3Movement.StopCoroutineEvent += StopAttack;
 	}
 	
 	// Update is called once per frame
@@ -29,11 +31,10 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 		if(isPlayerInRange && boss3Movement.CurrentState == Boss3Movement.State.Moving) {
             
             if(boss3Movement.TargetPlayer.transform.position.y - transform.position.y < 0) {
-                boss3Movement.recentCoroutine = ThrowStraightAxeToPlayer();
+                StartCoroutine("ThrowStraightAxeToPlayer");  
             } else {
-                boss3Movement.recentCoroutine = ThrowProjectileAxeToPlayer();
+                StartCoroutine("ThrowProjectileAxeToPlayer");  
             }
-            StartCoroutine(boss3Movement.recentCoroutine);  
         }
 	}
 
@@ -73,5 +74,15 @@ public class Boss3LongRangeAttack : MonoBehaviour {
         Debug.Log("Stop throwing an axe in a straight line.");
         // yield return new WaitForSeconds(1f);
         boss3Movement.CurrentState = Boss3Movement.State.Moving;
+        Debug.Log(boss3Movement.CurrentState);
+    }
+
+
+    private void StopAttack() {
+        StopCoroutine("ThrowStraightAxeToPlayer");
+        StopCoroutine("ThrowProjectileAxeToPlayer");
+        straightAxe.SetActive(false);
+        projectileAxe.SetActive(false);
+        Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 }
