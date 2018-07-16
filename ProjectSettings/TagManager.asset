@@ -10,6 +10,7 @@ TagManager:
   - Item
   - EnemyWeapon
   - MissionManager
+  - WinAndUpgrade
   layers:
   - Default
   - TransparentFX
