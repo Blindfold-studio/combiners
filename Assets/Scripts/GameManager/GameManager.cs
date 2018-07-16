@@ -37,6 +37,14 @@ public class GameManager : MonoBehaviour {
         healthSystem = GetComponent<HealthSystem>();
     }
     
+    public int CurrentHealth
+    {
+        get
+        {
+            return healthSystem.HP;
+        }
+    }
+
     public int MaxHealth
     {
         get

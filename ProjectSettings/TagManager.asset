@@ -11,6 +11,7 @@ TagManager:
   - EnemyWeapon
   - MissionManager
   - WinAndUpgrade
+  - LosePanel
   layers:
   - Default
   - TransparentFX

@@ -21,12 +21,18 @@ public class MissionManager : MonoBehaviour {
     private Transform bossPosition_P2;
 
     private BossHealth bossHealth;
+    private GameManager gameManager;
     private GameObject upgradePanel;
+    private GameObject losePanel;
 
     void Start () {
+        gameManager = GameManager.instance;
+
         bossHealth = BossObject.GetComponent<BossHealth>();
         upgradePanel = GameObject.FindGameObjectWithTag("WinAndUpgrade");
+        losePanel = GameObject.FindGameObjectWithTag("LosePanel");
         upgradePanel.SetActive(false);
+        losePanel.SetActive(false);
 	}
 
     void Update()
@@ -36,6 +42,12 @@ public class MissionManager : MonoBehaviour {
             upgradePanel.SetActive(true);
             Time.timeScale = 0f;
         }    
+
+        if (gameManager.CurrentHealth <= 0)
+        {
+            losePanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     public Transform GetBossPosition_P1 ()
