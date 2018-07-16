@@ -16,14 +16,10 @@ public class Boss3Movement : MonoBehaviour {
     public enum State {Idle, Moving, IsShortRangeAttacking, IsMiddleRangeAttacking, IsLongRangeAttacking};
     private State state;
 
-    /*
-    public GameObject player1_screen;
-    public GameObject player2_screen;
-    */
-
     private MissionManager missionManager;
     private Transform player1_screen;
     private Transform player2_screen;
+    public Coroutine recentCoroutine;
 
     public State CurrentState {
         get { return state; } 
@@ -112,18 +108,17 @@ public class Boss3Movement : MonoBehaviour {
 
     IEnumerator SwapBoss() {
         Debug.Log("Swaping");
-
-        if(CurrentState == State.Moving) {
-            // CurrentState = State.Idle;
-        } else if(CurrentState != State.Idle && CurrentState != State.Moving) {
-            yield return new WaitUntil(() => CurrentState == State.Moving);
-        }
+        StopCoroutine(recentCoroutine);
+        yield return new WaitForSeconds(0.1f);
+        // if(CurrentState == State.Moving) {
+        //     // CurrentState = State.Idle;
+        // } else if(CurrentState != State.Idle && CurrentState != State.Moving) {
+        //     yield return new WaitUntil(() => CurrentState == State.Moving);
+        // }
 
         if(TargetPlayer.name == "Player1") {
-            //this.transform.position = player2_screen.transform.position;
             this.transform.position = player2_screen.position;
         } else if(TargetPlayer.name == "Player2") {
-            //this.transform.position = player1_screen.transform.position;
             this.transform.position = player1_screen.position;
         }
         TargetPlayer = FindTheClosestPlayer();

@@ -11,12 +11,6 @@ public class Boss3LongRangeAttack : MonoBehaviour {
     private GameObject straightAxe;
     private GameObject projectileAxe;
 
-    private Rigidbody2D straightAxeRb;
-    private Rigidbody2D projectileAxeRb;
-    private float throwingAngle = 45f * Mathf.Deg2Rad;
-    private float gravity = 0.8f;
-
-
 	// Use this for initialization
 	void Start () {
 		isPlayerInRange = false;
@@ -30,9 +24,6 @@ public class Boss3LongRangeAttack : MonoBehaviour {
                 projectileAxe = transform.GetChild(i).gameObject;
             }
         }
-        Debug.Log(straightAxe);
-        straightAxeRb = straightAxe.GetComponent<Rigidbody2D>();
-        projectileAxeRb = projectileAxe.GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -40,9 +31,9 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 		if(isPlayerInRange && boss3Movement.CurrentState == Boss3Movement.State.Moving && targetPlayer != null) {
             
             if(targetPlayer.transform.position.y - transform.position.y < 0) {
-                StartCoroutine(ThrowStraightAxeToPlayer());  
+                boss3Movement.recentCoroutine = StartCoroutine(ThrowStraightAxeToPlayer());  
             } else {
-                StartCoroutine(ThrowProjectileAxeToPlayer());
+                boss3Movement.recentCoroutine = StartCoroutine(ThrowProjectileAxeToPlayer());
             }
             
         }
@@ -68,19 +59,8 @@ public class Boss3LongRangeAttack : MonoBehaviour {
         Debug.Log("Start throwing an axe in a projectile line.");
         projectileAxe.SetActive(true);
 
-        //find time too
-        float verticalDistance =  targetPlayer.transform.position.y - this.transform.position.y;
-        float horizontalDistance = targetPlayer.transform.position.x - this.transform.position.x;
-        float vel = Mathf.Sqrt((gravity*horizontalDistance*horizontalDistance) / (1 + Mathf.Cos(2*throwingAngle)*(horizontalDistance*Mathf.Tan(throwingAngle) - verticalDistance)));
-        Debug.Log(verticalDistance);
-        Debug.Log(horizontalDistance);
-        float vel_x = vel * Mathf.Cos(throwingAngle);
-        float vel_y = vel * Mathf.Sin(throwingAngle);
-        if(horizontalDistance < 0) {
-            vel_x = vel * Mathf.Cos(180f*Mathf.Deg2Rad - throwingAngle);
-            vel_y = vel * Mathf.Sin(180f*Mathf.Deg2Rad - throwingAngle);
-        } 
-        projectileAxeRb.velocity = new Vector2(vel_x, vel_y);
+        projectileAxe.GetComponent<ProjectileAxeBehavior>().Moving(targetPlayer);
+        
         yield return new WaitForSeconds(2f);
         projectileAxe.SetActive(false);
         projectileAxe.transform.position = this.transform.position;
@@ -94,11 +74,7 @@ public class Boss3LongRangeAttack : MonoBehaviour {
         Debug.Log("Start throwing an axe in a straight line.");
         straightAxe.transform.position = new Vector2(straightAxe.transform.position.x, targetPlayer.transform.position.y);
         straightAxe.SetActive(true);
-        if(targetPlayer.transform.position.x - transform.position.x < 0) {
-            straightAxeRb.velocity = new Vector2(-10f, straightAxeRb.velocity.y);
-        } else {
-            straightAxeRb.velocity = new Vector2(10f, straightAxeRb.velocity.y);
-        }
+        straightAxe.GetComponent<StraightAxeBehavior>().Moving(targetPlayer);
         yield return new WaitForSeconds(2f);
         straightAxe.SetActive(false);
         straightAxe.transform.position = this.transform.position;
