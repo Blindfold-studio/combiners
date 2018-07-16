@@ -34,13 +34,13 @@ public class PlayerAttribute : MonoBehaviour {
         curruntArrow = arrowCapacity;
 
         arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
-        speedText.text = "Speed: " + speed.ToString();
+        speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
     void Update ()
     {
         arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
-        speedText.text = "Speed: " + gameManager.Speed.ToString();
+        speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
     public int Arrow

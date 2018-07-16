@@ -37,6 +37,14 @@ public class GameManager : MonoBehaviour {
         healthSystem = GetComponent<HealthSystem>();
     }
     
+    public int CurrentHealth
+    {
+        get
+        {
+            return healthSystem.HP;
+        }
+    }
+
     public int MaxHealth
     {
         get
@@ -46,7 +54,7 @@ public class GameManager : MonoBehaviour {
 
         set
         {
-            playerData.maxHealth += value;
+            playerData.maxHealth = value;
             healthSystem.MaxHP = playerData.maxHealth;
         }
     }
@@ -60,7 +68,7 @@ public class GameManager : MonoBehaviour {
 
         set
         {
-            playerData.arrowCapacity += value;
+            playerData.arrowCapacity = value;
         }
     }
 
@@ -73,7 +81,7 @@ public class GameManager : MonoBehaviour {
 
         set
         {
-            playerData.speed += value;
+            playerData.speed = value;
         }
     }
 }
