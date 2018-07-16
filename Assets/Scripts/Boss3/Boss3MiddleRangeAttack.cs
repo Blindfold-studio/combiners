@@ -14,11 +14,12 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
 		boss3Movement = GetComponentInParent<Boss3Movement>();
         rb = GetComponentInParent<Rigidbody2D>();
         isPlayerInRange = false;
+        Boss3Movement.StopCoroutineEvent += StopAttack;
 	}
 	
 	void FixedUpdate () {
 		if(isPlayerInRange && boss3Movement.CurrentState == Boss3Movement.State.Moving) {
-            StartCoroutine(ChargingToPlayer());
+            StartCoroutine("ChargingToPlayer");
         }
 	}
 
@@ -41,10 +42,16 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
         rb.velocity = new Vector2(0, rb.velocity.y);
         yield return new WaitForSeconds(1.5f);
         rb.velocity = new Vector2(vel*5, rb.velocity.y);
-        // rb.AddForce(new Vector2(2000, 0));
         Debug.Log("Charging attack stops!");
         yield return new WaitForSeconds(1f);
         rb.velocity = new Vector2(vel, rb.velocity.y);
         boss3Movement.CurrentState = Boss3Movement.State.Moving;
+    }
+
+    void StopAttack() {
+        isPlayerInRange = false;
+        StopCoroutine("ChargingToPlayer");
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 }
