@@ -15,6 +15,12 @@ public class ProjectileAxeBehavior : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
         this.gameObject.SetActive(false);
 	}
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Player")) {
+            this.gameObject.SetActive(false);
+        }
+    }
 	
 	public void Moving(GameObject targetPlayer) {
         float verticalDistance =  targetPlayer.transform.position.y - this.transform.position.y;

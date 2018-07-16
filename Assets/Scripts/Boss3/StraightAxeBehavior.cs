@@ -13,6 +13,12 @@ public class StraightAxeBehavior : MonoBehaviour {
         this.gameObject.SetActive(false);
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Player")) {
+            this.gameObject.SetActive(false);
+        }
+    }
+
 	public void Moving(GameObject targetPlayer) {
         if(targetPlayer.transform.position.x - transform.position.x < 0) {
             Debug.Log(rb);
@@ -20,10 +26,6 @@ public class StraightAxeBehavior : MonoBehaviour {
         } else {
             rb.velocity = new Vector2(axeSpeed, rb.velocity.y);
         }
-    }
-
-    void Stop() {
-
     }
 
 }
