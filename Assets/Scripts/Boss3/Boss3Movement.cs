@@ -6,7 +6,8 @@ using UnityEngine;
 public class Boss3Movement : MonoBehaviour {
 
 	private GameObject targetPlayer;
-    public float speed = 2f;
+    [SerializeField]
+    private float speed = 2f;
     private Rigidbody2D rg;
     private bool isFacingRight;
 
@@ -19,7 +20,7 @@ public class Boss3Movement : MonoBehaviour {
     private MissionManager missionManager;
     private Transform player1_screen;
     private Transform player2_screen;
-    public Coroutine recentCoroutine;
+    public IEnumerator recentCoroutine;
 
     public State CurrentState {
         get { return state; } 
@@ -106,10 +107,11 @@ public class Boss3Movement : MonoBehaviour {
         return targetPlayer;
     }
 
-    IEnumerator SwapBoss() {
+    void SwapBoss() {
         Debug.Log("Swaping");
+        Debug.Log(recentCoroutine);
         StopCoroutine(recentCoroutine);
-        yield return new WaitForSeconds(0.1f);
+        // yield return new WaitForSeconds(0.1f);
         // if(CurrentState == State.Moving) {
         //     // CurrentState = State.Idle;
         // } else if(CurrentState != State.Idle && CurrentState != State.Moving) {

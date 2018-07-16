@@ -14,7 +14,7 @@ public class BossHealth : MonoBehaviour {
     private float current_health;
     private Boss3Movement boss3Movement;
 
-    public static event Func<IEnumerator> SwapingEvent;
+    public static event Action SwapingEvent;
     public static event Action DeathEvent;
 
     public float Health {
@@ -44,7 +44,7 @@ public class BossHealth : MonoBehaviour {
         } else if(current_health % (max_health/3) == 0 && current_health < max_health) {    
             // SwapBoss();
             if(SwapingEvent != null) {
-                StartCoroutine(SwapingEvent());
+                SwapingEvent();
             }
         }
     }

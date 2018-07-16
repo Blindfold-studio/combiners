@@ -7,7 +7,6 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 
 	private Boss3Movement boss3Movement;
     private bool isPlayerInRange;
-    private GameObject targetPlayer;
     private GameObject straightAxe;
     private GameObject projectileAxe;
 
@@ -15,7 +14,6 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 	void Start () {
 		isPlayerInRange = false;
         boss3Movement = GetComponentInParent<Boss3Movement>();
-        targetPlayer = null;
         for(int i = 0 ; i < transform.childCount ; i++) 
         {
             if(transform.GetChild(i).gameObject.name == "StraightAxe") {
@@ -28,39 +26,34 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(isPlayerInRange && boss3Movement.CurrentState == Boss3Movement.State.Moving && targetPlayer != null) {
+		if(isPlayerInRange && boss3Movement.CurrentState == Boss3Movement.State.Moving) {
             
-            if(targetPlayer.transform.position.y - transform.position.y < 0) {
-                boss3Movement.recentCoroutine = StartCoroutine(ThrowStraightAxeToPlayer());  
+            if(boss3Movement.TargetPlayer.transform.position.y - transform.position.y < 0) {
+                boss3Movement.recentCoroutine = ThrowStraightAxeToPlayer();
             } else {
-                boss3Movement.recentCoroutine = StartCoroutine(ThrowProjectileAxeToPlayer());
+                boss3Movement.recentCoroutine = ThrowProjectileAxeToPlayer();
             }
-            
+            StartCoroutine(boss3Movement.recentCoroutine);  
         }
 	}
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             isPlayerInRange = true;
-            targetPlayer = other.gameObject;
         } 
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             isPlayerInRange = false;
-            targetPlayer = null;
         }
     }
 
     IEnumerator ThrowProjectileAxeToPlayer() {
         boss3Movement.CurrentState = Boss3Movement.State.IsLongRangeAttacking;
-        //do something
         Debug.Log("Start throwing an axe in a projectile line.");
         projectileAxe.SetActive(true);
-
-        projectileAxe.GetComponent<ProjectileAxeBehavior>().Moving(targetPlayer);
-        
+        projectileAxe.GetComponent<ProjectileAxeBehavior>().Moving(boss3Movement.TargetPlayer);
         yield return new WaitForSeconds(2f);
         projectileAxe.SetActive(false);
         projectileAxe.transform.position = this.transform.position;
@@ -70,11 +63,10 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 
     IEnumerator ThrowStraightAxeToPlayer() {
         boss3Movement.CurrentState = Boss3Movement.State.IsLongRangeAttacking;  
-        //do something
         Debug.Log("Start throwing an axe in a straight line.");
-        straightAxe.transform.position = new Vector2(straightAxe.transform.position.x, targetPlayer.transform.position.y);
+        straightAxe.transform.position = new Vector2(straightAxe.transform.position.x, boss3Movement.TargetPlayer.transform.position.y);
         straightAxe.SetActive(true);
-        straightAxe.GetComponent<StraightAxeBehavior>().Moving(targetPlayer);
+        straightAxe.GetComponent<StraightAxeBehavior>().Moving(boss3Movement.TargetPlayer);
         yield return new WaitForSeconds(2f);
         straightAxe.SetActive(false);
         straightAxe.transform.position = this.transform.position;
