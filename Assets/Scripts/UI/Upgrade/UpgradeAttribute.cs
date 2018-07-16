@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UpgradeAttribute : MonoBehaviour {
-    GameManager gameManager;
+
+    private int maxHealth;
+    private int maxArrow;
+    private float speed;
+    private GameManager gameManager;
 
 	void Start () {
         gameManager = GameManager.instance;
+
+        maxHealth = gameManager.MaxHealth;
+        maxArrow = gameManager.MaxArrow;
+        speed = gameManager.Speed;
 	}
 	
 	public void UpgradeHealth ()
