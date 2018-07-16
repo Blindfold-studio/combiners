@@ -111,7 +111,9 @@ public class Boss3Movement : MonoBehaviour {
 
     void SwapBoss() {
         Debug.Log("Swaping");
-        StopCoroutineEvent();
+        if(StopCoroutineEvent != null) {
+            StopCoroutineEvent();
+        }
         if(TargetPlayer.name == "Player1") {
             this.transform.position = player2_screen.position;
         } else if(TargetPlayer.name == "Player2") {
