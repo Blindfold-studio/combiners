@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 114461667864487634}
   m_Layer: 0
   m_Name: Boss3
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -752,6 +752,7 @@ MonoBehaviour:
   bossHpBar: {fileID: 0}
   hp1: {fileID: 0}
   hp2: {fileID: 0}
+  max_health: 3
 --- !u!114 &114612878273755642
 MonoBehaviour:
   m_ObjectHideFlags: 1
