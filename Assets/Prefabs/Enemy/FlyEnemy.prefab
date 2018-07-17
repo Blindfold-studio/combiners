@@ -52,7 +52,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 1.5}
@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9acbbdeae318f4a4f8d723c44905c567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  facingR: 0
 --- !u!114 &114528064601624296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,7 +91,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd21bdb302c3bb4e93e99db70ebf0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heal: 0
+  upSide: 0
+  items:
+  - {fileID: 4919310507023706, guid: 417286cbd3b804d1da8df9ec5210034f, type: 2}
+  - {fileID: 4874401990361610, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
+  - {fileID: 4438604724248290, guid: 7dac9de0347ee4d2298de8f429c7ec18, type: 2}
   speed: 3
+  stop: 2
 --- !u!212 &212546542718536570
 SpriteRenderer:
   m_ObjectHideFlags: 1

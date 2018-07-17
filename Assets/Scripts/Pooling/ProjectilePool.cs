@@ -72,6 +72,13 @@ public class ProjectilePool : MonoBehaviour {
                 objectToSpawn.transform.position = position;
                 objectToSpawn.transform.rotation = rotation;
 
+                IFPoolObject poolobj = objectToSpawn.GetComponent<IFPoolObject>();
+
+                if (poolobj != null)
+                {
+                    poolobj.ObjectSpawn();
+                }
+
                 elementDictionary[tag].Enqueue(objectToSpawn);
 
                 Debug.Log("Return object: " + objectToSpawn);
@@ -88,6 +95,13 @@ public class ProjectilePool : MonoBehaviour {
                     objectToSpawn.SetActive(true);
                     objectToSpawn.transform.position = position;
                     objectToSpawn.transform.rotation = rotation;
+
+                    IFPoolObject poolobj = objectToSpawn.GetComponent<IFPoolObject>();
+
+                    if (poolobj != null)
+                    {
+                        poolobj.ObjectSpawn();
+                    }
 
                     elementDictionary[tag].Enqueue(objectToSpawn);
 

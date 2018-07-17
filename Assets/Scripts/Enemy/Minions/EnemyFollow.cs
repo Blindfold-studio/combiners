@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFollow : MonoBehaviour {
+public class EnemyFollow : Minions {
 
     private GameObject player;
     private Vector2 target;
@@ -12,21 +12,21 @@ public class EnemyFollow : MonoBehaviour {
     private float stop;
 	// Use this for initialization
 	void Start () {
-                
+        stop = 1.25f;
+        heal = 2;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        FollowPlayer();	
+        FollowPlayer();
+        Dead();
+        
 	}
 
     void FollowPlayer()
     {
-
         player = FindClosetPlayer();
         Movement();
-       
-
     }
 
     void Movement()
@@ -59,12 +59,24 @@ public class EnemyFollow : MonoBehaviour {
         }
         return closest;
     }
-    void OnTriggerEnter2D(Collider2D other)
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Weapon"))
+        if (collision.CompareTag("Weapon"))
         {
-            Debug.Log("dead");
+            TakeDamage();
+        }
+        
+    }
+
+    
+    public void Dead()
+    {
+        if (heal == 0)
+        {
             gameObject.SetActive(false);
+            DropItem(this.transform);
         }
     }
+
 }

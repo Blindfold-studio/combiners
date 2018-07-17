@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHopping : MonoBehaviour {
+public class EnemyHopping : Minions
+{
 
     Rigidbody2D rb2d;
 
@@ -30,7 +31,6 @@ public class EnemyHopping : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         flip = GameObject.Find("PinkMon").GetComponent<EnemyFlip>();
         player = flip.FindClosetPlayer();
-        
 	}
 	
 	// Update is called once per frame

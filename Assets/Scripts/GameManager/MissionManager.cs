@@ -13,8 +13,6 @@ public class MissionManager : MonoBehaviour {
     }
     #endregion
 
-    public GameObject BossObject;
-
     [SerializeField]
     private Transform bossPosition_P1;
     [SerializeField]
@@ -22,13 +20,16 @@ public class MissionManager : MonoBehaviour {
 
     private BossHealth bossHealth;
     private GameManager gameManager;
+    private GameObject bossObject;
     private GameObject upgradePanel;
     private GameObject losePanel;
 
     void Start () {
         gameManager = GameManager.instance;
-
-        bossHealth = BossObject.GetComponent<BossHealth>();
+        
+        bossObject = GameObject.FindGameObjectWithTag("Boss");
+        bossHealth = bossObject.GetComponent<BossHealth>();
+        Debug.Log(bossHealth.Health);
         upgradePanel = GameObject.FindGameObjectWithTag("WinAndUpgrade");
         losePanel = GameObject.FindGameObjectWithTag("LosePanel");
         upgradePanel.SetActive(false);
