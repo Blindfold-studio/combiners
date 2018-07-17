@@ -77,8 +77,8 @@ public class UpgradePanel : MonoBehaviour {
         gameManager.Speed = speed;
 
         Debug.Log("Confirm Upgrade and move to next level");
-        gameManager.LoadNextScene();
         Time.timeScale = 1f;
+        gameManager.LoadNextScene();
     }
 
     public void RestartGame ()
