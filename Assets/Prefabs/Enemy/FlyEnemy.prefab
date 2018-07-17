@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9acbbdeae318f4a4f8d723c44905c567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  facingR: 0
 --- !u!114 &114528064601624296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,7 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd21bdb302c3bb4e93e99db70ebf0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heal: 0
+  upSide: 0
   speed: 3
+  stop: 1.25
 --- !u!212 &212546542718536570
 SpriteRenderer:
   m_ObjectHideFlags: 1

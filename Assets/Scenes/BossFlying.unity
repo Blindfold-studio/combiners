@@ -1848,6 +1848,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &550055397 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1917106043646068, guid: f855fa68e51059044bf54bb8e116b4dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1383696404}
+--- !u!61 &550055402
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 550055397}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.82, y: 6.91}
+    newSize: {x: 5.82, y: 6.91}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.82, y: 6.91}
+  m_EdgeRadius: 0
 --- !u!1001 &647285348
 Prefab:
   m_ObjectHideFlags: 0
@@ -2339,6 +2369,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 831401977}
+--- !u!1 &843923195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 843923197}
+  - component: {fileID: 843923196}
+  m_Layer: 0
+  m_Name: SpawnEnemy-Fly
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &843923196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843923195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e192e884c09ef144f865144ec088edad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyFly: {fileID: 1109796896291814, guid: 9ff2872736c5f20489490a56000b083c, type: 2}
+  spawnTimer: 3
+--- !u!4 &843923197
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843923195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 13.9, z: -0.203125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &962863482
 Prefab:
   m_ObjectHideFlags: 0
@@ -2390,11 +2462,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4981535624600740, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.73
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 4981535624600740, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.05
+      value: 3.92
       objectReference: {fileID: 0}
     - target: {fileID: 4981535624600740, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2432,12 +2504,12 @@ Prefab:
     - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
       propertyPath: reloadShot
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
@@ -2448,6 +2520,21 @@ Prefab:
         type: 2}
       propertyPath: fireTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114335037547676640, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: amplitudeY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114335037547676640, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: omegaY
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114335037547676640, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: omegaX
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}

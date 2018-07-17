@@ -2,27 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Detectbox : MonoBehaviour {
+public class Detectbox : Boss {
 
     [SerializeField]
     private float amplitudeX = 10.0f;
     [SerializeField]
     private float amplitudeY = 1.0f;
     [SerializeField]
-    private float omegaX = 1f;
+    private float omegaX = 1.25f;
     [SerializeField]
     private float omegaY = 2.5f;
     private float index;
-
-    private bool backward;
+    private float x,y;
     private int count = 0;
+    GameObject minion;
+    SpawnEnemyFly minionFly;
+
     void Awake()
     {
-        backward = false;
+        minion = GameObject.Find("SpawnEnemy-Fly");
+        minionFly = minion.GetComponent<SpawnEnemyFly>();
+        
     }
 
     void Update () {
-        Controll();
+
+        if (CheckHealh())
+        {
+            Controll();
+        }
+       
     }
 
     void Controll()
@@ -36,8 +45,18 @@ public class Detectbox : MonoBehaviour {
             index += Time.deltaTime;
         }
         
-        float x = amplitudeX * Mathf.Cos(omegaX * index);
-        float y = amplitudeY * Mathf.Sin(omegaY * index) + 3;
+        x = amplitudeX * Mathf.Cos(omegaX * index);
+        if (heal % 2 == 0)
+        {
+            y = amplitudeY * Mathf.Sin(omegaY * index) + 3;
+            minionFly.UpSide();
+        }
+        else
+        {
+            y = amplitudeY * Mathf.Sin(omegaY * index) + 13;
+            minionFly.DownSide();
+        }
+        
         transform.localPosition = new Vector3(x, y, 0);
 
     }
@@ -46,10 +65,24 @@ public class Detectbox : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
-            count++;
-            Debug.Log("testttttttttttttttttttttt"+count);
+            TakeDamage();
+            index = 0;
+            
         }
-        Debug.Log("testttttttttttttttttttttt");
+        
+    }
+
+    bool CheckHealh()
+    {
+        if(heal%2 == 0)
+        {
+            return true;
+        }
+        else
+        {         
+            return true;
+        }
+
     }
 
 }

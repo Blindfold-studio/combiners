@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Minions : EnemyManager {
 
-	
+    public List<Transform> items;
+
 	void Start () {
-        heal = 1;
+        items = new List<Transform>();
+        upSide = true;
 	}
 
     public virtual void TakeDamage()
@@ -14,4 +16,10 @@ public class Minions : EnemyManager {
         heal -= 1;
     }
 
+    public void DropItem(Transform minion)
+    {
+        Instantiate(items[Random.Range(0, items.Count - 1)], minion.position, Quaternion.identity);
+    }
+
+    
 }

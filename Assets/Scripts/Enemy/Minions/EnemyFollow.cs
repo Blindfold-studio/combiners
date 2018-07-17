@@ -12,21 +12,21 @@ public class EnemyFollow : Minions {
     private float stop;
 	// Use this for initialization
 	void Start () {
-        heal = 10;
+        stop = 1.25f;
+        heal = 2;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        FollowPlayer();	
+        FollowPlayer();
+        Dead();
+        
 	}
 
     void FollowPlayer()
     {
-
         player = FindClosetPlayer();
         Movement();
-       
-
     }
 
     void Movement()
@@ -59,5 +59,24 @@ public class EnemyFollow : Minions {
         }
         return closest;
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon"))
+        {
+            TakeDamage();
+        }
+        
+    }
+
     
+    public void Dead()
+    {
+        if (heal == 0)
+        {
+            gameObject.SetActive(false);
+            DropItem(this.transform);
+        }
+    }
+
 }

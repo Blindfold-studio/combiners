@@ -6,7 +6,8 @@ public class Boss : EnemyManager {
 
     void Start()
     {
-        heal = 5;
+        heal = 4;
+        upSide = false;
     }
 
     public virtual void TakeDamage()

@@ -11,9 +11,11 @@ public class Arrow : MonoBehaviour {
     private float speed;
     private Rigidbody2D rb;
     private Vector2 dir;
+    
 
     void Start()
     {
+       
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -62,6 +64,7 @@ public class Arrow : MonoBehaviour {
         if (collision.CompareTag("Tile") || collision.CompareTag("Enemy"))
         {
             gameObject.SetActive(false);
+            
         }
     }
 }

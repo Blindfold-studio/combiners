@@ -5,5 +5,5 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour {
 
     public int  heal;
-	
+    public bool upSide;
 }
