@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour {
 
     public PlayerData playerData;
 
+    public delegate void ResetHealthEvent();
+    public static event ResetHealthEvent OnResetHealth;
+
     [SerializeField]
     private int bossSceneCount;
 
@@ -46,8 +49,7 @@ public class GameManager : MonoBehaviour {
         healthSystem = GetComponent<HealthSystem>();
         GenerateRandomSceneList();
 
-        menuBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        currentBuildIndex = menuBuildIndex;
+        menuBuildIndex = 0;
     }
     
     public int CurrentHealth
@@ -103,6 +105,7 @@ public class GameManager : MonoBehaviour {
         //SceneManager.LoadScene(bossSceneList[0]);
         //bossSceneList.RemoveAt(0);
         Time.timeScale = 1f;
+        ResetHealth();
         SceneManager.LoadScene("PlayerScene");
     }
 
@@ -110,12 +113,14 @@ public class GameManager : MonoBehaviour {
     {
         currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
         Time.timeScale = 1f;
+        ResetHealth();
         SceneManager.LoadScene(currentBuildIndex);
     }
 
     public void LoadMenuScene ()
     {
         Time.timeScale = 1f;
+        ResetHealth();
         SceneManager.LoadScene(menuBuildIndex);
     }
 
@@ -141,6 +146,14 @@ public class GameManager : MonoBehaviour {
         {
             Debug.Log(bossSceneList[0]);
             bossSceneList.RemoveAt(0);
+        }
+    }
+
+    void ResetHealth ()
+    {
+        if (OnResetHealth != null)
+        {
+            OnResetHealth();
         }
     }
 }
