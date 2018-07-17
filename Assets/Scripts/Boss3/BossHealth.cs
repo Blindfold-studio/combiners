@@ -12,7 +12,6 @@ public class BossHealth : MonoBehaviour {
     public TextMeshProUGUI hp2;
     private float max_health = 3f;
     private float current_health;
-    private Boss3Movement boss3Movement;
 
     public static event Action SwapingEvent;
     public static event Action DeathEvent;
@@ -31,7 +30,6 @@ public class BossHealth : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		current_health = max_health;
-        boss3Movement = GetComponent<Boss3Movement>();
         UpdateHpText();
 	}
 	
