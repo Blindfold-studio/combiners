@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -14,7 +15,14 @@ public class GameManager : MonoBehaviour {
 
     public PlayerData playerData;
 
+    [SerializeField]
+    private int bossSceneCount;
+
+    private int currentBuildIndex;
+    private int nextBuildIndex;
+    private int menuBuildIndex;
     private HealthSystem healthSystem;
+    private List<int> bossSceneList;
 
     #region Singleton Object
     public static GameManager instance = null;
@@ -34,7 +42,12 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
+        bossSceneList = new List<int>();
         healthSystem = GetComponent<HealthSystem>();
+        GenerateRandomSceneList();
+
+        menuBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        currentBuildIndex = menuBuildIndex;
     }
     
     public int CurrentHealth
@@ -82,6 +95,52 @@ public class GameManager : MonoBehaviour {
         set
         {
             playerData.speed = value;
+        }
+    }
+
+    public void LoadNextScene()
+    {
+        //SceneManager.LoadScene(bossSceneList[0]);
+        //bossSceneList.RemoveAt(0);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("PlayerScene");
+    }
+
+    public void RestartScene()
+    {
+        currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(currentBuildIndex);
+    }
+
+    public void LoadMenuScene ()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(menuBuildIndex);
+    }
+
+    public void GenerateRandomSceneList ()
+    {
+        for (int i = 0; i < bossSceneCount; i++)
+        {
+            int rand = Random.Range(1, 6);
+            while (bossSceneList.Contains(rand))
+            {
+                rand = Random.Range(1, 6);
+            }
+            bossSceneList.Add(rand);
+            Debug.Log(bossSceneList[i]);
+        }
+    }
+
+    public void TestList ()
+    {
+        Debug.Log(bossSceneList);
+
+        for (int i = 0; i < bossSceneCount; i++)
+        {
+            Debug.Log(bossSceneList[0]);
+            bossSceneList.RemoveAt(0);
         }
     }
 }

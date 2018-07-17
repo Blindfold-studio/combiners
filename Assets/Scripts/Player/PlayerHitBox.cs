@@ -17,9 +17,9 @@ public class PlayerHitBox : MonoBehaviour {
         player = GetComponentInParent<PlayerController>();
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        if ((collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !player.IsInvicble())
+        if ((collision.CompareTag("Boss") || collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !player.IsInvicble())
         {
             Debug.Log("Player is hit by enemy");
             playerHP.HP = -1;
