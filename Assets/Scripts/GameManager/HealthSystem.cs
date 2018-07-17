@@ -52,4 +52,19 @@ public class HealthSystem : MonoBehaviour {
             maxHealth = value;
         }
     }
+
+    private void ResetHealth()
+    {
+        currentHealth = maxHealth;
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnResetHealth += ResetHealth;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnResetHealth -= ResetHealth;
+    }
 }

@@ -80,14 +80,4 @@ public class UpgradePanel : MonoBehaviour {
         Time.timeScale = 1f;
         gameManager.LoadNextScene();
     }
-
-    public void RestartGame ()
-    {
-        gameManager.RestartScene();
-    }
-
-    public void BackToMenu ()
-    {
-        gameManager.LoadMenuScene();
-    }
 }
