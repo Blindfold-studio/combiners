@@ -11,11 +11,11 @@ public class Arrow : MonoBehaviour {
     private float speed;
     private Rigidbody2D rb;
     private Vector2 dir;
-    
+
 
     void Start()
     {
-       
+
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -30,7 +30,7 @@ public class Arrow : MonoBehaviour {
         {
             return damage;
         }
-        
+
         set
         {
             damage = value;
@@ -64,8 +64,8 @@ public class Arrow : MonoBehaviour {
         if (collision.CompareTag("Tile"))
         {
             gameObject.SetActive(false);
-        } 
-        else if (collision.CompareTag("Enemy"))
+        }
+        else if (collision.CompareTag("Enemy") || collision.CompareTag("Boss"))
         {
             collision.gameObject.GetComponent<BossHealth>().Health = -damage;
             gameObject.SetActive(false);
