@@ -76,7 +76,7 @@ public class FlyingAtk : MonoBehaviour {
         if (reloadShot <= 0)
         {
            
-            var number = Random.Range(0, 4);
+            var number = Random.Range(2, 4);
 
             if (number == 0)
             {
@@ -94,9 +94,7 @@ public class FlyingAtk : MonoBehaviour {
             {
                 FireEightProjectile();
             }
-            else if (number == 4)
-            {             
-            }
+            
 
             reloadShot = startShot;
         }

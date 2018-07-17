@@ -6,7 +6,6 @@ public class Boss : EnemyManager {
 
     void Start()
     {
-        heal = 4;
         upSide = false;
     }
 

@@ -22,20 +22,20 @@ public class Detectbox : Boss {
     {
         minion = GameObject.Find("SpawnEnemy-Fly");
         minionFly = minion.GetComponent<SpawnEnemyFly>();
-        
+        heal = 4;
     }
 
     void Update () {
 
-        if (CheckHealh())
-        {
-            Controll();
-        }
+        
+        Controll();
+        
        
     }
 
     void Controll()
     {
+        Debug.Log("Heal " + heal);
         if (count%2==0)
         {
             index -= Time.deltaTime;
@@ -44,9 +44,10 @@ public class Detectbox : Boss {
         {
             index += Time.deltaTime;
         }
+
         
         x = amplitudeX * Mathf.Cos(omegaX * index);
-        if (heal % 2 == 0)
+        if (CheckHealh())
         {
             y = amplitudeY * Mathf.Sin(omegaY * index) + 3;
             minionFly.UpSide();
@@ -66,21 +67,26 @@ public class Detectbox : Boss {
         if (collision.CompareTag("Player"))
         {
             TakeDamage();
-            index = 0;
-            
+            count++;
+            if(count == 2)
+            {
+                count = 0;
+                index = 0;
+            }
         }
         
     }
 
     bool CheckHealh()
     {
-        if(heal%2 == 0)
+        if(heal % 4 == 0 || heal % 4 == 3)
         {
+            
             return true;
         }
         else
         {         
-            return true;
+            return false;
         }
 
     }
