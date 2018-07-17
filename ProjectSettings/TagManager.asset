@@ -12,6 +12,7 @@ TagManager:
   - MissionManager
   - WinAndUpgrade
   - LosePanel
+  - NoneEffectOnPlayer
   layers:
   - Default
   - TransparentFX
