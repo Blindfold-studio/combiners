@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4148370932745792}
   - component: {fileID: 212957897456230488}
   - component: {fileID: 61420555688522894}
+  - component: {fileID: 114119928866853762}
   m_Layer: 0
   m_Name: sword
   m_TagString: Weapon
@@ -267,6 +268,19 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114119928866853762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1535238533104876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b924d2d3ea9fcf44e83bf6c65cae002f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Noob sword
+  damage: 1
 --- !u!114 &114511610784341506
 MonoBehaviour:
   m_ObjectHideFlags: 1

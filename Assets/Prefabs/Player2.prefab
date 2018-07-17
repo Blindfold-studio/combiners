@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4519592296241532}
   - component: {fileID: 212052951521831284}
   - component: {fileID: 61047921674534776}
+  - component: {fileID: 114099232743133062}
   m_Layer: 0
   m_Name: sword
   m_TagString: Weapon
@@ -278,6 +279,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdec762a8f3790a49bbabf90118e3696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114099232743133062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1507398695403774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b924d2d3ea9fcf44e83bf6c65cae002f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Sword
+  damage: 1
 --- !u!114 &114366089066430152
 MonoBehaviour:
   m_ObjectHideFlags: 1
