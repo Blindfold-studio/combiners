@@ -15,6 +15,16 @@ public class ScreenManager : MonoBehaviour {
         gameManager.LoadNextScene();
     }
 
+    public void Restart ()
+    {
+        gameManager.RestartScene();
+    }
+
+    public void BackToMenu()
+    {
+        gameManager.LoadMenuScene();
+    }
+
     public void QuitGame ()
     {
         Debug.Log("Exit game");
