@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 58549631998976938}
   m_Layer: 0
   m_Name: Legs
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,8 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4703896364449366}
   - component: {fileID: 61129621183375716}
-  - component: {fileID: 114708358185781400}
   - component: {fileID: 61839746412760420}
+  - component: {fileID: 114708358185781400}
   m_Layer: 0
   m_Name: ShortRangeAttack
   m_TagString: Untagged
