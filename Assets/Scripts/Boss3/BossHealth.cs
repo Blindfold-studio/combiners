@@ -29,6 +29,7 @@ public class BossHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Debug.Log(Time.time);
 		current_health = max_health;
         UpdateHpText();
 	}
