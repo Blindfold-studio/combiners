@@ -10,6 +10,7 @@ public class BossHealth : MonoBehaviour {
     public Image bossHpBar;
     public TextMeshProUGUI hp1;
     public TextMeshProUGUI hp2;
+    [SerializeField]
     private float max_health = 3f;
     private float current_health;
 
