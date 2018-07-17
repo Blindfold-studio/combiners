@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Boss"))
         {
             Debug.Log("Ignore collision");
             Physics2D.IgnoreCollision(playerBox, collision, true);
