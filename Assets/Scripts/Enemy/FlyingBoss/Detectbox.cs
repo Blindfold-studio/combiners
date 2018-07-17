@@ -2,177 +2,93 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Detectbox : MonoBehaviour {
+public class Detectbox : Boss {
 
-    //Movement
-    public float horSpeed;
-    public float verSpeed;
-    public float range;
-    private Vector2 CurPosition;
-    private int numRound;
-    private bool rotateMove;
-    private bool waitSec;
-    private bool MoveR;
+    [SerializeField]
+    private float amplitudeX = 10.0f;
+    [SerializeField]
+    private float amplitudeY = 1.0f;
+    [SerializeField]
+    private float omegaX = 1.25f;
+    [SerializeField]
+    private float omegaY = 2.5f;
+    private float index;
+    private float x,y;
+    private int count = 0;
+    GameObject minion;
+    SpawnEnemyFly minionFly;
 
-    public Transform[] destination;
-
-    // Use this for initialization
-    void Start () {
-        CurPosition = transform.position;
-        horSpeed = 8;
-        verSpeed = 4;
-        range = 1;
-        numRound = 0;
-        waitSec = true;
-        rotateMove = true;
-        MoveR = true;
+    void Awake()
+    {
+        minion = GameObject.Find("SpawnEnemy-Fly");
+        minionFly = minion.GetComponent<SpawnEnemyFly>();
+        heal = 4;
     }
-	
-	// Update is called once per frame
-	void Update () {
 
+    void Update () {
+
+        
         Controll();
+        
+       
     }
 
     void Controll()
     {
-
-        if (waitSec)
+        Debug.Log("Heal " + heal);
+        if (count%2==0)
         {
+            index -= Time.deltaTime;
+        }
+        else if(count%2==1)
+        {
+            index += Time.deltaTime;
+        }
 
-            //Move();
-            if(MoveR)
-                CurPosition.x += horSpeed * Time.deltaTime;
-            else if (!MoveR)
-                CurPosition.x -= horSpeed * Time.deltaTime;
-
-
-            CurPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
-            transform.position = CurPosition;
+        
+        x = amplitudeX * Mathf.Cos(omegaX * index);
+        if (CheckHealh())
+        {
+            y = amplitudeY * Mathf.Sin(omegaY * index) + 2.5f;
+            minionFly.UpSide();
+        }
+        else
+        {
+            y = amplitudeY * Mathf.Sin(omegaY * index) + 42.5f;
+            minionFly.DownSide();
         }
         
+        transform.localPosition = new Vector3(x, y, 0);
+
     }
 
-
-    /*void Move()
-    {
-        if (CurPosition.y <= 0)
-        {
-            if (!check)
-            {
-
-                numRound++;
-                check = true;
-            }
-            if (numRound % 4 == 2)
-            {
-                CurPosition.x -= horSpeed * Time.deltaTime;
-            }
-            else if (numRound % 4 == 0)
-            {
-                CurPosition.x += horSpeed * Time.deltaTime;
-            }
-        }
-        else if (CurPosition.y > 0)
-        {
-            if (check)
-            {
-
-                numRound++;
-                check = false;
-            }
-            if (numRound % 4 == 1)
-            {
-                CurPosition.x += horSpeed * Time.deltaTime;
-            }
-            else if (numRound % 4 == 3)
-            {
-                CurPosition.x -= horSpeed * Time.deltaTime;
-            }
-        }
-        CurPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
-        transform.position = CurPosition;
-    }
-    void MoveOp()
-    {
-        if (CurPosition.y <= 0)
-        {
-            if (!check)
-            {
-
-                numRound++;
-                check = true;
-            }
-            if (numRound % 4 == 2)
-            {
-                CurPosition.x += horSpeed * Time.deltaTime;
-            }
-            else if (numRound % 4 == 0)
-            {
-                CurPosition.x -= horSpeed * Time.deltaTime;
-            }
-        }
-        else if (CurPosition.y > 0)
-        {
-            if (check)
-            {
-
-                numRound++;
-                check = false;
-            }
-            if (numRound % 4 == 1)
-            {
-                CurPosition.x -= horSpeed * Time.deltaTime;
-            }
-            else if (numRound % 4 == 3)
-            {
-                CurPosition.x += horSpeed * Time.deltaTime;
-            }
-        }
-        CurPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verSpeed) * range;
-        transform.position = CurPosition;
-    }
-    */
-
-    
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("WallEast"))
+        if (collision.CompareTag("Player"))
         {
-           
-            MoveR = false;
-            waitSec = false;
-           // StartCoroutine(MoveTo(destination[0].position, 2f));
-            
-            
-        }
-        else if (collision.CompareTag("WallWest"))
-        {
-            
-            MoveR = true;
-            waitSec = false;
-            //StartCoroutine(MoveTo(destination[1].position, 2f));
-            
+            TakeDamage();
+            count++;
+            if(count == 2)
+            {
+                count = 0;
+                index = 0;
+            }
         }
         
     }
 
-    IEnumerator StopforASec()
+    bool CheckHealh()
     {
-        
-        yield return new WaitForSeconds(3);
-        waitSec = true;
-        
-    }
-    IEnumerator MoveTo(Vector3 des, float speed)
-    {
-        Debug.Log("Move1");
-        while (transform.position != des)
+        if(heal % 4 == 0 || heal % 4 == 3)
         {
-            Debug.Log("Move2");
-            transform.position = Vector3.MoveTowards(transform.position, des, speed);
-            yield return null; 
+            
+            return true;
         }
+        else
+        {         
+            return false;
+        }
+
     }
-    
+
 }

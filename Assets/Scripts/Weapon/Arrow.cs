@@ -11,9 +11,11 @@ public class Arrow : MonoBehaviour {
     private float speed;
     private Rigidbody2D rb;
     private Vector2 dir;
+    
 
     void Start()
     {
+       
         rb = GetComponent<Rigidbody2D>();
     }
 

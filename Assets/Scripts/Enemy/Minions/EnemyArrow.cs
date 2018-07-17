@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArrow : MonoBehaviour {
+public class EnemyArrow : Minions
+{
 
     //Rigidbody2D rb2d;
 
@@ -13,11 +14,13 @@ public class EnemyArrow : MonoBehaviour {
     private float reloadShot;
 
     public GameObject arrow;
+    ProjectilePool pool;
 
 	// Use this for initialization
 	void Start () {
         //rb2d = GetComponent<Rigidbody2D>();
         reloadShot = startShotReload;
+        pool = ProjectilePool.Instance;
 	}
 	
 	// Update is called once per frame
@@ -30,8 +33,7 @@ public class EnemyArrow : MonoBehaviour {
     {
         if(reloadShot <= 0)
         {
-            
-            Instantiate(arrow, transform.position,Quaternion.identity);
+            pool.GetElementInPool("Enemy_Arrow", transform.position, Quaternion.identity);
             reloadShot = startShotReload;
         }
         else
