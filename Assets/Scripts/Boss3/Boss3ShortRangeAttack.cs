@@ -15,7 +15,6 @@ public class Boss3ShortRangeAttack : MonoBehaviour {
 
     private void Start() {
         isPlayerInRange = false;
-        // targetPlayer = null;
         boss3Movement = GetComponentInParent<Boss3Movement>();
         shortRangeWeapon = this.gameObject.transform.GetChild(0).gameObject;
     }

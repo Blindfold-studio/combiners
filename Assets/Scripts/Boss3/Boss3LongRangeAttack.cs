@@ -84,6 +84,7 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 
 
     private void StopAttack() {
+        isPlayerInRange = false;
         StopCoroutine("ThrowStraightAxeToPlayer");
         StopCoroutine("ThrowProjectileAxeToPlayer");
         straightAxe.SetActive(false);
