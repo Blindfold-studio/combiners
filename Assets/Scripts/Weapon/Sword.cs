@@ -24,7 +24,7 @@ public class Sword : Weapon {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Boss"))
         {
             collision.gameObject.GetComponent<BossHealth>().Health = damage;
         }
