@@ -882,25 +882,6 @@ Prefab:
       propertyPath: hp2
       value: 
       objectReference: {fileID: 1461988571}
-    - target: {fileID: 1130563925637454, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61204086505794926, guid: 1d092e3ee7a2542afadd1182ee72e6af,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 61204086505794926, guid: 1d092e3ee7a2542afadd1182ee72e6af,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 61204086505794926, guid: 1d092e3ee7a2542afadd1182ee72e6af,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
   m_IsPrefabParent: 0
