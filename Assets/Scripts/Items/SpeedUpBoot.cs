@@ -5,9 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class SpeedUpBoot : MonoBehaviour {
 
-    public float startedTime;
-    public float durationOfBoost = 5f;
+    private float startedTime;
+    [SerializeField]
+    private float durationOfBoost = 5f;
     private float realDuration;
+    [SerializeField]
     private float speed = 3f;
     private PlayerAttribute playerAttribute;
     private SpriteRenderer spriteRenderer;
@@ -18,16 +20,18 @@ public class SpeedUpBoot : MonoBehaviour {
     }
 
 	private void OnTriggerEnter2D(Collider2D other) {
-        if(realDuration == 0 ) {
-            startedTime = Time.time;
-        }
-        realDuration += durationOfBoost;
-        if(other.gameObject.name == "Player1") {
-            GameObject o = GameObject.Find("Player2");
-            BoostPlayerSpeed(o);
-        } else if(other.gameObject.name == "Player2") {
-            GameObject o = GameObject.Find("Player1");
-            BoostPlayerSpeed(o);
+        if(other.CompareTag("Player")) {
+            if(realDuration == 0 ) {
+                startedTime = Time.time;
+            }
+            realDuration += durationOfBoost;
+            if(other.gameObject.name == "Player1") {
+                GameObject o = GameObject.Find("Player2");
+                BoostPlayerSpeed(o);
+            } else if(other.gameObject.name == "Player2") {
+                GameObject o = GameObject.Find("Player1");
+                BoostPlayerSpeed(o);
+            }
         }
     }
 

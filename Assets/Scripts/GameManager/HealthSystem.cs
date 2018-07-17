@@ -4,33 +4,38 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour {
     [SerializeField]
-    private int currentHP;
+    private int currentHealth;
     [SerializeField]
-    private int maxHP;
+    private int maxHealth;
+
+    private GameManager gameManager;
 
     void Start ()
     {
-        currentHP = maxHP;
+        gameManager = GetComponent<GameManager>();
+
+        maxHealth = gameManager.MaxHealth;
+        currentHealth = maxHealth;
     }
 
 	public int HP
     {
         get
         {
-            return currentHP;
+            return currentHealth;
         }
 
         set
         {
-            currentHP += value;
+            currentHealth += value;
 
-            if (currentHP >= maxHP)
+            if (currentHealth >= maxHealth)
             {
-                currentHP = maxHP;
+                currentHealth = maxHealth;
             }
-            else if (currentHP <= 0)
+            else if (currentHealth <= 0)
             {
-                currentHP = 0;
+                currentHealth = 0;
             }
         }
     }
@@ -39,12 +44,12 @@ public class HealthSystem : MonoBehaviour {
     {
         get
         {
-            return maxHP;
+            return maxHealth;
         }
 
         set
         {
-            maxHP += value;
+            maxHealth = value;
         }
     }
 }

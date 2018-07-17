@@ -8,6 +8,10 @@ TagManager:
   - Weapon
   - Enemy
   - Item
+  - EnemyWeapon
+  - MissionManager
+  - WinAndUpgrade
+  - LosePanel
   layers:
   - Default
   - TransparentFX

@@ -21,19 +21,26 @@ public class PlayerAttribute : MonoBehaviour {
     private float shootSpeed;
 
     private int curruntArrow;
+    private GameManager gameManager;
 
     void Start()
     {
+        //gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        gameManager = GameManager.instance;
+
+        arrowCapacity = gameManager.MaxArrow;
+        speed = gameManager.Speed;
+
         curruntArrow = arrowCapacity;
 
-        arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + arrowCapacity.ToString();
-        speedText.text = "Speed: " + speed.ToString();
+        arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
+        speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
     void Update ()
     {
-        arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + arrowCapacity.ToString();
-        speedText.text = "Speed: " + speed.ToString();
+        arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
+        speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
     public int Arrow

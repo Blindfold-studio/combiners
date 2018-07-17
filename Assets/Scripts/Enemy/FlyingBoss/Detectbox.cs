@@ -49,12 +49,12 @@ public class Detectbox : Boss {
         x = amplitudeX * Mathf.Cos(omegaX * index);
         if (CheckHealh())
         {
-            y = amplitudeY * Mathf.Sin(omegaY * index) + 3;
+            y = amplitudeY * Mathf.Sin(omegaY * index) + 2.5f;
             minionFly.UpSide();
         }
         else
         {
-            y = amplitudeY * Mathf.Sin(omegaY * index) + 13;
+            y = amplitudeY * Mathf.Sin(omegaY * index) + 42.5f;
             minionFly.DownSide();
         }
         

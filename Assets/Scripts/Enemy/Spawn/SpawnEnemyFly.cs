@@ -34,7 +34,7 @@ public class SpawnEnemyFly : Minions {
             {
                 spawn = spawnTimer + Time.time;
                 x = Random.Range(transform.position.x - 10, transform.position.x + 10);
-                locate = new Vector2(x, transform.position.y - 10);
+                locate = new Vector2(x, transform.position.y - 40);
                 Instantiate(enemyFly, locate, Quaternion.identity);
             }
         }
