@@ -102,17 +102,20 @@ public class GameManager : MonoBehaviour {
     {
         //SceneManager.LoadScene(bossSceneList[0]);
         //bossSceneList.RemoveAt(0);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("PlayerScene");
     }
 
     public void RestartScene()
     {
         currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(currentBuildIndex);
     }
 
     public void LoadMenuScene ()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(menuBuildIndex);
     }
 
