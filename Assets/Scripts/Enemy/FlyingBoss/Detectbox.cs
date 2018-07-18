@@ -70,8 +70,8 @@ public class Detectbox : Boss {
 
         BossHealth.SwapingEvent += SwapBoss;
         BossHealth.DeathEvent += Die;
-        player1_screen = missionManager.GetBossPosition_P1();
-        player2_screen = missionManager.GetBossPosition_P2();
+        player1_screen.position = missionManager.GetBossPosition_P1();
+        player2_screen.position = missionManager.GetBossPosition_P2();
     }
 
     void Update () {

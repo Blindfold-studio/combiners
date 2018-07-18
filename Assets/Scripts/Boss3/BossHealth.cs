@@ -11,7 +11,9 @@ public class BossHealth : MonoBehaviour {
     public TextMeshProUGUI hp1;
     public TextMeshProUGUI hp2;
     [SerializeField]
-    private float max_health = 3f;
+    private float max_health = 9f;
+    [SerializeField]
+    private float health_for_switch = 5f;
     private float current_health;
 
     public static event Action SwapingEvent;
@@ -43,7 +45,7 @@ public class BossHealth : MonoBehaviour {
             if(DeathEvent != null) {
                 DeathEvent();
             }
-        } else if(current_health % (max_health/3) == 0 && current_health < max_health) {    
+        } else if(current_health % (max_health/health_for_switch) == 0 && current_health < max_health) {    
             // SwapBoss();
             if(SwapingEvent != null) {
                 SwapingEvent();
