@@ -24,15 +24,16 @@ public class SpawnEnemyFly : Minions {
 	// Use this for initialization
 
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        int rand = Random.Range(0, 2);
 
         if (upSide)
         {
+            int rand = Random.Range(0, minionPosition_P1.Count);
+
             if (Time.time > spawn)
             {
                 spawn = spawnTimer + Time.time;
@@ -44,6 +45,8 @@ public class SpawnEnemyFly : Minions {
         }
         else
         {
+            int rand = Random.Range(0, minionPosition_P2.Count);
+
             if (Time.time > spawn)
             {
                 spawn = spawnTimer + Time.time;
@@ -65,6 +68,19 @@ public class SpawnEnemyFly : Minions {
     private void OnDisable()
     {
         BossHealth.SwapingEvent -= SetSide;
+    }
+
+    public bool UpSide
+    {
+        get
+        {
+            return upSide;
+        }
+
+        set
+        {
+            upSide = value;
+        }
     }
 
     public void SetSide()

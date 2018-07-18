@@ -1106,6 +1106,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1803c712d80e4f24a94c6940045782fe, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1314945006 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1400539210391466, guid: 01dc705958b59f04eaf017f618ad12f8,
+    type: 2}
+  m_PrefabInternal: {fileID: 456339189}
 --- !u!4 &1349515193 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4041997524812956, guid: c00cd263abe8e4b4383b6b57031a09c6,
@@ -1416,24 +1421,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1261186040770460, guid: c00cd263abe8e4b4383b6b57031a09c6, type: 2}
-      propertyPath: m_Icon
+    - target: {fileID: 114068026022173690, guid: c00cd263abe8e4b4383b6b57031a09c6,
+        type: 2}
+      propertyPath: spawnEnemyObject
       value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
-        type: 0}
-    - target: {fileID: 1029669552229344, guid: c00cd263abe8e4b4383b6b57031a09c6, type: 2}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
-        type: 0}
+      objectReference: {fileID: 1314945006}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c00cd263abe8e4b4383b6b57031a09c6, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1797730873 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4090956772166584, guid: c00cd263abe8e4b4383b6b57031a09c6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1788376812}
 --- !u!114 &1829689125 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114144025423489104, guid: 35a076787e1cd654198de8a954f57265,
@@ -1543,34 +1538,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1976599585
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1976599586}
-  m_Layer: 0
-  m_Name: Boss
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1976599586
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1976599585}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1797730873}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2009683722
 Prefab:
