@@ -11,9 +11,9 @@ public class SpawnEnemyFly : Minions {
         instance = this;
     }
     [SerializeField]
-    private Transform flyMinionPosition_P1;
+    private List<Transform> minionPosition_P1;
     [SerializeField]
-    private Transform flyMinionPosition_P2;
+    private List<Transform> minionPosition_P2;
 
     public GameObject minion;
     private float x;
@@ -29,15 +29,17 @@ public class SpawnEnemyFly : Minions {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(upSide);
+        int rand = Random.Range(0, 2);
+
         if (upSide)
         {
             if (Time.time > spawn)
             {
                 spawn = spawnTimer + Time.time;
-                x = Random.Range(transform.position.x - 14, transform.position.x + 14);
-                locate = new Vector2(x, flyMinionPosition_P1.position.y);
-                Instantiate(minion, locate, Quaternion.identity);
+                //x = Random.Range(transform.position.x - 14, transform.position.x + 14);
+                //locate = new Vector2(x, minionPosition_P1[rand].position.y);
+                //Instantiate(minion, locate, Quaternion.identity);
+                Instantiate(minion, minionPosition_P1[rand].position, Quaternion.identity);
             }
         }
         else
@@ -45,13 +47,34 @@ public class SpawnEnemyFly : Minions {
             if (Time.time > spawn)
             {
                 spawn = spawnTimer + Time.time;
+                /*
                 x = Random.Range(transform.position.x - 14, transform.position.x + 14);
                 locate = new Vector2(x, flyMinionPosition_P2.position.y);
                 Instantiate(minion, locate, Quaternion.identity);
+                */
+                Instantiate(minion, minionPosition_P2[rand].position, Quaternion.identity);
             }
         }
         
-	}
+
+        if (Time.time > spawn)
+        {
+            spawn = spawnTimer + Time.time;
+            //x = Random.Range(transform.position.x - 14, transform.position.x + 14);
+            //locate = new Vector2(x, flyMinionPosition_P1.position.y);
+            Instantiate(minion, minionPosition_P1[rand].position, Quaternion.identity);
+        }
+    }
+
+    private void OnEnable()
+    {
+        BossHealth.SwapingEvent += SetSide;
+    }
+
+    private void OnDisable()
+    {
+        BossHealth.SwapingEvent -= SetSide;
+    }
 
     public void SetSide()
     {
@@ -69,11 +92,11 @@ public class SpawnEnemyFly : Minions {
 
     public Transform GetMinionPosition_P1()
     {
-        return flyMinionPosition_P1;
+        return minionPosition_P1[0];
     }
 
     public Transform GetMinionPosition_P2()
     {
-        return flyMinionPosition_P2;
+        return minionPosition_P2[0];
     }
 }
