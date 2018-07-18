@@ -62,7 +62,7 @@ public class Boss3Movement : MonoBehaviour {
 
     private void Update() {
         StartCoroutine(FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x));
-        
+        TargetPlayer = FindTheClosestPlayer();
     }
     private void FixedUpdate() {
         if(!onHoldForPlayerJump && state == State.Moving) {
