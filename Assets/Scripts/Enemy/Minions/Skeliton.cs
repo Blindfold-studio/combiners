@@ -8,7 +8,7 @@ public class Skeliton : Minions
     EnemyFlip flip;
     [SerializeField]
     private float speed;
-
+    GameObject skel;
    
     public float timeReach;
     private Vector3 smoothVector3 = Vector3.zero;
@@ -28,7 +28,8 @@ public class Skeliton : Minions
     }
     // Use this for initialization
     void Start () {
-       // flip = GameObject.Find("SkelitonGuy").GetComponent<EnemyFlip>();
+        // flip = GameObject.Find("SkelitonGuy").GetComponent<EnemyFlip>();
+        
         rg2d = GetComponent<Rigidbody2D>();
         TargetPlayer = FindTheClosestPlayer();
         heal = 1;
@@ -75,7 +76,20 @@ public class Skeliton : Minions
         }
         return targetPlayer;
     }
-    
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy") || collision.CompareTag("NoneEffectOnPlayer"))
+        {
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(),collision,true);
+            Debug.Log("Ignore");
+        }
+        else if (collision.CompareTag("Weapon"))
+        {
+            TakeDamage();
+        }
+    }
+
     public void Dead()
     {
         if (heal == 0)
