@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4777484201904244}
   - component: {fileID: 212742286778980784}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (12)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4140057975877450}
   - component: {fileID: 61772959112787384}
   - component: {fileID: 61434761703184026}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4144869878546744}
   - component: {fileID: 212439817109567590}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (16)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4431434913214788}
   - component: {fileID: 212567704734837890}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (11)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4870744544796108}
   - component: {fileID: 61454715341967056}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor2 (2)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4788185011782674}
   - component: {fileID: 212944798836339636}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (12)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4336302383217188}
   - component: {fileID: 212362625690583300}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (16)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4665951791202892}
   - component: {fileID: 212523493135456804}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (17)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4543580707209916}
   - component: {fileID: 212358981704116518}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (1)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4057080166570360}
   - component: {fileID: 61845372809250832}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor2 (1)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4639630042784376}
   - component: {fileID: 212184487908431866}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (15)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4974919960967948}
   - component: {fileID: 212367515408967378}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (9)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4087360071896278}
   - component: {fileID: 212909612981444948}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4299934089553790}
   - component: {fileID: 212346178466850364}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (4)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4705586324197232}
   - component: {fileID: 212761403639160866}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (5)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4904631645675070}
   - component: {fileID: 212954224704171662}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (6)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4725460549994110}
   - component: {fileID: 212294378189366420}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (13)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4958084307127552}
   - component: {fileID: 61526360071265490}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor2 (6)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4200124793866562}
   - component: {fileID: 212019101979544384}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (5)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4907566335917068}
   - component: {fileID: 61133663543907920}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor1 (2)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4392828675519796}
   - component: {fileID: 212193671760389290}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (1)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4782572382153968}
   - component: {fileID: 212420442271433692}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (11)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4152631941768728}
   - component: {fileID: 61014064717789586}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor2
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4991125958453374}
   - component: {fileID: 212241614078846802}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (16)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4639904299582950}
   - component: {fileID: 212084590885330130}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (10)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4638167208902002}
   - component: {fileID: 212937889372764750}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (2)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4580757180573560}
   - component: {fileID: 212251735774051908}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (4)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 4151267972616794}
   - component: {fileID: 61053467058904454}
   - component: {fileID: 61022820639981534}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4611042441483478}
   - component: {fileID: 212660261962348514}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (3)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4066369534708806}
   - component: {fileID: 212795333125581914}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4446411155139604}
   - component: {fileID: 212460769852779692}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (11)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4418292077567442}
   - component: {fileID: 212017117395325246}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (15)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4477304404651294}
   - component: {fileID: 212012534465775706}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (2)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4417778879543082}
   - component: {fileID: 212826341999646846}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (8)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4627430165618972}
   - component: {fileID: 212561151725752972}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (9)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4656332401728214}
   - component: {fileID: 212635481503503294}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (17)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4804865797610868}
   - component: {fileID: 212575705056281580}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -614,7 +614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4922330008463290}
   - component: {fileID: 212261713061155596}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (10)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -630,7 +630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4566504572897108}
   - component: {fileID: 212257422679576086}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (13)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4663859423975106}
   - component: {fileID: 212732499193341118}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (3)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4701899383789008}
   - component: {fileID: 212193277918520092}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (17)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4619680498609964}
   - component: {fileID: 212510364710486220}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (17)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -694,7 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4273706008300650}
   - component: {fileID: 212554438169940058}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (8)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -710,7 +710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4917562721591138}
   - component: {fileID: 212144768385708984}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (7)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4134018755115044}
   - component: {fileID: 212414293435008782}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (12)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4020070145649556}
   - component: {fileID: 212508196093421518}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (16)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -758,7 +758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4295973824334816}
   - component: {fileID: 61608392518303184}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor1
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4153024855616414}
   - component: {fileID: 212310894499542148}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (4)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -790,7 +790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4683337267973790}
   - component: {fileID: 212069783750774572}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (6)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -806,7 +806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4872116248225670}
   - component: {fileID: 212192339982591494}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (6)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -822,7 +822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4653860079796114}
   - component: {fileID: 212605157581122360}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (2)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -838,7 +838,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4324303809721062}
   - component: {fileID: 212271407502172388}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (15)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -854,7 +854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4169500042707872}
   - component: {fileID: 212615471144614164}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (1)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -870,7 +870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4434547934252056}
   - component: {fileID: 212441888745562458}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (10)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -886,7 +886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4337197148127938}
   - component: {fileID: 61002283320690762}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor1 (1)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4245328562743998}
   - component: {fileID: 212345528278854780}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (9)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -918,7 +918,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4432900441756008}
   - component: {fileID: 61230921897911614}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor2 (5)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4857775897108468}
   - component: {fileID: 212974236938597958}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (9)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -950,7 +950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4402671843956992}
   - component: {fileID: 212566640739242324}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (10)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -966,7 +966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4480971211260236}
   - component: {fileID: 212587611524754968}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (4)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -982,7 +982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4604727904081080}
   - component: {fileID: 61284125142009950}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor1 (3)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -998,7 +998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4349613791304578}
   - component: {fileID: 212779798593548808}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (10)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1014,7 +1014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4065988829277118}
   - component: {fileID: 212758928702049234}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (13)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1030,7 +1030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4649815480127206}
   - component: {fileID: 212219438053873588}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (8)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1046,7 +1046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796533490397848}
   - component: {fileID: 212611650384199940}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (17)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1062,7 +1062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4539755886894970}
   - component: {fileID: 212248794734032394}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (12)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1078,7 +1078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4416259353514578}
   - component: {fileID: 212978121958632104}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (5)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4119228102798394}
   - component: {fileID: 212144995728423332}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (7)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1110,7 +1110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4076914612640070}
   - component: {fileID: 212186298166298724}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (5)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1126,7 +1126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4363411690003614}
   - component: {fileID: 212577315846680404}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (15)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1142,7 +1142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4789187231620700}
   - component: {fileID: 212400699679408958}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (1)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1158,7 +1158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4310668204471870}
   - component: {fileID: 212519637202564852}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (6)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1174,7 +1174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4060541086191980}
   - component: {fileID: 212184955921368920}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (12)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1190,7 +1190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4027801302633648}
   - component: {fileID: 212525426337917960}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (2)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1206,7 +1206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4004257001363766}
   - component: {fileID: 212764842237749992}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (3)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1222,7 +1222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4866190685871984}
   - component: {fileID: 212240933168415772}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (7)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1238,7 +1238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4627518747672292}
   - component: {fileID: 212321876025953582}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (13)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1254,7 +1254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4741530932846986}
   - component: {fileID: 212854051754084042}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (3)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1270,7 +1270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4168799336773904}
   - component: {fileID: 212900200064878002}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1286,7 +1286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4564973735949892}
   - component: {fileID: 212791400268566858}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (13)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1302,7 +1302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4657037675899918}
   - component: {fileID: 212727507139235328}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (8)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1318,7 +1318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4678106431111600}
   - component: {fileID: 212600779133637524}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (11)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1333,7 +1333,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4299461693141798}
-  m_Layer: 0
+  - component: {fileID: 61379758617537464}
+  - component: {fileID: 61137863385507996}
+  m_Layer: 10
   m_Name: Map_P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1349,7 +1351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4981231555116842}
   - component: {fileID: 212275970714157998}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (11)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1365,7 +1367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4484675969831382}
   - component: {fileID: 212280512198824332}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: brick (7)
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -1687,7 +1689,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1996639010163050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -16.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4295973824334816}
@@ -2567,7 +2569,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1601477794333944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 5008edf2d0bb9e644bede4c8e1659cf8, type: 2}
   m_IsTrigger: 0
@@ -2592,7 +2594,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1127114214173140}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 5008edf2d0bb9e644bede4c8e1659cf8, type: 2}
   m_IsTrigger: 0
@@ -2667,7 +2669,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1105458661128644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 5008edf2d0bb9e644bede4c8e1659cf8, type: 2}
   m_IsTrigger: 0
@@ -2685,6 +2687,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 12, y: 1}
+  m_EdgeRadius: 0
+--- !u!61 &61137863385507996
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996639010163050}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.0672121, y: -4.4880342}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 47.74167, y: 1.0579052}
   m_EdgeRadius: 0
 --- !u!61 &61230921897911614
 BoxCollider2D:
@@ -2717,7 +2744,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1704574768449134}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 5008edf2d0bb9e644bede4c8e1659cf8, type: 2}
   m_IsTrigger: 0
@@ -2735,6 +2762,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 12, y: 1}
+  m_EdgeRadius: 0
+--- !u!61 &61379758617537464
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996639010163050}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.0672121, y: -4.4880342}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 47.74167, y: 1.0579052}
   m_EdgeRadius: 0
 --- !u!61 &61434761703184026
 BoxCollider2D:
@@ -2817,7 +2869,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492061433508114}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 5008edf2d0bb9e644bede4c8e1659cf8, type: 2}
   m_IsTrigger: 0

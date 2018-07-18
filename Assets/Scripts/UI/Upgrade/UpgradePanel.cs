@@ -62,7 +62,7 @@ public class UpgradePanel : MonoBehaviour {
         }
     }
 
-    public void ResetAttribute()
+    public void ResetAttribute ()
     {
         maxHealth = gameManager.MaxHealth;
         maxArrow = gameManager.MaxArrow;
@@ -78,5 +78,6 @@ public class UpgradePanel : MonoBehaviour {
 
         Debug.Log("Confirm Upgrade and move to next level");
         Time.timeScale = 1f;
+        gameManager.LoadNextScene();
     }
 }

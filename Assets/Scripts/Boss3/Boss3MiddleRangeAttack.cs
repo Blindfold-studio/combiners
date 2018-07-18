@@ -9,11 +9,11 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
     private Rigidbody2D rb;
     private bool isPlayerInRange;
     [SerializeField]
-    private float beforeChargingTime = 1.5f;
+    private float beforeChargingTime = 1f;
     [SerializeField]
     private float afterChargingTime = 1f;
     [SerializeField]
-    private float chargedPower = 5f;
+    private float chargedPower = 7f;
 
 	// Use this for initialization
 	void Start () {
@@ -46,6 +46,7 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
         Debug.Log("Start charging!");
         float vel = rb.velocity.x;
         rb.velocity = new Vector2(0, rb.velocity.y);
+        Debug.Log("On the way");
         yield return new WaitForSeconds(beforeChargingTime);
         rb.velocity = new Vector2(vel*chargedPower, rb.velocity.y);
         Debug.Log("Charging attack stops!");

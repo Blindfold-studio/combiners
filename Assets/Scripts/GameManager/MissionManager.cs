@@ -34,6 +34,8 @@ public class MissionManager : MonoBehaviour {
         losePanel = GameObject.FindGameObjectWithTag("LosePanel");
         upgradePanel.SetActive(false);
         losePanel.SetActive(false);
+
+        Time.timeScale = 1f;
 	}
 
     void Update()

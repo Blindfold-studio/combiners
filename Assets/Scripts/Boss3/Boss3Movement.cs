@@ -125,6 +125,9 @@ public class Boss3Movement : MonoBehaviour {
 
     void Die() {
         Debug.Log("Die");
+        if(StopCoroutineEvent != null) {
+            StopCoroutineEvent();
+        }
         CurrentState = State.Idle;
         BossHealth.SwapingEvent -= SwapBoss;
         BossHealth.DeathEvent -= Die;
