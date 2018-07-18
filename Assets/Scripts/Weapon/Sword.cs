@@ -24,9 +24,14 @@ public class Sword : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") || collision.CompareTag("Boss"))
+        if (collision.CompareTag("Boss"))
         {
             collision.gameObject.GetComponent<BossHealth>().Health = -damage;
+        }
+
+        else if (collision.CompareTag("Enemy"))
+        {
+            // damage minion
         }
 
         else

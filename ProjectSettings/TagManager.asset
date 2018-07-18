@@ -13,6 +13,7 @@ TagManager:
   - WinAndUpgrade
   - LosePanel
   - NoneEffectOnPlayer
+  - Boss
   layers:
   - Default
   - TransparentFX

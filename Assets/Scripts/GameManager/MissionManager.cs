@@ -29,7 +29,7 @@ public class MissionManager : MonoBehaviour {
         
         bossObject = GameObject.FindGameObjectWithTag("Boss");
         bossHealth = bossObject.GetComponent<BossHealth>();
-        Debug.Log(bossHealth.Health);
+
         upgradePanel = GameObject.FindGameObjectWithTag("WinAndUpgrade");
         losePanel = GameObject.FindGameObjectWithTag("LosePanel");
         upgradePanel.SetActive(false);

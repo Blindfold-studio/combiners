@@ -10,13 +10,13 @@ public class EnemyFollow : Minions {
     private float speed;
     [SerializeField]
     private float stop;
-	// Use this for initialization
+	
+
 	void Start () {
         stop = 1.25f;
-        heal = 2;
+        heal = 1;
     }
-	
-	// Update is called once per frame
+
 	void Update () {
         FollowPlayer();
         Dead();
@@ -74,7 +74,7 @@ public class EnemyFollow : Minions {
     {
         if (heal == 0)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
             DropItem(this.transform);
         }
     }

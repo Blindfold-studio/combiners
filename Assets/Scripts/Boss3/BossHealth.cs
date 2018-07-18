@@ -30,14 +30,16 @@ public class BossHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log(Time.time);
+
 		current_health = max_health;
+
         UpdateHpText();
 	}
 	
 	void CheckingBossHealth() {
         UpdateHpText();
-        if(current_health <= 0) {
+        Debug.Log("Current health test" + current_health);
+        if (current_health <= 0) {
             if(DeathEvent != null) {
                 DeathEvent();
             }
