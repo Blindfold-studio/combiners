@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb;
     private Vector2 playerSize;
     private Vector2 boxSize;
+    private Vector2 playerBoxOffset;
     private PlayerAttribute playerAttr;
     private PlayerAttack playerAttack;
 
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         playerBox = GetComponent<BoxCollider2D>();
         playerSize = playerBox.size;
+        playerBoxOffset = playerBox.offset;
         boxSize = new Vector2(playerSize.x, groundedSkin);
 
         playerAttr = GetComponent<PlayerAttribute>();
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            Vector2 boxCenter = (Vector2)transform.position + Vector2.down * (playerSize.y + boxSize.y) * 0.5f;
+            Vector2 boxCenter = ((Vector2)transform.position + playerBoxOffset) + Vector2.down * (playerSize.y + boxSize.y) * 0.5f;
             isOnGround = (Physics2D.OverlapBox(boxCenter, boxSize, 0f, groundLayer) != null);
         }
     }

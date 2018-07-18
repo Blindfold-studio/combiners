@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4148370932745792}
   - component: {fileID: 212957897456230488}
   - component: {fileID: 61420555688522894}
+  - component: {fileID: 114119928866853762}
   m_Layer: 0
   m_Name: sword
   m_TagString: Weapon
@@ -131,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1569254059368552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0705297, y: 21.89838, z: 0}
+  m_LocalPosition: {x: 0.0705297, y: 51.89838, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4547174867855766}
@@ -171,7 +172,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.03}
+  m_Offset: {x: 0, y: -0.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -182,7 +183,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 0.89}
+  m_Size: {x: 0.2, y: 0.14}
   m_EdgeRadius: 0
 --- !u!61 &61420555688522894
 BoxCollider2D:
@@ -267,6 +268,19 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114119928866853762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1535238533104876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b924d2d3ea9fcf44e83bf6c65cae002f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Noob sword
+  damage: 1
 --- !u!114 &114511610784341506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,7 +324,7 @@ MonoBehaviour:
     rangeAtkButton: Range_P1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1024
   arrowPrefab: {fileID: 1218613727301220, guid: e102a44137289f14d89c7e7e0f5dc474,
     type: 2}
   tag: Arrow_P1
