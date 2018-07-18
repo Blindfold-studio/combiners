@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1569254059368552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0705297, y: 21.89838, z: 0}
+  m_LocalPosition: {x: 0.0705297, y: 51.89838, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4547174867855766}
@@ -324,7 +324,7 @@ MonoBehaviour:
     rangeAtkButton: Range_P1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1024
   arrowPrefab: {fileID: 1218613727301220, guid: e102a44137289f14d89c7e7e0f5dc474,
     type: 2}
   tag: Arrow_P1

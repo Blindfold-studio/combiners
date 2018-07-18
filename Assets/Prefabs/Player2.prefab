@@ -336,7 +336,7 @@ MonoBehaviour:
     rangeAtkButton: Range_P2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1024
   arrowPrefab: {fileID: 1279825735518926, guid: f12a68008dfcf164688fce45627cd115,
     type: 2}
   tag: Arrow_P2
