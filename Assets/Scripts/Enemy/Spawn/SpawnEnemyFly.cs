@@ -55,15 +55,6 @@ public class SpawnEnemyFly : Minions {
                 Instantiate(minion, minionPosition_P2[rand].position, Quaternion.identity);
             }
         }
-        
-
-        if (Time.time > spawn)
-        {
-            spawn = spawnTimer + Time.time;
-            //x = Random.Range(transform.position.x - 14, transform.position.x + 14);
-            //locate = new Vector2(x, flyMinionPosition_P1.position.y);
-            Instantiate(minion, minionPosition_P1[rand].position, Quaternion.identity);
-        }
     }
 
     private void OnEnable()
