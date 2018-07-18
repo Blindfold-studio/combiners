@@ -14,11 +14,13 @@ public class MissionManager : MonoBehaviour {
     #endregion
 
     [SerializeField]
-    private Transform bossPosition_P1;
+    private List<Transform> bossPosition_P1;
     [SerializeField]
-    private Transform bossPosition_P2;
+    private List<Transform> bossPosition_P2;
 
     private BossHealth bossHealth;
+    private SpawnEnemyFly spawnFly;
+    private SpawnEnemyFly spawnSkeleton;
     private GameManager gameManager;
     private GameObject bossObject;
     private GameObject upgradePanel;
@@ -32,8 +34,12 @@ public class MissionManager : MonoBehaviour {
 
         upgradePanel = GameObject.FindGameObjectWithTag("WinAndUpgrade");
         losePanel = GameObject.FindGameObjectWithTag("LosePanel");
+        spawnFly = GameObject.Find("SpawnEnemy-Fly").GetComponent<SpawnEnemyFly>();
+        spawnSkeleton = GameObject.Find("SpawnEnemy-Skel").GetComponent<SpawnEnemyFly>();
         upgradePanel.SetActive(false);
         losePanel.SetActive(false);
+
+        InitialBossSpawn();
 
         Time.timeScale = 1f;
 	}
@@ -53,13 +59,36 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
-    public Transform GetBossPosition_P1 ()
+    private void InitialBossSpawn ()
     {
-        return bossPosition_P1;
+        int rand = Random.Range(1, 3);
+
+        if (rand == 1)
+        {
+            bossObject.transform.position = GetBossPosition_P1();
+            spawnFly.UpSide = false;
+            spawnSkeleton.UpSide = false;
+        }
+        else
+        {
+            bossObject.transform.position = GetBossPosition_P2();
+            spawnFly.UpSide = true;
+            spawnSkeleton.UpSide = true;
+        }
     }
 
-    public Transform GetBossPosition_P2()
+
+    public Vector3 GetBossPosition_P1 ()
     {
-        return bossPosition_P2;
+        int rand = Random.Range(0, bossPosition_P1.Count);
+
+        return bossPosition_P1[rand].position;
+    }
+
+    public Vector3 GetBossPosition_P2()
+    {
+        int rand = Random.Range(0, bossPosition_P2.Count);
+
+        return bossPosition_P2[rand].position;
     }
 }
