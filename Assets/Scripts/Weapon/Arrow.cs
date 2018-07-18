@@ -65,7 +65,7 @@ public class Arrow : MonoBehaviour {
         {
             gameObject.SetActive(false);
         } 
-        else if (collision.CompareTag("Enemy"))
+        else if (collision.CompareTag("Boss"))
         {
             collision.gameObject.GetComponent<BossHealth>().Health = -damage;
             gameObject.SetActive(false);

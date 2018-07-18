@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour, IFPoolObject
     }
 
     void StraightBullet(Vector3 dir)
-    {
+    {   
         rb2d.velocity = dir*speed;
     }
 
