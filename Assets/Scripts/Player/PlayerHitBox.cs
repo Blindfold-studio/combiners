@@ -13,7 +13,7 @@ public class PlayerHitBox : MonoBehaviour {
 
     void Start()
     {
-        playerHP = GameObject.FindGameObjectWithTag("GameController").GetComponent<HealthSystem>();
+        playerHP = HealthSystem.instance;
         player = GetComponentInParent<PlayerController>();
     }
 
