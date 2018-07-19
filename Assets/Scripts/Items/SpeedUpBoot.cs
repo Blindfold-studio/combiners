@@ -17,6 +17,7 @@ public class SpeedUpBoot : MonoBehaviour {
     private void Start() {
         realDuration = 0;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        SpeedUpBootParent.Instance.Speed = speed;
     }
 
 	private void OnTriggerEnter2D(Collider2D other) {
@@ -34,29 +35,30 @@ public class SpeedUpBoot : MonoBehaviour {
             }
         }
     }
-
-    private void Update() {
-        if(Time.time - startedTime > realDuration && startedTime != 0) {
-            CancelPlayBoostSpeed();
-        }
-    }
-
     public void BoostPlayerSpeed(GameObject player) {
-        Debug.Log("Speedup Boost begins!");
-        playerAttribute = player.GetComponent<PlayerAttribute>();
-        playerAttribute.Speed = speed;
+        SpeedUpBootParent.Instance.Duration = durationOfBoost;
+        SpeedUpBootParent.Instance.CancelBootEffectEvent += CancelPlayerBoostSpeed;
         Color tmp = spriteRenderer.color;
         tmp.a = 0f;
         spriteRenderer.color = tmp;      
         GetComponent<BoxCollider2D> ().enabled = false;
     }
 
-    public void CancelPlayBoostSpeed() {
-        realDuration = 0;
+    public void CancelPlayerBoostSpeed() {
         Debug.Log("Speedup Boost lost effects.");
-        playerAttribute.Speed = -1*speed;
         GetComponent<BoxCollider2D> ().enabled = true;
         this.gameObject.SetActive(false);
+        SpeedUpBootParent.Instance.CancelBootEffectEvent -= CancelPlayerBoostSpeed;
+    }
+
+    private void OnDisable() {
+        SpeedUpBootParent.Instance.CancelBootEffectEvent -= CancelPlayerBoostSpeed;
+    }
+
+    private void Update() {
+        // if(Time.time - startedTime > realDuration && startedTime != 0) {
+        //     CancelPlayBoostSpeed();
+        // }
     }
 
 }

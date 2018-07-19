@@ -155,6 +155,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e08229ec818b9b42b3bdcd9c39be987, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &34140294 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4321358362687550, guid: c00cd263abe8e4b4383b6b57031a09c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 2007345399}
 --- !u!1001 &151402880
 Prefab:
   m_ObjectHideFlags: 0
@@ -766,6 +771,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1803c712d80e4f24a94c6940045782fe, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &253995165 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4089379720885916, guid: c00cd263abe8e4b4383b6b57031a09c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 2007345399}
 --- !u!1001 &264506479
 Prefab:
   m_ObjectHideFlags: 0
@@ -1185,28 +1195,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4876733759822746, guid: 03b10071396ed5c43a0742597fbc348c,
     type: 2}
   m_PrefabInternal: {fileID: 994333705}
---- !u!1 &370494572 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1917106043646068, guid: f855fa68e51059044bf54bb8e116b4dc,
-    type: 2}
-  m_PrefabInternal: {fileID: 466767326}
---- !u!114 &370494579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 370494572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17f9343a39934a648b55796dba661e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heal: 0
-  upSide: 0
-  rangeX: 10
-  rangeY: 1
-  speedX: 1.25
-  speedY: 2.5
 --- !u!1001 &466767326
 Prefab:
   m_ObjectHideFlags: 0
@@ -1256,35 +1244,22 @@ Prefab:
       propertyPath: hp2
       value: 
       objectReference: {fileID: 1666907370}
-    - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
+    - target: {fileID: 114983773458213790, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: maxHealth
+      value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
+    - target: {fileID: 114983773458213790, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
-      propertyPath: startShot
+      propertyPath: numberOfTimeBossSwap
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
+    - target: {fileID: 114983773458213790, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
-      propertyPath: objectPool
-      value: 
-      objectReference: {fileID: 1673342413268242, guid: c5990b1da02963947959b4f500c0ba66,
-        type: 2}
-    - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
-        type: 2}
-      propertyPath: reloadShot
-      value: 4
+      propertyPath: collidersDisableTime
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114335037547676640, guid: f855fa68e51059044bf54bb8e116b4dc,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114335037547676640, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
-    - {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &467039503 stripped
@@ -1456,10 +1431,12 @@ MonoBehaviour:
   heal: 0
   upSide: 0
   items: []
-  flyMinionPosition_P1: {fileID: 4595941357658352, guid: ca7100d6fd515ef4c9bfa8ba33c2fe2d,
-    type: 2}
-  flyMinionPosition_P2: {fileID: 4876733759822746, guid: 03b10071396ed5c43a0742597fbc348c,
-    type: 2}
+  minionPosition_P1:
+  - {fileID: 1248525606}
+  - {fileID: 253995165}
+  minionPosition_P2:
+  - {fileID: 34140294}
+  - {fileID: 34140294}
   minion: {fileID: 1146276841646634, guid: c552426a176b48143868f4232d9673a4, type: 2}
   spawnTimer: 3
 --- !u!1001 &754407857
@@ -1696,10 +1673,12 @@ MonoBehaviour:
   heal: 0
   upSide: 0
   items: []
-  flyMinionPosition_P1: {fileID: 4595941357658352, guid: ca7100d6fd515ef4c9bfa8ba33c2fe2d,
-    type: 2}
-  flyMinionPosition_P2: {fileID: 4876733759822746, guid: 03b10071396ed5c43a0742597fbc348c,
-    type: 2}
+  minionPosition_P1:
+  - {fileID: 1248525606}
+  - {fileID: 253995165}
+  minionPosition_P2:
+  - {fileID: 1248525606}
+  - {fileID: 253995165}
   minion: {fileID: 1109796896291814, guid: 9ff2872736c5f20489490a56000b083c, type: 2}
   spawnTimer: 5
 --- !u!4 &843923197
@@ -2105,6 +2084,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca7100d6fd515ef4c9bfa8ba33c2fe2d, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1248525606 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4142122922675848, guid: c00cd263abe8e4b4383b6b57031a09c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 2007345399}
 --- !u!114 &1666907370 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114605276811977036, guid: 1803c712d80e4f24a94c6940045782fe,
@@ -2125,7 +2109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1870003766
 Transform:
   m_ObjectHideFlags: 0

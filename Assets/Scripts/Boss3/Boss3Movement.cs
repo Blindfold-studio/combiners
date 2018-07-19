@@ -9,6 +9,8 @@ public class Boss3Movement : MonoBehaviour {
 	private GameObject targetPlayer;
     [SerializeField]
     private float speed = 2f;
+    [SerializeField]
+    private float stuntAfterPlayerJumpOverHead = 0.6f;
     private Rigidbody2D rg;
     private bool isFacingRight;
 
@@ -56,13 +58,13 @@ public class Boss3Movement : MonoBehaviour {
         BossHealth.SwapingEvent += SwapBoss;
         BossHealth.DeathEvent += Die;
         FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x);
-        player1_screen = missionManager.GetBossPosition_P1();
-        player2_screen = missionManager.GetBossPosition_P2();
+        //player1_screen.position = missionManager.GetBossPosition_P1();
+        //player2_screen.position = missionManager.GetBossPosition_P2();
 	}
 
     private void Update() {
         StartCoroutine(FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x));
-        
+        TargetPlayer = FindTheClosestPlayer();
     }
     private void FixedUpdate() {
         if(!onHoldForPlayerJump && state == State.Moving) {
@@ -77,7 +79,7 @@ public class Boss3Movement : MonoBehaviour {
            (!isFacingRight && horizontalMovement > 0)) {
             onHoldForPlayerJump = true;
             isFacingRight = !isFacingRight;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(stuntAfterPlayerJumpOverHead);
             Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
@@ -115,9 +117,9 @@ public class Boss3Movement : MonoBehaviour {
             StopCoroutineEvent();
         }
         if(TargetPlayer.name == "Player1") {
-            this.transform.position = player2_screen.position;
+            this.transform.position = missionManager.GetBossPosition_P2();
         } else if(TargetPlayer.name == "Player2") {
-            this.transform.position = player1_screen.position;
+            this.transform.position = missionManager.GetBossPosition_P1();
         }
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;

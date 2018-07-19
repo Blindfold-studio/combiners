@@ -65,13 +65,16 @@ public class BossFlyingMovement : Boss {
         minion2 = GameObject.Find("SpawnEnemy-Skel");
         minionFly = minion.GetComponent<SpawnEnemyFly>();
         minionSkel = minion2.GetComponent<SpawnEnemyFly>();
-        missionManager = MissionManager.instance;
+        
         targetPlayer = FindTheClosestPlayer();
 
         BossHealth.SwapingEvent += SwapBoss;
-        BossHealth.DeathEvent += Die;
-        player1_screen = missionManager.GetBossPosition_P1();
-        player2_screen = missionManager.GetBossPosition_P2();
+        BossHealth.DeathEvent += Die; 
+    }
+
+    void Start ()
+    {
+        missionManager = MissionManager.instance;
     }
 
     void Update()
@@ -122,12 +125,14 @@ public class BossFlyingMovement : Boss {
         }
         if (TargetPlayer.name == "Player1")
         {
+            player2_screen.position = missionManager.GetBossPosition_P2();
             this.transform.position = player2_screen.position;
             offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
 
         }
         else if (TargetPlayer.name == "Player2")
         {
+            player1_screen.position = missionManager.GetBossPosition_P1();
             this.transform.position = player1_screen.position;
             offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
 
