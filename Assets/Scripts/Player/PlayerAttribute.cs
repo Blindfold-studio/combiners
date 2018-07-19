@@ -52,7 +52,7 @@ public class PlayerAttribute : MonoBehaviour {
 
         set
         {
-            if (curruntArrow > arrowCapacity)
+            if (curruntArrow >= arrowCapacity)
             {
                 curruntArrow = arrowCapacity;
             }
