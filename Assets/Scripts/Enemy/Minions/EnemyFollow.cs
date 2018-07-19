@@ -10,10 +10,8 @@ public class EnemyFollow : Minions {
     private float speed;
     [SerializeField]
     private float stop;
-	
 
 	void Start () {
-        stop = 1.25f;
         heal = 1;
     }
 

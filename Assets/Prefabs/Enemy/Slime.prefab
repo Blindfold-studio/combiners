@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4266110610167898}
   m_Layer: 0
-  m_Name: Grounddetected
+  m_Name: GrounddetectedR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,13 +39,42 @@ GameObject:
   - component: {fileID: 61319452250638254}
   - component: {fileID: 50632180320247240}
   - component: {fileID: 114650867077561314}
+  - component: {fileID: 58536969546099988}
   m_Layer: 0
-  m_Name: PinkMon
+  m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1925237893960116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4249788355600142}
+  m_Layer: 0
+  m_Name: GrounddetectedL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4249788355600142
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925237893960116}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1, y: -0.13, z: 0}
+  m_LocalScale: {x: -4.275772, y: 3.6179078, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4901866476789458}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4266110610167898
 Transform:
   m_ObjectHideFlags: 1
@@ -53,11 +82,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1362254951993520}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: -2.17, z: 0}
-  m_LocalScale: {x: -4.275772, y: 3.6179078, z: 1}
+  m_LocalPosition: {x: -0.11, y: -0.129, z: 0}
+  m_LocalScale: {x: -4.275774, y: 3.6179075, z: 1}
   m_Children: []
   m_Father: {fileID: 4901866476789458}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4901866476789458
 Transform:
@@ -66,9 +95,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607767056712162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.52, y: -3.28, z: 0}
-  m_LocalScale: {x: -0.2338759, y: 0.27640286, z: 1}
+  m_LocalPosition: {x: -1.8550684, y: -3.1681113, z: 0}
+  m_LocalScale: {x: -2.2352352, y: 2.3472905, z: 1}
   m_Children:
+  - {fileID: 4249788355600142}
   - {fileID: 4266110610167898}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,6 +123,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &58536969546099988
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1607767056712162}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.13}
+  serializedVersion: 2
+  m_Radius: 0.03
 --- !u!61 &61319452250638254
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -102,21 +147,21 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.000000029802322, y: -0.046048164}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.4, y: 4.59}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 5.4, y: 4.59}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.4, y: 4.59}
+  m_Size: {x: 0.34322715, y: 0.22754514}
   m_EdgeRadius: 0
 --- !u!114 &114000481424247036
 MonoBehaviour:
@@ -141,12 +186,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d8b5d84332bd94f87612c29101fe50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heal: 0
+  upSide: 0
+  items:
+  - {fileID: 4874401990361610, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
+  - {fileID: 4919310507023706, guid: 417286cbd3b804d1da8df9ec5210034f, type: 2}
+  - {fileID: 4438604724248290, guid: 7dac9de0347ee4d2298de8f429c7ec18, type: 2}
   GroundDetect:
+  - {fileID: 4249788355600142}
   - {fileID: 4266110610167898}
   groundRadius: 0.1
   isGroundnow:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1024
   jumpforce: 4
   speed: 2
 --- !u!212 &212021406060917170
@@ -184,7 +236,7 @@ SpriteRenderer:
   m_SortingLayerID: -1987524155
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d282a54b061b92041a9a10fdb2bf9e4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c65c0c0a17cf4294b9af572887fc1b06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

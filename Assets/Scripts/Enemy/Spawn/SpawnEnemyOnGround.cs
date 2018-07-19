@@ -16,7 +16,7 @@ public class SpawnEnemyOnGround : Minions {
     [SerializeField]
     private List<Transform> minionPosition_P2;
 
-    public GameObject minion;
+    public GameObject[] minion;
     private float x;
     [SerializeField]
     private float spawnTimer;
@@ -32,26 +32,25 @@ public class SpawnEnemyOnGround : Minions {
     // Update is called once per frame
     void Update()
     {
+
+        int rand = Random.Range(0, minionPosition_P1.Count);
+        int randomMinion = Random.Range(0, minion.Length);
         if (upSide)
         {
-            int rand = Random.Range(0, minionPosition_P1.Count);
-
+            
             if (Time.time > spawn)
             {
-                Debug.Log("Player1 skel");
                 spawn = spawnTimer + Time.time;
-                Instantiate(minion, minionPosition_P1[rand].position, Quaternion.identity);
+                Instantiate(minion[randomMinion], minionPosition_P1[rand].position, Quaternion.identity);
             }
         }
         else
         {
-            int rand = Random.Range(0, minionPosition_P2.Count);
-
+            
             if (Time.time > spawn)
             {
-                Debug.Log("Player2 Skel");
                 spawn = spawnTimer + Time.time;
-                Instantiate(minion, minionPosition_P2[rand].position, Quaternion.identity);
+                Instantiate(minion[randomMinion], minionPosition_P2[rand].position, Quaternion.identity);
             }
         }
     }
