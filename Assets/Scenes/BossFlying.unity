@@ -1185,6 +1185,28 @@ Transform:
   m_PrefabParentObject: {fileID: 4876733759822746, guid: 03b10071396ed5c43a0742597fbc348c,
     type: 2}
   m_PrefabInternal: {fileID: 994333705}
+--- !u!1 &370494572 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1917106043646068, guid: f855fa68e51059044bf54bb8e116b4dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 466767326}
+--- !u!114 &370494579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 370494572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f9343a39934a648b55796dba661e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heal: 0
+  upSide: 0
+  rangeX: 10
+  rangeY: 1
+  speedX: 1.25
+  speedY: 2.5
 --- !u!1001 &466767326
 Prefab:
   m_ObjectHideFlags: 0
@@ -1237,7 +1259,7 @@ Prefab:
     - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
@@ -1250,7 +1272,19 @@ Prefab:
       value: 
       objectReference: {fileID: 1673342413268242, guid: c5990b1da02963947959b4f500c0ba66,
         type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: reloadShot
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114335037547676640, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114335037547676640, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
+    - {fileID: 114302511268445676, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &467039503 stripped
@@ -1507,7 +1541,7 @@ Prefab:
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: pools.Array.data[3].sizeOfEachElement
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
@@ -1528,7 +1562,7 @@ Prefab:
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: pools.Array.data[4].sizeOfEachElement
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
@@ -2091,7 +2125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1870003766
 Transform:
   m_ObjectHideFlags: 0
