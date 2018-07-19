@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private int bossSceneCount;
 
+    #region Player data default
+    private int maxHealthDefault;
+    private int arrowCapacityDefault;
+    private float speedDefault;
+    #endregion
+
     private int currentBuildIndex;
     private int nextBuildIndex;
     private int menuBuildIndex;
@@ -46,7 +52,8 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         bossSceneList = new List<int>();
-        healthSystem = GetComponent<HealthSystem>();
+        healthSystem = HealthSystem.instance;
+        SetDefaultPlayerData();
         GenerateRandomSceneList();
 
         menuBuildIndex = 0;
@@ -112,14 +119,15 @@ public class GameManager : MonoBehaviour {
     public void RestartScene()
     {
         currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        Time.timeScale = 1f;
+        SetPlayerDataToDefault();
         ResetHealth();
+        Time.timeScale = 1f;
         SceneManager.LoadScene(currentBuildIndex);
     }
 
     public void LoadMenuScene ()
     {
-        Time.timeScale = 1f;
+        SetPlayerDataToDefault();
         ResetHealth();
         SceneManager.LoadScene(menuBuildIndex);
     }
@@ -149,11 +157,27 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void ResetHealth ()
+    private void ResetHealth ()
     {
         if (OnResetHealth != null)
         {
             OnResetHealth();
         }
+    }
+
+    private void SetDefaultPlayerData ()
+    {
+        maxHealthDefault = playerData.maxHealth;
+        arrowCapacityDefault = playerData.arrowCapacity;
+        speedDefault = playerData.speed;
+    }
+
+    private void SetPlayerDataToDefault ()
+    {
+        playerData.maxHealth = maxHealthDefault;
+        healthSystem.MaxHP = maxHealthDefault;
+
+        playerData.arrowCapacity = arrowCapacityDefault;
+        playerData.speed = speedDefault;
     }
 }
