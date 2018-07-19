@@ -20,7 +20,7 @@ public class PlayerAttribute : MonoBehaviour {
     [SerializeField]
     private float shootSpeed;
 
-    private int curruntArrow;
+    private int currentArrow;
     private GameManager gameManager;
 
     void Start()
@@ -31,15 +31,15 @@ public class PlayerAttribute : MonoBehaviour {
         arrowCapacity = gameManager.MaxArrow;
         speed = gameManager.Speed;
 
-        curruntArrow = arrowCapacity;
+        currentArrow = arrowCapacity;
 
-        arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
+        arrowText.text = "Arrow: " + currentArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
         speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
     void Update ()
     {
-        arrowText.text = "Arrow: " + curruntArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
+        arrowText.text = "Arrow: " + currentArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
         speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
@@ -47,18 +47,20 @@ public class PlayerAttribute : MonoBehaviour {
     {
         get
         {
-            return curruntArrow;
+            return currentArrow;
         }
 
         set
         {
-            if (curruntArrow >= arrowCapacity)
+            currentArrow += value;
+
+            if (currentArrow >= arrowCapacity)
             {
-                curruntArrow = arrowCapacity;
+                currentArrow = arrowCapacity;
             }
-            else
+            else if (currentArrow <= 0)
             {
-                curruntArrow += value; 
+                currentArrow = 0; 
             }
         }
     }
