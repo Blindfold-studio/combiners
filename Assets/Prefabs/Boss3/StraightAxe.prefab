@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4905595948542628}
   - component: {fileID: 61634643871611122}
   - component: {fileID: 50179898509868102}
+  - component: {fileID: 111162802640975164}
   - component: {fileID: 114589493815525318}
   m_Layer: 0
   m_Name: StraightAxe
@@ -117,6 +118,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4229675, y: 0.23874211}
   m_EdgeRadius: 0
+--- !u!111 &111162802640975164
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1378292396586202}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 01d93be3ccb164ad9b5b3a53770b2f6c, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114589493815525318
 MonoBehaviour:
   m_ObjectHideFlags: 1

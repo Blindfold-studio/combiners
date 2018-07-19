@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4919210241355562}
   - component: {fileID: 50840909867289168}
   - component: {fileID: 61568785536792314}
+  - component: {fileID: 111391541516568938}
   - component: {fileID: 114125688405015992}
   m_Layer: 0
   m_Name: ProjectileAxe
@@ -117,6 +118,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.43877476, y: 0.2455411}
   m_EdgeRadius: 0
+--- !u!111 &111391541516568938
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615956498641054}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 01d93be3ccb164ad9b5b3a53770b2f6c, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114125688405015992
 MonoBehaviour:
   m_ObjectHideFlags: 1
