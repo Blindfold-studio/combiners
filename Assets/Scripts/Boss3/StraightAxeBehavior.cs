@@ -7,23 +7,24 @@ public class StraightAxeBehavior : MonoBehaviour {
     private Rigidbody2D rb;
     [SerializeField]
     private float axeSpeed = 10f;
-    private Animation anim;
+    private Animator animator;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animation>();
+        animator = GetComponent<Animator>();
         this.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")) {
-            anim.Stop();
+            Debug.Log("hit player");
+            animator.enabled = false;
             this.gameObject.SetActive(false);
         }
     }
 
 	public void Moving(GameObject targetPlayer) {
-        anim.Play();
+        animator.enabled = true;
         if(targetPlayer.transform.position.x - transform.position.x < 0) {
             rb.velocity = new Vector2(-1*axeSpeed, rb.velocity.y);
         } else {
