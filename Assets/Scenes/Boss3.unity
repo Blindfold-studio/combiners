@@ -942,7 +942,54 @@ Prefab:
       propertyPath: hp2
       value: 
       objectReference: {fileID: 1461988571}
-    m_RemovedComponents: []
+    - target: {fileID: 114461667864487634, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: maxHealth
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114461667864487634, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: numberOfTimeBossSwap
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 61736067378527120, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61035362009536788, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61057389477825388, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61035362009536788, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0.0053691864
+      objectReference: {fileID: 0}
+    - target: {fileID: 61035362009536788, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1.3726959
+      objectReference: {fileID: 0}
+    - target: {fileID: 61035362009536788, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.023532867
+      objectReference: {fileID: 0}
+    - target: {fileID: 61035362009536788, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 2.7370071
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 61736067378527120, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
+    - {fileID: 61057389477825388, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1137852784 stripped

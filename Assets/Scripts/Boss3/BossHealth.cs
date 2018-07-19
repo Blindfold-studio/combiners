@@ -17,6 +17,7 @@ public class BossHealth : MonoBehaviour {
     [SerializeField]
     private float collidersDisableTime;
     private float currentHealth;
+    private BoxCollider2D bossCollider;
 
     public static event Action SwapingEvent;
     public static event Action DeathEvent;
@@ -34,14 +35,14 @@ public class BossHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 		currentHealth = maxHealth;
-
+        bossCollider = GetComponent<BoxCollider2D>();
         UpdateHpText();
 	}
 	
 	void CheckingBossHealth() {
         UpdateHpText();
+        StartCoroutine("ProtectionAfterReceivedAnAttack");
         Debug.Log("Current health test" + currentHealth);
         if (currentHealth <= 0) {
             if(DeathEvent != null) {
@@ -61,6 +62,8 @@ public class BossHealth : MonoBehaviour {
     }
 
     IEnumerator ProtectionAfterReceivedAnAttack() {
+        bossCollider.enabled = false;
         yield return new WaitForSeconds(collidersDisableTime);
+        bossCollider.enabled = true;
     }
 }
