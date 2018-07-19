@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour {
+
+    # region Singleton
+    public static HealthSystem instance = null;
+
+    void Awake()
+    {
+        instance = this;    
+    }
+    #endregion
+
     [SerializeField]
     private int currentHealth;
     [SerializeField]
