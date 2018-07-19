@@ -117,7 +117,7 @@ MonoBehaviour:
   - {fileID: 4874401990361610, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
   - {fileID: 4438604724248290, guid: 7dac9de0347ee4d2298de8f429c7ec18, type: 2}
   speed: 3
-  stop: 2
+  stop: 0.7
 --- !u!212 &212546542718536570
 SpriteRenderer:
   m_ObjectHideFlags: 1
