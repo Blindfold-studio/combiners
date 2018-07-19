@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114855052239744156, guid: 5e08229ec818b9b42b3bdcd9c39be987,
+        type: 2}
+      propertyPath: playerData.maxHealth
+      value: 99
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e08229ec818b9b42b3bdcd9c39be987, type: 2}
   m_IsPrefabParent: 0
@@ -1409,6 +1414,20 @@ Prefab:
       propertyPath: health_for_switch
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4650467011601036, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114214820615415810, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: hp1
+      value: 
+      objectReference: {fileID: 1829689125}
+    - target: {fileID: 114214820615415810, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: hp2
+      value: 
+      objectReference: {fileID: 1715595192}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
   m_IsPrefabParent: 0
@@ -1672,21 +1691,6 @@ Prefab:
       propertyPath: speedText
       value: 
       objectReference: {fileID: 170144546}
-    - target: {fileID: 61950522554733320, guid: ae0033de29c212e4b8d175e79be5a313,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 61950522554733320, guid: ae0033de29c212e4b8d175e79be5a313,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 0.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 61950522554733320, guid: ae0033de29c212e4b8d175e79be5a313,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae0033de29c212e4b8d175e79be5a313, type: 2}
   m_IsPrefabParent: 0
