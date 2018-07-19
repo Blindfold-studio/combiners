@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour, IFPoolObject
+public class StraightLineBullet : MonoBehaviour, IFPoolObject
 {
 
     public float speed;
-
     Rigidbody2D rb2d;
     private Transform player;
     private Vector3 dir;
 
-	// Use this for initialization
 	public void ObjectSpawn()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb2d = GetComponent<Rigidbody2D>();
         dir = Vector3.Normalize(player.position - this.transform.position);
+        Invoke("Disappear", 15);
     }
 	
-	// Update is called once per frame
 	void FixedUpdate () {
         StraightBullet(dir);
     }
@@ -29,9 +27,9 @@ public class Bullet : MonoBehaviour, IFPoolObject
         rb2d.velocity = dir*speed;
     }
 
-    void OnBecameInvisible()
+    void Disappear()
     {
-        gameObject.SetActive(false);  
+        gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -39,8 +37,7 @@ public class Bullet : MonoBehaviour, IFPoolObject
         if (collision.CompareTag("Player"))
         {
             gameObject.SetActive(false);
-        }    
+        }
     }
 
-    
 }
