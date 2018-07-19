@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     private bool jumpRequest;
     private bool isInvicible;
     private float timeStamp;
+    private Animator anim;
     private BoxCollider2D playerBox;
     private Rigidbody2D rb;
     private Vector2 playerSize;
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour {
         playerBoxOffset = playerBox.offset;
         boxSize = new Vector2(playerSize.x, groundedSkin);
 
+        anim = GetComponent<Animator>();
         playerAttr = GetComponent<PlayerAttribute>();
 
         foreach (Transform child in gameObject.transform)
@@ -99,6 +102,7 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate()
     {
         float horizontal = Input.GetAxis(button.horizontalAxis);
+        anim.SetFloat("Speed", Math.Abs(horizontal));
         MoveHorizontal(horizontal);
         Flip(horizontal);
 
