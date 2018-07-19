@@ -9,15 +9,18 @@ public class ProjectileAxeBehavior : MonoBehaviour {
     [SerializeField]
     private float gravity = 0.8f;
     private Rigidbody2D rb;
+    private Animator animator;
 
 	// Use this for initialization
 	void Start () {
+        animator = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
         this.gameObject.SetActive(false);
 	}
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")) {
+            animator.enabled = false;
             this.gameObject.SetActive(false);
         }
     }
@@ -30,6 +33,7 @@ public class ProjectileAxeBehavior : MonoBehaviour {
         Debug.Log(horizontalDistance);
         float vel_x = vel * Mathf.Cos(throwingAngle);
         float vel_y = vel * Mathf.Sin(throwingAngle);
+        animator.enabled = true;
         if(horizontalDistance < 0) {
             vel_x = vel * Mathf.Cos(180f*Mathf.Deg2Rad - throwingAngle);
             vel_y = vel * Mathf.Sin(180f*Mathf.Deg2Rad - throwingAngle);
