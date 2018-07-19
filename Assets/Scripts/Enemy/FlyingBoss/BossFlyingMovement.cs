@@ -77,8 +77,6 @@ public class BossFlyingMovement : Boss {
         missionManager = MissionManager.instance;
         offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
         targetPlayer = FindTheClosestPlayer();
-        Debug.Log("MinionOnGround" + minionOnGround.UpSide);
-       
     }
 
     void Update()
@@ -129,14 +127,14 @@ public class BossFlyingMovement : Boss {
         }
         if (TargetPlayer.name == "Player1")
         {
-            Debug.Log("Swap to player 2");
+           
             this.transform.position = missionManager.GetBossPosition_P2();
             offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
             
         }
         else if (TargetPlayer.name == "Player2")
         {
-            Debug.Log("Swap to player 1");
+          
             this.transform.position = missionManager.GetBossPosition_P1();
             offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
             

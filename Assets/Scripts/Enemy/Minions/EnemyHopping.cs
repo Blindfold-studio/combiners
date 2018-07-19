@@ -29,8 +29,9 @@ public class EnemyHopping : Minions
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
-        flip = GameObject.Find("PinkMon").GetComponent<EnemyFlip>();
+        flip = gameObject.GetComponent<EnemyFlip>();
         player = flip.FindClosetPlayer();
+        heal = 1;
 	}
 	
 	// Update is called once per frame
@@ -38,11 +39,12 @@ public class EnemyHopping : Minions
         
         isOnGround = IsGround();
         if (isOnGround)
-        {       
+        {
             rb2d.velocity += Vector2.up * jumpforce;
         }
-        Movement();
 
+        Movement();
+        Dead();
     }
 
     private void Movement()
@@ -54,7 +56,6 @@ public class EnemyHopping : Minions
         else if (!flip.facingR)
         {
             transform.Translate(Vector3.left * Time.deltaTime * speed);
-
         }
     }
 
@@ -77,6 +78,30 @@ public class EnemyHopping : Minions
             }
         }
         return false;
-
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.CompareTag("Enemy") || collision.CompareTag("NoneEffectOnPlayer"))
+        {
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), collision, true);
+            
+        }
+        else if (collision.CompareTag("Weapon"))
+        {
+            Debug.Log("GetintoSlimeWeapon");
+            TakeDamage();
+        }
+    }
+
+    public void Dead()
+    {
+        if (heal == 0)
+        {
+            Destroy(gameObject);
+            DropItem(this.transform);
+        }
+    }
+
 }
