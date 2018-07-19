@@ -11,7 +11,7 @@ public class HealthUI : MonoBehaviour {
     private TextMeshProUGUI hpText;
 
     void Start () {
-        healthSystem = GameObject.FindGameObjectWithTag("GameController").GetComponent<HealthSystem>();
+        healthSystem = HealthSystem.instance;
         hpText = GetComponent<TextMeshProUGUI>();
 
         hp = healthSystem.HP;

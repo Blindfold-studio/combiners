@@ -13,7 +13,7 @@ public class EnemyFollow : Minions {
 	
 
 	void Start () {
-        stop = 1.25f;
+        
         heal = 1;
     }
 
