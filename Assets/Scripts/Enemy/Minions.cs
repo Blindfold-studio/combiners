@@ -18,7 +18,12 @@ public class Minions : EnemyManager {
 
     public void DropItem(Transform minion)
     {
-        Instantiate(items[Random.Range(0, items.Count)], minion.position, Quaternion.identity);
+        var DropingRate = Random.Range(0,5);
+        if (DropingRate == 1)
+        {
+            Instantiate(items[Random.Range(0, items.Count)], minion.position, Quaternion.identity);
+        }
+        
     }
 
     
