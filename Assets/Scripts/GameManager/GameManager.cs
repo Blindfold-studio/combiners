@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         bossSceneList = new List<int>();
-        healthSystem = GetComponent<HealthSystem>();
+        healthSystem = HealthSystem.instance;
         SetDefaultPlayerData();
         GenerateRandomSceneList();
 
@@ -119,16 +119,16 @@ public class GameManager : MonoBehaviour {
     public void RestartScene()
     {
         currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        ResetHealth();
         SetPlayerDataToDefault();
+        ResetHealth();
         Time.timeScale = 1f;
         SceneManager.LoadScene(currentBuildIndex);
     }
 
     public void LoadMenuScene ()
     {
-        ResetHealth();
         SetPlayerDataToDefault();
+        ResetHealth();
         SceneManager.LoadScene(menuBuildIndex);
     }
 
@@ -175,6 +175,8 @@ public class GameManager : MonoBehaviour {
     private void SetPlayerDataToDefault ()
     {
         playerData.maxHealth = maxHealthDefault;
+        healthSystem.MaxHP = maxHealthDefault;
+
         playerData.arrowCapacity = arrowCapacityDefault;
         playerData.speed = speedDefault;
     }
