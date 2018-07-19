@@ -26,7 +26,8 @@ public class BossFlyingMovement : Boss {
     public static event Action StopCoroutineEvent;
 
     GameObject minion, minion2;
-    SpawnEnemyFly minionFly, minionSkel;
+    SpawnEnemyFly minionFly;
+    SpawnEnemyOnGround minionOnGround;
 
     private GameObject targetPlayer;
 
@@ -64,17 +65,20 @@ public class BossFlyingMovement : Boss {
         minion = GameObject.Find("SpawnEnemy-Fly");
         minion2 = GameObject.Find("SpawnEnemy-Skel");
         minionFly = minion.GetComponent<SpawnEnemyFly>();
-        minionSkel = minion2.GetComponent<SpawnEnemyFly>();
-        
-        targetPlayer = FindTheClosestPlayer();
-
+        minionOnGround = minion2.GetComponent<SpawnEnemyOnGround>();
+  
         BossHealth.SwapingEvent += SwapBoss;
-        BossHealth.DeathEvent += Die; 
+        BossHealth.DeathEvent += Die;
+        
     }
 
     void Start ()
     {
         missionManager = MissionManager.instance;
+        offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
+        targetPlayer = FindTheClosestPlayer();
+        Debug.Log("MinionOnGround" + minionOnGround.UpSide);
+       
     }
 
     void Update()
@@ -125,22 +129,21 @@ public class BossFlyingMovement : Boss {
         }
         if (TargetPlayer.name == "Player1")
         {
-            player2_screen.position = missionManager.GetBossPosition_P2();
-            this.transform.position = player2_screen.position;
+            Debug.Log("Swap to player 2");
+            this.transform.position = missionManager.GetBossPosition_P2();
             offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
-
+            
         }
         else if (TargetPlayer.name == "Player2")
         {
-            player1_screen.position = missionManager.GetBossPosition_P1();
-            this.transform.position = player1_screen.position;
+            Debug.Log("Swap to player 1");
+            this.transform.position = missionManager.GetBossPosition_P1();
             offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
-
+            
         }
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
-        minionFly.SetSide();
-        minionSkel.SetSide();
+        
         initiatePoint = 0;
 
     }
