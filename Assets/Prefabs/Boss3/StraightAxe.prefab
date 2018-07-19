@@ -37,13 +37,14 @@ GameObject:
   - component: {fileID: 4905595948542628}
   - component: {fileID: 61634643871611122}
   - component: {fileID: 50179898509868102}
+  - component: {fileID: 114589493815525318}
   m_Layer: 0
   m_Name: StraightAxe
   m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4115257686346916
 Transform:
   m_ObjectHideFlags: 1
@@ -103,7 +104,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0027951598, y: 0.223616}
+  m_Offset: {x: -0.0028273761, y: 0.35293448}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -114,8 +115,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6366242, y: 0.407418}
+  m_Size: {x: 0.4229675, y: 0.23874211}
   m_EdgeRadius: 0
+--- !u!114 &114589493815525318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1378292396586202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b31a05d2a8df410eb80ccd14e6d7519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axeSpeed: 10
 --- !u!212 &212585289982516238
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -151,7 +164,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3b29858d536e04d83b6517e01c30ac6f, type: 3}
+  m_Sprite: {fileID: 21300012, guid: d41ec275bd5fc41469733cdab4d2ebe6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

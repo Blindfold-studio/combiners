@@ -987,6 +987,18 @@ Prefab:
       propertyPath: m_Size.y
       value: 2.7370071
       objectReference: {fileID: 0}
+    - target: {fileID: 212384519105191394, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300012, guid: d41ec275bd5fc41469733cdab4d2ebe6,
+        type: 3}
+    - target: {fileID: 212335770118019016, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300012, guid: d41ec275bd5fc41469733cdab4d2ebe6,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 61736067378527120, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
     - {fileID: 61057389477825388, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
