@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Detectbox : Boss {
+public class BossFlyingMovement : Boss {
 
     [SerializeField]
-    private float amplitudeX = 10.0f;
+    private float rangeX = 10.0f;
     [SerializeField]
-    private float amplitudeY = 1.0f;
+    private float rangeY = 1.0f;
     [SerializeField]
-    private float omegaX = 1.25f;
+    private float speedX = 1.25f;
     [SerializeField]
-    private float omegaY = 2.5f;
-    private float index;
-    private float x,y;
+    private float speedY = 2.5f;
+    private float initiatePoint;
+    private float x, y;
     private int count = 0;
-    private float spawnPoint;
+    private float offSet;
 
-    public enum State { Idle, Moving};
+    public enum State { Idle, Moving };
     private State state;
     private MissionManager missionManager;
     private Transform player1_screen;
     private Transform player2_screen;
     public static event Action StopCoroutineEvent;
 
-    GameObject minion,minion2;
-    SpawnEnemyFly minionFly,minionSkel;
-    
+    GameObject minion, minion2;
+    SpawnEnemyFly minionFly, minionSkel;
+
     private GameObject targetPlayer;
 
     public State CurrentState
@@ -65,52 +65,38 @@ public class Detectbox : Boss {
         minion2 = GameObject.Find("SpawnEnemy-Skel");
         minionFly = minion.GetComponent<SpawnEnemyFly>();
         minionSkel = minion2.GetComponent<SpawnEnemyFly>();
-        missionManager = MissionManager.instance;
+        
         targetPlayer = FindTheClosestPlayer();
 
         BossHealth.SwapingEvent += SwapBoss;
-        BossHealth.DeathEvent += Die;
-        player1_screen.position = missionManager.GetBossPosition_P1();
-        player2_screen.position = missionManager.GetBossPosition_P2();
+        BossHealth.DeathEvent += Die; 
     }
 
-    void Update () {
+    void Start ()
+    {
+        missionManager = MissionManager.instance;
+    }
+
+    void Update()
+    {
         Controll();
     }
 
     void Controll()
     {
-        
-        if (count%2==0)
-        {
-            index -= Time.deltaTime;
-        }
-        else if(count%2==1)
-        {
-            index += Time.deltaTime;
-        }
 
-        
-        x = amplitudeX * Mathf.Cos(omegaX * index);
-        /*if (CheckHealh())
+        if (count % 2 == 0)
         {
-            y = amplitudeY * Mathf.Sin(omegaY * index) + 1.5f;
-            minionFly.UpSide();
+            initiatePoint -= Time.deltaTime;
         }
-        else
+        else if (count % 2 == 1)
         {
-            y = amplitudeY * Mathf.Sin(omegaY * index) + 40.5f;
-            minionFly.DownSide();
-        }*/
-        y = amplitudeY * Mathf.Sin(omegaY * index) + spawnPoint;
+            initiatePoint += Time.deltaTime;
+        }
+        x = rangeX * Mathf.Cos(speedX * initiatePoint);
+        y = rangeY * Mathf.Sin(speedY * initiatePoint) + offSet;
         transform.localPosition = new Vector3(x, y, 0);
 
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        
     }
 
     public GameObject FindTheClosestPlayer()
@@ -139,31 +125,31 @@ public class Detectbox : Boss {
         }
         if (TargetPlayer.name == "Player1")
         {
+            player2_screen.position = missionManager.GetBossPosition_P2();
             this.transform.position = player2_screen.position;
-            spawnPoint = amplitudeY * Mathf.Sin(omegaY * index) + this.transform.position.y;
-           
+            offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
+
         }
         else if (TargetPlayer.name == "Player2")
         {
+            player1_screen.position = missionManager.GetBossPosition_P1();
             this.transform.position = player1_screen.position;
-            spawnPoint = amplitudeY * Mathf.Sin(omegaY * index)+ this.transform.position.y;
-            
+            offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
+
         }
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
         minionFly.SetSide();
         minionSkel.SetSide();
-        index = 0;
-        
+        initiatePoint = 0;
+
     }
 
     void Die()
     {
-        Debug.Log("Die");
         CurrentState = State.Idle;
         BossHealth.SwapingEvent -= SwapBoss;
         BossHealth.DeathEvent -= Die;
-        //rg.velocity = new Vector2(0f, rg.velocity.y);
     }
 
     private void OnDisable()

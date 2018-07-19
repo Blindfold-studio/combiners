@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingAtk : MonoBehaviour {
+public class BossFlyingAttack : MonoBehaviour {
+
     [SerializeField]
     private float reloadShot;
     [SerializeField]
     private float startShot;
 
     GameObject objectPool;
-    
-    
     private GameObject player;
     ProjectilePool pool;
-
     private int numOfProjectile;
     private int rangeOfProjectile;
     private float speedbullet;
@@ -21,32 +19,21 @@ public class FlyingAtk : MonoBehaviour {
     Vector3 projectileDir;
     GameObject bullet;
 
-    void Start () {
-        
+    void Start()
+    {
         reloadShot = startShot;
         pool = ProjectilePool.Instance;
         player = GameObject.FindGameObjectWithTag("Player");
-        //objectPool = pool.GetElementInPool("Boss-Many", this.transform.position, Quaternion.identity);
-
-        //surBullet = objectPool.GetComponent<SurroundBullet>();
-        //objectPool.SetActive(false);
-        //surroundB = GameObject.Find("ObjectPooling");
-        //sur = surroundB.GetComponent<SurroundBullet>();
-	}
-
+        Invoke("Disappear", 15);
+    }
     void FixedUpdate()
     {
         EnemyShot();
-        
     }
-
-   
-   
     void EnemyShot()
     {
         if (reloadShot <= 0)
         {
-           
             var number = Random.Range(2, 3);
 
             if (number == 0)
@@ -59,17 +46,12 @@ public class FlyingAtk : MonoBehaviour {
             }
             else if (number == 2)
             {
-                //Debug.Log(surroundB.GetComponent<Detectbox>().TargetPlayer);
                 FireThreeProjectile();
-               // FireThreeProjectile();
             }
             else if (number == 3)
             {
                 FireEightProjectile();
-                //FireEightProjectile();
             }
-            
-
             reloadShot = startShot;
         }
         else
@@ -79,7 +61,7 @@ public class FlyingAtk : MonoBehaviour {
 
     }
 
-    //3Projectile----
+    //3Projectile
     public void FireThreeProjectile()
     {
 
@@ -103,7 +85,6 @@ public class FlyingAtk : MonoBehaviour {
     //Manyprojectile
     public void SetProjectile(int numOfP, float range, float speedBullet)
     {
-
         float angleTotal = 360f / numOfP;
         float angle = 0f;
 
@@ -115,21 +96,18 @@ public class FlyingAtk : MonoBehaviour {
             projectileVec = new Vector3(projectileX, projectileY, 0);
             projectileDir = Vector3.Normalize(projectileVec - this.transform.position) * speedBullet;
 
-
-            //var proj = pool.GetElementInPool("Boss-Many", transform.position, Quaternion.identity);
-            //proj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDir.x, projectileDir.y);
             bullet = pool.GetElementInPool("Boss-Many", transform.position, Quaternion.identity);
-            //rb2d.velocity = new Vector2(projectileDir.x, projectileDir.y);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDir.x, projectileDir.y);
-
+       
             angle += angleTotal;
 
         }
     }
 
-    void OnBecameInvisible()
+    void Disappear()
     {
         gameObject.SetActive(false);
-    }   
+    }
+
 
 }
