@@ -11,21 +11,23 @@ public class BossHealth : MonoBehaviour {
     public TextMeshProUGUI hp1;
     public TextMeshProUGUI hp2;
     [SerializeField]
-    private float max_health = 9f;
+    private float maxHealth;
     [SerializeField]
-    private float health_for_switch = 5f;
-    private float current_health;
+    private float numberOfTimeBossSwap;
+    [SerializeField]
+    private float collidersDisableTime;
+    private float currentHealth;
 
     public static event Action SwapingEvent;
     public static event Action DeathEvent;
 
     public float Health {
         get {
-            return current_health;
+            return currentHealth;
         }
 
         set {
-            current_health += value;
+            currentHealth += value;
             CheckingBossHealth();
         }
     }
@@ -33,19 +35,19 @@ public class BossHealth : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		current_health = max_health;
+		currentHealth = maxHealth;
 
         UpdateHpText();
 	}
 	
 	void CheckingBossHealth() {
         UpdateHpText();
-        Debug.Log("Current health test" + current_health);
-        if (current_health <= 0) {
+        Debug.Log("Current health test" + currentHealth);
+        if (currentHealth <= 0) {
             if(DeathEvent != null) {
                 DeathEvent();
             }
-        } else if(current_health % (max_health/health_for_switch) == 0 && current_health < max_health) {    
+        } else if(currentHealth % (maxHealth/numberOfTimeBossSwap) == 0 && currentHealth < maxHealth) {    
             // SwapBoss();
             if(SwapingEvent != null) {
                 SwapingEvent();
@@ -54,7 +56,11 @@ public class BossHealth : MonoBehaviour {
     }
 
     void UpdateHpText() {
-        hp1.text = "BHP: " + current_health;
-        hp2.text = "BHP: " + current_health;
+        hp1.text = "BHP: " + currentHealth;
+        hp2.text = "BHP: " + currentHealth;
+    }
+
+    IEnumerator ProtectionAfterReceivedAnAttack() {
+        yield return new WaitForSeconds(collidersDisableTime);
     }
 }
