@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SpeedUpBootParent : MonoBehaviour {
+public class SpeedUpBootParentP1 : MonoBehaviour {
 
-    private static SpeedUpBootParent instance = null;
+    private static SpeedUpBootParentP1 instance = null;
 	private float duration = 0;
     private bool isOnEffect = false;
     private float speed;
@@ -36,11 +36,11 @@ public class SpeedUpBootParent : MonoBehaviour {
         }
     }
 
-    static SpeedUpBootParent(){}
+    static SpeedUpBootParentP1(){}
 
-    private SpeedUpBootParent() {}
+    private SpeedUpBootParentP1() {}
 
-    public static SpeedUpBootParent Instance
+    public static SpeedUpBootParentP1 Instance
     {
         get
         {
