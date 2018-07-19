@@ -20,7 +20,7 @@ public class MissionManager : MonoBehaviour {
 
     private BossHealth bossHealth;
     private SpawnEnemyFly spawnFly;
-    private SpawnEnemyFly spawnSkeleton;
+    private SpawnEnemyOnGround spawnSkeleton;
     private GameManager gameManager;
     private GameObject bossObject;
     private GameObject upgradePanel;
@@ -35,7 +35,7 @@ public class MissionManager : MonoBehaviour {
         upgradePanel = GameObject.FindGameObjectWithTag("WinAndUpgrade");
         losePanel = GameObject.FindGameObjectWithTag("LosePanel");
         spawnFly = GameObject.Find("SpawnEnemy-Fly").GetComponent<SpawnEnemyFly>();
-        spawnSkeleton = GameObject.Find("SpawnEnemy-Skel").GetComponent<SpawnEnemyFly>();
+        spawnSkeleton = GameObject.Find("SpawnEnemy-Skel").GetComponent<SpawnEnemyOnGround>();
         upgradePanel.SetActive(false);
         losePanel.SetActive(false);
 
@@ -78,10 +78,10 @@ public class MissionManager : MonoBehaviour {
     }
 
 
-    public Vector3 GetBossPosition_P1 ()
+    public Vector3 GetBossPosition_P1()
     {
         int rand = Random.Range(0, bossPosition_P1.Count);
-
+        
         return bossPosition_P1[rand].position;
     }
 

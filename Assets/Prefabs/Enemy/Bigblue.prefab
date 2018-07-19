@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4981535624600740}
   - component: {fileID: 212366535138887448}
-  - component: {fileID: 61732520340945182}
   - component: {fileID: 114983773458213790}
   - component: {fileID: 114650350790801676}
+  - component: {fileID: 61054071465350020}
   m_Layer: 0
   m_Name: Bigblue
   m_TagString: Boss
@@ -37,13 +37,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917106043646068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.36839455, y: 0.3553296, z: 1}
+  m_LocalPosition: {x: 4.472, y: 0.124, z: 0}
+  m_LocalScale: {x: 5.001613, y: 4.937325, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61732520340945182
+--- !u!61 &61054071465350020
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -59,14 +59,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.82, y: 6.91}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 5.82, y: 6.91}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.82, y: 6.91}
+  m_Size: {x: 0.44, y: 0.47}
   m_EdgeRadius: 0
 --- !u!114 &114650350790801676
 MonoBehaviour:
@@ -99,7 +99,9 @@ MonoBehaviour:
   bossHpBar: {fileID: 0}
   hp1: {fileID: 0}
   hp2: {fileID: 0}
-  max_health: 3
+  maxHealth: 9
+  numberOfTimeBossSwap: 3
+  collidersDisableTime: 1
 --- !u!212 &212366535138887448
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -135,7 +137,7 @@ SpriteRenderer:
   m_SortingLayerID: -1987524155
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: de5b9ba28351af440a7cacc2981aa5ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e0d89ece5755bf47841584a7bf026c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

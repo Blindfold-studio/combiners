@@ -82,7 +82,7 @@ public class Skeliton : Minions
         if(collision.CompareTag("Enemy") || collision.CompareTag("NoneEffectOnPlayer"))
         {
             Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(),collision,true);
-            Debug.Log("Ignore");
+
         }
         else if (collision.CompareTag("Weapon"))
         {
