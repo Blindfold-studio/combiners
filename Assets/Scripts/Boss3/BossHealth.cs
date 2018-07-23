@@ -15,7 +15,7 @@ public class BossHealth : MonoBehaviour {
     [SerializeField]
     private float numberOfTimeBossSwap;
     [SerializeField]
-    private float collidersDisableTime;
+    private float colliderDisableTime;
     private float currentHealth;
     private BoxCollider2D bossCollider;
 
@@ -63,7 +63,7 @@ public class BossHealth : MonoBehaviour {
 
     IEnumerator ProtectionAfterReceivedAnAttack() {
         bossCollider.enabled = false;
-        yield return new WaitForSeconds(collidersDisableTime);
+        yield return new WaitForSeconds(colliderDisableTime);
         bossCollider.enabled = true;
     }
 }
