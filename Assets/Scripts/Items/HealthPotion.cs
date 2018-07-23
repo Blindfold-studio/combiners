@@ -15,8 +15,8 @@ public class HealthPotion : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             healthSystem = HealthSystem.instance;
-            Debug.Log("current health: " + healthSystem.HP);
-            healthSystem.HP = 1;
+            Debug.Log("current health: " + healthSystem.CurrentHealth);
+            healthSystem.CurrentHealth = 1;
             this.gameObject.SetActive(false);
         }
     }

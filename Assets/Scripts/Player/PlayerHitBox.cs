@@ -8,12 +8,12 @@ public class PlayerHitBox : MonoBehaviour {
     [SerializeField]
     private float invicibleTime;
 
-    private HealthSystem playerHP;
+    private HealthSystem playerHealth;
     private PlayerController player;
 
     void Start()
     {
-        playerHP = HealthSystem.instance;
+        playerHealth = HealthSystem.instance;
         player = GetComponentInParent<PlayerController>();
     }
 
@@ -22,7 +22,7 @@ public class PlayerHitBox : MonoBehaviour {
         if ((collision.CompareTag("Boss") || collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !player.IsInvicble())
         {
             Debug.Log("Player is hit by enemy");
-            playerHP.HP = -1;
+            playerHealth.CurrentHealth = -1;
             player.StartCoroutine(player.Hurt(invicibleTime));
         }    
 
