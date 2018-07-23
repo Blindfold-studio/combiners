@@ -18,13 +18,15 @@ public class BossFlyingAttack : MonoBehaviour {
     Vector3 projectileVec;
     Vector3 projectileDir;
     GameObject bullet;
+    BossFlyingMovement Bossmovement;
 
     void Start()
     {
         reloadShot = startShot;
         pool = ProjectilePool.Instance;
-        player = GameObject.FindGameObjectWithTag("Player");
-        Invoke("Disappear", 15);
+        Bossmovement = gameObject.GetComponent<BossFlyingMovement>();
+        player = Bossmovement.TargetPlayer;
+        //player = FindTheClosestPlayer();
     }
     void FixedUpdate()
     {
@@ -90,7 +92,7 @@ public class BossFlyingAttack : MonoBehaviour {
 
         for (int i = 0; i <= numOfP - 1; i++)
         {
-            float projectileX = player.transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180) * range;
+            float projectileX = player.transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180) * range;  
             float projectileY = player.transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180) * range;
 
             projectileVec = new Vector3(projectileX, projectileY, 0);
@@ -104,9 +106,21 @@ public class BossFlyingAttack : MonoBehaviour {
         }
     }
 
-    void Disappear()
+    public GameObject FindTheClosestPlayer()
     {
-        gameObject.SetActive(false);
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float minDistance = Mathf.Infinity;
+        GameObject targetPlayer = null;
+        for (int i = 0; i < players.Length; i++)
+        {
+            float distance = Vector2.Distance(this.transform.position, players[i].transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                targetPlayer = players[i];
+            }
+        }
+        return targetPlayer;
     }
 
 

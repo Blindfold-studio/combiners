@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 114106687230984456}
   - component: {fileID: 50288746000001966}
   - component: {fileID: 61194340453864406}
-  - component: {fileID: 114822286337469782}
   - component: {fileID: 58934272657995758}
   - component: {fileID: 95459806598191526}
+  - component: {fileID: 114520301280072510}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Enemy
@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1146276841646634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.392807, y: 36.905254, z: 0}
+  m_LocalPosition: {x: -0.0731276, y: -3.372496, z: 0}
   m_LocalScale: {x: -3.760863, y: 3.8847215, z: -1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,7 +97,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.17, y: 0.32}
+    oldSize: {x: 0.19, y: 0.31}
     newSize: {x: 0.29, y: 0.33}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9acbbdeae318f4a4f8d723c44905c567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingR: 0
---- !u!114 &114822286337469782
+  facingR: 1
+--- !u!114 &114520301280072510
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -144,10 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1146276841646634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe0eb641a9ca9a4dabc05e5e574dfac, type: 3}
+  m_Script: {fileID: 11500000, guid: e97853bfe857a1f468edcafa1531b147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heal: 0
+  heal: 1
   upSide: 0
   items:
   - {fileID: 4874401990361610, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
@@ -190,7 +190,7 @@ SpriteRenderer:
   m_SortingLayerID: -1987524155
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f4fcf43e65c5b604f96e43404fa329a4, type: 3}
+  m_Sprite: {fileID: 21300002, guid: f4fcf43e65c5b604f96e43404fa329a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

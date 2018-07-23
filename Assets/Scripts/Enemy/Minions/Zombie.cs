@@ -2,18 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowOfEnemy : Minions
+public class Zombie : Minions
 {
-
-    Rigidbody2D rb2d;
-
+    Rigidbody2D rg2d;
     [SerializeField]
     private float speed;
-
-    EnemyFlip flip;
-    private Vector2 dir;
-
-    private Transform player;
+    public float timeReach;
+    private Vector3 smoothVector3 = Vector3.zero;
     private GameObject targetPlayer;
 
     public GameObject TargetPlayer
@@ -28,31 +23,24 @@ public class ArrowOfEnemy : Minions
             targetPlayer = value;
         }
     }
-    // Use this for initialization
+
     void Start()
     {
-
+        rg2d = GetComponent<Rigidbody2D>();
         TargetPlayer = FindTheClosestPlayer();
-        rb2d = GetComponent<Rigidbody2D>();
-        
+        heal = 1;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        Dir();
+        Movement();
+        Dead();
     }
 
-    void Dir()
+    void Movement()
     {
-        if (targetPlayer.transform.position.x > this.transform.position.x)
-        {
-            rb2d.velocity = new Vector2(speed*Time.deltaTime * (-1), 0);
-        }
-        else
-        {
-            rb2d.velocity = new Vector2(speed * Time.deltaTime, 0);
-        }
+
+        transform.position = Vector3.SmoothDamp(transform.position, TargetPlayer.transform.position, ref smoothVector3, timeReach);
     }
 
     public GameObject FindTheClosestPlayer()
@@ -72,9 +60,25 @@ public class ArrowOfEnemy : Minions
         return targetPlayer;
     }
 
-
-    void OnBecameInvisible()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        gameObject.SetActive(false); 
+        if (collision.CompareTag("Enemy") || collision.CompareTag("NoneEffectOnPlayer"))
+        {
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), collision, true);
+
+        }
+        else if (collision.CompareTag("Weapon"))
+        {
+            TakeDamage();
+        }
+    }
+
+    public void Dead()
+    {
+        if (heal == 0)
+        {
+            Destroy(gameObject);
+            DropItem(this.transform);
+        }
     }
 }

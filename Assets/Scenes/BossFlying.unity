@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114855052239744156, guid: 5e08229ec818b9b42b3bdcd9c39be987,
+        type: 2}
+      propertyPath: playerData.maxHealth
+      value: 99
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e08229ec818b9b42b3bdcd9c39be987, type: 2}
   m_IsPrefabParent: 0
@@ -173,7 +178,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4299461693141798, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4299461693141798, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
       propertyPath: m_LocalPosition.z
@@ -799,7 +804,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4299461693141798, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4299461693141798, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1324,7 +1329,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 40, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1382,6 +1387,7 @@ MonoBehaviour:
   minion:
   - {fileID: 1146276841646634, guid: c552426a176b48143868f4232d9673a4, type: 2}
   - {fileID: 1607767056712162, guid: 663575fc20fab9c44ab3157f643127df, type: 2}
+  - {fileID: 1137649772912554, guid: 00af57b8ffea29743a7e64d51ce070b7, type: 2}
   spawnTimer: 3
 --- !u!1001 &754407857
 Prefab:
@@ -1581,7 +1587,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 780142292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 40, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1592,6 +1598,24 @@ GameObject:
   m_PrefabParentObject: {fileID: 1569254059368552, guid: 8b8fbcdf82f79e44184fda5558379f14,
     type: 2}
   m_PrefabInternal: {fileID: 2009683722}
+--- !u!1 &815857325 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1917106043646068, guid: f855fa68e51059044bf54bb8e116b4dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 466767326}
+--- !u!114 &815857331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815857325}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992ec7758e5268e46b628bcc1c40a28c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadShot: 3
+  startShot: 3
 --- !u!1 &843923195
 GameObject:
   m_ObjectHideFlags: 0
