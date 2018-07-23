@@ -9,12 +9,16 @@ public class EnemyArcher : Minions
 
     [SerializeField]
     private float speed;
-
+    [SerializeField]
+    private float stop;
+    [SerializeField]
+    private float retreat;
     public float startShotReload;
     private float reloadShot;
     private GameObject targetPlayer;
     public GameObject arrow;
     ProjectilePool pool;
+
 
  
     void Start()
@@ -22,26 +26,29 @@ public class EnemyArcher : Minions
         reloadShot = startShotReload;
         TargetPlayer = FindTheClosestPlayer();
         pool = ProjectilePool.Instance;
-        Movement();
+        
     }
 
     void FixedUpdate()
     {
         EnemyShot();
-       
+        Movement();
     }
 
     void Movement()
     {
-        if (transform.position.x > targetPlayer.transform.position.x)
+        if(Vector2.Distance(targetPlayer.transform.position, transform.position) > stop)
         {
-            Debug.Log("go1");
-            transform.position = Vector2.MoveTowards(transform.position, transform.position - new Vector3(3,0,0), speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetPlayer.transform.position, speed * Time.deltaTime);
         }
-        else
+        else if(Vector2.Distance(targetPlayer.transform.position, transform.position) < stop && Vector2.Distance(targetPlayer.transform.position, this.transform.position) > retreat)
         {
-            Debug.Log("go2");
-            transform.position = Vector2.MoveTowards(transform.position, transform.position + new Vector3(3, 0, 0), speed * Time.deltaTime);
+            transform.position = this.transform.position;
+        }
+        else if(Vector2.Distance(targetPlayer.transform.position, transform.position) < retreat)
+        {
+            Debug.Log("Retreat");
+            transform.position = Vector2.MoveTowards(transform.position, targetPlayer.transform.position, -speed * Time.deltaTime);
         }
         
     }
