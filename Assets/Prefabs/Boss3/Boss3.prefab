@@ -736,7 +736,7 @@ MonoBehaviour:
   hp2: {fileID: 0}
   maxHealth: 15
   numberOfTimeBossSwap: 3
-  colliderDisableTime: 0.5
+  colliderDisableTime: 1
 --- !u!114 &114280054872659986
 MonoBehaviour:
   m_ObjectHideFlags: 1
