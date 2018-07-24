@@ -26,13 +26,14 @@ public class EnemyArcher : Minions
         reloadShot = startShotReload;
         TargetPlayer = FindTheClosestPlayer();
         pool = ProjectilePool.Instance;
-        
+        heal = 1;
     }
 
     void FixedUpdate()
     {
         EnemyShot();
         Movement();
+        Dead();
     }
 
     void Movement()
@@ -47,7 +48,6 @@ public class EnemyArcher : Minions
         }
         else if(Vector2.Distance(targetPlayer.transform.position, transform.position) < retreat)
         {
-            Debug.Log("Retreat");
             transform.position = Vector2.MoveTowards(transform.position, targetPlayer.transform.position, -speed * Time.deltaTime);
         }
         
@@ -95,4 +95,26 @@ public class EnemyArcher : Minions
             reloadShot -= Time.deltaTime;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy") || collision.CompareTag("NoneEffectOnPlayer"))
+        {
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), collision, true);
+
+        }
+        else if (collision.CompareTag("Weapon"))
+        {
+            TakeDamage();
+        }
+    }
+    public void Dead()
+    {
+        if (heal == 0)
+        {
+            Destroy(gameObject);
+            DropItem(this.transform);
+        }
+    }
+
 }

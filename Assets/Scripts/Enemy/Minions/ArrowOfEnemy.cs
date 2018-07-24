@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowOfEnemy : Minions
+public class ArrowOfEnemy : Minions, IFPoolObject
 {
 
     Rigidbody2D rb2d;
@@ -28,32 +28,34 @@ public class ArrowOfEnemy : Minions
             targetPlayer = value;
         }
     }
-    // Use this for initialization
-    void Start()
-    {
 
+    public void ObjectSpawn()
+    {
         TargetPlayer = FindTheClosestPlayer();
         rb2d = GetComponent<Rigidbody2D>();
-        
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
+        dir = Vector3.Normalize(TargetPlayer.transform.position - this.transform.position);
         Dir();
     }
 
+    void FixedUpdate()
+    {
+        Movement();
+    }
+
+    void Movement()
+    {
+        rb2d.velocity = dir * speed;
+    }
     void Dir()
     {
-        if (targetPlayer.transform.position.x > this.transform.position.x)
+        if (targetPlayer.transform.position.x - transform.position.x < 0)
         {
-            rb2d.velocity = new Vector2(speed*Time.deltaTime * (-1), 0);
-        }
-        else
-        {
-            rb2d.velocity = new Vector2(speed * Time.deltaTime, 0);
+            Vector3 Scale = transform.localScale;
+            Scale.x *= -1;
+            transform.localScale = Scale;
         }
     }
+
 
     public GameObject FindTheClosestPlayer()
     {
@@ -73,8 +75,20 @@ public class ArrowOfEnemy : Minions
     }
 
 
-    void OnBecameInvisible()
+
+    void Disappear()
     {
-        gameObject.SetActive(false); 
+        gameObject.SetActive(false);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Get in to Arrow");
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
 }
+
