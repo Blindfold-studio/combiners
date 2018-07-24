@@ -51,6 +51,8 @@ GameObject:
   - component: {fileID: 4090956772166584}
   - component: {fileID: 114068026022173690}
   - component: {fileID: 114537694813740056}
+  - component: {fileID: 114169095018713330}
+  - component: {fileID: 114101434824567088}
   m_Layer: 0
   m_Name: MissionManager
   m_TagString: MissionManager
@@ -464,6 +466,50 @@ MonoBehaviour:
   bossPosition_P2:
   - {fileID: 4363970763879572}
   - {fileID: 4175307269389832}
+--- !u!114 &114101434824567088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068007787898296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580f76dacc73b2a4e88a8f68b8435ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heal: 0
+  upSide: 0
+  items: []
+  minionPosition_P1:
+  - {fileID: 4142122922675848}
+  - {fileID: 4089379720885916}
+  minionPosition_P2:
+  - {fileID: 4041997524812956}
+  - {fileID: 4321358362687550}
+  minion:
+  - {fileID: 1146276841646634, guid: c552426a176b48143868f4232d9673a4, type: 2}
+  - {fileID: 1607767056712162, guid: 663575fc20fab9c44ab3157f643127df, type: 2}
+  spawnTimer: 3
+--- !u!114 &114169095018713330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068007787898296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e192e884c09ef144f865144ec088edad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heal: 0
+  upSide: 0
+  items: []
+  minionPosition_P1:
+  - {fileID: 4474341219872130}
+  minionPosition_P2:
+  - {fileID: 4308691601763650}
+  minion: {fileID: 1109796896291814, guid: 9ff2872736c5f20489490a56000b083c, type: 2}
+  spawnTimer: 5
 --- !u!114 &114537694813740056
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -33,8 +33,8 @@ public class MissionManager : MonoBehaviour {
 
         upgradePanel = GameObject.FindGameObjectWithTag("WinAndUpgrade");
         losePanel = GameObject.FindGameObjectWithTag("LosePanel");
-        spawnFly = GameObject.Find("SpawnEnemy-Fly").GetComponent<SpawnEnemyFly>();
-        spawnSkeleton = GameObject.Find("SpawnEnemy-Skel").GetComponent<SpawnEnemyOnGround>();
+        spawnFly = GetComponent<SpawnEnemyFly>();
+        spawnSkeleton = GetComponent<SpawnEnemyOnGround>();
         upgradePanel.SetActive(false);
         losePanel.SetActive(false);
 
