@@ -72,7 +72,7 @@ public class EnemyFollow : Minions {
     {
         if (heal == 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             DropItem(this.transform);
         }
     }

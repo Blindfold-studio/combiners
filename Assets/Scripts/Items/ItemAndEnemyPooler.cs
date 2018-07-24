@@ -64,22 +64,31 @@ public class ItemAndEnemyPooler : MonoBehaviour {
         }
 
         List<GameObject> list = elementDictionary[tag];
-        GameObject itemToSpawn = null;
 
-        while (true)
+        int index = Random.Range(0, list.Count);
+        Debug.Log("index: " + index + " from list count: " + list.Count);
+
+        for (int i = index; i < list.Count; i++)
         {
-            int index = Random.Range(0, list.Count);
+            GameObject objectToSpawn = list[index];
 
-            itemToSpawn = list[index];
-
-            if (!itemToSpawn.activeInHierarchy)
+            if (!objectToSpawn.activeInHierarchy)
             {
-                itemToSpawn.transform.position = position;
-                itemToSpawn.SetActive(true);
-                break;
+                objectToSpawn.transform.position = position;
+                objectToSpawn.transform.rotation = rotation;
+                objectToSpawn.SetActive(true);
+
+                IFPoolObject poolobj = objectToSpawn.GetComponent<IFPoolObject>();
+
+                if (poolobj != null)
+                {
+                    poolobj.ObjectSpawn();
+                }
+
+                return objectToSpawn;
             }
         }
 
-        return itemToSpawn;
+        return null;
     }
 }

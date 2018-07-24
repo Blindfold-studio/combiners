@@ -1256,6 +1256,26 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[0].elements.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[1].elements.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[2].elements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4198851489577088, guid: 634440a7c97d6ef418ef9ce610c97fcd, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1286,6 +1306,72 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4198851489577088, guid: 634440a7c97d6ef418ef9ce610c97fcd, type: 2}
       propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[0].tag
+      value: Items
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[1].tag
+      value: GroundMinions
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[2].tag
+      value: FlyMinions
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[0].elements.Array.data[0]
+      value: 
+      objectReference: {fileID: 1178258745008998, guid: ff7eda03be7e6416fa5372432d025b82,
+        type: 2}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[0].elements.Array.data[1]
+      value: 
+      objectReference: {fileID: 1265260745460624, guid: 417286cbd3b804d1da8df9ec5210034f,
+        type: 2}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[0].elements.Array.data[2]
+      value: 
+      objectReference: {fileID: 1412608708053984, guid: 7dac9de0347ee4d2298de8f429c7ec18,
+        type: 2}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[0].sizeOfEachElement
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[1].elements.Array.data[0]
+      value: 
+      objectReference: {fileID: 1146276841646634, guid: c552426a176b48143868f4232d9673a4,
+        type: 2}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[1].elements.Array.data[1]
+      value: 
+      objectReference: {fileID: 1607767056712162, guid: 663575fc20fab9c44ab3157f643127df,
+        type: 2}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[1].sizeOfEachElement
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[2].elements.Array.data[0]
+      value: 
+      objectReference: {fileID: 1109796896291814, guid: 9ff2872736c5f20489490a56000b083c,
+        type: 2}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[2].sizeOfEachElement
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
