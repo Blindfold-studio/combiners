@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnEnemyFly : Minions {
+public class SpawnEnemyFly : MonoBehaviour {
     [SerializeField]
     private string tagMinion = "FlyMinions";
+    [SerializeField]
+    private bool upSide;
+    [SerializeField]
+    private float spawnTimer;
     [SerializeField]
     private List<Transform> minionPosition_P1;
     [SerializeField]
@@ -12,8 +16,6 @@ public class SpawnEnemyFly : Minions {
 
     public GameObject minion;
     private float x;
-    [SerializeField]
-    private float spawnTimer;
     private float spawn;
     private Vector2 locate;
     private ItemAndEnemyPooler itemAndEnemyPooler;
@@ -30,7 +32,6 @@ public class SpawnEnemyFly : Minions {
             int rand = Random.Range(0, minionPosition_P1.Count);
             if (Time.time > spawn)
             {
-                Debug.Log("Player1 fly");
                 spawn = spawnTimer + Time.time;
                 x = Random.Range(transform.position.x - 14, transform.position.x + 14);
                 locate = new Vector2(x, minionPosition_P1[0].position.y);
@@ -43,7 +44,6 @@ public class SpawnEnemyFly : Minions {
             int rand = Random.Range(0, minionPosition_P2.Count);
             if (Time.time > spawn)
             {
-                Debug.Log("Player2 fly");
                 spawn = spawnTimer + Time.time;
                 x = Random.Range(transform.position.x - 14, transform.position.x + 14);
                 locate = new Vector2(x, minionPosition_P2[0].position.y);

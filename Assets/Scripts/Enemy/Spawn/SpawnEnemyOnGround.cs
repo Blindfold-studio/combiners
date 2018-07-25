@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnEnemyOnGround : Minions {
+public class SpawnEnemyOnGround : MonoBehaviour {
     [SerializeField]
     private string tagMinion = "GroundMinions";
+    [SerializeField]
+    private bool upSide;
+    [SerializeField]
+    private float spawnTimer;
     [SerializeField]
     private List<Transform> minionPosition_P1;
     [SerializeField]
@@ -12,8 +16,6 @@ public class SpawnEnemyOnGround : Minions {
 
     public GameObject[] minion;
     private float x;
-    [SerializeField]
-    private float spawnTimer;
     private float spawn;
     private Vector2 locate;
     private ItemAndEnemyPooler itemAndEnemyPooler;

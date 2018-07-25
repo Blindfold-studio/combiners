@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFollow : Minions {
+public class EnemyFollow : Minions, IFPoolObject {
 
     private GameObject player;
     private Vector2 target;
@@ -11,7 +11,7 @@ public class EnemyFollow : Minions {
     [SerializeField]
     private float stop;
 
-	void Start () {
+	public void ObjectSpawn() {
         heal = 1;
     }
 
