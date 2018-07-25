@@ -33,7 +33,7 @@ public class ArrowOfEnemy : Minions, IFPoolObject
         TargetPlayer = FindTheClosestPlayer();
         rb2d = GetComponent<Rigidbody2D>();
         dir = Vector3.Normalize(TargetPlayer.transform.position - this.transform.position);
-        Invoke("Disappear", 10);
+        Invoke("Disappear", 20);
     }
 
     void FixedUpdate()
@@ -70,10 +70,8 @@ public class ArrowOfEnemy : Minions, IFPoolObject
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("BUllet Get into" + collision);
-        if (collision.gameObject.name == "Player2" || collision.gameObject.name == "Player1")
+        if (collision.gameObject.tag == "Player")
         {
-            
                 gameObject.SetActive(false);
         }
     }
