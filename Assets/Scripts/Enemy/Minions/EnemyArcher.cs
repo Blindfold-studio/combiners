@@ -87,7 +87,16 @@ public class EnemyArcher : Minions
     {
         if (reloadShot <= 0)
         {
-            pool.GetElementInPool("Enemy_Arrow", transform.position, Quaternion.identity);
+            TargetPlayer = FindTheClosestPlayer();
+            if (targetPlayer.transform.position.x - transform.position.x > 0)
+            {
+                pool.GetElementInPool("Enemy_Arrow", transform.position, Quaternion.identity);
+            }
+            else
+            {
+                pool.GetElementInPool("Enemy_Arrow", transform.position, Quaternion.Euler(new Vector3(0f, 0f, 180f)));
+            }
+            
             reloadShot = startShotReload;
         }
         else
@@ -98,6 +107,7 @@ public class EnemyArcher : Minions
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision + " Cat ");
         if (collision.CompareTag("Enemy") || collision.CompareTag("NoneEffectOnPlayer"))
         {
             Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), collision, true);

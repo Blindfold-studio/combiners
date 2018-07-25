@@ -6,7 +6,6 @@ public class ArrowOfEnemy : Minions, IFPoolObject
 {
 
     Rigidbody2D rb2d;
-
     [SerializeField]
     private float speed;
 
@@ -34,7 +33,7 @@ public class ArrowOfEnemy : Minions, IFPoolObject
         TargetPlayer = FindTheClosestPlayer();
         rb2d = GetComponent<Rigidbody2D>();
         dir = Vector3.Normalize(TargetPlayer.transform.position - this.transform.position);
-        Dir();
+        Invoke("Disappear", 10);
     }
 
     void FixedUpdate()
@@ -46,16 +45,6 @@ public class ArrowOfEnemy : Minions, IFPoolObject
     {
         rb2d.velocity = dir * speed;
     }
-    void Dir()
-    {
-        if (targetPlayer.transform.position.x - transform.position.x < 0)
-        {
-            Vector3 Scale = transform.localScale;
-            Scale.x *= -1;
-            transform.localScale = Scale;
-        }
-    }
-
 
     public GameObject FindTheClosestPlayer()
     {
@@ -74,8 +63,6 @@ public class ArrowOfEnemy : Minions, IFPoolObject
         return targetPlayer;
     }
 
-
-
     void Disappear()
     {
         gameObject.SetActive(false);
@@ -83,12 +70,14 @@ public class ArrowOfEnemy : Minions, IFPoolObject
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Get in to Arrow");
-        if (collision.CompareTag("Player"))
+        Debug.Log("BUllet Get into" + collision);
+        if (collision.gameObject.name == "Player2" || collision.gameObject.name == "Player1")
         {
-            gameObject.SetActive(false);
+            
+                gameObject.SetActive(false);
         }
     }
+    
 
 }
 
