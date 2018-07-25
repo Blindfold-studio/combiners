@@ -61,6 +61,10 @@ MonoBehaviour:
     elements: {fileID: 1279825735518926, guid: f12a68008dfcf164688fce45627cd115, type: 2}
     sizeOfEachElement: 10
     canExpand: 1
+  - tag: Enemy_Arrow
+    elements: {fileID: 1470708020820740, guid: d245f6ff2e0caac4dbfc2899161c747c, type: 2}
+    sizeOfEachElement: 5
+    canExpand: 1
 --- !u!114 &114929965360994778
 MonoBehaviour:
   m_ObjectHideFlags: 1

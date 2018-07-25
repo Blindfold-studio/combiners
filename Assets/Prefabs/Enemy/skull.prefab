@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114395367630719974}
   - component: {fileID: 58291719094305936}
   - component: {fileID: 114070527388304474}
+  - component: {fileID: 114712913249647680}
   m_Layer: 0
   m_Name: skull
   m_TagString: EnemyWeapon
@@ -81,6 +82,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+--- !u!114 &114712913249647680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471202466994334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9acbbdeae318f4a4f8d723c44905c567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingR: 0
 --- !u!212 &212975452472304318
 SpriteRenderer:
   m_ObjectHideFlags: 1

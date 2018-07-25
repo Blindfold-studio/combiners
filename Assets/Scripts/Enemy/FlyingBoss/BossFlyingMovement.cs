@@ -139,9 +139,9 @@ public class BossFlyingMovement : Boss {
             offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
             
         }
+
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
-        
         initiatePoint = 0;
 
     }

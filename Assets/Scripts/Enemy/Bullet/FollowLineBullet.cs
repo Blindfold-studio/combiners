@@ -38,7 +38,6 @@ public class FollowLineBullet : MonoBehaviour,IFPoolObject {
         
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("CompareTagPlayer");
             gameObject.SetActive(false);
         }
     }
