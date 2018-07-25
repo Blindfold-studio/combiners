@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Minions : EnemyManager {
-
-    public List<Transform> items;
     private ItemAndEnemyPooler itemAndEnemyPooler;
 
 	void Start () {
