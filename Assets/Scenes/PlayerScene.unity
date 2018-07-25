@@ -1361,7 +1361,7 @@ Prefab:
     - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: elementPools.Array.data[1].sizeOfEachElement
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
@@ -1372,7 +1372,7 @@ Prefab:
     - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: elementPools.Array.data[2].sizeOfEachElement
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 634440a7c97d6ef418ef9ce610c97fcd, type: 2}
@@ -1427,6 +1427,16 @@ Prefab:
     - target: {fileID: 4090956772166584, guid: c00cd263abe8e4b4383b6b57031a09c6, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114169095018713330, guid: c00cd263abe8e4b4383b6b57031a09c6,
+        type: 2}
+      propertyPath: spawnTimer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101434824567088, guid: c00cd263abe8e4b4383b6b57031a09c6,
+        type: 2}
+      propertyPath: spawnTimer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c00cd263abe8e4b4383b6b57031a09c6, type: 2}

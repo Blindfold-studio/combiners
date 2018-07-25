@@ -66,15 +66,4 @@ public class EnemyFollow : Minions, IFPoolObject {
         }
         
     }
-
-    
-    public void Dead()
-    {
-        if (heal == 0)
-        {
-            gameObject.SetActive(false);
-            DropItem(this.transform);
-        }
-    }
-
 }

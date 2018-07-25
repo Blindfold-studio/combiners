@@ -89,13 +89,4 @@ public class Skeliton : Minions, IFPoolObject
             TakeDamage();
         }
     }
-
-    public void Dead()
-    {
-        if (heal == 0)
-        {
-            gameObject.SetActive(false);
-            DropItem(this.transform);
-        }
-    }
 }

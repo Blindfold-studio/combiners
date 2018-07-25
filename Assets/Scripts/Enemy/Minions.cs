@@ -8,8 +8,7 @@ public class Minions : EnemyManager {
     private ItemAndEnemyPooler itemAndEnemyPooler;
 
 	void Start () {
-        items = new List<Transform>();
-        upSide = true;
+        itemAndEnemyPooler = ItemAndEnemyPooler.Instance;
 	}
 
     public virtual void TakeDamage()
@@ -22,15 +21,11 @@ public class Minions : EnemyManager {
         var DropingRate = Random.Range(0,5);
         if (DropingRate == 1)
         {
-            int rand = Random.Range(0, items.Count);
-            Debug.Log(rand);
-            //GameObject itemObject = itemAndEnemyPooler.GetElementInPool("Items", minion.position, Quaternion.identity);
-            Instantiate(items[rand], minion.position, Quaternion.identity);
+            GameObject itemObject = itemAndEnemyPooler.GetElementInPool("Items", minion.position, Quaternion.identity);
         }
         
     }
 
-    /*
     public void Dead()
     {
         if (heal == 0)
@@ -39,5 +34,4 @@ public class Minions : EnemyManager {
             DropItem(this.transform);
         }
     }
-    */
 }
