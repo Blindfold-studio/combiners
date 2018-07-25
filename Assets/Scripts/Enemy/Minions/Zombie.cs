@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : Minions
-{
+public class Zombie : Minions, IFPoolObject {
     Rigidbody2D rg2d;
     [SerializeField]
     private float speed;
@@ -24,7 +23,7 @@ public class Zombie : Minions
         }
     }
 
-    void Start()
+    public void ObjectSpawn()
     {
         rg2d = GetComponent<Rigidbody2D>();
         TargetPlayer = FindTheClosestPlayer();
@@ -70,15 +69,6 @@ public class Zombie : Minions
         else if (collision.CompareTag("Weapon"))
         {
             TakeDamage();
-        }
-    }
-
-    public void Dead()
-    {
-        if (heal == 0)
-        {
-            Destroy(gameObject);
-            DropItem(this.transform);
         }
     }
 }

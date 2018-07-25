@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHopping : Minions
+public class EnemyHopping : Minions, IFPoolObject
 {
 
     Rigidbody2D rb2d;
@@ -27,7 +27,7 @@ public class EnemyHopping : Minions
     EnemyFlip flip;
 
 	// Use this for initialization
-	void Start () {
+	public void ObjectSpawn() {
         rb2d = GetComponent<Rigidbody2D>();
         flip = gameObject.GetComponent<EnemyFlip>();
         player = flip.FindClosetPlayer();
@@ -94,14 +94,4 @@ public class EnemyHopping : Minions
             TakeDamage();
         }
     }
-
-    public void Dead()
-    {
-        if (heal == 0)
-        {
-            Destroy(gameObject);
-            DropItem(this.transform);
-        }
-    }
-
 }

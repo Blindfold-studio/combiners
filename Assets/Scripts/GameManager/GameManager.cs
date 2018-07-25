@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour {
     private int currentBuildIndex;
     private int nextBuildIndex;
     private int menuBuildIndex;
-    private HealthSystem healthSystem;
     private List<int> bossSceneList;
 
     #region Singleton Object
@@ -52,21 +51,13 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         bossSceneList = new List<int>();
-        healthSystem = HealthSystem.instance;
+
         SetDefaultPlayerData();
         GenerateRandomSceneList();
 
         menuBuildIndex = 0;
     }
     
-    public int CurrentHealth
-    {
-        get
-        {
-            return healthSystem.HP;
-        }
-    }
-
     public int MaxHealth
     {
         get
@@ -77,7 +68,6 @@ public class GameManager : MonoBehaviour {
         set
         {
             playerData.maxHealth = value;
-            healthSystem.MaxHP = playerData.maxHealth;
         }
     }
 
@@ -175,7 +165,6 @@ public class GameManager : MonoBehaviour {
     private void SetPlayerDataToDefault ()
     {
         playerData.maxHealth = maxHealthDefault;
-        healthSystem.MaxHP = maxHealthDefault;
 
         playerData.arrowCapacity = arrowCapacityDefault;
         playerData.speed = speedDefault;

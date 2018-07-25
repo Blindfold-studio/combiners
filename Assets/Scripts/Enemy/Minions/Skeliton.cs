@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skeliton : Minions
+public class Skeliton : Minions, IFPoolObject
 {
     Rigidbody2D rg2d;
     EnemyFlip flip;
@@ -27,7 +27,7 @@ public class Skeliton : Minions
         }
     }
     // Use this for initialization
-    void Start () {
+    public void ObjectSpawn() {
         // flip = GameObject.Find("SkelitonGuy").GetComponent<EnemyFlip>();
         
         rg2d = GetComponent<Rigidbody2D>();
@@ -87,15 +87,6 @@ public class Skeliton : Minions
         else if (collision.CompareTag("Weapon"))
         {
             TakeDamage();
-        }
-    }
-
-    public void Dead()
-    {
-        if (heal == 0)
-        {
-            Destroy(gameObject);
-            DropItem(this.transform);
         }
     }
 }

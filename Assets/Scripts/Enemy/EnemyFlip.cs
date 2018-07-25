@@ -15,7 +15,7 @@ public class EnemyFlip : MonoBehaviour {
 
     void Start()
     {
-        
+        Debug.Log("Flip Enemy");
         facingR = true;
         StartCoroutine(Flip());
     }

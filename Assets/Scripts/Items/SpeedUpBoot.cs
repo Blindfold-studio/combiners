@@ -44,6 +44,7 @@ public class SpeedUpBoot : MonoBehaviour {
             SpeedUpBootParentP2.Instance.Duration = durationOfBoost;
             SpeedUpBootParentP2.Instance.CancelBootEffectEvent += CancelPlayerBoostSpeed;
         }
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         Color tmp = spriteRenderer.color;
         tmp.a = 0f;
         spriteRenderer.color = tmp;      
