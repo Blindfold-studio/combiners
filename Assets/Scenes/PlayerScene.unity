@@ -272,6 +272,11 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 25a677deef8ca8c4da968dcb6d314c34, type: 2}
+    - target: {fileID: 114951838630783200, guid: 8b8fbcdf82f79e44184fda5558379f14,
+        type: 2}
+      propertyPath: playerTag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b8fbcdf82f79e44184fda5558379f14, type: 2}
   m_IsPrefabParent: 0
@@ -1600,6 +1605,11 @@ Prefab:
       propertyPath: speedText
       value: 
       objectReference: {fileID: 170144546}
+    - target: {fileID: 114808267747355478, guid: ae0033de29c212e4b8d175e79be5a313,
+        type: 2}
+      propertyPath: playerTag
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae0033de29c212e4b8d175e79be5a313, type: 2}
   m_IsPrefabParent: 0

@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour {
+    [SerializeField]
+    private bool useJoyStick;
     [System.Serializable]
     public class ButtonController
     {
@@ -19,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject arrowPrefab;
 
     [SerializeField]
-    private string tag;
+    private string playerTag;
     [SerializeField]
     private float groundedSkin = 0.05f;
     [SerializeField]
@@ -79,17 +82,35 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetButtonDown(button.jumpButton) && isOnGround)
+        PlayerIndex singlePlayer = (PlayerIndex)0;
+        GamePadState testState = GamePad.GetState(singlePlayer);
+
+        if (testState.IsConnected)
+        {
+            Debug.Log("Joy connected: " + singlePlayer);
+        }
+
+        else
+        {
+            Debug.Log("No Joy connected");
+        }
+
+        if (useJoyStick)
+        {
+            SwitchToJoyController();
+        }
+
+        if (Input.GetKeyDown(button.jumpButton) && isOnGround)
         {
             jumpRequest = true;
         }
 
-        if (Input.GetButtonDown(button.meleeAtkButton))
+        if (Input.GetKeyDown(button.meleeAtkButton))
         {
             MeleeAttack();
         }
 
-        if (Input.GetButtonDown(button.rangeAtkButton) && playerAttr.Arrow > 0 && Time.time >= timeStamp)
+        if (Input.GetKeyDown(button.rangeAtkButton) && playerAttr.Arrow > 0 && Time.time >= timeStamp)
         {
             RangeAttack();
             playerAttr.Arrow = -1;
@@ -167,6 +188,14 @@ public class PlayerController : MonoBehaviour {
     public bool IsInvicble()
     {
         return isInvicible;
+    }
+
+    void SwitchToJoyController ()
+    {
+        button.horizontalAxis = "J" + playerTag + "Horizontal";
+        button.jumpButton = "J" + playerTag + "AButton";
+        button.meleeAtkButton = "J" + playerTag + "XButton";
+        button.rangeAtkButton = "J" + playerTag + "YButton";
     }
 
     public IEnumerator Hurt(float duration)
