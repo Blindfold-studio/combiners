@@ -267,11 +267,6 @@ Prefab:
       propertyPath: speedText
       value: 
       objectReference: {fileID: 1659285758}
-    - target: {fileID: 114511610784341506, guid: 8b8fbcdf82f79e44184fda5558379f14,
-        type: 2}
-      propertyPath: jumpButtonJoy
-      value: J1AButton
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b8fbcdf82f79e44184fda5558379f14, type: 2}
   m_IsPrefabParent: 0
@@ -1600,11 +1595,6 @@ Prefab:
       propertyPath: speedText
       value: 
       objectReference: {fileID: 170144546}
-    - target: {fileID: 114565310787434090, guid: ae0033de29c212e4b8d175e79be5a313,
-        type: 2}
-      propertyPath: jumpButtonJoy
-      value: J2AButton
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae0033de29c212e4b8d175e79be5a313, type: 2}
   m_IsPrefabParent: 0

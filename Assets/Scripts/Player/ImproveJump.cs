@@ -28,7 +28,7 @@ public class ImproveJump : MonoBehaviour {
         {
             rb2d.gravityScale = fallMul;
         }
-        else if (rb2d.velocity.y > 0 && useJoy ? !Input.GetButton(jumpButton) : !Input.GetButton(jumpButtonJoy))
+        else if (rb2d.velocity.y > 0 && useJoy ? !Input.GetButton(jumpButtonJoy) : !Input.GetButton(jumpButton))
         {
             rb2d.gravityScale = lowJumpMul;
         }

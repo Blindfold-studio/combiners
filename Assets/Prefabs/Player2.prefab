@@ -338,6 +338,7 @@ MonoBehaviour:
   fallMul: 2.5
   lowJumpMul: 2
   jumpButton: Jump_P2
+  jumpButtonJoy: J2AButton
 --- !u!114 &114808267747355478
 MonoBehaviour:
   m_ObjectHideFlags: 1
