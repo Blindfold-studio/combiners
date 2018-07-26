@@ -24,10 +24,15 @@ public class BossFlyingAttack : MonoBehaviour {
     {
         reloadShot = startShot;
         pool = ProjectilePool.Instance;
-        Bossmovement = gameObject.GetComponent<BossFlyingMovement>();
-        player = Bossmovement.TargetPlayer;
-        //player = FindTheClosestPlayer();
+        StartCoroutine(FindPlayer());
     }
+
+    IEnumerator FindPlayer()
+    {
+        yield return new WaitForSeconds(.3f);
+        player = FindTheClosestPlayer();
+    }
+
     void FixedUpdate()
     {
         EnemyShot();
@@ -36,15 +41,15 @@ public class BossFlyingAttack : MonoBehaviour {
     {
         if (reloadShot <= 0)
         {
-            var number = Random.Range(2, 3);
+            var number = Random.Range(0, 4);
 
             if (number == 0)
             {
-                pool.GetElementInPool("Boss-straight", transform.position, Quaternion.identity);
+                pool.GetElementInPool("Boss-StraightBullet", transform.position, Quaternion.identity);
             }
             else if (number == 1)
             {
-                pool.GetElementInPool("Boss-follow", transform.position, Quaternion.identity);
+                pool.GetElementInPool("Boss-FollowBullet", transform.position, Quaternion.identity);
             }
             else if (number == 2)
             {
@@ -98,7 +103,7 @@ public class BossFlyingAttack : MonoBehaviour {
             projectileVec = new Vector3(projectileX, projectileY, 0);
             projectileDir = Vector3.Normalize(projectileVec - this.transform.position) * speedBullet;
 
-            bullet = pool.GetElementInPool("Boss-Many", transform.position, Quaternion.identity);
+            bullet = pool.GetElementInPool("Boss-SurroundBullet", transform.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDir.x, projectileDir.y);
        
             angle += angleTotal;

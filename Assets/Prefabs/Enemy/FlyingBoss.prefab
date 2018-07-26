@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992ec7758e5268e46b628bcc1c40a28c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadShot: 0
-  startShot: 0
+  reloadShot: 4
+  startShot: 3
 --- !u!114 &114650350790801676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,7 +115,7 @@ MonoBehaviour:
   hp2: {fileID: 0}
   maxHealth: 9
   numberOfTimeBossSwap: 3
-  collidersDisableTime: 1
+  colliderDisableTime: 0
 --- !u!212 &212366535138887448
 SpriteRenderer:
   m_ObjectHideFlags: 1

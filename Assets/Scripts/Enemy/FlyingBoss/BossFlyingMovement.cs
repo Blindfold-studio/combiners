@@ -76,6 +76,12 @@ public class BossFlyingMovement : Boss {
     {
         missionManager = MissionManager.instance;
         offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
+        StartCoroutine(FindPlayer());
+    }
+
+    IEnumerator FindPlayer()
+    {
+        yield return new WaitForSeconds(.3f);
         targetPlayer = FindTheClosestPlayer();
     }
 

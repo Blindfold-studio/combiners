@@ -713,6 +713,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1623535236077610, guid: ae0033de29c212e4b8d175e79be5a313,
     type: 2}
   m_PrefabInternal: {fileID: 2009683722}
+--- !u!114 &700386333 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114144025423489104, guid: 35a076787e1cd654198de8a954f57265,
+    type: 2}
+  m_PrefabInternal: {fileID: 1461137619}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
 --- !u!1 &780142292
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,13 +897,23 @@ Prefab:
     - target: {fileID: 114650350790801676, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114468943104148780, guid: f855fa68e51059044bf54bb8e116b4dc,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114983773458213790, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: hp1
+      value: 
+      objectReference: {fileID: 700386333}
+    - target: {fileID: 114983773458213790, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: hp2
+      value: 
+      objectReference: {fileID: 1629691460}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
   m_IsPrefabParent: 0
@@ -1297,6 +1313,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4198851489577088, guid: 634440a7c97d6ef418ef9ce610c97fcd, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1345,9 +1366,63 @@ Prefab:
       value: 
       objectReference: {fileID: 1470708020820740, guid: d245f6ff2e0caac4dbfc2899161c747c,
         type: 2}
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.data[3].tag
+      value: Boss-SurroundBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.data[3].elements
+      value: 
+      objectReference: {fileID: 1654566454427350, guid: 63433797020897a49b7520b8f79dd71a,
+        type: 2}
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.data[3].sizeOfEachElement
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.data[4].tag
+      value: Boss-StraightBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.data[4].elements
+      value: 
+      objectReference: {fileID: 1507412093112842, guid: b044e84bd5420894ea7a564e056bac93,
+        type: 2}
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.data[4].sizeOfEachElement
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.data[5].tag
+      value: Boss-FollowBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.data[5].elements
+      value: 
+      objectReference: {fileID: 1471202466994334, guid: ba5c187b224a058428a7b4c6d0030ce7,
+        type: 2}
+    - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: pools.Array.data[5].sizeOfEachElement
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 634440a7c97d6ef418ef9ce610c97fcd, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1629691460 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114605276811977036, guid: 1803c712d80e4f24a94c6940045782fe,
+    type: 2}
+  m_PrefabInternal: {fileID: 1240241955}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
 --- !u!114 &1659285758 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114779907790721414, guid: 35a076787e1cd654198de8a954f57265,
