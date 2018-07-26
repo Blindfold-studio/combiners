@@ -7,6 +7,8 @@ using XInputDotNetPure;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour {
     [SerializeField]
+    private string playerTag;
+    [SerializeField]
     private bool useJoyStick;
     [System.Serializable]
     public class ButtonController
@@ -22,7 +24,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject arrowPrefab;
 
     [SerializeField]
-    private string playerTag;
+    private string arrowTag;
     [SerializeField]
     private float groundedSkin = 0.05f;
     [SerializeField]
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        /*
         PlayerIndex singlePlayer = (PlayerIndex)0;
         GamePadState testState = GamePad.GetState(singlePlayer);
 
@@ -94,23 +97,23 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.Log("No Joy connected");
         }
-
+        */
         if (useJoyStick)
         {
             SwitchToJoyController();
         }
-
-        if (Input.GetKeyDown(button.jumpButton) && isOnGround)
+        
+        if (Input.GetButtonDown(button.jumpButton) && isOnGround)
         {
             jumpRequest = true;
         }
 
-        if (Input.GetKeyDown(button.meleeAtkButton))
+        if (Input.GetButtonDown(button.meleeAtkButton))
         {
             MeleeAttack();
         }
 
-        if (Input.GetKeyDown(button.rangeAtkButton) && playerAttr.Arrow > 0 && Time.time >= timeStamp)
+        if (Input.GetButtonDown(button.rangeAtkButton) && playerAttr.Arrow > 0 && Time.time >= timeStamp)
         {
             RangeAttack();
             playerAttr.Arrow = -1;
@@ -172,14 +175,14 @@ public class PlayerController : MonoBehaviour {
         if (faceRight)
         {
             Debug.Log(arrowPool);
-            GameObject arrow = arrowPool.GetElementInPool(tag, transform.position + offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, -90f))) as GameObject;
+            GameObject arrow = arrowPool.GetElementInPool(arrowTag, transform.position + offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, -90f))) as GameObject;
             arrow.GetComponent<Arrow>().SetDirection(Vector2.right);
             arrow.GetComponent<Arrow>().Speed = playerAttr.ShootSpeed;
         }
         else if (!faceRight)
         {
             Debug.Log(arrowPool);
-            GameObject arrow = arrowPool.GetElementInPool(tag, transform.position - offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, 90f))) as GameObject;
+            GameObject arrow = arrowPool.GetElementInPool(arrowTag, transform.position - offsetArrow, Quaternion.Euler(new Vector3(0f, 0f, 90f))) as GameObject;
             arrow.GetComponent<Arrow>().SetDirection(Vector2.left);
             arrow.GetComponent<Arrow>().Speed = playerAttr.ShootSpeed;
         }
@@ -195,7 +198,7 @@ public class PlayerController : MonoBehaviour {
         button.horizontalAxis = "J" + playerTag + "Horizontal";
         button.jumpButton = "J" + playerTag + "AButton";
         button.meleeAtkButton = "J" + playerTag + "XButton";
-        button.rangeAtkButton = "J" + playerTag + "YButton";
+        button.rangeAtkButton = "J" + playerTag + "BButton";
     }
 
     public IEnumerator Hurt(float duration)

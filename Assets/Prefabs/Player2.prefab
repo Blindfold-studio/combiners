@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c199d65f063503b4caf1552cd66650e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useJoy: 0
   fallMul: 2.5
   lowJumpMul: 2
   jumpButton: Jump_P2
@@ -348,6 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f1e615b7aa75443aae78e0b454bbe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTag: 2
+  useJoyStick: 0
   button:
     horizontalAxis: Horizontal_P2
     jumpButton: Jump_P2
@@ -358,7 +361,7 @@ MonoBehaviour:
     m_Bits: 1024
   arrowPrefab: {fileID: 1279825735518926, guid: f12a68008dfcf164688fce45627cd115,
     type: 2}
-  tag: Arrow_P2
+  arrowTag: Arrow_P2
   groundedSkin: 0.05
   shotDelay: 0.1
   xMin: -18.75
