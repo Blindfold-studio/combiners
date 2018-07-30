@@ -350,7 +350,7 @@ MonoBehaviour:
     m_Bits: 1024
   arrowPrefab: {fileID: 1218613727301220, guid: e102a44137289f14d89c7e7e0f5dc474,
     type: 2}
-  arrowTag: Arrow_P2
+  arrowTag: Arrow_P1
   groundedSkin: 0.05
   shotDelay: 0.1
   xMin: -18.75

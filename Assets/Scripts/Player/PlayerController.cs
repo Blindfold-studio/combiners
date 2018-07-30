@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XInputDotNetPure;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour {
@@ -84,20 +83,6 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
-        /*
-        PlayerIndex singlePlayer = (PlayerIndex)0;
-        GamePadState testState = GamePad.GetState(singlePlayer);
-
-        if (testState.IsConnected)
-        {
-            Debug.Log("Joy connected: " + singlePlayer);
-        }
-
-        else
-        {
-            Debug.Log("No Joy connected");
-        }
-        */
         if (useJoyStick)
         {
             SwitchToJoyController();
@@ -125,7 +110,16 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis(button.horizontalAxis);
+        float horizontal = 0f;
+        if (Math.Abs(Input.GetAxis(button.horizontalAxis)) <= Math.Abs(Input.GetAxis("J" + playerTag + "Horizontal")))
+        {
+            horizontal = Input.GetAxis("J" + playerTag + "Horizontal");
+        }
+        else
+        {
+            horizontal = Input.GetAxis(button.horizontalAxis);
+        }
+
         anim.SetFloat("Speed", Math.Abs(horizontal));
         MoveHorizontal(horizontal);
         Flip(horizontal);
