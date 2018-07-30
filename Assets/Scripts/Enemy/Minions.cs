@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Minions : EnemyManager {
     private ItemAndEnemyPooler itemAndEnemyPooler;
+   
 
 	void Start () {
         itemAndEnemyPooler = ItemAndEnemyPooler.Instance;
+        
 	}
-
+    
     public virtual void TakeDamage()
     {
         heal -= 1;
@@ -30,6 +32,7 @@ public class Minions : EnemyManager {
         {
             gameObject.SetActive(false);
             DropItem(this.transform);
+            
         }
     }
 }

@@ -21,7 +21,6 @@ public class PlayerHitBox : MonoBehaviour {
     {
         if ((collision.CompareTag("Boss") || collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !player.IsInvicble())
         {
-            Debug.Log("Player is hit by enemy");
             playerHealth.CurrentHealth = -1;
             player.StartCoroutine(player.Hurt(invicibleTime));
         }    

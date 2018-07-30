@@ -15,7 +15,6 @@ public class EnemyFlip : MonoBehaviour {
 
     void Start()
     {
-        Debug.Log("Flip Enemy");
         facingR = true;
         StartCoroutine(Flip());
     }
@@ -56,29 +55,7 @@ public class EnemyFlip : MonoBehaviour {
         }
         
     }
-   /* private void FlipSide()
-    {
-
-        if (facingR && (distance < 0))
-        {
-            Vector3 Scale = transform.localScale;
-            Scale.x *= -1;
-            transform.localScale = Scale;
-            
-            facingR = false;
-            
-        }
-        else if (!facingR && (distance > 0))
-        {
-            
-            Vector3 Scale = transform.localScale;
-            Scale.x *= -1;
-            transform.localScale = Scale;
-            facingR = true;
-            
-        }
-    }*/
-
+  
     public GameObject FindClosetPlayer()
     {
         GameObject[] playerTarget;
