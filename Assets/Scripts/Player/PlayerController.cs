@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     public ButtonController button;
     public LayerMask groundLayer;
     public GameObject arrowPrefab;
+    public Camera cam;
 
     [SerializeField]
     private string arrowTag;
@@ -29,17 +30,17 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float shotDelay = 0.1f;
     [SerializeField]
-    private float xMin = -21.5f;
-    [SerializeField]
-    private float xMax = 21.5f;
-    [SerializeField]
     private Vector3 offsetArrow; 
 
     private bool isOnGround;
     private bool faceRight;
     private bool jumpRequest;
     private bool isInvicible;
+    private float distanceFromCamera;
     private float timeStamp;
+    private float screenPadding = 0.5f;
+    private float xMin;
+    private float xMax;
     private Animator anim;
     private BoxCollider2D playerBox;
     private Rigidbody2D rb;
@@ -73,6 +74,13 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
+        distanceFromCamera = transform.position.z - cam.transform.position.z;
+        Vector3 leftmost = cam.ViewportToWorldPoint(new Vector3(0, 0, distanceFromCamera));
+        Vector3 rightmost = cam.ViewportToWorldPoint(new Vector3(1, 0, distanceFromCamera));
+        xMin = leftmost.x + screenPadding;
+        xMax = rightmost.x - screenPadding;
+        Debug.Log("x min: " + xMin + "x max: " + xMax);
+
         faceRight = true;
         isInvicible = false;
         isOnGround = false;
