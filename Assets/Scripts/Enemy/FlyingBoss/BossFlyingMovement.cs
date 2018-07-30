@@ -62,14 +62,8 @@ public class BossFlyingMovement : Boss {
 
     void Awake()
     {
-        minion = GameObject.Find("SpawnEnemy-Fly");
-        minion2 = GameObject.Find("SpawnEnemy-Skel");
-        minionFly = minion.GetComponent<SpawnEnemyFly>();
-        minionOnGround = minion2.GetComponent<SpawnEnemyOnGround>();
-  
         BossHealth.SwapingEvent += SwapBoss;
-        BossHealth.DeathEvent += Die;
-        
+        BossHealth.DeathEvent += Die;      
     }
 
     void Start ()
@@ -82,7 +76,7 @@ public class BossFlyingMovement : Boss {
     IEnumerator FindPlayer()
     {
         yield return new WaitForSeconds(.3f);
-        targetPlayer = FindTheClosestPlayer();
+        TargetPlayer = FindTheClosestPlayer();
     }
 
     void Update()

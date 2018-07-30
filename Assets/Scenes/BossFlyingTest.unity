@@ -259,9 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580f76dacc73b2a4e88a8f68b8435ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heal: 0
+  tagMinion: GroundMinions
   upSide: 0
-  items: []
+  spawnTimer: 5
   minionPosition_P1:
   - {fileID: 160657588}
   - {fileID: 379230404}
@@ -270,7 +270,6 @@ MonoBehaviour:
   - {fileID: 195393377}
   minion:
   - {fileID: 1137649772912554, guid: 00af57b8ffea29743a7e64d51ce070b7, type: 2}
-  spawnTimer: 5
 --- !u!114 &170144546 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114779935988742312, guid: 1803c712d80e4f24a94c6940045782fe,
@@ -841,15 +840,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e192e884c09ef144f865144ec088edad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heal: 0
+  tagMinion: FlyMinions
   upSide: 0
-  items: []
+  spawnTimer: 5
   minionPosition_P1:
   - {fileID: 292838831}
   minionPosition_P2:
   - {fileID: 1694246513}
   minion: {fileID: 1109796896291814, guid: 9ff2872736c5f20489490a56000b083c, type: 2}
-  spawnTimer: 5
 --- !u!1001 &1108514338
 Prefab:
   m_ObjectHideFlags: 0
@@ -1318,6 +1316,26 @@ Prefab:
       propertyPath: pools.Array.size
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[0].elements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[1].elements.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[2].elements.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4198851489577088, guid: 634440a7c97d6ef418ef9ce610c97fcd, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1413,6 +1431,31 @@ Prefab:
         type: 2}
       propertyPath: pools.Array.data[5].sizeOfEachElement
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[0].tag
+      value: FlyMinions
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[0].sizeOfEachElement
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[1].tag
+      value: GroundMinions
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[1].sizeOfEachElement
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
+        type: 2}
+      propertyPath: elementPools.Array.data[2].tag
+      value: Items
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 634440a7c97d6ef418ef9ce610c97fcd, type: 2}
