@@ -130,7 +130,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1146276841646634}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9acbbdeae318f4a4f8d723c44905c567, type: 3}
   m_Name: 
@@ -149,10 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heal: 1
   upSide: 0
-  items:
-  - {fileID: 4874401990361610, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
-  - {fileID: 4919310507023706, guid: 417286cbd3b804d1da8df9ec5210034f, type: 2}
-  - {fileID: 4438604724248290, guid: 7dac9de0347ee4d2298de8f429c7ec18, type: 2}
   speed: 3
   timeReach: 4
 --- !u!212 &212939626023307964
