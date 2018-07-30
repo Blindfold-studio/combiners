@@ -29,17 +29,17 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float shotDelay = 0.1f;
     [SerializeField]
-    private float xMin = -21.5f;
-    [SerializeField]
-    private float xMax = 21.5f;
-    [SerializeField]
     private Vector3 offsetArrow; 
 
     private bool isOnGround;
     private bool faceRight;
     private bool jumpRequest;
     private bool isInvicible;
+    private float distanceToCamera;
     private float timeStamp;
+    private float screenPadding = 0.5f;
+    private float xMin;
+    private float xMax;
     private Animator anim;
     private BoxCollider2D playerBox;
     private Rigidbody2D rb;
@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour {
         jumpRequest = false;
 
         arrowPool = ProjectilePool.Instance;
+
+        SetPositionNotOverViewPort();
     }
 
     void Update()
@@ -193,6 +195,16 @@ public class PlayerController : MonoBehaviour {
         button.jumpButton = "J" + playerTag + "AButton";
         button.meleeAtkButton = "J" + playerTag + "XButton";
         button.rangeAtkButton = "J" + playerTag + "BButton";
+    }
+
+    void SetPositionNotOverViewPort ()
+    {
+        distanceToCamera = transform.position.z - Camera.main.transform.position.z;
+        Vector3 leftmost = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distanceToCamera));
+        Vector3 rightmost = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distanceToCamera));
+        xMin = leftmost.x + screenPadding;
+        xMax = rightmost.x - screenPadding;
+        Debug.Log("x min: " + xMin + "x max: " + xMax);
     }
 
     public IEnumerator Hurt(float duration)
