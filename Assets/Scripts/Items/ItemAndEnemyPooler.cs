@@ -59,14 +59,14 @@ public class ItemAndEnemyPooler : MonoBehaviour {
     {
         if (!elementDictionary.ContainsKey(tag))
         {
-            Debug.LogWarning("No " + tag + " exists in the pool.");
+            //Debug.LogWarning("No " + tag + " exists in the pool.");
             return null;
         }
 
         List<GameObject> list = elementDictionary[tag];
 
         int index = Random.Range(0, list.Count);
-        Debug.Log("index: " + index + " from list count: " + list.Count);
+        //Debug.Log("index: " + index + " from list count: " + list.Count);
 
         for (int i = index; i < list.Count; i++)
         {

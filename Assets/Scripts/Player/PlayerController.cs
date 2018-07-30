@@ -186,7 +186,6 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.CompareTag("Enemy") || collision.CompareTag("NoneEffectOnPlayer"))
         {
-            Debug.Log("Ignore collision");
             Physics2D.IgnoreCollision(playerBox, collision, true);
         }    
     }
