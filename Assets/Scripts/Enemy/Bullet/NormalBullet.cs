@@ -19,4 +19,13 @@ public class NormalBullet : MonoBehaviour,IFPoolObject {
     {
         gameObject.SetActive(false);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

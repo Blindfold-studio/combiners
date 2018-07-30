@@ -63,25 +63,21 @@ public class BossFlyingMovement : Boss {
     void Awake()
     {
         BossHealth.SwapingEvent += SwapBoss;
-        BossHealth.DeathEvent += Die;      
+        BossHealth.DeathEvent += Die;
     }
 
     void Start ()
     {
         missionManager = MissionManager.instance;
         offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
-        StartCoroutine(FindPlayer());
-    }
-
-    IEnumerator FindPlayer()
-    {
-        yield return new WaitForSeconds(.3f);
-        TargetPlayer = FindTheClosestPlayer();
+        
     }
 
     void Update()
     {
+        TargetPlayer = FindTheClosestPlayer();
         Controll();
+        
     }
 
     void Controll()
@@ -120,7 +116,6 @@ public class BossFlyingMovement : Boss {
 
     void SwapBoss()
     {
-        Debug.Log("Swaping");
         if (StopCoroutineEvent != null)
         {
             StopCoroutineEvent();

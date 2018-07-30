@@ -24,17 +24,12 @@ public class BossFlyingAttack : MonoBehaviour {
     {
         reloadShot = startShot;
         pool = ProjectilePool.Instance;
-        StartCoroutine(FindPlayer());
-    }
-
-    IEnumerator FindPlayer()
-    {
-        yield return new WaitForSeconds(.3f);
-        player = FindTheClosestPlayer();
+        
     }
 
     void FixedUpdate()
     {
+        player = FindTheClosestPlayer();
         EnemyShot();
     }
     void EnemyShot()
