@@ -267,11 +267,6 @@ Prefab:
       propertyPath: speedText
       value: 
       objectReference: {fileID: 1659285758}
-    - target: {fileID: 95610221786753946, guid: 8b8fbcdf82f79e44184fda5558379f14,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 25a677deef8ca8c4da968dcb6d314c34, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b8fbcdf82f79e44184fda5558379f14, type: 2}
   m_IsPrefabParent: 0
