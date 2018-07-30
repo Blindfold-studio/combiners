@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour {
     public ButtonController button;
     public LayerMask groundLayer;
     public GameObject arrowPrefab;
-    public Camera cam;
 
     [SerializeField]
     private string arrowTag;
@@ -36,7 +35,7 @@ public class PlayerController : MonoBehaviour {
     private bool faceRight;
     private bool jumpRequest;
     private bool isInvicible;
-    private float distanceFromCamera;
+    private float distanceToCamera;
     private float timeStamp;
     private float screenPadding = 0.5f;
     private float xMin;
@@ -74,19 +73,14 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
-        distanceFromCamera = transform.position.z - cam.transform.position.z;
-        Vector3 leftmost = cam.ViewportToWorldPoint(new Vector3(0, 0, distanceFromCamera));
-        Vector3 rightmost = cam.ViewportToWorldPoint(new Vector3(1, 0, distanceFromCamera));
-        xMin = leftmost.x + screenPadding;
-        xMax = rightmost.x - screenPadding;
-        Debug.Log("x min: " + xMin + "x max: " + xMax);
-
         faceRight = true;
         isInvicible = false;
         isOnGround = false;
         jumpRequest = false;
 
         arrowPool = ProjectilePool.Instance;
+
+        SetPositionNotOverViewPort();
     }
 
     void Update()
@@ -201,6 +195,16 @@ public class PlayerController : MonoBehaviour {
         button.jumpButton = "J" + playerTag + "AButton";
         button.meleeAtkButton = "J" + playerTag + "XButton";
         button.rangeAtkButton = "J" + playerTag + "BButton";
+    }
+
+    void SetPositionNotOverViewPort ()
+    {
+        distanceToCamera = transform.position.z - Camera.main.transform.position.z;
+        Vector3 leftmost = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distanceToCamera));
+        Vector3 rightmost = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distanceToCamera));
+        xMin = leftmost.x + screenPadding;
+        xMax = rightmost.x - screenPadding;
+        Debug.Log("x min: " + xMin + "x max: " + xMax);
     }
 
     public IEnumerator Hurt(float duration)

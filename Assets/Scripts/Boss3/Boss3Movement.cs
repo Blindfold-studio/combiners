@@ -11,15 +11,19 @@ public class Boss3Movement : MonoBehaviour {
     private float speed = 2f;
     [SerializeField]
     private float stuntAfterPlayerJumpOverHead = 0.6f;
-    private Rigidbody2D rg;
+    
     private bool isFacingRight;
-
     //this variable will determine if a player go to the other side of the boss, the boss will be stunt for 0.5s
     private bool onHoldForPlayerJump;
+    private float distanceToCamera;
+    private float screenPadding = 0.5f;
+    private float xMin;
+    private float xMax;
 
     public enum State {Idle, Moving, IsShortRangeAttacking, IsMiddleRangeAttacking, IsLongRangeAttacking};
     private State state;
 
+    private Rigidbody2D rg;
     private MissionManager missionManager;
     private Transform player1_screen;
     private Transform player2_screen;
@@ -58,13 +62,16 @@ public class Boss3Movement : MonoBehaviour {
         BossHealth.SwapingEvent += SwapBoss;
         BossHealth.DeathEvent += Die;
         FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x);
+
+        SetPositionNotOverViewPort();
         //player1_screen.position = missionManager.GetBossPosition_P1();
         //player2_screen.position = missionManager.GetBossPosition_P2();
-	}
+    }
 
     private void Update() {
         StartCoroutine(FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x));
         TargetPlayer = FindTheClosestPlayer();
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMin, xMax), transform.position.y, transform.position.z);
     }
     private void FixedUpdate() {
         if(!onHoldForPlayerJump && state == State.Moving) {
@@ -109,6 +116,16 @@ public class Boss3Movement : MonoBehaviour {
             }
         }
         return targetPlayer;
+    }
+
+    void SetPositionNotOverViewPort()
+    {
+        distanceToCamera = transform.position.z - Camera.main.transform.position.z;
+        Vector3 leftmost = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distanceToCamera));
+        Vector3 rightmost = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distanceToCamera));
+        xMin = leftmost.x + screenPadding;
+        xMax = rightmost.x - screenPadding;
+        Debug.Log("x min: " + xMin + "x max: " + xMax);
     }
 
     void SwapBoss() {
