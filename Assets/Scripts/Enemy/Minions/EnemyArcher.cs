@@ -107,7 +107,6 @@ public class EnemyArcher : Minions
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision + " Cat ");
         if (collision.CompareTag("Enemy") || collision.CompareTag("NoneEffectOnPlayer"))
         {
             Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), collision, true);

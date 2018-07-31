@@ -115,7 +115,7 @@ MonoBehaviour:
   hp2: {fileID: 0}
   maxHealth: 9
   numberOfTimeBossSwap: 3
-  colliderDisableTime: 0
+  colliderDisableTime: 1
 --- !u!212 &212366535138887448
 SpriteRenderer:
   m_ObjectHideFlags: 1

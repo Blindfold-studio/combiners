@@ -18,7 +18,7 @@ public class BossFlyingMovement : Boss {
     private int count = 0;
     private float offSet;
 
-    public enum State { Idle, Moving };
+    public enum State { Idle, Moving, MovingAroundMap};
     private State state;
     private MissionManager missionManager;
     private Transform player1_screen;
@@ -70,13 +70,18 @@ public class BossFlyingMovement : Boss {
     {
         missionManager = MissionManager.instance;
         offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
-        
+        state = State.Moving;
     }
 
     void Update()
     {
+       
         TargetPlayer = FindTheClosestPlayer();
-        Controll();
+        if(state == State.Moving)
+        {
+            Controll();
+        }
+        
         
     }
 

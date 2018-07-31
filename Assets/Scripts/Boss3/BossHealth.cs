@@ -11,9 +11,9 @@ public class BossHealth : MonoBehaviour {
     public TextMeshProUGUI hp1;
     public TextMeshProUGUI hp2;
     [SerializeField]
-    private float maxHealth;
+    public float maxHealth;
     [SerializeField]
-    private float numberOfTimeBossSwap;
+    public float numberOfTimeBossSwap;
     [SerializeField]
     private float colliderDisableTime;
     private float currentHealth;

@@ -7,7 +7,7 @@ public class NormalBullet : MonoBehaviour,IFPoolObject {
     // Use this for initialization
     public void ObjectSpawn()
     {
-        Invoke("Disappear", 7);
+        Invoke("Disappear", 5);
 	}
 	
 	// Update is called once per frame
