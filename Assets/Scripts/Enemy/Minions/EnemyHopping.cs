@@ -120,8 +120,6 @@ public class EnemyHopping : Minions, IFPoolObject
         while (isAlive)
         {
             yield return new WaitForSeconds(.3f);
-            Debug.Log("FacingR" + facingR);
-            Debug.Log("Distance" + distance);
             if (facingR && (distance > 0))
             {
                 
