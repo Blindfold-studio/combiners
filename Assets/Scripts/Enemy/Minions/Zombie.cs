@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Zombie : Minions, IFPoolObject {
+
     Rigidbody2D rg2d;
     [SerializeField]
     private float speed;
-    public float timeReach;
+    [SerializeField]
+    private float timeReach;
     private Vector3 smoothVector3 = Vector3.zero;
     bool facingR;
     private float distance;
     private GameObject targetPlayer;
     bool isAlive;
+   
     
     public GameObject TargetPlayer
     {
@@ -45,7 +48,18 @@ public class Zombie : Minions, IFPoolObject {
 
     void Movement()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, TargetPlayer.transform.position, ref smoothVector3, timeReach);
+        if(distance > 5 || distance < -5)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, TargetPlayer.transform.position, ref smoothVector3, timeReach);
+        }
+        else
+        {
+            if(facingR)
+                rg2d.velocity = new Vector2( -speed, rg2d.velocity.y);
+            else
+                rg2d.velocity = new Vector2(speed, rg2d.velocity.y);
+        }
+        
     }
 
     IEnumerator Flip()
@@ -56,7 +70,7 @@ public class Zombie : Minions, IFPoolObject {
 
             if (facingR && (distance > 0))
             {
-                
+              
                 Vector3 Scale = transform.localScale;
                 if (Scale.x > 0)
                 {
@@ -68,6 +82,7 @@ public class Zombie : Minions, IFPoolObject {
             
             else if (!facingR && (distance < 0) || facingR && (distance < 0))
             {
+                
                 Vector3 Scale = transform.localScale;
                 if (Scale.x < 0)
                 {
@@ -76,6 +91,7 @@ public class Zombie : Minions, IFPoolObject {
                 transform.localScale = Scale;
                 facingR = true;
             }
+           
         }
 
     }
