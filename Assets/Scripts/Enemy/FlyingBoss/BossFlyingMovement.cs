@@ -19,7 +19,7 @@ public class BossFlyingMovement : Boss {
     private float offSet;
     public Vector3 curPosition;
 
-    public enum State { Idle, Moving, MovingAroundMap};
+    public enum State { Idle, Moving, MoveCircle};
     private State state;
     private MissionManager missionManager;
     private Transform player1_screen;

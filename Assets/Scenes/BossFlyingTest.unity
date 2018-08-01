@@ -160,6 +160,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e08229ec818b9b42b3bdcd9c39be987, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &20424696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 20424697}
+  m_Layer: 0
+  m_Name: Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &20424697
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 20424696}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2, y: 7.5, z: -0.4921875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &25579246 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114850245090742010, guid: 35a076787e1cd654198de8a954f57265,
@@ -270,6 +298,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b8fbcdf82f79e44184fda5558379f14, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &194479258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 194479259}
+  m_Layer: 0
+  m_Name: Down
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &194479259
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194479258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2, y: 0.2, z: -0.4921875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &264506479
 Prefab:
   m_ObjectHideFlags: 0
@@ -731,6 +787,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114848665299636294, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: checkPoint.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4981535624600740, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
       propertyPath: m_LocalPosition.x
       value: -4.146532
@@ -773,6 +834,31 @@ Prefab:
       propertyPath: hp2
       value: 
       objectReference: {fileID: 1629691460}
+    - target: {fileID: 114848665299636294, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: checkPoint.Array.data[0]
+      value: 
+      objectReference: {fileID: 194479258}
+    - target: {fileID: 114848665299636294, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: currentPosition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114848665299636294, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: speedCheckPoint
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114848665299636294, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: stop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114848665299636294, guid: f855fa68e51059044bf54bb8e116b4dc,
+        type: 2}
+      propertyPath: checkPoint.Array.data[1]
+      value: 
+      objectReference: {fileID: 20424696}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f855fa68e51059044bf54bb8e116b4dc, type: 2}
   m_IsPrefabParent: 0
@@ -1195,7 +1281,7 @@ Prefab:
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: pools.Array.data[2].sizeOfEachElement
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
@@ -1302,7 +1388,7 @@ Prefab:
     - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: elementPools.Array.data[2].sizeOfEachElement
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}

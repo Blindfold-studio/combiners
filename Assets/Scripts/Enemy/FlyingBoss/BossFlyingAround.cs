@@ -20,7 +20,16 @@ public class BossFlyingAround : MonoBehaviour {
     private float widthY = 5f;
     [SerializeField]
     private float speed = 150f;
-    private Vector3 setPosition;
+
+    public GameObject[] checkPoint;
+    [SerializeField]
+    private int currentPosition;
+    [SerializeField]
+    private float speedCheckPoint;
+    [SerializeField]
+    private float speedUpdate;
+    [SerializeField]
+    private float stop;
 
 	// Use this for initialization
 	void Start () {
@@ -34,28 +43,51 @@ public class BossFlyingAround : MonoBehaviour {
 
     void Update()
     {
-        if (bossFlyingMovement.CurrentState ==  BossFlyingMovement.State.MovingAroundMap)
+        if (bossFlyingMovement.CurrentState ==  BossFlyingMovement.State.MoveCircle)
         {
             bossFlyingMovement.initiatePoint += Time.deltaTime;
+        }
+        else if (bossFlyingMovement.CurrentState == BossFlyingMovement.State.Idle)
+        {
+            speedUpdate = Time.deltaTime * speedCheckPoint;
         }
     }
     void FixedUpdate () {
         
-        if (bossFlyingMovement.CurrentState == BossFlyingMovement.State.MovingAroundMap || bossHealth.Health % ( bossHealth.maxHealth / bossHealth.numberOfTimeBossSwap) == 1 && bossFlyingMovement.CurrentState == BossFlyingMovement.State.Moving)
-        { 
-            Movement();   
-        }
-        else if (bossFlyingMovement.CurrentState == BossFlyingMovement.State.MovingAroundMap)
+        if (bossHealth.Health % ( bossHealth.maxHealth / bossHealth.numberOfTimeBossSwap) == 1 )
         {
+            Movement();
             
         }
+        else if (bossHealth.Health % (bossHealth.maxHealth / bossHealth.numberOfTimeBossSwap) == 2)
+        {
+            MovingAround();
+        }
+       
 	}
+
+    void MovingAround()
+    {
+        bossFlyingMovement.CurrentState = BossFlyingMovement.State.Idle;
+        transform.position = Vector3.MoveTowards(transform.position, checkPoint[currentPosition].transform.position, speedUpdate);
+        
+        if(Vector3.Distance(checkPoint[currentPosition].transform.position, transform.position) <= stop)
+        {
+            currentPosition++;
+        }
+
+        if( currentPosition >= checkPoint.Length)
+        {
+            currentPosition = 0;
+        }
+        Debug.Log("GETIN");
+        
+    }
 
     void Movement()
     {
-        
-        bossFlyingMovement.CurrentState = BossFlyingMovement.State.MovingAroundMap;
+        bossFlyingMovement.CurrentState = BossFlyingMovement.State.MoveCircle;
         transform.position = new Vector2(centerX + (widthX * Mathf.Sin(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)), bossFlyingMovement.curPosition.y + (widthY * Mathf.Cos(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)));
- 
+        Debug.Log("Test Movement" + bossFlyingMovement.CurrentState);
     }
 }
