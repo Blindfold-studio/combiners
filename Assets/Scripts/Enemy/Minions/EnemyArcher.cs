@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArcher : Minions
+public class EnemyArcher : Minions, IFPoolObject
 {
 
     //Rigidbody2D rb2d;
@@ -20,8 +20,8 @@ public class EnemyArcher : Minions
     ProjectilePool pool;
 
 
- 
-    void Start()
+
+    public void ObjectSpawn()
     {
         reloadShot = startShotReload;
         TargetPlayer = FindTheClosestPlayer();
@@ -117,13 +117,6 @@ public class EnemyArcher : Minions
             TakeDamage();
         }
     }
-    public void Dead()
-    {
-        if (heal == 0)
-        {
-            Destroy(gameObject);
-            DropItem(this.transform);
-        }
-    }
+    
 
 }

@@ -13,10 +13,11 @@ public class BossFlyingMovement : Boss {
     private float speedX = 1.25f;
     [SerializeField]
     private float speedY = 2.5f;
-    private float initiatePoint;
+    public float initiatePoint;
     private float x, y;
     private int count = 0;
     private float offSet;
+    public Vector3 curPosition;
 
     public enum State { Idle, Moving, MovingAroundMap};
     private State state;
@@ -70,6 +71,7 @@ public class BossFlyingMovement : Boss {
     {
         missionManager = MissionManager.instance;
         offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
+        curPosition = this.transform.position;
         state = State.Moving;
     }
 
@@ -139,7 +141,7 @@ public class BossFlyingMovement : Boss {
             offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
             
         }
-
+        curPosition = this.transform.position;
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
         initiatePoint = 0;

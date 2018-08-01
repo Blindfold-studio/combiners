@@ -8,30 +8,46 @@ public class BossFlyingAround : MonoBehaviour {
     private BossHealth bossHealth;
     private Rigidbody2D rg2d;
 
-    private float speed = 5f;
-    private float radius = 0.3f;
-    private Vector2 center;
-    private float angle;
-    
+    [SerializeField]
+    private float alpha;
+    [SerializeField]
+    private float centerX = 0f;
+    [SerializeField]
+    private float widthX = 10f;
+    [SerializeField]
+    private float centerY = 0f;
+    [SerializeField]
+    private float widthY = 5f;
+    [SerializeField]
+    private float speed = 150f;
+    private Vector3 setPosition;
 
 	// Use this for initialization
 	void Start () {
         bossFlyingMovement = GetComponent<BossFlyingMovement>();
         bossHealth = GetComponent<BossHealth>();
         rg2d = GetComponentInParent<Rigidbody2D>();
-        center = transform.position;
-	}
+        alpha = 0f;
+        speed = 150f;
+
+    }
 
     void Update()
     {
-        angle += Time.deltaTime * speed;
+        if (bossFlyingMovement.CurrentState ==  BossFlyingMovement.State.MovingAroundMap)
+        {
+            bossFlyingMovement.initiatePoint += Time.deltaTime;
+        }
     }
     void FixedUpdate () {
         
         if (bossFlyingMovement.CurrentState == BossFlyingMovement.State.MovingAroundMap || bossHealth.Health % ( bossHealth.maxHealth / bossHealth.numberOfTimeBossSwap) == 1 && bossFlyingMovement.CurrentState == BossFlyingMovement.State.Moving)
+        { 
+            Movement();   
+        }
+        else if (bossFlyingMovement.CurrentState == BossFlyingMovement.State.MovingAroundMap)
         {
-            //StartCoroutine("Movement");
-            Movement();
+            
         }
 	}
 
@@ -39,11 +55,7 @@ public class BossFlyingAround : MonoBehaviour {
     {
         
         bossFlyingMovement.CurrentState = BossFlyingMovement.State.MovingAroundMap;
-
-        var offset = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)) * radius;
-        transform.position = center + offset;
-
-        //yield return new WaitForSeconds(10f);
-        //bossFlyingMovement.CurrentState = BossFlyingMovement.State.Moving;
+        transform.position = new Vector2(centerX + (widthX * Mathf.Sin(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)), bossFlyingMovement.curPosition.y + (widthY * Mathf.Cos(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)));
+ 
     }
 }
