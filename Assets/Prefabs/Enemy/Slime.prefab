@@ -35,7 +35,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4901866476789458}
   - component: {fileID: 212021406060917170}
-  - component: {fileID: 114000481424247036}
   - component: {fileID: 61319452250638254}
   - component: {fileID: 50632180320247240}
   - component: {fileID: 114650867077561314}
@@ -95,7 +94,7 @@ Transform:
   m_GameObject: {fileID: 1607767056712162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.8550684, y: -3.1681113, z: 0}
-  m_LocalScale: {x: -2.2352352, y: 2.3472905, z: 1}
+  m_LocalScale: {x: 2.235235, y: 2.3472905, z: 1}
   m_Children:
   - {fileID: 4249788355600142}
   - {fileID: 4266110610167898}
@@ -147,18 +146,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34322715, y: 0.22754514}
   m_EdgeRadius: 0
---- !u!114 &114000481424247036
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1607767056712162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9acbbdeae318f4a4f8d723c44905c567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingR: 0
 --- !u!114 &114650867077561314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,10 +159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heal: 0
   upSide: 0
-  items:
-  - {fileID: 4874401990361610, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
-  - {fileID: 4919310507023706, guid: 417286cbd3b804d1da8df9ec5210034f, type: 2}
-  - {fileID: 4438604724248290, guid: 7dac9de0347ee4d2298de8f429c7ec18, type: 2}
   GroundDetect:
   - {fileID: 4249788355600142}
   - {fileID: 4266110610167898}
