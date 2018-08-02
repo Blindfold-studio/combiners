@@ -150,6 +150,7 @@ public class Boss3Movement : MonoBehaviour {
         }
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
+        SetActiveShield(true);
     }
 
     void Die() {

@@ -6,7 +6,7 @@ public class ItemFloorScript : MonoBehaviour {
 
 	private void OnColliderEnter2D(Collider2D other) {
         if(other.CompareTag("Enemy") || other.CompareTag("Boss")
-        || other.CompareTag("Player")) {
+        || other.CompareTag("Player") || other.CompareTag("NoneEffectOnPlayer")) {
             Physics2D.IgnoreCollision(other, this.GetComponent<BoxCollider2D>(), true);
         }
     }

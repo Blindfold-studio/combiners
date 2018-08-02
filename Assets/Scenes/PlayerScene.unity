@@ -155,7 +155,7 @@ Prefab:
     - target: {fileID: 114855052239744156, guid: 5e08229ec818b9b42b3bdcd9c39be987,
         type: 2}
       propertyPath: playerData.maxHealth
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e08229ec818b9b42b3bdcd9c39be987, type: 2}
@@ -1064,6 +1064,10 @@ Prefab:
       propertyPath: shield
       value: 
       objectReference: {fileID: 1852438585}
+    - target: {fileID: 1899766820127242, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
+      propertyPath: m_TagString
+      value: NoneEffectOnPlayer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
   m_IsPrefabParent: 0
@@ -1319,12 +1323,12 @@ Prefab:
     - target: {fileID: 114169095018713330, guid: c00cd263abe8e4b4383b6b57031a09c6,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114101434824567088, guid: c00cd263abe8e4b4383b6b57031a09c6,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c00cd263abe8e4b4383b6b57031a09c6, type: 2}
