@@ -41,7 +41,7 @@ public class BossFlyingMovement : Boss {
             {
                 state = value;
             }
-            else if (state == State.Moving)
+            else
             {
                 state = value;
             }

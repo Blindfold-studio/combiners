@@ -80,14 +80,16 @@ public class BossFlyingAround : MonoBehaviour {
         {
             currentPosition = 0;
         }
-        Debug.Log("GETIN");
+       
         
     }
 
     void Movement()
     {
+        
         bossFlyingMovement.CurrentState = BossFlyingMovement.State.MoveCircle;
+        
         transform.position = new Vector2(centerX + (widthX * Mathf.Sin(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)), bossFlyingMovement.curPosition.y + (widthY * Mathf.Cos(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)));
-        Debug.Log("Test Movement" + bossFlyingMovement.CurrentState);
+
     }
 }
