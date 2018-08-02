@@ -12,7 +12,6 @@ public class Boss3LongRangeAttack : MonoBehaviour {
     [SerializeField]
     private float attackDurationTime = 2f;
 
-	// Use this for initialization
 	void Start () {
 		isPlayerInRange = false;
         boss3Movement = GetComponentInParent<Boss3Movement>();
@@ -26,7 +25,6 @@ public class Boss3LongRangeAttack : MonoBehaviour {
         }
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if(isPlayerInRange && boss3Movement.CurrentState == Boss3Movement.State.Moving) {
             
@@ -52,36 +50,61 @@ public class Boss3LongRangeAttack : MonoBehaviour {
 
     IEnumerator ThrowProjectileAxeToPlayer() {
         Boss3Movement.StopCoroutineEvent += StopAttack;
-        projectileAxe.transform.position = this.transform.position;
-        boss3Movement.CurrentState = Boss3Movement.State.IsLongRangeAttacking;
-        Debug.Log("Start throwing an axe in a projectile line.");
-        projectileAxe.SetActive(true);
-        projectileAxe.GetComponent<ProjectileAxeBehavior>().Moving(boss3Movement.TargetPlayer);
+        ProjectileAxeStart();
         yield return new WaitForSeconds(attackDurationTime);
-        projectileAxe.SetActive(false);
-        projectileAxe.transform.position = this.transform.position;
-        Debug.Log("Stop throwing an axe in a straight line.");
-        boss3Movement.CurrentState = Boss3Movement.State.Moving;
+
+        ProjectileAxeStop();
         Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 
     IEnumerator ThrowStraightAxeToPlayer() {
         Boss3Movement.StopCoroutineEvent += StopAttack;
+        StraightAxeStart();
+        yield return new WaitForSeconds(attackDurationTime);
+
+        StraightAxeStop();
+        Boss3Movement.StopCoroutineEvent -= StopAttack;
+    }
+
+    void ProjectileAxeStart ()
+    {
+        projectileAxe.transform.position = this.transform.position;
+        boss3Movement.CurrentState = Boss3Movement.State.IsLongRangeAttacking;
+        boss3Movement.SetActiveShield(false);
+        Debug.Log("Start throwing an axe in a projectile line.");
+        projectileAxe.SetActive(true);
+        projectileAxe.GetComponent<ProjectileAxeBehavior>().Moving(boss3Movement.TargetPlayer);
+    }
+
+    void ProjectileAxeStop ()
+    {
+        boss3Movement.SetActiveShield(true);
+        projectileAxe.SetActive(false);
+        projectileAxe.transform.position = this.transform.position;
+        Debug.Log("Stop throwing an axe in a straight line.");
+        boss3Movement.CurrentState = Boss3Movement.State.Moving;
+    }
+
+    void StraightAxeStart ()
+    {
         straightAxe.transform.position = this.transform.position;
-        boss3Movement.CurrentState = Boss3Movement.State.IsLongRangeAttacking;  
+        boss3Movement.CurrentState = Boss3Movement.State.IsLongRangeAttacking;
+        boss3Movement.SetActiveShield(false);
         Debug.Log("Start throwing an axe in a straight line.");
         straightAxe.transform.position = new Vector2(straightAxe.transform.position.x, boss3Movement.TargetPlayer.transform.position.y);
         straightAxe.SetActive(true);
         straightAxe.GetComponent<StraightAxeBehavior>().Moving(boss3Movement.TargetPlayer);
-        yield return new WaitForSeconds(attackDurationTime);
+    }
+
+    void StraightAxeStop ()
+    {
+        boss3Movement.SetActiveShield(true);
         straightAxe.SetActive(false);
         straightAxe.transform.position = this.transform.position;
         Debug.Log("Stop throwing an axe in a straight line.");
         boss3Movement.CurrentState = Boss3Movement.State.Moving;
         Debug.Log(boss3Movement.CurrentState);
-        Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
-
 
     private void StopAttack() {
         isPlayerInRange = false;
