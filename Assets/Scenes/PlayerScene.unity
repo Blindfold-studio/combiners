@@ -267,15 +267,6 @@ Prefab:
       propertyPath: speedText
       value: 
       objectReference: {fileID: 1659285758}
-    - target: {fileID: 114951838630783200, guid: 8b8fbcdf82f79e44184fda5558379f14,
-        type: 2}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 616960526}
-    - target: {fileID: 1033783597721422, guid: 8b8fbcdf82f79e44184fda5558379f14, type: 2}
-      propertyPath: m_TagString
-      value: PlayerHitBox
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b8fbcdf82f79e44184fda5558379f14, type: 2}
   m_IsPrefabParent: 0
@@ -734,11 +725,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5057ec3bc2115f9418f7a9a136014837, type: 2}
   m_IsPrefabParent: 0
---- !u!20 &616960526 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20869027311598630, guid: c7dcdee6d372cc64f85f80e614823a18,
-    type: 2}
-  m_PrefabInternal: {fileID: 430754547}
 --- !u!1001 &647285348
 Prefab:
   m_ObjectHideFlags: 0
@@ -1136,11 +1122,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 430754547}
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
---- !u!20 &1707330592 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20652577815376450, guid: f57f0fc5280b852428fe315b9654c9a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 542086394}
 --- !u!114 &1715595192 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114200197795532470, guid: f57f0fc5280b852428fe315b9654c9a8,
@@ -1474,11 +1455,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114808267747355478, guid: ae0033de29c212e4b8d175e79be5a313,
-        type: 2}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 1707330592}
     - target: {fileID: 114841386148215264, guid: ae0033de29c212e4b8d175e79be5a313,
         type: 2}
       propertyPath: arrowText
@@ -1489,10 +1465,6 @@ Prefab:
       propertyPath: speedText
       value: 
       objectReference: {fileID: 170144546}
-    - target: {fileID: 1609187465706982, guid: ae0033de29c212e4b8d175e79be5a313, type: 2}
-      propertyPath: m_TagString
-      value: PlayerHitBox
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae0033de29c212e4b8d175e79be5a313, type: 2}
   m_IsPrefabParent: 0
