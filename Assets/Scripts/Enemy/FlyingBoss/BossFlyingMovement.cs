@@ -18,8 +18,9 @@ public class BossFlyingMovement : Boss {
     private int count = 0;
     private float offSet;
     public Vector3 curPosition;
+    public bool inPlayer1;
 
-    public enum State { Idle, Moving, MoveCircle};
+    public enum State { Idle, Moving, MoveCircle, MoveToCheckBox};
     private State state;
     private MissionManager missionManager;
     private Transform player1_screen;
@@ -72,6 +73,7 @@ public class BossFlyingMovement : Boss {
         missionManager = MissionManager.instance;
         offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
         curPosition = this.transform.position;
+        CheckBossPosition();
         state = State.Moving;
     }
 
@@ -142,10 +144,23 @@ public class BossFlyingMovement : Boss {
             
         }
         curPosition = this.transform.position;
+        CheckBossPosition();
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
         initiatePoint = 0;
 
+    }
+
+    void CheckBossPosition()
+    {
+        if(curPosition.y >= 25)
+        {
+            inPlayer1 = true;
+        }
+        else
+        {
+            inPlayer1 = false;
+        }
     }
 
     void Die()

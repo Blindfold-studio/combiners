@@ -21,11 +21,11 @@ public class BossFlyingAround : MonoBehaviour {
     [SerializeField]
     private float speed = 150f;
 
-    public GameObject[] checkPoint;
+    public GameObject bossCheckBox;
     [SerializeField]
     private int currentPosition;
     [SerializeField]
-    private float speedCheckPoint;
+    private float speedCheckBox = 30;
     [SerializeField]
     private float speedUpdate;
     [SerializeField]
@@ -47,9 +47,9 @@ public class BossFlyingAround : MonoBehaviour {
         {
             bossFlyingMovement.initiatePoint += Time.deltaTime;
         }
-        else if (bossFlyingMovement.CurrentState == BossFlyingMovement.State.Idle)
+        else if (bossFlyingMovement.CurrentState == BossFlyingMovement.State.MoveToCheckBox)
         {
-            speedUpdate = Time.deltaTime * speedCheckPoint;
+            speedUpdate = Time.deltaTime * speedCheckBox;
         }
     }
     void FixedUpdate () {
@@ -61,35 +61,45 @@ public class BossFlyingAround : MonoBehaviour {
         }
         else if (bossHealth.Health % (bossHealth.maxHealth / bossHealth.numberOfTimeBossSwap) == 2)
         {
-            MovingAround();
+            MoveToCheckBox();
         }
+
        
 	}
 
-    void MovingAround()
+    void MoveToCheckBox()
     {
-        bossFlyingMovement.CurrentState = BossFlyingMovement.State.Idle;
-        transform.position = Vector3.MoveTowards(transform.position, checkPoint[currentPosition].transform.position, speedUpdate);
-        
-        if(Vector3.Distance(checkPoint[currentPosition].transform.position, transform.position) <= stop)
+        bossFlyingMovement.CurrentState = BossFlyingMovement.State.MoveToCheckBox;
+
+        if (bossFlyingMovement.inPlayer1)
+        {
+            bossCheckBox.transform.position = new Vector3(0f, 50f, 0f);
+            transform.position = Vector3.MoveTowards(transform.position, bossCheckBox.transform.GetChild(currentPosition).transform.position, speedUpdate);
+        }
+        else
+        {
+            bossCheckBox.transform.position = new Vector3(0f, 0f, 0f);
+            transform.position = Vector3.MoveTowards(transform.position, bossCheckBox.transform.GetChild(currentPosition).transform.position, speedUpdate);
+        }
+
+
+        if (currentPosition == bossCheckBox.transform.childCount - 1)
+        {
+            currentPosition = bossCheckBox.transform.childCount - 1;
+        }
+        else if (Vector3.Distance(bossCheckBox.transform.GetChild(currentPosition).transform.position, transform.position) <= stop)
         {
             currentPosition++;
         }
 
-        if( currentPosition >= checkPoint.Length)
-        {
-            currentPosition = 0;
-        }
-       
-        
+
     }
 
     void Movement()
     {
         
         bossFlyingMovement.CurrentState = BossFlyingMovement.State.MoveCircle;
-        
         transform.position = new Vector2(centerX + (widthX * Mathf.Sin(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)), bossFlyingMovement.curPosition.y + (widthY * Mathf.Cos(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)));
-
+        currentPosition = 0;
     }
 }
