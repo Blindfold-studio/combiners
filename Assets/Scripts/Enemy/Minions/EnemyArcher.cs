@@ -15,16 +15,33 @@ public class EnemyArcher : Minions, IFPoolObject
     private float retreat;
     public float startShotReload;
     private float reloadShot;
+    bool facingR;
+    bool isAlive;
+    private float distance;
     private GameObject targetPlayer;
     public GameObject arrow;
     ProjectilePool pool;
 
+    public GameObject TargetPlayer
+    {
+        get
+        {
+            return targetPlayer;
+        }
 
+        set
+        {
+            targetPlayer = value;
+        }
+    }
 
     public void ObjectSpawn()
     {
         reloadShot = startShotReload;
+        isAlive = true;
+        facingR = true;
         TargetPlayer = FindTheClosestPlayer();
+        StartCoroutine(Flip());
         pool = ProjectilePool.Instance;
         heal = 1;
     }
@@ -34,6 +51,7 @@ public class EnemyArcher : Minions, IFPoolObject
         EnemyShot();
         Movement();
         Dead();
+        distance = targetPlayer.transform.position.x - transform.position.x;
     }
 
     void Movement()
@@ -53,17 +71,39 @@ public class EnemyArcher : Minions, IFPoolObject
         
     }
 
-    public GameObject TargetPlayer
+    
+    IEnumerator Flip()
     {
-        get
+        while (isAlive)
         {
-            return targetPlayer;
+            yield return new WaitForSeconds(.3f);
+
+            if (facingR && (distance > 0))
+            {
+
+                Vector3 Scale = transform.localScale;
+                if (Scale.x < 0)
+                {
+                    Scale.x *= -1;
+                }
+                transform.localScale = Scale;
+                facingR = false;
+            }
+
+            else if (!facingR && (distance < 0) || facingR && (distance < 0))
+            {
+
+                Vector3 Scale = transform.localScale;
+                if (Scale.x > 0)
+                {
+                    Scale.x *= -1;
+                }
+                transform.localScale = Scale;
+                facingR = true;
+            }
+            Debug.Log("Distance" + distance);
         }
 
-        set
-        {
-            targetPlayer = value;
-        }
     }
 
     public GameObject FindTheClosestPlayer()
@@ -115,6 +155,7 @@ public class EnemyArcher : Minions, IFPoolObject
         else if (collision.CompareTag("Weapon"))
         {
             TakeDamage();
+            isAlive = false;
         }
     }
     

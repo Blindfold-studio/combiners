@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 58073219874495368}
   m_Layer: 0
   m_Name: Archer
-  m_TagString: EnemyWeapon
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137649772912554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.490835, y: 36.9551, z: 0}
-  m_LocalScale: {x: 3.8582306, y: 3.5123954, z: 1}
+  m_LocalPosition: {x: -3.7616305, y: -2.6938365, z: 0}
+  m_LocalScale: {x: 3.858231, y: 3.5123954, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -118,13 +118,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heal: 0
   upSide: 0
-  items:
-  - {fileID: 4874401990361610, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
-  - {fileID: 4919310507023706, guid: 417286cbd3b804d1da8df9ec5210034f, type: 2}
-  - {fileID: 4438604724248290, guid: 7dac9de0347ee4d2298de8f429c7ec18, type: 2}
-  speed: 2
-  stop: 3
-  retreat: 2
+  speed: 3
+  stop: 6
+  retreat: 3
   startShotReload: 4
   arrow: {fileID: 1470708020820740, guid: d245f6ff2e0caac4dbfc2899161c747c, type: 2}
 --- !u!114 &114845062561351348
@@ -133,7 +129,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137649772912554}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9acbbdeae318f4a4f8d723c44905c567, type: 3}
   m_Name: 
