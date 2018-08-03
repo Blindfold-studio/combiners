@@ -20,7 +20,7 @@ public class BossFlyingMovement : Boss {
     public Vector3 curPosition;
     public bool inPlayer1;
 
-    public enum State { Idle, Moving, MoveCircle, MoveToCheckBox};
+    public enum State { Idle, Moving, MoveCircle, MoveToCheckBox, HorizontalMove};
     private State state;
     private MissionManager missionManager;
     private Transform player1_screen;
