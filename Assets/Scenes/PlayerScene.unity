@@ -209,7 +209,18 @@ Prefab:
       propertyPath: m_Name
       value: Map_P2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 61379758617537464, guid: 7dac42f525a72e04ea27eb47d22ccf69,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61137863385507996, guid: 7dac42f525a72e04ea27eb47d22ccf69,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 61137863385507996, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 7dac42f525a72e04ea27eb47d22ccf69, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &170144546 stripped
@@ -772,6 +783,16 @@ Prefab:
         type: 2}
       propertyPath: m_ReferenceResolution.y
       value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 224449333196127622, guid: 5057ec3bc2115f9418f7a9a136014837,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283125696002842, guid: 5057ec3bc2115f9418f7a9a136014837,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5057ec3bc2115f9418f7a9a136014837, type: 2}

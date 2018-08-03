@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ItemFloorScript : MonoBehaviour {
 
-	private void OnColliderEnter2D(Collider2D other) {
-        if(other.CompareTag("Enemy") || other.CompareTag("Boss")
-        || other.CompareTag("Player") || other.CompareTag("NoneEffectOnPlayer")) {
-            Physics2D.IgnoreCollision(other, this.GetComponent<BoxCollider2D>(), true);
+	void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("Boot check tag: " + other.gameObject.tag);
+
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss" || other.gameObject.tag == "Player" || other.gameObject.tag == "NoneEffectOnPlayer") {
+            Physics2D.IgnoreCollision(other.collider, this.GetComponent<BoxCollider2D>(), true);
         }
     }
 }
