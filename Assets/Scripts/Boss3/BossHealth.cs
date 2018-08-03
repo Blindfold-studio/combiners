@@ -16,8 +16,10 @@ public class BossHealth : MonoBehaviour {
     private float numberOfTimeBossSwap;
     [SerializeField]
     private float colliderDisableTime;
+
     private float currentHealth;
     private BoxCollider2D bossCollider;
+
 
     public static event Action SwapingEvent;
     public static event Action DeathEvent;
@@ -63,7 +65,10 @@ public class BossHealth : MonoBehaviour {
 
     IEnumerator ProtectionAfterReceivedAnAttack() {
         bossCollider.enabled = false;
+        GetComponent<Animation>().Play("BossGetDamage");
         yield return new WaitForSeconds(colliderDisableTime);
         bossCollider.enabled = true;
+        GetComponent<Animation>().Stop("BossGetDamage");
+        yield return null;
     }
 }
