@@ -45,7 +45,6 @@ public class BossHealth : MonoBehaviour {
 	void CheckingBossHealth() {
         UpdateHpText();
         StartCoroutine("ProtectionAfterReceivedAnAttack");
-        Debug.Log("Current health test" + currentHealth);
         if (currentHealth <= 0) {
             if(DeathEvent != null) {
                 DeathEvent();

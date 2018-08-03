@@ -50,8 +50,6 @@ public class Boss3Movement : MonoBehaviour {
         onHoldForPlayerJump = false;
         state = State.Moving;
         targetPlayer = FindTheClosestPlayer();
-        BossHealth.SwapingEvent += SwapBoss;
-        BossHealth.DeathEvent += Die;
         FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x);
 
         SetPositionNotOverViewPort();
@@ -159,9 +157,13 @@ public class Boss3Movement : MonoBehaviour {
             StopCoroutineEvent();
         }
         CurrentState = State.Idle;
-        BossHealth.SwapingEvent -= SwapBoss;
-        BossHealth.DeathEvent -= Die;
         rg.velocity = new Vector2(0f, rg.velocity.y);   
+    }
+
+    private void OnEnable()
+    {
+        BossHealth.SwapingEvent += SwapBoss;
+        BossHealth.DeathEvent += Die;
     }
 
     private void OnDisable() {

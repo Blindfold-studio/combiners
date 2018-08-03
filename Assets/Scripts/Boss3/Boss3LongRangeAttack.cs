@@ -49,21 +49,15 @@ public class Boss3LongRangeAttack : MonoBehaviour {
     }
 
     IEnumerator ThrowProjectileAxeToPlayer() {
-        Boss3Movement.StopCoroutineEvent += StopAttack;
         ProjectileAxeStart();
         yield return new WaitForSeconds(attackDurationTime);
-
-        ProjectileAxeStop();
-        Boss3Movement.StopCoroutineEvent -= StopAttack;
+        ProjectileAxeStop(); 
     }
 
     IEnumerator ThrowStraightAxeToPlayer() {
-        Boss3Movement.StopCoroutineEvent += StopAttack;
         StraightAxeStart();
         yield return new WaitForSeconds(attackDurationTime);
-
         StraightAxeStop();
-        Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 
     void ProjectileAxeStart ()
@@ -112,6 +106,15 @@ public class Boss3LongRangeAttack : MonoBehaviour {
         StopCoroutine("ThrowProjectileAxeToPlayer");
         straightAxe.SetActive(false);
         projectileAxe.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        Boss3Movement.StopCoroutineEvent += StopAttack;
+    }
+
+    private void OnDisable()
+    {
         Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 }

@@ -40,7 +40,6 @@ public class Boss3ShortRangeAttack : MonoBehaviour {
 
     IEnumerator SlashPlayer() {
         //do something
-        Boss3Movement.StopCoroutineEvent += StopAttack;
         boss3Movement.CurrentState = Boss3Movement.State.IsShortRangeAttacking;
         Debug.Log(boss3Movement.TargetPlayer.name + " was attacked by sword!");
         yield return new WaitForSeconds(animWaitTime);
@@ -49,12 +48,20 @@ public class Boss3ShortRangeAttack : MonoBehaviour {
         shortRangeWeapon.SetActive(false);
         boss3Movement.CurrentState = Boss3Movement.State.Moving;
         Debug.Log("The sword attack stops!");
-        Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 
     void StopAttack() {
         isPlayerInRange = false;
         StopCoroutine("SlashPlayer");
+    }
+
+    private void OnEnable()
+    {
+        Boss3Movement.StopCoroutineEvent += StopAttack;
+    }
+
+    private void OnDisable()
+    {
         Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 }
