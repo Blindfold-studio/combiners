@@ -40,12 +40,16 @@ public class Boss3ShortRangeAttack : MonoBehaviour {
 
     IEnumerator SlashPlayer() {
         //do something
+        Animation anim = GetComponentInParent<Animation>();
         boss3Movement.CurrentState = Boss3Movement.State.IsShortRangeAttacking;
         Debug.Log(boss3Movement.TargetPlayer.name + " was attacked by sword!");
         yield return new WaitForSeconds(animWaitTime);
-        shortRangeWeapon.SetActive(true);
-        yield return new WaitForSeconds(waitAfterAttackTime);
-        shortRangeWeapon.SetActive(false);
+        //shortRangeWeapon.SetActive(true);
+        GetComponentInParent<Animation>().Play("ShortAttack");
+        Debug.Log("Sword attack clip length: " + anim["ShortAttack"].length);
+        yield return new WaitForSeconds(anim["ShortAttack"].length);
+        //shortRangeWeapon.SetActive(false);
+        GetComponentInParent<Animation>().Stop("ShortAttack");
         boss3Movement.CurrentState = Boss3Movement.State.Moving;
         Debug.Log("The sword attack stops!");
     }
