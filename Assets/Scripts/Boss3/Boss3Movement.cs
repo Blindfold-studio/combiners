@@ -81,6 +81,14 @@ public class Boss3Movement : MonoBehaviour {
         }
     }
 
+    public bool IsFacingRight
+    {
+        get
+        {
+            return isFacingRight;
+        }
+    }
+
     public GameObject FindTheClosestPlayer()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -104,15 +112,19 @@ public class Boss3Movement : MonoBehaviour {
     }
 
     IEnumerator FlipCharacter(float horizontalMovement) {
-        if((isFacingRight && horizontalMovement < 0) || 
-           (!isFacingRight && horizontalMovement > 0)) {
-            onHoldForPlayerJump = true;
-            isFacingRight = !isFacingRight;
-            yield return new WaitForSeconds(stuntAfterPlayerJumpOverHead);
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-            onHoldForPlayerJump = false;
+        if (CurrentState == State.Moving)
+        {
+            if ((isFacingRight && horizontalMovement < 0) ||
+           (!isFacingRight && horizontalMovement > 0))
+            {
+                onHoldForPlayerJump = true;
+                isFacingRight = !isFacingRight;
+                yield return new WaitForSeconds(stuntAfterPlayerJumpOverHead);
+                Vector3 scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+                onHoldForPlayerJump = false;
+            }
         }
     }
 
