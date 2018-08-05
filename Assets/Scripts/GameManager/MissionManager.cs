@@ -74,6 +74,7 @@ public class MissionManager : MonoBehaviour {
             spawnFly.UpSide = true;
             spawnSkeleton.UpSide = true;
         }
+        Debug.Log("BossPosition" + bossObject.transform.position);
     }
 
 

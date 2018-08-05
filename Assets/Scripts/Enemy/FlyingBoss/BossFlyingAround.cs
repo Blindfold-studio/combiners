@@ -71,7 +71,6 @@ public class BossFlyingAround : MonoBehaviour {
         else if (bossFlyingMovement.CurrentState == BossFlyingMovement.State.HorizontalMove)
         {
             MoveToCheckBox();
-            Debug.Log("HORIZONTALMOVEMENT");
         }
 
        
