@@ -14,14 +14,14 @@ public class HealthUI : MonoBehaviour {
         healthSystem = HealthSystem.instance;
         hpText = GetComponent<TextMeshProUGUI>();
 
-        hp = healthSystem.HP;
-        maxHp = healthSystem.MaxHP;
+        hp = healthSystem.CurrentHealth;
+        maxHp = healthSystem.MaxHealth;
         hpText.text = "HP: " + hp.ToString() + "/" + maxHp.ToString();
 	}
 	
 	void Update () {
-        hp = healthSystem.HP;
-        maxHp = healthSystem.MaxHP;
+        hp = healthSystem.CurrentHealth;
+        maxHp = healthSystem.MaxHealth;
         hpText.text = "HP: " + hp.ToString() + "/" + maxHp.ToString();
     }
 }

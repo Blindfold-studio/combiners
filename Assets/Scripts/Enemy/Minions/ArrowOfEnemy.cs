@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowOfEnemy : Minions
+public class ArrowOfEnemy : Minions, IFPoolObject
 {
 
     Rigidbody2D rb2d;
-
     [SerializeField]
     private float speed;
 
@@ -14,44 +13,69 @@ public class ArrowOfEnemy : Minions
     private Vector2 dir;
 
     private Transform player;
-    // Use this for initialization
-    void Start()
+    private GameObject targetPlayer;
+
+    public GameObject TargetPlayer
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        flip = GameObject.Find("cat").GetComponent<EnemyFlip>();
-        if (flip.facingR)
+        get
         {
-            dir = Vector2.right;
+            return targetPlayer;
         }
-        else
+
+        set
         {
-            dir = Vector2.left;
-            Vector3 Scale = transform.localScale;
-            Scale.x *= -1;
-            transform.localScale = Scale;
+            targetPlayer = value;
         }
     }
 
-    // Update is called once per frame
+    public void ObjectSpawn()
+    {
+        TargetPlayer = FindTheClosestPlayer();
+        rb2d = GetComponent<Rigidbody2D>();
+        dir = Vector3.Normalize(TargetPlayer.transform.position - this.transform.position);
+        Invoke("Disappear", 20);
+    }
+
     void FixedUpdate()
     {
-        Dir();
+        Movement();
     }
 
-    void Dir()
+    void Movement()
     {
-        if (flip.facingR)
-        {
-            rb2d.velocity = dir * speed;
-        }
-        else if (!flip.facingR)
-        {
-            rb2d.velocity = dir * speed;
-        }
+        rb2d.velocity = dir * speed;
     }
 
-    void OnBecameInvisible()
+    public GameObject FindTheClosestPlayer()
     {
-        gameObject.SetActive(false); 
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float minDistance = Mathf.Infinity;
+        GameObject targetPlayer = null;
+        for (int i = 0; i < players.Length; i++)
+        {
+            float distance = Vector2.Distance(this.transform.position, players[i].transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                targetPlayer = players[i];
+            }
+        }
+        return targetPlayer;
     }
+
+    void Disappear()
+    {
+        gameObject.SetActive(false);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+                gameObject.SetActive(false);
+        }
+    }
+    
+
 }
+

@@ -16,7 +16,8 @@ public class Boss3ShortRangeAttack : MonoBehaviour {
     private void Start() {
         isPlayerInRange = false;
         boss3Movement = GetComponentInParent<Boss3Movement>();
-        shortRangeWeapon = this.gameObject.transform.GetChild(0).gameObject;
+        //shortRangeWeapon = this.gameObject.transform.GetChild(0).gameObject; only collider
+        shortRangeWeapon = this.gameObject.transform.GetChild(1).gameObject; //sword sprite
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -40,21 +41,43 @@ public class Boss3ShortRangeAttack : MonoBehaviour {
 
     IEnumerator SlashPlayer() {
         //do something
-        Boss3Movement.StopCoroutineEvent += StopAttack;
+        float angleSword = 90f;
+
         boss3Movement.CurrentState = Boss3Movement.State.IsShortRangeAttacking;
         Debug.Log(boss3Movement.TargetPlayer.name + " was attacked by sword!");
         yield return new WaitForSeconds(animWaitTime);
+
         shortRangeWeapon.SetActive(true);
+        if (boss3Movement.IsFacingRight)
+        {
+            angleSword = -90f;
+        }
+        shortRangeWeapon.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angleSword));
+        boss3Movement.SetActiveShield(false);
         yield return new WaitForSeconds(waitAfterAttackTime);
+
+        shortRangeWeapon.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
         shortRangeWeapon.SetActive(false);
+        boss3Movement.SetActiveShield(true);
         boss3Movement.CurrentState = Boss3Movement.State.Moving;
         Debug.Log("The sword attack stops!");
-        Boss3Movement.StopCoroutineEvent -= StopAttack;
+        yield return null;
     }
 
     void StopAttack() {
         isPlayerInRange = false;
+        shortRangeWeapon.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+        shortRangeWeapon.SetActive(false);
         StopCoroutine("SlashPlayer");
+    }
+
+    private void OnEnable()
+    {
+        Boss3Movement.StopCoroutineEvent += StopAttack;
+    }
+
+    private void OnDisable()
+    {
         Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 }

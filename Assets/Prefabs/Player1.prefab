@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114967847217103792}
   m_Layer: 8
   m_Name: Hit Box
-  m_TagString: Untagged
+  m_TagString: PlayerHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,7 +263,7 @@ Animator:
   m_GameObject: {fileID: 1569254059368552}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d7002fe7c8be895489ce306c004ae4d4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 25a677deef8ca8c4da968dcb6d314c34, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -311,9 +311,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c199d65f063503b4caf1552cd66650e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useJoy: 0
   fallMul: 2.5
   lowJumpMul: 2
   jumpButton: Jump_P1
+  jumpButtonJoy: J1AButton
 --- !u!114 &114881872855976398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -336,6 +338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f1e615b7aa75443aae78e0b454bbe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTag: 1
+  useJoyStick: 0
   button:
     horizontalAxis: Horizontal_P1
     jumpButton: Jump_P1
@@ -346,11 +350,10 @@ MonoBehaviour:
     m_Bits: 1024
   arrowPrefab: {fileID: 1218613727301220, guid: e102a44137289f14d89c7e7e0f5dc474,
     type: 2}
-  tag: Arrow_P1
+  arrowTag: Arrow_P1
   groundedSkin: 0.05
   shotDelay: 0.1
-  xMin: -18.75
-  xMax: 18.75
+  knockbackForce: 3
   offsetArrow: {x: 0.55, y: 0, z: 0}
 --- !u!114 &114955440198983428
 MonoBehaviour:
@@ -383,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invicibleTime: 2
+  knockbackTime: 0.3
 --- !u!212 &212431342288797222
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -417,7 +421,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: e8674e1addda00241b6c947f8982097f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

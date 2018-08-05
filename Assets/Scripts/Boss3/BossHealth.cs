@@ -11,13 +11,17 @@ public class BossHealth : MonoBehaviour {
     public TextMeshProUGUI hp1;
     public TextMeshProUGUI hp2;
     [SerializeField]
-    private float maxHealth;
+    public float maxHealth;
     [SerializeField]
-    private float numberOfTimeBossSwap;
+    public float numberOfTimeBossSwap;
     [SerializeField]
-    private float collidersDisableTime;
+    private float colliderDisableTime;
+    [SerializeField]
+    private float waitTime;
+
     private float currentHealth;
     private BoxCollider2D bossCollider;
+
 
     public static event Action SwapingEvent;
     public static event Action DeathEvent;
@@ -43,7 +47,6 @@ public class BossHealth : MonoBehaviour {
 	void CheckingBossHealth() {
         UpdateHpText();
         StartCoroutine("ProtectionAfterReceivedAnAttack");
-        Debug.Log("Current health test" + currentHealth);
         if (currentHealth <= 0) {
             if(DeathEvent != null) {
                 DeathEvent();
@@ -51,7 +54,9 @@ public class BossHealth : MonoBehaviour {
         } else if(currentHealth % (maxHealth/numberOfTimeBossSwap) == 0 && currentHealth < maxHealth) {    
             // SwapBoss();
             if(SwapingEvent != null) {
+                bossCollider.enabled = false;
                 SwapingEvent();
+                bossCollider.enabled = true;
             }
         }
     }
@@ -63,7 +68,10 @@ public class BossHealth : MonoBehaviour {
 
     IEnumerator ProtectionAfterReceivedAnAttack() {
         bossCollider.enabled = false;
-        yield return new WaitForSeconds(collidersDisableTime);
+        GetComponent<Animation>().Play("BossGetDamage");
+        yield return new WaitForSeconds(colliderDisableTime);
         bossCollider.enabled = true;
+        GetComponent<Animation>().Stop("BossGetDamage");
+        yield return null;
     }
 }

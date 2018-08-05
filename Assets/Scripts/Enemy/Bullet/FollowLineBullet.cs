@@ -5,15 +5,26 @@ using UnityEngine;
 public class FollowLineBullet : MonoBehaviour,IFPoolObject {
     
     public float speed;
-    private Transform player;
-    private Vector2 target;
     private Vector3 dir;
+    private GameObject targetPlayer;
 
-  
+    public GameObject TargetPlayer
+    {
+        get
+        {
+            return targetPlayer;
+        }
+
+        set
+        {
+            targetPlayer = value;
+        }
+    }
+
+
     public void ObjectSpawn()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        target = new Vector2(player.position.x, player.position.y);
+        TargetPlayer = FindTheClosestPlayer();
         Invoke("Disappear", 7);
     }
 
@@ -24,7 +35,24 @@ public class FollowLineBullet : MonoBehaviour,IFPoolObject {
 
     void FollowBullet()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, targetPlayer.transform.position, speed * Time.deltaTime);
+    }
+
+    public GameObject FindTheClosestPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float minDistance = Mathf.Infinity;
+        GameObject targetPlayer = null;
+        for (int i = 0; i < players.Length; i++)
+        {
+            float distance = Vector2.Distance(this.transform.position, players[i].transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                targetPlayer = players[i];
+            }
+        }
+        return targetPlayer;
     }
 
     void Disappear()
@@ -38,7 +66,6 @@ public class FollowLineBullet : MonoBehaviour,IFPoolObject {
         
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("CompareTagPlayer");
             gameObject.SetActive(false);
         }
     }

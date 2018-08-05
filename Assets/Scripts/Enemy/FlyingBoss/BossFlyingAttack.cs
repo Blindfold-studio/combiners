@@ -18,31 +18,33 @@ public class BossFlyingAttack : MonoBehaviour {
     Vector3 projectileVec;
     Vector3 projectileDir;
     GameObject bullet;
+    BossFlyingMovement Bossmovement;
 
     void Start()
     {
         reloadShot = startShot;
         pool = ProjectilePool.Instance;
-        player = GameObject.FindGameObjectWithTag("Player");
-        Invoke("Disappear", 15);
+        
     }
+
     void FixedUpdate()
     {
+        player = FindTheClosestPlayer();
         EnemyShot();
     }
     void EnemyShot()
     {
         if (reloadShot <= 0)
         {
-            var number = Random.Range(2, 3);
+            var number = Random.Range(0, 4);
 
             if (number == 0)
             {
-                pool.GetElementInPool("Boss-straight", transform.position, Quaternion.identity);
+                pool.GetElementInPool("Boss-StraightBullet", transform.position, Quaternion.identity);
             }
             else if (number == 1)
             {
-                pool.GetElementInPool("Boss-follow", transform.position, Quaternion.identity);
+                pool.GetElementInPool("Boss-FollowBullet", transform.position, Quaternion.identity);
             }
             else if (number == 2)
             {
@@ -90,13 +92,13 @@ public class BossFlyingAttack : MonoBehaviour {
 
         for (int i = 0; i <= numOfP - 1; i++)
         {
-            float projectileX = player.transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180) * range;
+            float projectileX = player.transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180) * range;  
             float projectileY = player.transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180) * range;
 
             projectileVec = new Vector3(projectileX, projectileY, 0);
             projectileDir = Vector3.Normalize(projectileVec - this.transform.position) * speedBullet;
 
-            bullet = pool.GetElementInPool("Boss-Many", transform.position, Quaternion.identity);
+            bullet = pool.GetElementInPool("Boss-SurroundBullet", transform.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDir.x, projectileDir.y);
        
             angle += angleTotal;
@@ -104,9 +106,21 @@ public class BossFlyingAttack : MonoBehaviour {
         }
     }
 
-    void Disappear()
+    public GameObject FindTheClosestPlayer()
     {
-        gameObject.SetActive(false);
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float minDistance = Mathf.Infinity;
+        GameObject targetPlayer = null;
+        for (int i = 0; i < players.Length; i++)
+        {
+            float distance = Vector2.Distance(this.transform.position, players[i].transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                targetPlayer = players[i];
+            }
+        }
+        return targetPlayer;
     }
 
 

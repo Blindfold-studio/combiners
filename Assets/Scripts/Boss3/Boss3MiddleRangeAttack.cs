@@ -41,7 +41,6 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
     }
 
     IEnumerator ChargingToPlayer() {
-        Boss3Movement.StopCoroutineEvent += StopAttack;
         boss3Movement.CurrentState = Boss3Movement.State.IsMiddleRangeAttacking;  
         Debug.Log("Start charging!");
         float vel = rb.velocity.x;
@@ -52,14 +51,23 @@ public class Boss3MiddleRangeAttack : MonoBehaviour {
         Debug.Log("Charging attack stops!");
         yield return new WaitForSeconds(afterChargingTime);
         rb.velocity = new Vector2(vel, rb.velocity.y);
-        boss3Movement.CurrentState = Boss3Movement.State.Moving;
-        Boss3Movement.StopCoroutineEvent -= StopAttack;
+        boss3Movement.CurrentState = Boss3Movement.State.Moving; 
     }
 
     void StopAttack() {
         isPlayerInRange = false;
         StopCoroutine("ChargingToPlayer");
         rb.velocity = new Vector2(0, rb.velocity.y);
+        Boss3Movement.StopCoroutineEvent -= StopAttack;
+    }
+
+    private void OnEnable()
+    {
+        Boss3Movement.StopCoroutineEvent += StopAttack;
+    }
+
+    private void OnDisable()
+    {
         Boss3Movement.StopCoroutineEvent -= StopAttack;
     }
 }

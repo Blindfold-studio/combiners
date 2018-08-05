@@ -19,23 +19,22 @@ public class MissionManager : MonoBehaviour {
     private List<Transform> bossPosition_P2;
 
     private BossHealth bossHealth;
+    private HealthSystem healthSystem;
     private SpawnEnemyFly spawnFly;
     private SpawnEnemyOnGround spawnSkeleton;
-    private GameManager gameManager;
     private GameObject bossObject;
     private GameObject upgradePanel;
     private GameObject losePanel;
 
     void Start () {
-        gameManager = GameManager.instance;
-        
         bossObject = GameObject.FindGameObjectWithTag("Boss");
         bossHealth = bossObject.GetComponent<BossHealth>();
+        healthSystem = GetComponent<HealthSystem>();
 
         upgradePanel = GameObject.FindGameObjectWithTag("WinAndUpgrade");
         losePanel = GameObject.FindGameObjectWithTag("LosePanel");
-        spawnFly = GameObject.Find("SpawnEnemy-Fly").GetComponent<SpawnEnemyFly>();
-        spawnSkeleton = GameObject.Find("SpawnEnemy-Skel").GetComponent<SpawnEnemyOnGround>();
+        spawnFly = GetComponent<SpawnEnemyFly>();
+        spawnSkeleton = GetComponent<SpawnEnemyOnGround>();
         upgradePanel.SetActive(false);
         losePanel.SetActive(false);
 
@@ -52,7 +51,7 @@ public class MissionManager : MonoBehaviour {
             Time.timeScale = 0f;
         }    
 
-        if (gameManager.CurrentHealth <= 0)
+        if (healthSystem.CurrentHealth <= 0)
         {
             losePanel.SetActive(true);
             Time.timeScale = 0f;

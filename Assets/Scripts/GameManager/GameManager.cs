@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour {
     public delegate void ResetHealthEvent();
     public static event ResetHealthEvent OnResetHealth;
 
-    [SerializeField]
     private int bossSceneCount;
 
     #region Player data default
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour {
     private int currentBuildIndex;
     private int nextBuildIndex;
     private int menuBuildIndex;
-    private HealthSystem healthSystem;
     private List<int> bossSceneList;
 
     #region Singleton Object
@@ -51,22 +49,14 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
+        bossSceneCount = SceneManager.sceneCountInBuildSettings - 1;
         bossSceneList = new List<int>();
-        healthSystem = HealthSystem.instance;
+
         SetDefaultPlayerData();
         GenerateRandomSceneList();
-
         menuBuildIndex = 0;
     }
     
-    public int CurrentHealth
-    {
-        get
-        {
-            return healthSystem.HP;
-        }
-    }
-
     public int MaxHealth
     {
         get
@@ -77,7 +67,6 @@ public class GameManager : MonoBehaviour {
         set
         {
             playerData.maxHealth = value;
-            healthSystem.MaxHP = playerData.maxHealth;
         }
     }
 
@@ -109,11 +98,22 @@ public class GameManager : MonoBehaviour {
 
     public void LoadNextScene()
     {
-        //SceneManager.LoadScene(bossSceneList[0]);
-        //bossSceneList.RemoveAt(0);
-        Time.timeScale = 1f;
-        ResetHealth();
-        SceneManager.LoadScene("PlayerScene");
+        if (bossSceneList.Count != 0)
+        {
+            int index = bossSceneList[0] + 1;
+
+            bossSceneList.RemoveAt(0);
+            Time.timeScale = 1f;
+            ResetHealth();
+            SceneManager.LoadScene(index);
+        }
+
+        else
+        {
+            LoadMenuScene();
+        }
+        
+        //SceneManager.LoadScene("PlayerScene");
     }
 
     public void RestartScene()
@@ -136,10 +136,10 @@ public class GameManager : MonoBehaviour {
     {
         for (int i = 0; i < bossSceneCount; i++)
         {
-            int rand = Random.Range(1, 6);
+            int rand = Random.Range(0, bossSceneCount);
             while (bossSceneList.Contains(rand))
             {
-                rand = Random.Range(1, 6);
+                rand = Random.Range(0, bossSceneCount);
             }
             bossSceneList.Add(rand);
             Debug.Log(bossSceneList[i]);
@@ -175,7 +175,6 @@ public class GameManager : MonoBehaviour {
     private void SetPlayerDataToDefault ()
     {
         playerData.maxHealth = maxHealthDefault;
-        healthSystem.MaxHP = maxHealthDefault;
 
         playerData.arrowCapacity = arrowCapacityDefault;
         playerData.speed = speedDefault;

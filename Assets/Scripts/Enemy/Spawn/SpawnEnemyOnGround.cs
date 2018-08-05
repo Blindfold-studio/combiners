@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnEnemyOnGround : Minions {
-
-    public static SpawnEnemyOnGround instance = null;
-
-    void Awake()
-    {
-        instance = this;
-    }
-
+public class SpawnEnemyOnGround : MonoBehaviour {
+    [SerializeField]
+    private string tagMinion = "GroundMinions";
+    [SerializeField]
+    private bool upSide;
+    [SerializeField]
+    private float spawnTimer;
     [SerializeField]
     private List<Transform> minionPosition_P1;
     [SerializeField]
@@ -18,39 +16,36 @@ public class SpawnEnemyOnGround : Minions {
 
     public GameObject[] minion;
     private float x;
-    [SerializeField]
-    private float spawnTimer;
     private float spawn;
-    Vector2 locate;
-    // Use this for initialization
+    private Vector2 locate;
+    private ItemAndEnemyPooler itemAndEnemyPooler;
 
     void Start()
     {
-      
+        itemAndEnemyPooler = ItemAndEnemyPooler.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        int rand = Random.Range(0, minionPosition_P1.Count);
-        int randomMinion = Random.Range(0, minion.Length);
         if (upSide)
         {
-            
+            int rand = Random.Range(0, minionPosition_P1.Count);
+
             if (Time.time > spawn)
             {
                 spawn = spawnTimer + Time.time;
-                Instantiate(minion[randomMinion], minionPosition_P1[rand].position, Quaternion.identity);
+                GameObject minion = itemAndEnemyPooler.GetElementInPool(tagMinion, minionPosition_P1[rand].position, Quaternion.identity);
             }
         }
         else
         {
-            
+            int rand = Random.Range(0, minionPosition_P2.Count);
+
             if (Time.time > spawn)
             {
                 spawn = spawnTimer + Time.time;
-                Instantiate(minion[randomMinion], minionPosition_P2[rand].position, Quaternion.identity);
+                GameObject minion = itemAndEnemyPooler.GetElementInPool(tagMinion, minionPosition_P2[rand].position, Quaternion.identity);
             }
         }
     }
@@ -88,7 +83,7 @@ public class SpawnEnemyOnGround : Minions {
         {
             upSide = true;
         }
-        Debug.Log("Chec Set Side Ground" + upSide);
+        Debug.Log("Check Set Side Ground" + upSide);
     }
 
 

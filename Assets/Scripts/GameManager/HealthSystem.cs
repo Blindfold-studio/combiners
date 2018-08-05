@@ -5,18 +5,11 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour {
 
     # region Singleton
-    public static HealthSystem instance = null;
+    public static HealthSystem instance;
 
     void Awake()
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
     #endregion
 
@@ -29,13 +22,13 @@ public class HealthSystem : MonoBehaviour {
 
     void Start ()
     {
-        gameManager = GetComponent<GameManager>();
+        gameManager = GameManager.instance;
 
         maxHealth = gameManager.MaxHealth;
         currentHealth = maxHealth;
     }
 
-	public int HP
+	public int CurrentHealth
     {
         get
         {
@@ -57,7 +50,7 @@ public class HealthSystem : MonoBehaviour {
         }
     }
 
-    public int MaxHP
+    public int MaxHealth
     {
         get
         {
@@ -73,15 +66,5 @@ public class HealthSystem : MonoBehaviour {
     private void ResetHealth()
     {
         currentHealth = maxHealth;
-    }
-
-    private void OnEnable()
-    {
-        GameManager.OnResetHealth += ResetHealth;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.OnResetHealth -= ResetHealth;
     }
 }

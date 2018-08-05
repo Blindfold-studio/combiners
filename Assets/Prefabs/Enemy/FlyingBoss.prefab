@@ -23,8 +23,10 @@ GameObject:
   - component: {fileID: 114983773458213790}
   - component: {fileID: 114650350790801676}
   - component: {fileID: 61054071465350020}
+  - component: {fileID: 114468943104148780}
+  - component: {fileID: 114848665299636294}
   m_Layer: 0
-  m_Name: Bigblue
+  m_Name: FlyingBoss
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917106043646068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.472, y: 0.124, z: 0}
+  m_LocalPosition: {x: -4.146532, y: 5.82, z: 0}
   m_LocalScale: {x: 5.001613, y: 4.937325, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -68,6 +70,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.44, y: 0.47}
   m_EdgeRadius: 0
+--- !u!114 &114468943104148780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1917106043646068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992ec7758e5268e46b628bcc1c40a28c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadShot: 4
+  startShot: 3
 --- !u!114 &114650350790801676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,6 +100,23 @@ MonoBehaviour:
   rangeY: 1
   speedX: 1.25
   speedY: 2.5
+--- !u!114 &114848665299636294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1917106043646068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e505ff93ccb08704196140e34ece1cb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alpha: 0
+  centerX: 0
+  widthX: 10
+  centerY: 0
+  widthY: 5
+  speed: 150
 --- !u!114 &114983773458213790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,7 +133,7 @@ MonoBehaviour:
   hp2: {fileID: 0}
   maxHealth: 9
   numberOfTimeBossSwap: 3
-  collidersDisableTime: 1
+  colliderDisableTime: 1
 --- !u!212 &212366535138887448
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -136,7 +168,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1987524155
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5e0d89ece5755bf47841584a7bf026c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
