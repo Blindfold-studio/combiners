@@ -7,6 +7,8 @@ public class PlayerHitBox : MonoBehaviour {
 
     [SerializeField]
     private float invicibleTime;
+    [SerializeField]
+    private float knockbackTime;
 
     private HealthSystem playerHealth;
     private PlayerController player;
@@ -22,7 +24,7 @@ public class PlayerHitBox : MonoBehaviour {
         if ((collision.CompareTag("Boss") || collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !player.IsInvicble())
         {
             playerHealth.CurrentHealth = -1;
-            player.StartCoroutine(player.Hurt(invicibleTime));
+            player.StartCoroutine(player.Hurt(knockbackTime ,invicibleTime));
         }    
 
         else

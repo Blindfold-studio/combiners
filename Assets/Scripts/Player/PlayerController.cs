@@ -29,12 +29,15 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float shotDelay = 0.1f;
     [SerializeField]
+    private float knockbackForce;
+    [SerializeField]
     private Vector3 offsetArrow; 
 
     private bool isOnGround;
     private bool faceRight;
     private bool jumpRequest;
     private bool isInvicible;
+    private bool isKnockback;
     private float distanceToCamera;
     private float timeStamp;
     private float screenPadding = 0.5f;
@@ -142,9 +145,12 @@ public class PlayerController : MonoBehaviour {
 
     void MoveHorizontal(float dirHorizontal)
     {
-        Vector2 moveVel = rb.velocity;
-        moveVel.x = dirHorizontal * playerAttr.Speed;
-        rb.velocity = moveVel;
+        if (!isKnockback)
+        {
+            Vector2 moveVel = rb.velocity;
+            moveVel.x = dirHorizontal * playerAttr.Speed;
+            rb.velocity = moveVel;
+        }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, xMin, xMax), transform.position.y, transform.position.z);
     }
@@ -207,12 +213,31 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("x min: " + xMin + "x max: " + xMax);
     }
 
-    public IEnumerator Hurt(float duration)
+    void KnockBack ()
+    {
+        if (!faceRight)
+        {
+            rb.velocity = new Vector2(knockbackForce, knockbackForce);
+        }
+
+        else
+        {
+            rb.velocity = new Vector2(-knockbackForce, knockbackForce);
+        }
+    }
+
+    public IEnumerator Hurt(float knockbackTime, float duration)
     {
         isInvicible = true;
+        isKnockback = true;
         GetComponent<Animation>().Play("GetDamage");
+        KnockBack();
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(knockbackTime);
+
+        isKnockback = false;
+
+        yield return new WaitForSeconds(duration - knockbackTime);
 
         isInvicible = false;
         GetComponent<Animation>().Stop("GetDamage");

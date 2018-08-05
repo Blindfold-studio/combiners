@@ -11,6 +11,8 @@ public class Boss3Movement : MonoBehaviour {
     private float speed = 2f;
     [SerializeField]
     private float stuntAfterPlayerJumpOverHead = 0.6f;
+    [SerializeField]
+    private GameObject shield;
     
     private bool isFacingRight;
     //this variable will determine if a player go to the other side of the boss, the boss will be stunt for 0.5s
@@ -41,17 +43,6 @@ public class Boss3Movement : MonoBehaviour {
         }
     }
 
-    public GameObject TargetPlayer {
-        get {
-            return targetPlayer;
-        }
-
-        set {
-            targetPlayer = value;
-        }
-    }
-
-	// Use this for initialization
 	void Start () {
         missionManager = MissionManager.instance;
 
@@ -59,13 +50,9 @@ public class Boss3Movement : MonoBehaviour {
         onHoldForPlayerJump = false;
         state = State.Moving;
         targetPlayer = FindTheClosestPlayer();
-        BossHealth.SwapingEvent += SwapBoss;
-        BossHealth.DeathEvent += Die;
         FlipCharacter(targetPlayer.transform.position.x - this.transform.position.x);
 
         SetPositionNotOverViewPort();
-        //player1_screen.position = missionManager.GetBossPosition_P1();
-        //player2_screen.position = missionManager.GetBossPosition_P2();
     }
 
     private void Update() {
@@ -81,16 +68,63 @@ public class Boss3Movement : MonoBehaviour {
         }
     }
 
+    public GameObject TargetPlayer
+    {
+        get
+        {
+            return targetPlayer;
+        }
+
+        set
+        {
+            targetPlayer = value;
+        }
+    }
+
+    public bool IsFacingRight
+    {
+        get
+        {
+            return isFacingRight;
+        }
+    }
+
+    public GameObject FindTheClosestPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float minDistance = Mathf.Infinity;
+        GameObject targetPlayer = null;
+        for (int i = 0; i < players.Length; i++)
+        {
+            float distance = Vector2.Distance(this.transform.position, players[i].transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                targetPlayer = players[i];
+            }
+        }
+        return targetPlayer;
+    }
+
+    public void SetActiveShield (bool value)
+    {
+        shield.SetActive(value);
+    }
+
     IEnumerator FlipCharacter(float horizontalMovement) {
-        if((isFacingRight && horizontalMovement < 0) || 
-           (!isFacingRight && horizontalMovement > 0)) {
-            onHoldForPlayerJump = true;
-            isFacingRight = !isFacingRight;
-            yield return new WaitForSeconds(stuntAfterPlayerJumpOverHead);
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-            onHoldForPlayerJump = false;
+        if (CurrentState == State.Moving)
+        {
+            if ((isFacingRight && horizontalMovement < 0) ||
+           (!isFacingRight && horizontalMovement > 0))
+            {
+                onHoldForPlayerJump = true;
+                isFacingRight = !isFacingRight;
+                yield return new WaitForSeconds(stuntAfterPlayerJumpOverHead);
+                Vector3 scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+                onHoldForPlayerJump = false;
+            }
         }
     }
 
@@ -102,20 +136,6 @@ public class Boss3Movement : MonoBehaviour {
             vel *= -1;
         }
         rg.velocity = new Vector2(vel, rg.velocity.y);
-    }
-
-    public GameObject FindTheClosestPlayer() {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        float minDistance = Mathf.Infinity;
-        GameObject targetPlayer = null;
-        for(int i = 0 ; i < players.Length ; i++) {
-            float distance = Vector2.Distance(this.transform.position, players[i].transform.position);
-            if(distance < minDistance) {
-                minDistance = distance;
-                targetPlayer = players[i];
-            }
-        }
-        return targetPlayer;
     }
 
     void SetPositionNotOverViewPort()
@@ -140,6 +160,7 @@ public class Boss3Movement : MonoBehaviour {
         }
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
+        SetActiveShield(true);
     }
 
     void Die() {
@@ -148,9 +169,13 @@ public class Boss3Movement : MonoBehaviour {
             StopCoroutineEvent();
         }
         CurrentState = State.Idle;
-        BossHealth.SwapingEvent -= SwapBoss;
-        BossHealth.DeathEvent -= Die;
         rg.velocity = new Vector2(0f, rg.velocity.y);   
+    }
+
+    private void OnEnable()
+    {
+        BossHealth.SwapingEvent += SwapBoss;
+        BossHealth.DeathEvent += Die;
     }
 
     private void OnDisable() {
