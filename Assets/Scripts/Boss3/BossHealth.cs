@@ -16,6 +16,8 @@ public class BossHealth : MonoBehaviour {
     private float numberOfTimeBossSwap;
     [SerializeField]
     private float colliderDisableTime;
+    [SerializeField]
+    private float waitTime;
 
     private float currentHealth;
     private BoxCollider2D bossCollider;
@@ -52,7 +54,9 @@ public class BossHealth : MonoBehaviour {
         } else if(currentHealth % (maxHealth/numberOfTimeBossSwap) == 0 && currentHealth < maxHealth) {    
             // SwapBoss();
             if(SwapingEvent != null) {
+                bossCollider.enabled = false;
                 SwapingEvent();
+                bossCollider.enabled = true;
             }
         }
     }

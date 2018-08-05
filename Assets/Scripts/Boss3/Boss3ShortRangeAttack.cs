@@ -66,6 +66,8 @@ public class Boss3ShortRangeAttack : MonoBehaviour {
 
     void StopAttack() {
         isPlayerInRange = false;
+        shortRangeWeapon.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+        shortRangeWeapon.SetActive(false);
         StopCoroutine("SlashPlayer");
     }
 
