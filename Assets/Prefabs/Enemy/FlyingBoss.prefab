@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 61054071465350020}
   - component: {fileID: 114468943104148780}
   - component: {fileID: 114848665299636294}
+  - component: {fileID: 50748798001462966}
   m_Layer: 0
   m_Name: FlyingBoss
   m_TagString: Boss
@@ -39,12 +40,32 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917106043646068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.146532, y: 5.82, z: 0}
+  m_LocalPosition: {x: -14.537422, y: 1.5295506, z: 0}
   m_LocalScale: {x: 5.001613, y: 4.937325, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50748798001462966
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1917106043646068}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61054071465350020
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -100,6 +121,9 @@ MonoBehaviour:
   rangeY: 1
   speedX: 1.25
   speedY: 2.5
+  initiatePoint: 0
+  curPosition: {x: 0, y: 0, z: 0}
+  inPlayer1: 0
 --- !u!114 &114848665299636294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,12 +135,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e505ff93ccb08704196140e34ece1cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alpha: 0
   centerX: 0
-  widthX: 10
+  widthX: 20
   centerY: 0
   widthY: 5
-  speed: 150
+  speed: 100
+  maxSpeed: 300
+  bossCheckBox:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentPosition: 0
+  speedCheckBox: 30
+  speedUpdate: 0
+  stop: 0
 --- !u!114 &114983773458213790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,7 +163,7 @@ MonoBehaviour:
   bossHpBar: {fileID: 0}
   hp1: {fileID: 0}
   hp2: {fileID: 0}
-  maxHealth: 9
+  maxHealth: 21
   numberOfTimeBossSwap: 3
   colliderDisableTime: 1
 --- !u!212 &212366535138887448
