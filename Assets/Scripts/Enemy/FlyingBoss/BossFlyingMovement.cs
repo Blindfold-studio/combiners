@@ -21,16 +21,14 @@ public class BossFlyingMovement : Boss {
     public Vector3 curPosition;
     public bool inPlayer1;
 
-    public enum State { Idle, Moving, MoveCircle, MoveToCheckBox, HorizontalMove};
+    public enum State { Idle, Moving, MoveToPlayer, MoveCircle, MoveToCheckBox, HorizontalMove};
     private State state;
     private MissionManager missionManager;
+    private BossFlyingAround bossFlyingAround;
     private Transform player1_screen;
     private Transform player2_screen;
     public static event Action StopCoroutineEvent;
 
-    GameObject minion, minion2;
-    SpawnEnemyFly minionFly;
-    SpawnEnemyOnGround minionOnGround;
 
     private GameObject targetPlayer;
 
@@ -72,8 +70,7 @@ public class BossFlyingMovement : Boss {
     void Start ()
     {
         missionManager = MissionManager.instance;
-        curPosition = this.transform.position;
-        CheckBossPosition();
+        bossFlyingAround = GetComponent<BossFlyingAround>();
         state = State.Idle;
         StartCoroutine("SetOffSet");
     }
@@ -84,6 +81,8 @@ public class BossFlyingMovement : Boss {
         yield return new WaitForSeconds(0);
         offSetY = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
         //offSetX = rangeX * Mathf.Cos(speedX * initiatePoint) + this.transform.position.x;
+        curPosition = this.transform.position;
+        CheckBossPosition();
         state = State.Moving;
     }
 
@@ -152,6 +151,7 @@ public class BossFlyingMovement : Boss {
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
         initiatePoint = 0;
+        bossFlyingAround.RecurrentPosition();
 
     }
 
