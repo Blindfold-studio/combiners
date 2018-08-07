@@ -28,8 +28,6 @@ public class BossFlyingMovement : Boss {
     private Transform player1_screen;
     private Transform player2_screen;
     public static event Action StopCoroutineEvent;
-
-
     private GameObject targetPlayer;
 
     public State CurrentState
