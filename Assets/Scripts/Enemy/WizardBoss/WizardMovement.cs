@@ -24,7 +24,8 @@ public class WizardMovement : MonoBehaviour {
     [SerializeField]
     private float teleportTimeDelay;
     [SerializeField]
-    private float coolDownTeleport;
+    private float coolDownAction;
+
     private float teleportTime;
     bool facingR;
     private float distance;
@@ -96,13 +97,29 @@ public class WizardMovement : MonoBehaviour {
         switch (state)
         {
             case State.Idle:
-                
+                GetReady();
                 break;
 
             case State.Move:
                 Movement();
                 break;
+
+            case State.Attack:
+
+                break;
         }
+    }
+
+    void GetReady()
+    {
+        Flip();
+        StartCoroutine(waitForChangeState(State.Move, coolDownAction));
+    }
+    
+    IEnumerator waitForChangeState(State newstate, float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        state = newstate;
     }
 
     void Movement()
@@ -122,7 +139,7 @@ public class WizardMovement : MonoBehaviour {
         if(teleportTime <= 0)
         {
             teleportTime = teleportTimeDelay;
-            //state = State.Idle;
+            state = State.Idle;
             currentPosition++;
             
         }
