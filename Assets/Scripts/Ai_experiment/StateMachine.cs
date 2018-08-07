@@ -26,12 +26,18 @@
         {
             currentState.ExecuteState(this.owner);
         }
+
+        public void FixedUpdate ()
+        {
+            currentState.FixedUpdateExecuteState(this.owner);
+        }
     }
 
     public abstract class State<T>
     {
         public abstract void EnterState(T owner);
         public abstract void ExecuteState(T owner);
+        public abstract void FixedUpdateExecuteState(T owner);
         public abstract void ExitState(T owner);
     }
 }

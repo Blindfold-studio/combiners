@@ -38,10 +38,12 @@ public class BossKnightActionState : State<BossKnightAI>
 
     public override void ExecuteState(BossKnightAI owner)
     {
-        if (!owner.switchState)
-        {
-            owner.stateMachine.ChangeState(BossKnightMoveState.Instance);
-        }
+
+    }
+
+    public override void FixedUpdateExecuteState(BossKnightAI owner)
+    {
+        throw new System.NotImplementedException();
     }
 
     public override void ExitState(BossKnightAI owner)
