@@ -5,7 +5,13 @@ using System;
 
 public class WizardMovement : MonoBehaviour {
 
-    public enum State { Idle, Moving};
+    public enum State
+    {
+        Idle,
+        Move,
+        Attack
+    }
+
     private State state;
     private MissionManager missionManager;
     private GameObject targetPlayer;
@@ -17,8 +23,11 @@ public class WizardMovement : MonoBehaviour {
     private int currentPosition;
     [SerializeField]
     private float teleportTimeDelay;
+    [SerializeField]
+    private float coolDownTeleport;
     private float teleportTime;
-
+    bool facingR;
+    private float distance;
     public Vector3 curPosition;
     public GameObject portalPoint;
 
@@ -28,7 +37,7 @@ public class WizardMovement : MonoBehaviour {
         get { return state; }
         set
         {
-            if (value == State.Moving)
+            if (value == State.Move)
             {
                 state = value;
             }
@@ -60,6 +69,7 @@ public class WizardMovement : MonoBehaviour {
     void Start()
     {
         missionManager = MissionManager.instance;
+        facingR = true;
         currentPosition = 0;
         state = State.Idle;
         StartCoroutine("DelayBossSpawn");
@@ -70,23 +80,35 @@ public class WizardMovement : MonoBehaviour {
         yield return new WaitForSeconds(0);
         curPosition = this.transform.position;
         CheckBossPosition();
-        state = State.Moving;
+        state = State.Move;
     }
 
     void Update()
     {
         TargetPlayer = FindTheClosestPlayer();
-        teleportTime -= Time.deltaTime;
-
-        if(state == State.Moving)
-        {
-            Movement();
-        }
         
+        BossStatus();
+        
+    }
+
+    public void BossStatus()
+    {
+        switch (state)
+        {
+            case State.Idle:
+                
+                break;
+
+            case State.Move:
+                Movement();
+                break;
+        }
     }
 
     void Movement()
     {
+        teleportTime -= Time.deltaTime;
+        // Check where is player position.
         if (inPlayer1)
         {
             portalPoint.transform.position = new Vector3(0f, 50f, 0f);
@@ -95,20 +117,50 @@ public class WizardMovement : MonoBehaviour {
         {
             portalPoint.transform.position = new Vector3(0f, 0f, 0f);
         }
-
-       
+        
+        
         if(teleportTime <= 0)
         {
             teleportTime = teleportTimeDelay;
+            //state = State.Idle;
             currentPosition++;
+            
         }
-
         if (currentPosition == portalPoint.transform.childCount )
         {
             currentPosition = 0;
         }
-
+        Flip();
         transform.position = portalPoint.transform.GetChild(currentPosition).position;
+    }
+
+    void Flip()
+    {
+        distance = targetPlayer.transform.position.x - transform.position.x;
+        if (facingR && (distance > 0))
+        {
+
+            Vector3 Scale = transform.localScale;
+            if (Scale.x < 0)
+            {
+                Scale.x *= -1;
+            }
+            transform.localScale = Scale;
+            facingR = false;
+        }
+
+        else if (!facingR && (distance < 0) || facingR && (distance < 0))
+        {
+
+            Vector3 Scale = transform.localScale;
+            if (Scale.x > 0)
+            {
+                Scale.x *= -1;
+            }
+            transform.localScale = Scale;
+            facingR = true;
+        }
+
     }
 
     public GameObject FindTheClosestPlayer()
