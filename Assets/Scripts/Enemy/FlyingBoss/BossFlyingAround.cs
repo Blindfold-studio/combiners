@@ -27,7 +27,6 @@ public class BossFlyingAround : MonoBehaviour {
 
     public GameObject[] bossCheckBox;
     private int pattern;
-    [SerializeField]
     private int currentPosition;
     [SerializeField]
     private float speedCheckBox = 30;

@@ -3,32 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class BossFlyingMovement : Boss {
+public class WizardMovement : MonoBehaviour {
 
-    [SerializeField]
-    private float rangeX = 10.0f;
-    [SerializeField]
-    private float rangeY = 1.0f;
-    [SerializeField]
-    private float speedX = 1.25f;
-    [SerializeField]
-    private float speedY = 2.5f;
-    public float initiatePoint;
-    private float x, y;
-    private int count = 0;
-    private float offSetX;
-    private float offSetY;
-    public Vector3 curPosition;
-    public bool inPlayer1;
-
-    public enum State { Idle, Moving, MoveToPlayer, MoveCircle, MoveToCheckBox, HorizontalMove};
+    public enum State { Idle, Moving};
     private State state;
     private MissionManager missionManager;
-    private BossFlyingAround bossFlyingAround;
+    private GameObject targetPlayer;
     private Transform player1_screen;
     private Transform player2_screen;
     public static event Action StopCoroutineEvent;
-    private GameObject targetPlayer;
+
+    public bool inPlayer1;
+    private int currentPosition;
+    [SerializeField]
+    private float teleportTimeDelay;
+    private float teleportTime;
+
+    public Vector3 curPosition;
+    public GameObject portalPoint;
+
 
     public State CurrentState
     {
@@ -45,7 +38,6 @@ public class BossFlyingMovement : Boss {
             }
         }
     }
-
     public GameObject TargetPlayer
     {
         get
@@ -65,20 +57,17 @@ public class BossFlyingMovement : Boss {
         BossHealth.DeathEvent += Die;
     }
 
-    void Start ()
+    void Start()
     {
         missionManager = MissionManager.instance;
-        bossFlyingAround = GetComponent<BossFlyingAround>();
+        currentPosition = 0;
         state = State.Idle;
-        StartCoroutine("SetOffSet");
+        StartCoroutine("DelayBossSpawn");
     }
 
-    IEnumerator SetOffSet()
+    IEnumerator DelayBossSpawn()
     {
-
         yield return new WaitForSeconds(0);
-        offSetY = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
-        //offSetX = rangeX * Mathf.Cos(speedX * initiatePoint) + this.transform.position.x;
         curPosition = this.transform.position;
         CheckBossPosition();
         state = State.Moving;
@@ -87,25 +76,39 @@ public class BossFlyingMovement : Boss {
     void Update()
     {
         TargetPlayer = FindTheClosestPlayer();
+        teleportTime -= Time.deltaTime;
+
         if(state == State.Moving)
         {
-            Controll();
-        }    
+            Movement();
+        }
+        
     }
 
-    void Controll()
+    void Movement()
     {
-        if (count % 2 == 0)
+        if (inPlayer1)
         {
-            initiatePoint -= Time.deltaTime;
+            portalPoint.transform.position = new Vector3(0f, 50f, 0f);
         }
-        else if (count % 2 == 1)
+        else
         {
-            initiatePoint += Time.deltaTime;
+            portalPoint.transform.position = new Vector3(0f, 0f, 0f);
         }
-        x = rangeX * Mathf.Cos(speedX * initiatePoint);
-        y = rangeY * Mathf.Sin(speedY * initiatePoint) + offSetY;
-        transform.localPosition = new Vector3(x, y, 0);
+
+       
+        if(teleportTime <= 0)
+        {
+            teleportTime = teleportTimeDelay;
+            currentPosition++;
+        }
+
+        if (currentPosition == portalPoint.transform.childCount )
+        {
+            currentPosition = 0;
+        }
+
+        transform.position = portalPoint.transform.GetChild(currentPosition).position;
     }
 
     public GameObject FindTheClosestPlayer()
@@ -133,29 +136,23 @@ public class BossFlyingMovement : Boss {
         }
         if (TargetPlayer.name == "Player1")
         {
-           
+
             this.transform.position = missionManager.GetBossPosition_P2();
-            offSetY = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
-            
+
         }
         else if (TargetPlayer.name == "Player2")
         {
-          
-            this.transform.position = missionManager.GetBossPosition_P1();
-            offSetY = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
+
+            this.transform.position = missionManager.GetBossPosition_P1();      
         }
-        curPosition = this.transform.position;
         CheckBossPosition();
         TargetPlayer = FindTheClosestPlayer();
-        CurrentState = State.Moving;
-        initiatePoint = 0;
-        bossFlyingAround.RecurrentPosition();
-
+        CurrentState = State.Idle;
     }
 
     void CheckBossPosition()
     {
-        if(curPosition.y >= 25)
+        if (curPosition.y >= 25)
         {
             inPlayer1 = true;
         }
