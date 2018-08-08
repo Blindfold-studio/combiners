@@ -12,12 +12,13 @@ public class WizardMovement : MonoBehaviour {
         Attack
     }
 
-    private State state;
+    public State state;
     private MissionManager missionManager;
     private GameObject targetPlayer;
     private Transform player1_screen;
     private Transform player2_screen;
     public static event Action StopCoroutineEvent;
+    private WizardAttack wizardAttackScript;
 
     public bool inPlayer1;
     private int currentPosition;
@@ -29,25 +30,8 @@ public class WizardMovement : MonoBehaviour {
     private float teleportTime;
     bool facingR;
     private float distance;
-    public Vector3 curPosition;
+    private Vector3 curPosition;
     public GameObject portalPoint;
-
-
-    public State CurrentState
-    {
-        get { return state; }
-        set
-        {
-            if (value == State.Move)
-            {
-                state = value;
-            }
-            else
-            {
-                state = value;
-            }
-        }
-    }
     public GameObject TargetPlayer
     {
         get
@@ -70,6 +54,7 @@ public class WizardMovement : MonoBehaviour {
     void Start()
     {
         missionManager = MissionManager.instance;
+        wizardAttackScript = GetComponent<WizardAttack>();
         facingR = true;
         currentPosition = 0;
         state = State.Idle;
@@ -105,7 +90,7 @@ public class WizardMovement : MonoBehaviour {
                 break;
 
             case State.Attack:
-
+                wizardAttackScript.AttackState();
                 break;
         }
     }
@@ -113,7 +98,7 @@ public class WizardMovement : MonoBehaviour {
     void GetReady()
     {
         Flip();
-        StartCoroutine(waitForChangeState(State.Move, coolDownAction));
+        StartCoroutine(waitForChangeState(State.Attack, coolDownAction));
     }
     
     IEnumerator waitForChangeState(State newstate, float wait)
@@ -216,7 +201,7 @@ public class WizardMovement : MonoBehaviour {
         }
         CheckBossPosition();
         TargetPlayer = FindTheClosestPlayer();
-        CurrentState = State.Idle;
+        state = State.Idle;
     }
 
     void CheckBossPosition()
@@ -233,7 +218,7 @@ public class WizardMovement : MonoBehaviour {
 
     void Die()
     {
-        CurrentState = State.Idle;
+        state = State.Idle;
         BossHealth.SwapingEvent -= SwapBoss;
         BossHealth.DeathEvent -= Die;
     }

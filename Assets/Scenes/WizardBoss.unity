@@ -970,6 +970,11 @@ Prefab:
       propertyPath: portalPoint
       value: 
       objectReference: {fileID: 1236362702}
+    - target: {fileID: 114654799428202078, guid: 18d43e096a939704ea8b046da6a1146d,
+        type: 2}
+      propertyPath: coolDownAction
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18d43e096a939704ea8b046da6a1146d, type: 2}
   m_IsPrefabParent: 0
@@ -1186,6 +1191,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35a076787e1cd654198de8a954f57265, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1532455922 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1878083679029778, guid: 18d43e096a939704ea8b046da6a1146d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1254824867}
+--- !u!114 &1532455923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1532455922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfbbca71ce7e004498ba2dbce7e14701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfIceBullet: 3
+  rangeIceBullet: 5
+  speedIceBullet: 3
+  magazine: 2
+  reloadShot: 1
+  startShot: 1
+  bullet: {fileID: 1654566454427350, guid: 63433797020897a49b7520b8f79dd71a, type: 2}
+  attackElementType: 0
 --- !u!1001 &1575589625
 Prefab:
   m_ObjectHideFlags: 0
@@ -1196,7 +1225,7 @@ Prefab:
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: pools.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114929965360994778, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
@@ -1264,18 +1293,18 @@ Prefab:
         type: 2}
       propertyPath: pools.Array.data[2].elements
       value: 
-      objectReference: {fileID: 1507412093112842, guid: b044e84bd5420894ea7a564e056bac93,
+      objectReference: {fileID: 1470708020820740, guid: d245f6ff2e0caac4dbfc2899161c747c,
         type: 2}
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: pools.Array.data[3].tag
-      value: Boss-FollowBullet
+      value: ice
       objectReference: {fileID: 0}
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: pools.Array.data[3].elements
       value: 
-      objectReference: {fileID: 1471202466994334, guid: ba5c187b224a058428a7b4c6d0030ce7,
+      objectReference: {fileID: 1654566454427350, guid: 63433797020897a49b7520b8f79dd71a,
         type: 2}
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
@@ -1389,7 +1418,7 @@ Prefab:
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
       propertyPath: pools.Array.data[2].tag
-      value: Boss-StraightBullet
+      value: Enemy_Arrow
       objectReference: {fileID: 0}
     - target: {fileID: 114215313414364344, guid: 634440a7c97d6ef418ef9ce610c97fcd,
         type: 2}
