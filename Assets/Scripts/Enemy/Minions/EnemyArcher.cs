@@ -101,7 +101,6 @@ public class EnemyArcher : Minions, IFPoolObject
                 transform.localScale = Scale;
                 facingR = true;
             }
-            Debug.Log("Distance" + distance);
         }
 
     }

@@ -7,9 +7,9 @@ public class BossFlyingAround : MonoBehaviour {
     private BossFlyingMovement bossFlyingMovement;
     private BossHealth bossHealth;
     private Rigidbody2D rg2d;
+    private Vector3 dir;
 
-    [SerializeField]
-    private float alpha;
+
     [SerializeField]
     private float centerX = 0f;
     [SerializeField]
@@ -19,11 +19,14 @@ public class BossFlyingAround : MonoBehaviour {
     [SerializeField]
     private float widthY = 5f;
     [SerializeField]
-    private float speed = 3f;
+    private float speed = 150f;
+    [SerializeField]
+    private float maxSpeed = 300f;
+    private float timer = 2f;
+    private bool reCurrent = true;
 
     public GameObject[] bossCheckBox;
     private int pattern;
-    [SerializeField]
     private int currentPosition;
     [SerializeField]
     private float speedCheckBox = 30;
@@ -37,8 +40,6 @@ public class BossFlyingAround : MonoBehaviour {
         bossFlyingMovement = GetComponent<BossFlyingMovement>();
         bossHealth = GetComponent<BossHealth>();
         rg2d = GetComponent<Rigidbody2D>();
-        alpha = 0f;
-        speed = 150f;
         pattern = 0;
     }
 
@@ -58,21 +59,32 @@ public class BossFlyingAround : MonoBehaviour {
 
     void FixedUpdate () {
         
-        if (bossFlyingMovement.CurrentState != BossFlyingMovement.State.HorizontalMove && (bossFlyingMovement.CurrentState == BossFlyingMovement.State.MoveCircle || bossHealth.Health % ( bossHealth.maxHealth / bossHealth.numberOfTimeBossSwap) == 1 ))
+        if (bossFlyingMovement.CurrentState != BossFlyingMovement.State.HorizontalMove && (bossFlyingMovement.CurrentState == BossFlyingMovement.State.MoveCircle || bossHealth.Health % ( bossHealth.maxHealth / bossHealth.numberOfTimeBossSwap) == 3 ))
         {
-            CircleMovement();
+            timer -= Time.deltaTime;
+            if(timer <= 0)
+            {
+                CircleMovement();
+            }
+            else
+            {
+                transform.position += Vector3.up * 0.1f;
+            }
+            
             
         }
-        else if (bossHealth.Health % (bossHealth.maxHealth / bossHealth.numberOfTimeBossSwap) == 2)
+        else if (bossHealth.Health % (bossHealth.maxHealth / bossHealth.numberOfTimeBossSwap) == 5)
         {
             bossFlyingMovement.CurrentState = BossFlyingMovement.State.MoveToCheckBox;
+            pattern = 0;
             MoveToCheckBox();
         }
         else if (bossFlyingMovement.CurrentState == BossFlyingMovement.State.HorizontalMove)
         {
+            pattern = 2;
             MoveToCheckBox();
-            Debug.Log("HORIZONTALMOVEMENT");
         }
+        
 
        
 	}
@@ -80,26 +92,28 @@ public class BossFlyingAround : MonoBehaviour {
     void MoveToCheckBox()
     {
         
-        if (bossFlyingMovement.inPlayer1)
-        {
-            bossCheckBox[pattern].transform.position = new Vector3(0f, 50f, 0f);
-            transform.position = Vector3.MoveTowards(transform.position, bossCheckBox[pattern].transform.GetChild(currentPosition).transform.position, speedUpdate);
-        }
-        else
-        {
-            bossCheckBox[pattern].transform.position = new Vector3(0f, 0f, 0f);
-            transform.position = Vector3.MoveTowards(transform.position, bossCheckBox[pattern].transform.GetChild(currentPosition).transform.position, speedUpdate);
-        }
+            if (bossFlyingMovement.inPlayer1)
+            {
+                bossCheckBox[pattern].transform.position = new Vector3(0f, 50f, 0f);
+                transform.position = Vector3.MoveTowards(transform.position, bossCheckBox[pattern].transform.GetChild(currentPosition).transform.position, speedUpdate);
+            }
+            else
+            {
+                bossCheckBox[pattern].transform.position = new Vector3(0f, 0f, 0f);
+                transform.position = Vector3.MoveTowards(transform.position, bossCheckBox[pattern].transform.GetChild(currentPosition).transform.position, speedUpdate);
+            }
 
 
-        if (currentPosition == bossCheckBox[pattern].transform.childCount - 1)
-        {
-            currentPosition = bossCheckBox[pattern].transform.childCount - 1;
-        }
-        else if (Vector3.Distance(bossCheckBox[pattern].transform.GetChild(currentPosition).transform.position, transform.position) <= stop)
-        {
-            currentPosition++;
-        }
+            if (currentPosition == bossCheckBox[pattern].transform.childCount - 1)
+            {
+                currentPosition = bossCheckBox[pattern].transform.childCount - 1;
+            }
+            else if (Vector3.Distance(bossCheckBox[pattern].transform.GetChild(currentPosition).transform.position, transform.position) <= stop)
+            {
+                currentPosition++;
+            }
+       
+        
 
 
     }
@@ -108,10 +122,11 @@ public class BossFlyingAround : MonoBehaviour {
     {
         
         bossFlyingMovement.CurrentState = BossFlyingMovement.State.MoveCircle;
-        transform.position = new Vector2(centerX + (widthX * Mathf.Sin(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)), bossFlyingMovement.curPosition.y + (widthY * Mathf.Cos(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)));
-
-        if (widthX <= -20)
+        
+       
+        if (widthX <= 5 && bossFlyingMovement.CurrentState == BossFlyingMovement.State.MoveCircle)
         {
+
             if (bossFlyingMovement.inPlayer1)
             {
                 transform.position = new Vector3(-20f, 47f, 0f);
@@ -122,12 +137,35 @@ public class BossFlyingAround : MonoBehaviour {
             }
 
             bossFlyingMovement.CurrentState = BossFlyingMovement.State.HorizontalMove;
-            pattern = 1;
+            pattern = 2;
+
         }
+        else
+        {
+            if (speed < maxSpeed)
+            {
+                speed += 20 * Time.deltaTime;
+            }
+        }
+        
+
+        transform.position = new Vector2(centerX + (widthX * Mathf.Sin(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)), bossFlyingMovement.curPosition.y + (widthY * Mathf.Cos(Mathf.Deg2Rad * bossFlyingMovement.initiatePoint * speed)));
+
         currentPosition = 0;
 
     }
 
+    public void RecurrentPosition()
+    {
+        currentPosition = 0;
+        timer = 2;
+        speed = 150;
+        widthX = 20;
+    }
+   
+
+    
+    
     
 
 }

@@ -6,7 +6,7 @@ public class StraightLineBullet : MonoBehaviour, IFPoolObject
 {
 
     public float speed;
-    Rigidbody2D rb2d;
+    Rigidbody2D rg2d;
     private Transform player;
     private Vector3 dir;
     private GameObject targetPlayer;
@@ -27,7 +27,7 @@ public class StraightLineBullet : MonoBehaviour, IFPoolObject
     public void ObjectSpawn()
     {
        
-        rb2d = GetComponent<Rigidbody2D>();
+        rg2d = GetComponent<Rigidbody2D>();
         TargetPlayer = FindTheClosestPlayer();
         dir = Vector3.Normalize(targetPlayer.transform.position - this.transform.position);
         Invoke("Disappear", 15);
@@ -39,7 +39,7 @@ public class StraightLineBullet : MonoBehaviour, IFPoolObject
 
     void StraightBullet(Vector3 dir)
     {   
-        rb2d.velocity = dir*speed;
+        rg2d.velocity = dir*speed;
     }
 
     public GameObject FindTheClosestPlayer()
