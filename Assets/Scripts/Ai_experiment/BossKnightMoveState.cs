@@ -5,6 +5,7 @@ using StateSystem;
 
 public class BossKnightMoveState : State<BossKnightAI>
 {
+    private BossKnightAI owner;
     private static BossKnightMoveState instance;
 
     public GameObject TargetPlayer { get; set; }
@@ -35,20 +36,22 @@ public class BossKnightMoveState : State<BossKnightAI>
     public override void EnterState(BossKnightAI owner)
     {
         Debug.Log("Enter Move state");
-        TargetPlayer = FindTheClosestPlayer(owner.transform.position);
+        this.owner = owner;
+        TargetPlayer = owner.FindTheClosestPlayer();
         Debug.Log(TargetPlayer.name);
     }
 
     public override void ExecuteState(BossKnightAI owner)
     {
         float distanceToPlayer = TargetPlayer.transform.position.x - owner.transform.position.x;
-        //StartCoroutine(MoveToCharacter(owner, distanceToPlayer));
-        Flip(owner, distanceToPlayer);
+        owner.StartCoroutine(owner.FlipCharacter(distanceToPlayer));
+        //Flip(owner, distanceToPlayer);
     }
 
     public override void FixedUpdateExecuteState(BossKnightAI owner)
     {
-        MoveTowardPlayer(owner);
+        //MoveTowardPlayer(owner);
+        owner.MoveTowardPlayer();
     }
 
     public override void ExitState(BossKnightAI owner)

@@ -155,7 +155,7 @@ Prefab:
     - target: {fileID: 114855052239744156, guid: 5e08229ec818b9b42b3bdcd9c39be987,
         type: 2}
       propertyPath: playerData.maxHealth
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e08229ec818b9b42b3bdcd9c39be987, type: 2}
@@ -305,13 +305,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 198952338}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b43acd362e139042a56f034989e8756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToChangeState: 5
-  switchState: 0
+  speed: 4
+  stuntAfterPlayerJumpOverHead: 0.6
+  isFacingRight: 0
 --- !u!1001 &264506479
 Prefab:
   m_ObjectHideFlags: 0
@@ -835,7 +836,7 @@ Prefab:
     - target: {fileID: 114715151294289024, guid: 1d092e3ee7a2542afadd1182ee72e6af,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}
