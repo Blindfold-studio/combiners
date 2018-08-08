@@ -64,7 +64,7 @@ public class WizardMovement : MonoBehaviour {
     IEnumerator DelayBossSpawn()
     {
         yield return new WaitForSeconds(0);
-        curPosition = this.transform.position;
+        curPosition = transform.position;
         CheckBossPosition();
         state = State.Move;
     }
@@ -119,7 +119,6 @@ public class WizardMovement : MonoBehaviour {
         {
             portalPoint.transform.position = new Vector3(0f, 0f, 0f);
         }
-        
         
         if(teleportTime <= 0)
         {
@@ -204,9 +203,15 @@ public class WizardMovement : MonoBehaviour {
         state = State.Idle;
     }
 
+    private float UpdatePosition()
+    {
+       curPosition = transform.position;
+       return curPosition.y;
+    }
+
     void CheckBossPosition()
     {
-        if (curPosition.y >= 25)
+        if (UpdatePosition() >= 25)
         {
             inPlayer1 = true;
         }
