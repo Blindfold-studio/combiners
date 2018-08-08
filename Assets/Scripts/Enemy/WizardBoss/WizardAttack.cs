@@ -40,6 +40,7 @@ public class WizardAttack : MonoBehaviour {
 
     public void AttackState()
     {
+        
         switch (attackElementType)
         {
             case AttackElementType.ice:
