@@ -10,10 +10,7 @@ public class NormalBullet : MonoBehaviour,IFPoolObject {
         
 	}
 
-    void Disappear()
-    {
-        gameObject.SetActive(false);
-    }
+    
 
     void OnTriggerEnter2D(Collider2D collision)
     {

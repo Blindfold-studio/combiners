@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lightningScritp : MonoBehaviour, IFPoolObject {
-
+public class lightingSpotScript : MonoBehaviour, IFPoolObject
+{
     private WizardAttack wizardAttackScript;
 
     public void ObjectSpawn()
     {
         wizardAttackScript = WizardAttack.Instance;
-        StartCoroutine(lightningDuration(wizardAttackScript.lightningDuration));
+        StartCoroutine(lightningSpotDuration(wizardAttackScript.lightningDuration + wizardAttackScript.beforeLightning));
     }
 
-    IEnumerator lightningDuration(float duration)
+    IEnumerator lightningSpotDuration(float duration)
     {
         yield return new WaitForSeconds(duration);
         gameObject.SetActive(false);

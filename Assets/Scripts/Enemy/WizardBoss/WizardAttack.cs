@@ -19,12 +19,11 @@ public class WizardAttack : MonoBehaviour {
     private float iceFire;
     [SerializeField]
     private float lightningCooldown;
-    [SerializeField]
     private float lightningshot;
     [SerializeField]
-    private float beforeLightning;
+    public float beforeLightning;
     [SerializeField]
-    private float lightningDuration;
+    public float lightningDuration;
 
     
     
@@ -37,6 +36,17 @@ public class WizardAttack : MonoBehaviour {
 
     ProjectilePool pool;
     private WizardMovement wizardMovement;
+
+    #region Singleton
+
+    public static WizardAttack Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion
 
     public enum AttackElementType
     {
@@ -59,14 +69,11 @@ public class WizardAttack : MonoBehaviour {
         switch (attackElementType)
         {
             case AttackElementType.ice:
-               
                 IceAttack(numOfIceBullet, rangeIceBullet, speedIceBullet);
                 break;
 
             case AttackElementType.lightning:
-
                 StartCoroutine("lightingAttack");
-                
                 break;
         }
     }
@@ -118,18 +125,15 @@ public class WizardAttack : MonoBehaviour {
             wizardMovement.state = WizardMovement.State.Move;
             stateTimer = setStateTimer;
             lightningshot = lightningCooldown;
+            
         }
         else if (lightningshot <= 0.2)
         {
             Vector3 lightningPosition = new Vector3(Random.Range(-lightningValue.x, lightningValue.x), 0, 0);
-            lightPoint = pool.GetElementInPool("lightPoint", lightningPosition + transform.TransformPoint(0, 4.5f, 0), gameObject.transform.rotation);
+            lightPoint = pool.GetElementInPool("lightPoint", lightningPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
             lightningshot = lightningCooldown;
             yield return new WaitForSeconds(beforeLightning);
             lightningSprite = pool.GetElementInPool("lightning", lightningPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
-            yield return new WaitForSeconds(lightningDuration);
-            lightPoint.SetActive(false);
-            lightningSprite.SetActive(false);
-            
         }
         else
         {
