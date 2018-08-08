@@ -7,12 +7,7 @@ public class NormalBullet : MonoBehaviour,IFPoolObject {
     // Use this for initialization
     public void ObjectSpawn()
     {
-        Invoke("Disappear", 5);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        
 	}
 
     void Disappear()
@@ -27,5 +22,9 @@ public class NormalBullet : MonoBehaviour,IFPoolObject {
         {
             gameObject.SetActive(false);
         }
+    }
+    void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
     }
 }

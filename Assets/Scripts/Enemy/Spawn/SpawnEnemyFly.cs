@@ -86,7 +86,7 @@ public class SpawnEnemyFly : MonoBehaviour {
         {
             upSide = true;
         }
-        Debug.Log("Chec Set Side Flying" + upSide);
+
     }
 
     
