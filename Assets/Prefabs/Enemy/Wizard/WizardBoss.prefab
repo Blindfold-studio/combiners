@@ -22,6 +22,9 @@ GameObject:
   - component: {fileID: 212427776752440646}
   - component: {fileID: 114716122365520064}
   - component: {fileID: 114654799428202078}
+  - component: {fileID: 114741478241249224}
+  - component: {fileID: 50897811643087366}
+  - component: {fileID: 61934886448507546}
   m_Layer: 0
   m_Name: WizardBoss
   m_TagString: Boss
@@ -42,6 +45,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50897811643087366
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1878083679029778}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &61934886448507546
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1878083679029778}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8125, y: 1.875}
+    newSize: {x: 0.13, y: 0.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 1.75}
+  m_EdgeRadius: 0
 --- !u!114 &114654799428202078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,10 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91419f7431b867948863d06d58edfaa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   inPlayer1: 0
   teleportTimeDelay: 3
-  coolDownAction: 1
-  curPosition: {x: 0, y: 0, z: 0}
+  coolDownAction: 3
   portalPoint: {fileID: 0}
 --- !u!114 &114716122365520064
 MonoBehaviour:
@@ -76,6 +124,25 @@ MonoBehaviour:
   numberOfTimeBossSwap: 3
   colliderDisableTime: 1
   waitTime: 0
+--- !u!114 &114741478241249224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1878083679029778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfbbca71ce7e004498ba2dbce7e14701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfIceBullet: 3
+  rangeIceBullet: 5
+  speedIceBullet: 3
+  magazine: 2
+  reloadShot: 1
+  startShot: 1
+  bullet: {fileID: 1654566454427350, guid: 63433797020897a49b7520b8f79dd71a, type: 2}
+  attackElementType: 0
 --- !u!212 &212427776752440646
 SpriteRenderer:
   m_ObjectHideFlags: 1
