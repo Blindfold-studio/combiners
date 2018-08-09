@@ -25,6 +25,7 @@ public class WizardAttack : MonoBehaviour {
     [SerializeField]
     public float lightningDuration;
     [SerializeField]
+    private float blazeCooldown;
     private float blazeshot;
     [SerializeField]
     public float blazeDuration;
@@ -70,6 +71,7 @@ public class WizardAttack : MonoBehaviour {
         wizardMovement = GetComponent<WizardMovement>();
         iceFire = iceCooldown;
         lightningshot = lightningCooldown;
+        blazeshot = blazeCooldown;
     }
 
     public void AttackState()
@@ -160,6 +162,7 @@ public class WizardAttack : MonoBehaviour {
         if(stateTimer <= 0)
         {
             wizardMovement.state = WizardMovement.State.Move;
+            blazeshot = blazeCooldown;
             stateTimer = setStateTimer;
             blazeActivate = false;
         }
