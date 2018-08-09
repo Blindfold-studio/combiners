@@ -8,9 +8,7 @@ public class BossKnightIdleState : State<BossKnightAI>
     #region initiate
     private static BossKnightIdleState instance;
 
-    public GameObject TargetPlayer { get; set; }
-
-    private BossKnightIdleState()
+    public BossKnightIdleState(BossKnightAI owner) : base (owner)
     {
         if (instance != null)
         {
@@ -19,44 +17,32 @@ public class BossKnightIdleState : State<BossKnightAI>
 
         instance = this;
     }
-
-    public static BossKnightIdleState Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                new BossKnightIdleState();
-            }
-
-            return instance;
-        }
-    }
     #endregion
 
     private float timer;
+    public GameObject TargetPlayer { get; set; }
 
-    public override void EnterState(BossKnightAI owner)
+    public override void EnterState()
     {
         Debug.Log("Enter Idle state");
         timer = 0f;
     }
 
-    public override void ExecuteState(BossKnightAI owner)
+    public override void ExecuteState()
     {
         timer += Time.deltaTime;
         if (timer >= owner.idleStateTime)
         {
-            owner.stateMachine.ChangeState(BossKnightActionState.Instance);
+            owner.stateMachine.ChangeState(new BossKnightActionState(owner));
         }
     }
 
-    public override void ExitState(BossKnightAI owner)
+    public override void ExitState()
     {
         Debug.Log("Exit Idle state to Action state");
     }
 
-    public override void FixedUpdateExecuteState(BossKnightAI owner)
+    public override void FixedUpdateExecuteState()
     {
         
     }

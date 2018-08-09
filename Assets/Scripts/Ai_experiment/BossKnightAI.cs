@@ -34,7 +34,7 @@ public class BossKnightAI : MonoBehaviour {
         bossHealth = GetComponent<BossHealth>();
         rb = GetComponent<Rigidbody2D>();
         stateMachine = new StateMachine<BossKnightAI>(this);
-        stateMachine.ChangeState(BossKnightMoveState.Instance);
+        stateMachine.ChangeState(new BossKnightMoveState(this));
         SetPositionNotOverViewPort();
     }
 

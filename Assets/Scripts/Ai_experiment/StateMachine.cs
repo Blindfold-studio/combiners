@@ -15,29 +15,36 @@
         {
             if (currentState != null)
             {
-                currentState.ExitState(this.owner);
+                currentState.ExitState();
             }
 
             currentState = newState;
-            currentState.EnterState(this.owner);
+            currentState.EnterState();
         }
 
         public void Update ()
         {
-            currentState.ExecuteState(this.owner);
+            currentState.ExecuteState();
         }
 
         public void FixedUpdate ()
         {
-            currentState.FixedUpdateExecuteState(this.owner);
+            currentState.FixedUpdateExecuteState();
         }
     }
 
     public abstract class State<T>
     {
-        public abstract void EnterState(T owner);
-        public abstract void ExecuteState(T owner);
-        public abstract void FixedUpdateExecuteState(T owner);
-        public abstract void ExitState(T owner);
+        protected T owner;
+
+        public abstract void EnterState();
+        public abstract void ExecuteState();
+        public abstract void FixedUpdateExecuteState();
+        public abstract void ExitState();
+
+        public State(T owner)
+        {
+            this.owner = owner;
+        }
     }
 }

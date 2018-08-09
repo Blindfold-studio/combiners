@@ -8,7 +8,7 @@ public class BossKnightMoveState : State<BossKnightAI>
     #region initiate
     private static BossKnightMoveState instance;
 
-    private BossKnightMoveState ()
+    public BossKnightMoveState (BossKnightAI owner) : base (owner)
     {
         if (instance != null)
         {
@@ -17,28 +17,13 @@ public class BossKnightMoveState : State<BossKnightAI>
 
         instance = this;
     }
-
-    public static BossKnightMoveState Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                new BossKnightMoveState();
-            }
-
-            return instance;
-        }
-    }
     #endregion
 
-    private BossKnightAI owner;
     private float timer;
 
-    public override void EnterState(BossKnightAI owner)
+    public override void EnterState()
     {
         Debug.Log("Enter Move state");
-        this.owner = owner;
         owner.TargetPlayer = FindTheClosestPlayer();
         Debug.Log(owner.TargetPlayer.name);
         timer = 0f;
@@ -46,24 +31,24 @@ public class BossKnightMoveState : State<BossKnightAI>
         Flip(distanceToPlayer);
     }
 
-    public override void ExecuteState(BossKnightAI owner)
+    public override void ExecuteState()
     {
         timer += Time.deltaTime;
         if (timer >= owner.moveStateTime)
         {
-            owner.stateMachine.ChangeState(BossKnightIdleState.Instance);
+            owner.stateMachine.ChangeState(new BossKnightIdleState(owner));
         }
 
         float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;
         //Flip(distanceToPlayer);
     }
 
-    public override void FixedUpdateExecuteState(BossKnightAI owner)
+    public override void FixedUpdateExecuteState()
     {
         MoveTowardPlayer();
     }
 
-    public override void ExitState(BossKnightAI owner)
+    public override void ExitState()
     {
         Debug.Log("Exit Move state");
         float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;

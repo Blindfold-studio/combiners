@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using StateSystem;
 
-public class BossKnightActionState : State<BossKnightAI>
-{
+public class ThrowAxeState : State<BossKnightAI> {
     #region initiate
-    private static BossKnightActionState instance;
+    private static ThrowAxeState instance;
 
-    public BossKnightActionState(BossKnightAI owner) : base (owner)
+    public ThrowAxeState(BossKnightAI owner) : base (owner)
     {
         if (instance != null)
         {
@@ -23,13 +22,12 @@ public class BossKnightActionState : State<BossKnightAI>
 
     public override void EnterState()
     {
-        Debug.Log("Enter Action state");
+        
     }
 
     public override void ExecuteState()
     {
-        owner.ThrowStraightAxe(owner.TargetPlayer);
-        owner.stateMachine.ChangeState(new BossKnightMoveState(owner));
+        
     }
 
     public override void FixedUpdateExecuteState()
@@ -39,6 +37,6 @@ public class BossKnightActionState : State<BossKnightAI>
 
     public override void ExitState()
     {
-        Debug.Log("Exit Action state");
+        
     }
 }
