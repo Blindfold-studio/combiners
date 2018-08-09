@@ -24,6 +24,13 @@ public class WizardAttack : MonoBehaviour {
     public float beforeLightning;
     [SerializeField]
     public float lightningDuration;
+    [SerializeField]
+    private float blazeshot;
+    [SerializeField]
+    public float blazeDuration;
+    [SerializeField]
+    private bool blazeActivate;
+    public int RanX;
 
     
     
@@ -33,6 +40,7 @@ public class WizardAttack : MonoBehaviour {
     public GameObject iceSprite;
     public GameObject lightningSprite;
     public GameObject lightPoint;
+    public GameObject blazeSpawnArea;
 
     ProjectilePool pool;
     private WizardMovement wizardMovement;
@@ -51,8 +59,8 @@ public class WizardAttack : MonoBehaviour {
     public enum AttackElementType
     {
         ice,
-        blaze,
-        lightning
+        lightning,
+        blaze
     }
     public AttackElementType attackElementType;
 
@@ -74,6 +82,10 @@ public class WizardAttack : MonoBehaviour {
 
             case AttackElementType.lightning:
                 StartCoroutine("lightingAttack");
+                break;
+
+            case AttackElementType.blaze:
+                blazeAttack();
                 break;
         }
     }
@@ -143,6 +155,36 @@ public class WizardAttack : MonoBehaviour {
   
     }
 
+    void blazeAttack()
+    {
+        if(stateTimer <= 0)
+        {
+            wizardMovement.state = WizardMovement.State.Move;
+            stateTimer = setStateTimer;
+            blazeActivate = false;
+        }
+        else if (blazeshot <= 0.2 && !blazeActivate)
+        {
+            RanX = Random.RandomRange(0, 2);
+            if (wizardMovement.inPlayer1)
+            {
+                blazeSpawnArea.transform.position = new Vector3(0f, 50f, 0f);
+                blazeSprite = pool.GetElementInPool("blaze", blazeSpawnArea.transform.GetChild(RanX).position, gameObject.transform.rotation);
+            }
+            else
+            {
+                blazeSpawnArea.transform.position = new Vector3(0f, 0f, 0f);
+                blazeSprite = pool.GetElementInPool("blaze", blazeSpawnArea.transform.GetChild(RanX).position, gameObject.transform.rotation);
+            }
+            blazeActivate = true;
+        }
+        else
+        {
+            stateTimer -= Time.deltaTime;
+            blazeshot -= Time.deltaTime;
+        }
+
+    }
     
 
 }

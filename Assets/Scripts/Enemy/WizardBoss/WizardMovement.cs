@@ -32,6 +32,18 @@ public class WizardMovement : MonoBehaviour {
     private float distance;
     private Vector3 curPosition;
     public GameObject portalPoint;
+
+    #region Singleton
+
+    public static WizardMovement Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion
+
     public GameObject TargetPlayer
     {
         get
@@ -43,12 +55,6 @@ public class WizardMovement : MonoBehaviour {
         {
             targetPlayer = value;
         }
-    }
-
-    void Awake()
-    {
-        BossHealth.SwapingEvent += SwapBoss;
-        BossHealth.DeathEvent += Die;
     }
 
     void Start()
@@ -234,6 +240,12 @@ public class WizardMovement : MonoBehaviour {
         state = State.Idle;
         BossHealth.SwapingEvent -= SwapBoss;
         BossHealth.DeathEvent -= Die;
+    }
+
+    private void OnEnable()
+    {
+        BossHealth.SwapingEvent += SwapBoss;
+        BossHealth.DeathEvent += Die;
     }
 
     private void OnDisable()
