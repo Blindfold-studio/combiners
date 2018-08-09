@@ -8,8 +8,6 @@ public class BossKnightMoveState : State<BossKnightAI>
     #region initiate
     private static BossKnightMoveState instance;
 
-    public GameObject TargetPlayer { get; set; }
-
     private BossKnightMoveState ()
     {
         if (instance != null)
@@ -41,10 +39,10 @@ public class BossKnightMoveState : State<BossKnightAI>
     {
         Debug.Log("Enter Move state");
         this.owner = owner;
-        TargetPlayer = FindTheClosestPlayer();
-        Debug.Log(TargetPlayer.name);
+        owner.TargetPlayer = FindTheClosestPlayer();
+        Debug.Log(owner.TargetPlayer.name);
         timer = 0f;
-        float distanceToPlayer = TargetPlayer.transform.position.x - owner.transform.position.x;
+        float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;
         Flip(distanceToPlayer);
     }
 
@@ -56,7 +54,7 @@ public class BossKnightMoveState : State<BossKnightAI>
             owner.stateMachine.ChangeState(BossKnightIdleState.Instance);
         }
 
-        float distanceToPlayer = TargetPlayer.transform.position.x - owner.transform.position.x;
+        float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;
         //Flip(distanceToPlayer);
     }
 
@@ -68,7 +66,7 @@ public class BossKnightMoveState : State<BossKnightAI>
     public override void ExitState(BossKnightAI owner)
     {
         Debug.Log("Exit Move state");
-        float distanceToPlayer = TargetPlayer.transform.position.x - owner.transform.position.x;
+        float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;
         Flip(distanceToPlayer);
     }
 

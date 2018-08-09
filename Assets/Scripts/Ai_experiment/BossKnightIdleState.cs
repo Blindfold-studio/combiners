@@ -47,13 +47,13 @@ public class BossKnightIdleState : State<BossKnightAI>
         timer += Time.deltaTime;
         if (timer >= owner.idleStateTime)
         {
-            owner.stateMachine.ChangeState(BossKnightMoveState.Instance);
+            owner.stateMachine.ChangeState(BossKnightActionState.Instance);
         }
     }
 
     public override void ExitState(BossKnightAI owner)
     {
-        Debug.Log("Exit Idle state to Move state");
+        Debug.Log("Exit Idle state to Action state");
     }
 
     public override void FixedUpdateExecuteState(BossKnightAI owner)

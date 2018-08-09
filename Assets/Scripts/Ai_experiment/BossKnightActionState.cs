@@ -32,19 +32,24 @@ public class BossKnightActionState : State<BossKnightAI>
     }
     #endregion
 
+    private BossKnightAI owner;
+    private GameObject targetPlayer;
+
     public override void EnterState(BossKnightAI owner)
     {
         Debug.Log("Enter Action state");
+        this.owner = owner;
     }
 
     public override void ExecuteState(BossKnightAI owner)
     {
-
+        owner.ThrowStraightAxe(owner.TargetPlayer);
+        owner.stateMachine.ChangeState(BossKnightMoveState.Instance);
     }
 
     public override void FixedUpdateExecuteState(BossKnightAI owner)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void ExitState(BossKnightAI owner)

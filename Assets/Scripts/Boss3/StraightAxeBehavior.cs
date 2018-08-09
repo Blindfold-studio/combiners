@@ -32,4 +32,8 @@ public class StraightAxeBehavior : MonoBehaviour {
         }
     }
 
+    private void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
+    }
 }

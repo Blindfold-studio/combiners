@@ -310,6 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b43acd362e139042a56f034989e8756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileAxe: {fileID: 443375582}
+  straightAxe: {fileID: 920092155}
   speed: 4
   stuntAfterPlayerJumpOverHead: 0.6
   isFacingRight: 0
@@ -439,6 +441,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c7dcdee6d372cc64f85f80e614823a18, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &443375582 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1218676898540266, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+    type: 2}
+  m_PrefabInternal: {fileID: 1473949855}
 --- !u!1001 &542086394
 Prefab:
   m_ObjectHideFlags: 0
@@ -786,6 +793,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 542086394}
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+--- !u!1 &920092155 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1098701328819344, guid: 1d092e3ee7a2542afadd1182ee72e6af,
+    type: 2}
+  m_PrefabInternal: {fileID: 1473949855}
 --- !u!1001 &1473949855
 Prefab:
   m_ObjectHideFlags: 0
