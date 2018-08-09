@@ -305,7 +305,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 198952338}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b43acd362e139042a56f034989e8756, type: 3}
   m_Name: 
@@ -313,6 +313,8 @@ MonoBehaviour:
   speed: 4
   stuntAfterPlayerJumpOverHead: 0.6
   isFacingRight: 0
+  idleStateTime: 1
+  moveStateTime: 3
 --- !u!1001 &264506479
 Prefab:
   m_ObjectHideFlags: 0
@@ -836,7 +838,7 @@ Prefab:
     - target: {fileID: 114715151294289024, guid: 1d092e3ee7a2542afadd1182ee72e6af,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d092e3ee7a2542afadd1182ee72e6af, type: 2}

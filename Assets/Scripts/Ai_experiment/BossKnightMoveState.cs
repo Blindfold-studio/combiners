@@ -5,7 +5,7 @@ using StateSystem;
 
 public class BossKnightMoveState : State<BossKnightAI>
 {
-    private BossKnightAI owner;
+    #region initiate
     private static BossKnightMoveState instance;
 
     public GameObject TargetPlayer { get; set; }
@@ -32,41 +32,54 @@ public class BossKnightMoveState : State<BossKnightAI>
             return instance;
         }
     }
+    #endregion
+
+    private BossKnightAI owner;
+    private float timer;
 
     public override void EnterState(BossKnightAI owner)
     {
         Debug.Log("Enter Move state");
         this.owner = owner;
-        TargetPlayer = owner.FindTheClosestPlayer();
+        TargetPlayer = FindTheClosestPlayer();
         Debug.Log(TargetPlayer.name);
+        timer = 0f;
+        float distanceToPlayer = TargetPlayer.transform.position.x - owner.transform.position.x;
+        Flip(distanceToPlayer);
     }
 
     public override void ExecuteState(BossKnightAI owner)
     {
+        timer += Time.deltaTime;
+        if (timer >= owner.moveStateTime)
+        {
+            owner.stateMachine.ChangeState(BossKnightIdleState.Instance);
+        }
+
         float distanceToPlayer = TargetPlayer.transform.position.x - owner.transform.position.x;
-        owner.StartCoroutine(owner.FlipCharacter(distanceToPlayer));
-        //Flip(owner, distanceToPlayer);
+        //Flip(distanceToPlayer);
     }
 
     public override void FixedUpdateExecuteState(BossKnightAI owner)
     {
-        //MoveTowardPlayer(owner);
-        owner.MoveTowardPlayer();
+        MoveTowardPlayer();
     }
 
     public override void ExitState(BossKnightAI owner)
     {
         Debug.Log("Exit Move state");
+        float distanceToPlayer = TargetPlayer.transform.position.x - owner.transform.position.x;
+        Flip(distanceToPlayer);
     }
 
-    public GameObject FindTheClosestPlayer(Vector3 ownerPosition)
+    public GameObject FindTheClosestPlayer()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         float minDistance = Mathf.Infinity;
         GameObject targetPlayer = null;
         for (int i = 0; i < players.Length; i++)
         {
-            float distance = Vector2.Distance(ownerPosition, players[i].transform.position);
+            float distance = Vector2.Distance(owner.transform.position, players[i].transform.position);
             if (distance < minDistance)
             {
                 minDistance = distance;
@@ -76,23 +89,18 @@ public class BossKnightMoveState : State<BossKnightAI>
         return targetPlayer;
     }
 
-    //IEnumerator MoveToCharacter(BossKnightAI owner, float horizontalDistance)
-    void Flip(BossKnightAI owner, float horizontalDistance)
+    void Flip(float horizontalDistance)
     {
         if ((owner.isFacingRight && horizontalDistance < 0) || (!owner.isFacingRight && horizontalDistance > 0))
         {
-            //onHoldForPlayerJump = true;
             owner.isFacingRight = !owner.isFacingRight;
-            //yield return new WaitForSeconds(stuntAfterPlayerJumpOverHead);
             Vector3 scale = owner.transform.localScale;
             scale.x *= -1;
             owner.transform.localScale = scale;
-            //onHoldForPlayerJump = false;
-            //yield return null;
         }
     }
 
-    void MoveTowardPlayer(BossKnightAI owner)
+    void MoveTowardPlayer()
     {
         float vel = owner.Speed;
 

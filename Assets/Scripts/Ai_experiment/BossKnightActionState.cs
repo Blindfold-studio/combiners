@@ -5,6 +5,7 @@ using StateSystem;
 
 public class BossKnightActionState : State<BossKnightAI>
 {
+    #region initiate
     private static BossKnightActionState instance;
 
     private BossKnightActionState()
@@ -29,7 +30,7 @@ public class BossKnightActionState : State<BossKnightAI>
             return instance;
         }
     }
-
+    #endregion
 
     public override void EnterState(BossKnightAI owner)
     {
