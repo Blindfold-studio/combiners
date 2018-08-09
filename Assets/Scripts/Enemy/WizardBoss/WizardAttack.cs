@@ -32,7 +32,7 @@ public class WizardAttack : MonoBehaviour {
     [SerializeField]
     private bool blazeActivate;
     public int RanX;
-
+    bool randomStateDone;
     
     
 
@@ -72,33 +72,42 @@ public class WizardAttack : MonoBehaviour {
         iceFire = iceCooldown;
         lightningshot = lightningCooldown;
         blazeshot = blazeCooldown;
+        randomStateDone = false;
     }
 
     public void AttackState()
     {
-        switch (attackElementType)
+        // If take out if statement you can use more than one elements in once time
+        if (!randomStateDone)
         {
-            case AttackElementType.ice:
-                IceAttack(numOfIceBullet, rangeIceBullet, speedIceBullet);
-                break;
-
-            case AttackElementType.lightning:
-                StartCoroutine("lightingAttack");
-                break;
-
-            case AttackElementType.blaze:
-                blazeAttack();
-                break;
+            RandomState();
+            randomStateDone = true;
         }
+        else
+        {
+            switch (attackElementType)
+            {
+                case AttackElementType.ice:
+                    IceAttack(numOfIceBullet, rangeIceBullet, speedIceBullet);
+                    break;
+
+                case AttackElementType.lightning:
+                    StartCoroutine("lightingAttack");
+                    break;
+
+                case AttackElementType.blaze:
+                    blazeAttack();
+                    break;
+            }
+        }
+        
     }
 
     private void IceAttack(int numOfP, float range, float speedBullet)
     {
         if (stateTimer <= 0)
         {
-            wizardMovement.state = WizardMovement.State.Move;
-            stateTimer = setStateTimer;
-            iceFire = iceCooldown;
+            ResetAllAttack();
         }
         else if (iceFire <= 0.2)
         {
@@ -136,10 +145,7 @@ public class WizardAttack : MonoBehaviour {
     {
         if (stateTimer <= 0)
         {
-            wizardMovement.state = WizardMovement.State.Move;
-            stateTimer = setStateTimer;
-            lightningshot = lightningCooldown;
-            
+            ResetAllAttack();
         }
         else if (lightningshot <= 0.2)
         {
@@ -161,10 +167,7 @@ public class WizardAttack : MonoBehaviour {
     {
         if(stateTimer <= 0)
         {
-            wizardMovement.state = WizardMovement.State.Move;
-            blazeshot = blazeCooldown;
-            stateTimer = setStateTimer;
-            blazeActivate = false;
+            ResetAllAttack();
         }
         else if (blazeshot <= 0.2 && !blazeActivate)
         {
@@ -187,6 +190,35 @@ public class WizardAttack : MonoBehaviour {
             blazeshot -= Time.deltaTime;
         }
 
+    }
+
+    void RandomState()
+    {
+        int ranState = Random.Range(0, 3);
+        switch (ranState)
+        {
+            case 0:
+                attackElementType = AttackElementType.ice;
+                break;
+            case 1:
+                attackElementType = AttackElementType.lightning;
+                break;
+            case 2:
+                attackElementType = AttackElementType.blaze;
+                break;
+
+        }
+    }
+
+    void ResetAllAttack()
+    {
+        randomStateDone = false;
+        wizardMovement.state = WizardMovement.State.Move;
+        blazeshot = blazeCooldown;
+        stateTimer = setStateTimer;
+        blazeActivate = false;
+        lightningshot = lightningCooldown;
+        iceFire = iceCooldown;
     }
     
 
