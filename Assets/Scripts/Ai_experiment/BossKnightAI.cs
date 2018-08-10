@@ -5,13 +5,11 @@ using StateSystem;
 
 public class BossKnightAI : MonoBehaviour {
     [SerializeField]
-    private GameObject projectileAxe;
-    [SerializeField]
-    private GameObject straightAxe;
-    [SerializeField]
     private float speed = 2f;
     [SerializeField]
     private float stuntAfterPlayerJumpOverHead = 0.6f;
+    [SerializeField]
+    private GameObject shield;
 
     private bool onHoldForPlayerJump;
     private float distanceToCamera;
@@ -60,16 +58,9 @@ public class BossKnightAI : MonoBehaviour {
         Debug.Log("x min: " + xMin + "x max: " + xMax);
     }
 
-    public void ThrowProjectileAxe(GameObject targetPlayer)
+    public void SetActiveShield (bool value)
     {
-        projectileAxe.GetComponent<ProjectileAxeBehavior>().Moving(targetPlayer);
-    }
-
-    public void ThrowStraightAxe (GameObject targetPlayer)
-    {
-        straightAxe.SetActive(true);
-        straightAxe.transform.position = this.transform.position;
-        straightAxe.GetComponent<StraightAxeBehavior>().Moving(targetPlayer);
+        shield.SetActive(value);
     }
 
     public float Speed

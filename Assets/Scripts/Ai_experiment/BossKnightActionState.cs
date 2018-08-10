@@ -28,8 +28,7 @@ public class BossKnightActionState : State<BossKnightAI>
 
     public override void ExecuteState()
     {
-        owner.ThrowStraightAxe(owner.TargetPlayer);
-        owner.stateMachine.ChangeState(new BossKnightMoveState(owner));
+        owner.stateMachine.ChangeState(new BossKnightIdleState(owner));
     }
 
     public override void FixedUpdateExecuteState()

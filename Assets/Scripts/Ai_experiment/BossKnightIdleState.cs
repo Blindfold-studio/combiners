@@ -26,6 +26,7 @@ public class BossKnightIdleState : State<BossKnightAI>
     {
         Debug.Log("Enter Idle state");
         timer = 0f;
+        owner.Rb.velocity = Vector2.zero;
     }
 
     public override void ExecuteState()
@@ -33,7 +34,7 @@ public class BossKnightIdleState : State<BossKnightAI>
         timer += Time.deltaTime;
         if (timer >= owner.idleStateTime)
         {
-            owner.stateMachine.ChangeState(new BossKnightActionState(owner));
+            owner.stateMachine.ChangeState(new BossKnightMoveState(owner));
         }
     }
 
