@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using StateSystem;
 
-public class BossKnightIdleState : State<BossKnightAI>
+public class ShortRangeAttackState : State<BossKnightAI>
 {
     #region initiate
-    private static BossKnightIdleState instance;
+    private static ShortRangeAttackState instance;
 
-    public BossKnightIdleState(BossKnightAI owner) : base (owner)
+    public ShortRangeAttackState(BossKnightAI owner) : base(owner)
     {
         if (instance != null)
         {
@@ -20,28 +20,31 @@ public class BossKnightIdleState : State<BossKnightAI>
     #endregion
 
     private float timer;
-    public GameObject TargetPlayer { get; set; }
+    private float shortAttackDuration;
 
     public override void EnterState()
     {
-        Debug.Log("Enter Idle state");
+        Debug.Log("Enter ShortRangeAttack state");
+        shortAttackDuration = owner.ShortAttackDuration;
         timer = 0f;
-        owner.Rb.velocity = Vector2.zero;
+        owner.SetActiveShield(false);
+        owner.MeleeAttack();
     }
 
     public override void ExecuteState()
     {
         timer += Time.deltaTime;
-        if (timer >= owner.idleStateTime)
+
+        if (timer >= shortAttackDuration)
         {
-            owner.stateMachine.ChangeState(new BossKnightMoveState(owner));
+            owner.stateMachine.ChangeState(new BossKnightIdleState(owner));
         }
     }
 
     public override void ExitState()
     {
-        Debug.Log("Exit Idle state to Move state");
-        owner.SetActiveShield(true);
+        Debug.Log("Exit ShortRangeAttack state");
+        owner.StopMeleeAttack();
     }
 
     public override void FixedUpdateExecuteState()
@@ -51,6 +54,6 @@ public class BossKnightIdleState : State<BossKnightAI>
 
     public override void OnTriggerEnter()
     {
-
+       
     }
 }

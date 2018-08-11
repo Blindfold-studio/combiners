@@ -31,6 +31,11 @@
         {
             currentState.FixedUpdateExecuteState();
         }
+
+        public void OnTriggerEnter ()
+        {
+            currentState.OnTriggerEnter();
+        }
     }
 
     public abstract class State<T>

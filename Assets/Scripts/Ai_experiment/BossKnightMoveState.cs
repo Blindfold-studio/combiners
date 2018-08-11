@@ -36,9 +36,6 @@ public class BossKnightMoveState : State<BossKnightAI>
         timer += Time.deltaTime;
         if (timer >= owner.moveStateTime)
         {
-            //owner.stateMachine.ChangeState(new ProjectileAxeState(owner));
-            //owner.stateMachine.ChangeState(new StraightAxeState(owner));
-            //owner.stateMachine.ChangeState(new ChargeState(owner));
             owner.stateMachine.ChangeState(new BossKnightActionState(owner));
         }
 
@@ -103,6 +100,6 @@ public class BossKnightMoveState : State<BossKnightAI>
 
     public override void OnTriggerEnter()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

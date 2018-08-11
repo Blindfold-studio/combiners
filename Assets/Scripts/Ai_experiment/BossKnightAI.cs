@@ -15,9 +15,15 @@ public class BossKnightAI : MonoBehaviour {
     [SerializeField]
     private float prepareToChargeTime;
     [SerializeField]
+    private float shortAttackDuration;
+    [SerializeField]
     private float stuntAfterPlayerJumpOverHead = 0.6f;
     [SerializeField]
     private GameObject shield;
+    [SerializeField]
+    private GameObject shortWeapon;
+    [SerializeField]
+    private BoxCollider2D shortAttackBox;
 
     private bool onHoldForPlayerJump;
     private float distanceToCamera;
@@ -34,6 +40,7 @@ public class BossKnightAI : MonoBehaviour {
     public float ChargeTimeLimit { get { return chargeSpeed; } }
     public float PrepareAttackTime { get { return prepareAttackTime; } }
     public float PrepareToChargeTime { get { return prepareToChargeTime; } }
+    public float ShortAttackDuration { get { return shortAttackDuration; } }
     public float XMin { get { return xMin; } }
     public float XMax { get { return xMax; } }
     public GameObject TargetPlayer { get; set; }
@@ -47,6 +54,7 @@ public class BossKnightAI : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         stateMachine = new StateMachine<BossKnightAI>(this);
         stateMachine.ChangeState(new BossKnightMoveState(this));
+        shortWeapon.SetActive(false);
         SetPositionNotOverViewPort();
     }
 
@@ -91,5 +99,28 @@ public class BossKnightAI : MonoBehaviour {
         {
             return rb;
         }
+    }
+
+    public BoxCollider2D GetShortAttackBox ()
+    {
+        return shortAttackBox;
+    }
+
+    public void MeleeAttack ()
+    {
+        float angleSword = isFacingRight ? -90f : 90f;
+        shortWeapon.SetActive(true);
+        shortWeapon.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angleSword));
+    }
+
+    public void StopMeleeAttack ()
+    {
+        shortWeapon.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+        shortWeapon.SetActive(false);
+    }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+    {
+        stateMachine.OnTriggerEnter();
     }
 }

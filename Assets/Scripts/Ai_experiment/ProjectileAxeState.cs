@@ -64,7 +64,7 @@ public class ProjectileAxeState : State<BossKnightAI>
 
         if (canThrowAxe)
         {
-            ProjectileAxeBehavior projectileAxe = ProjectilePool.Instance.GetElementInPool("ProjectileAxe", owner.transform.position, Quaternion.identity).GetComponent<ProjectileAxeBehavior>();
+            ProjectileAxeBehavior projectileAxe = ProjectilePool.Instance.GetElementInPool("ProjectileAxe", owner.transform.position + new Vector3(0, 0.5f, 0f), Quaternion.identity).GetComponent<ProjectileAxeBehavior>();
             Debug.Log(projectileAxe);
             projectileAxe.AxeMoving(owner.TargetPlayer);
             canThrowAxe = false;
@@ -78,6 +78,6 @@ public class ProjectileAxeState : State<BossKnightAI>
 
     public override void OnTriggerEnter()
     {
-        throw new System.NotImplementedException();
+
     }
 }

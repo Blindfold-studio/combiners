@@ -78,6 +78,6 @@ public class StraightAxeState : State<BossKnightAI>
 
     public override void OnTriggerEnter()
     {
-        throw new System.NotImplementedException();
+
     }
 }
