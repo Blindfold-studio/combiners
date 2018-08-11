@@ -423,6 +423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  chargeSpeed: 8
+  chargeTimeLimit: 3
   stuntAfterPlayerJumpOverHead: 0.6
   shield: {fileID: 1833570864}
   isFacingRight: 0
