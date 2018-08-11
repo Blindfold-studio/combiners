@@ -60,6 +60,7 @@ public class StraightAxeBehavior : MonoBehaviour, IFPoolObject {
         animator = GetComponent<Animator>();
         //this.gameObject.SetActive(false);
         Debug.Log("Hello straight");
+        animator.enabled = true;
     }
 
     public void SetTargetPlayer (GameObject targetPlayer)
