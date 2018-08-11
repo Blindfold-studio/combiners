@@ -75,9 +75,4 @@ public class ProjectileAxeState : State<BossKnightAI>
             owner.stateMachine.ChangeState(new BossKnightIdleState(owner));
         }
     }
-
-    public override void OnTriggerEnter()
-    {
-
-    }
 }

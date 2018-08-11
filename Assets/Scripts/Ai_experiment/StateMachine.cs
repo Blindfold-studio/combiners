@@ -31,11 +31,6 @@
         {
             currentState.FixedUpdateExecuteState();
         }
-
-        public void OnTriggerEnter ()
-        {
-            currentState.OnTriggerEnter();
-        }
     }
 
     public abstract class State<T>
@@ -46,7 +41,6 @@
         public abstract void ExecuteState();
         public abstract void FixedUpdateExecuteState();
         public abstract void ExitState();
-        public abstract void OnTriggerEnter();
 
         public State(T owner)
         {

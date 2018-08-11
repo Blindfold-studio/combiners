@@ -19,6 +19,8 @@ public class BossKnightAI : MonoBehaviour {
     [SerializeField]
     private float stuntAfterPlayerJumpOverHead = 0.6f;
     [SerializeField]
+    private float swappingDuration;
+    [SerializeField]
     private GameObject shield;
     [SerializeField]
     private GameObject shortWeapon;
@@ -26,6 +28,7 @@ public class BossKnightAI : MonoBehaviour {
     private BoxCollider2D shortAttackBox;
 
     private bool onHoldForPlayerJump;
+    private bool isTimeToSwap;
     private float distanceToCamera;
     private float screenPadding = 0.5f;
     private float xMin;
@@ -34,6 +37,8 @@ public class BossKnightAI : MonoBehaviour {
     private BossHealth bossHealth;
 
     public bool isFacingRight;
+    public bool IsTimeToSwap { get { return isTimeToSwap; } }
+    public bool AlreadySwap { get; set; }
     public float idleStateTime;
     public float moveStateTime;
     public float ChargeSpeed { get { return chargeSpeed; } }
@@ -41,6 +46,7 @@ public class BossKnightAI : MonoBehaviour {
     public float PrepareAttackTime { get { return prepareAttackTime; } }
     public float PrepareToChargeTime { get { return prepareToChargeTime; } }
     public float ShortAttackDuration { get { return shortAttackDuration; } }
+    public float SwappingDuration { get { return swappingDuration; } }
     public float XMin { get { return xMin; } }
     public float XMax { get { return xMax; } }
     public GameObject TargetPlayer { get; set; }
@@ -49,6 +55,9 @@ public class BossKnightAI : MonoBehaviour {
     void Start ()
     {
         isFacingRight = false;
+        isTimeToSwap = false;
+        AlreadySwap = false;
+        TargetPlayer = FindTheClosestPlayer();
 
         bossHealth = GetComponent<BossHealth>();
         rb = GetComponent<Rigidbody2D>();
@@ -78,6 +87,23 @@ public class BossKnightAI : MonoBehaviour {
         xMin = leftmost.x + screenPadding;
         xMax = rightmost.x - screenPadding;
         Debug.Log("x min: " + xMin + "x max: " + xMax);
+    }
+
+    public GameObject FindTheClosestPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float minDistance = Mathf.Infinity;
+        GameObject targetPlayer = null;
+        for (int i = 0; i < players.Length; i++)
+        {
+            float distance = Vector2.Distance(transform.position, players[i].transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                targetPlayer = players[i];
+            }
+        }
+        return targetPlayer;
     }
 
     public void SetActiveShield (bool value)
@@ -119,8 +145,27 @@ public class BossKnightAI : MonoBehaviour {
         shortWeapon.SetActive(false);
     }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    public void DisableHitBox ()
     {
-        stateMachine.OnTriggerEnter();
+        GetComponent<BoxCollider2D>().enabled = false;
+        isTimeToSwap = true;
+        AlreadySwap = false;
+    }
+
+    public void EnableHitBox ()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
+        isTimeToSwap = false;
+        AlreadySwap = true;
+    }
+
+    private void OnEnable()
+    {
+        BossHealth.SwapingEvent += DisableHitBox;
+    }
+
+    private void OnDisable()
+    {
+        BossHealth.SwapingEvent -= DisableHitBox;
     }
 }

@@ -78,9 +78,4 @@ public class ChargeState : State<BossKnightAI>
             owner.transform.localScale = scale;
         }
     }
-
-    public override void OnTriggerEnter()
-    {
-
-    }
 }

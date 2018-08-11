@@ -481,6 +481,7 @@ MonoBehaviour:
   prepareToChargeTime: 1
   shortAttackDuration: 1
   stuntAfterPlayerJumpOverHead: 0.6
+  swappingDuration: 2
   shield: {fileID: 1833570864}
   shortWeapon: {fileID: 785130287}
   shortAttackBox: {fileID: 785130288}

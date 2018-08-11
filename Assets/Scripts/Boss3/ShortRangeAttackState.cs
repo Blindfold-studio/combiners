@@ -51,9 +51,4 @@ public class ShortRangeAttackState : State<BossKnightAI>
     {
         
     }
-
-    public override void OnTriggerEnter()
-    {
-       
-    }
 }

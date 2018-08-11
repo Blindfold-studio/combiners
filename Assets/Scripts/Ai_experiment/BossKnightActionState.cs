@@ -6,7 +6,7 @@ using StateSystem;
 public class BossKnightActionState : State<BossKnightAI>
 {
     #region initiate
-    public static BossKnightActionState instance;
+    private static BossKnightActionState instance;
 
     public BossKnightActionState(BossKnightAI owner) : base (owner)
     {
@@ -54,11 +54,6 @@ public class BossKnightActionState : State<BossKnightAI>
     public override void ExitState()
     {
         Debug.Log("Exit Action state");
-    }
-
-    public override void OnTriggerEnter()
-    {
-        
     }
 
     void RandomAttack()

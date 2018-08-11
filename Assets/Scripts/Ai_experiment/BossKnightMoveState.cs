@@ -24,7 +24,7 @@ public class BossKnightMoveState : State<BossKnightAI>
     public override void EnterState()
     {
         Debug.Log("Enter Move state");
-        owner.TargetPlayer = FindTheClosestPlayer();
+        //owner.TargetPlayer = owner.FindTheClosestPlayer();
         Debug.Log(owner.TargetPlayer.name);
         timer = 0f;
         float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;
@@ -33,6 +33,11 @@ public class BossKnightMoveState : State<BossKnightAI>
 
     public override void ExecuteState()
     {
+        if (owner.IsTimeToSwap && !owner.AlreadySwap)
+        {
+            owner.stateMachine.ChangeState(new SwappingState(owner));
+        }
+
         timer += Time.deltaTime;
         if (timer >= owner.moveStateTime)
         {
@@ -40,7 +45,6 @@ public class BossKnightMoveState : State<BossKnightAI>
         }
 
         float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;
-        //Flip(distanceToPlayer);
     }
 
     public override void FixedUpdateExecuteState()
@@ -53,23 +57,6 @@ public class BossKnightMoveState : State<BossKnightAI>
         Debug.Log("Exit Move state");
         float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;
         Flip(distanceToPlayer);
-    }
-
-    public GameObject FindTheClosestPlayer()
-    {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        float minDistance = Mathf.Infinity;
-        GameObject targetPlayer = null;
-        for (int i = 0; i < players.Length; i++)
-        {
-            float distance = Vector2.Distance(owner.transform.position, players[i].transform.position);
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                targetPlayer = players[i];
-            }
-        }
-        return targetPlayer;
     }
 
     void Flip(float horizontalDistance)
@@ -96,10 +83,5 @@ public class BossKnightMoveState : State<BossKnightAI>
             vel *= -1;
         }
         owner.Rb.velocity = new Vector2(vel, owner.Rb.velocity.y);
-    }
-
-    public override void OnTriggerEnter()
-    {
-        
     }
 }

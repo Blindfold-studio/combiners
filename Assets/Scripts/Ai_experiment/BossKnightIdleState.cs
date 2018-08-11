@@ -31,6 +31,11 @@ public class BossKnightIdleState : State<BossKnightAI>
 
     public override void ExecuteState()
     {
+        if (owner.IsTimeToSwap && !owner.AlreadySwap)
+        {
+            owner.stateMachine.ChangeState(new SwappingState(owner));
+        }
+
         timer += Time.deltaTime;
         if (timer >= owner.idleStateTime)
         {
@@ -47,10 +52,5 @@ public class BossKnightIdleState : State<BossKnightAI>
     public override void FixedUpdateExecuteState()
     {
         
-    }
-
-    public override void OnTriggerEnter()
-    {
-
     }
 }
