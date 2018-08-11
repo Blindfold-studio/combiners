@@ -48,4 +48,9 @@ public class BossKnightIdleState : State<BossKnightAI>
     {
         
     }
+
+    public override void OnTriggerEnter()
+    {
+        throw new System.NotImplementedException();
+    }
 }

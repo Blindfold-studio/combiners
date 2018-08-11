@@ -75,4 +75,9 @@ public class StraightAxeState : State<BossKnightAI>
             owner.stateMachine.ChangeState(new BossKnightIdleState(owner));
         }
     }
+
+    public override void OnTriggerEnter()
+    {
+        throw new System.NotImplementedException();
+    }
 }

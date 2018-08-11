@@ -19,16 +19,26 @@ public class BossKnightActionState : State<BossKnightAI>
     }
     #endregion
 
-    private GameObject targetPlayer;
+    private float prepareAttackTime;
+    private float timer;
+    //private BoxCollider2D shortAttackBox;
 
     public override void EnterState()
     {
         Debug.Log("Enter Action state");
+
+        timer = 0f;
+        prepareAttackTime = owner.PrepareAttackTime;
     }
 
     public override void ExecuteState()
     {
-        owner.stateMachine.ChangeState(new BossKnightIdleState(owner));
+        timer += Time.deltaTime;
+
+        if (timer >= prepareAttackTime)
+        {
+            RandomAttack();
+        } 
     }
 
     public override void FixedUpdateExecuteState()
@@ -39,5 +49,30 @@ public class BossKnightActionState : State<BossKnightAI>
     public override void ExitState()
     {
         Debug.Log("Exit Action state");
+    }
+
+    public override void OnTriggerEnter()
+    {
+        
+    }
+
+    void RandomAttack()
+    {
+        int rand = Random.Range(0, 3);
+
+        if (rand == 0)
+        {
+            owner.stateMachine.ChangeState(new ChargeState(owner));
+        }
+
+        else if (rand == 1)
+        {
+            owner.stateMachine.ChangeState(new StraightAxeState(owner));
+        }
+
+        else if (rand == 2)
+        {
+            owner.stateMachine.ChangeState(new ProjectileAxeState(owner));
+        }
     }
 }

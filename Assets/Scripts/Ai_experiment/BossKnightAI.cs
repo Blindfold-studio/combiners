@@ -11,6 +11,10 @@ public class BossKnightAI : MonoBehaviour {
     [SerializeField]
     private float chargeTimeLimit;
     [SerializeField]
+    private float prepareAttackTime;
+    [SerializeField]
+    private float prepareToChargeTime;
+    [SerializeField]
     private float stuntAfterPlayerJumpOverHead = 0.6f;
     [SerializeField]
     private GameObject shield;
@@ -28,6 +32,8 @@ public class BossKnightAI : MonoBehaviour {
     public float moveStateTime;
     public float ChargeSpeed { get { return chargeSpeed; } }
     public float ChargeTimeLimit { get { return chargeSpeed; } }
+    public float PrepareAttackTime { get { return prepareAttackTime; } }
+    public float PrepareToChargeTime { get { return prepareToChargeTime; } }
     public float XMin { get { return xMin; } }
     public float XMax { get { return xMax; } }
     public GameObject TargetPlayer { get; set; }

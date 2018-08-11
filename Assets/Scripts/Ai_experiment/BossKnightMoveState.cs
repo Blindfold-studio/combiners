@@ -38,7 +38,8 @@ public class BossKnightMoveState : State<BossKnightAI>
         {
             //owner.stateMachine.ChangeState(new ProjectileAxeState(owner));
             //owner.stateMachine.ChangeState(new StraightAxeState(owner));
-            owner.stateMachine.ChangeState(new ChargeState(owner));
+            //owner.stateMachine.ChangeState(new ChargeState(owner));
+            owner.stateMachine.ChangeState(new BossKnightActionState(owner));
         }
 
         float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;
@@ -98,5 +99,10 @@ public class BossKnightMoveState : State<BossKnightAI>
             vel *= -1;
         }
         owner.Rb.velocity = new Vector2(vel, owner.Rb.velocity.y);
+    }
+
+    public override void OnTriggerEnter()
+    {
+        throw new System.NotImplementedException();
     }
 }

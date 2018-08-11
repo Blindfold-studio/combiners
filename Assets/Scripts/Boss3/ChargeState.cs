@@ -22,19 +22,30 @@ public class ChargeState : State<BossKnightAI>
     private float chargeSpeed;
     private float timer;
     private float chargeTimeLimit;
+    private float prepareToChargeTime;
+    private bool canCharge;
 
     public override void EnterState()
     {
         Debug.Log("Enter Charge State");
         this.chargeSpeed = owner.ChargeSpeed;
         this.chargeTimeLimit = owner.ChargeTimeLimit;
+        this.prepareToChargeTime = owner.PrepareToChargeTime;
         timer = 0f;
+        canCharge = false;
+
         LockTargetPlayer();
     }
 
     public override void ExecuteState()
     {
         timer += Time.deltaTime;
+
+        if (timer >= prepareToChargeTime)
+        {
+            canCharge = true;
+            timer = 0f;
+        }
 
         if (timer >= chargeTimeLimit || owner.transform.position.x >= owner.XMax || owner.transform.position.x <= owner.XMin)
         {
@@ -49,7 +60,10 @@ public class ChargeState : State<BossKnightAI>
 
     public override void FixedUpdateExecuteState()
     {
-        owner.Rb.velocity = owner.isFacingRight ? Vector2.right * chargeSpeed : Vector2.left * chargeSpeed;
+        if (canCharge)
+        {
+            owner.Rb.velocity = owner.isFacingRight ? Vector2.right * chargeSpeed : Vector2.left * chargeSpeed;
+        }
     }
 
     void LockTargetPlayer ()
@@ -63,5 +77,10 @@ public class ChargeState : State<BossKnightAI>
             scale.x *= -1;
             owner.transform.localScale = scale;
         }
+    }
+
+    public override void OnTriggerEnter()
+    {
+        throw new System.NotImplementedException();
     }
 }
