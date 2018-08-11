@@ -40,7 +40,8 @@ public class BossKnightIdleState : State<BossKnightAI>
 
     public override void ExitState()
     {
-        Debug.Log("Exit Idle state to Action state");
+        Debug.Log("Exit Idle state to Move state");
+        owner.SetActiveShield(true);
     }
 
     public override void FixedUpdateExecuteState()

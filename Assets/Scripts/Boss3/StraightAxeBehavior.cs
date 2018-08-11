@@ -30,8 +30,6 @@ public class StraightAxeBehavior : MonoBehaviour, IFPoolObject {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("other: " + other);
-
         if (other.CompareTag("Player")) {
             Debug.Log("hit player");
             animator.enabled = false;

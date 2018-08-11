@@ -36,7 +36,7 @@ public class BossKnightMoveState : State<BossKnightAI>
         timer += Time.deltaTime;
         if (timer >= owner.moveStateTime)
         {
-            owner.stateMachine.ChangeState(new ThrowAxeState(owner));
+            owner.stateMachine.ChangeState(new ProjectileAxeState(owner));
         }
 
         float distanceToPlayer = owner.TargetPlayer.transform.position.x - owner.transform.position.x;

@@ -21,6 +21,7 @@ public class PlayerHitBox : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D collision)
     {
+        //Debug.Log("HitBox: " + collision.name);
         if ((collision.CompareTag("Boss") || collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !player.IsInvicble())
         {
             playerHealth.CurrentHealth = -1;

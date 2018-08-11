@@ -5,11 +5,13 @@ using UnityEngine;
 public class ProjectileAxeBehavior : MonoBehaviour, IFPoolObject {
 
     [SerializeField]
-    private float throwingAngle = 45f * Mathf.Deg2Rad;
+    private float throwingAngle = 60f * Mathf.Deg2Rad;
     [SerializeField]
     private float gravity = 0.8f;
     private float horizontalDistance;
     private float verticalDistance;
+    private float minXDistance = 8f;
+    private float maxXDistance = 14f;
     private Rigidbody2D rb;
     private Animator animator;
     public GameObject targetPlayer;
@@ -22,9 +24,9 @@ public class ProjectileAxeBehavior : MonoBehaviour, IFPoolObject {
 	}
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("other: " + other);
+        Debug.Log("Axe: " + other.name);
 
-        if(other.CompareTag("Player")) {
+        if (other.CompareTag("Player") || other.CompareTag("DestroyObject")) {
             animator.enabled = false;
             this.gameObject.SetActive(false);
         }
@@ -44,7 +46,9 @@ public class ProjectileAxeBehavior : MonoBehaviour, IFPoolObject {
 	public void Moving(GameObject targetPlayer) {
         float verticalDistance =  targetPlayer.transform.position.y - this.transform.position.y;
         float horizontalDistance = targetPlayer.transform.position.x - this.transform.position.x;
-        float vel = Mathf.Sqrt((gravity*horizontalDistance*horizontalDistance) / (1 + Mathf.Cos(2*throwingAngle)*(horizontalDistance*Mathf.Tan(throwingAngle) - verticalDistance)));
+        Debug.Log("Distance between boss and player: " + horizontalDistance);
+        //float vel = Mathf.Sqrt((gravity*horizontalDistance*horizontalDistance) / (1 + Mathf.Cos(2*throwingAngle)*(horizontalDistance*Mathf.Tan(throwingAngle) - verticalDistance)));
+        float vel = Mathf.Sqrt((Physics2D.gravity.y * horizontalDistance * horizontalDistance) / (1 + Mathf.Cos(2 * throwingAngle) * (horizontalDistance * Mathf.Tan(throwingAngle) - verticalDistance)));
         Debug.Log(verticalDistance);
         Debug.Log(horizontalDistance);
         float vel_x = vel * Mathf.Cos(throwingAngle);
@@ -57,8 +61,9 @@ public class ProjectileAxeBehavior : MonoBehaviour, IFPoolObject {
         rb.velocity = new Vector2(vel_x, vel_y);
     }
 
-    public void AxeMoving()
+    public void AxeMoving(GameObject targetPlayer)
     {
+        SetTargetPlayer(targetPlayer);
         //float verticalDistance = targetPlayer.transform.position.y - this.transform.position.y;
         //float horizontalDistance = targetPlayer.transform.position.x - this.transform.position.x;
         float vel = Mathf.Sqrt((gravity * horizontalDistance * horizontalDistance) / (1 + Mathf.Cos(2 * throwingAngle) * (horizontalDistance * Mathf.Tan(throwingAngle) - verticalDistance)));
@@ -86,15 +91,25 @@ public class ProjectileAxeBehavior : MonoBehaviour, IFPoolObject {
         Debug.Log("Hello projectile");
     }
 
-    public void SetTargetPlayer(GameObject targetPlayer)
+    void SetTargetPlayer(GameObject targetPlayer)
     {
         this.targetPlayer = targetPlayer;
         horizontalDistance = targetPlayer.transform.position.x - this.transform.position.x;
         verticalDistance = targetPlayer.transform.position.y - this.transform.position.y;
+        Debug.Log("Distance: " + horizontalDistance);
+        AdjustHorizontalDistance();
     }
 
-    private void OnBecameInvisible()
+    void AdjustHorizontalDistance ()
     {
-        gameObject.SetActive(false);
+        if (Mathf.Abs(horizontalDistance) >= maxXDistance)
+        {
+            horizontalDistance = (horizontalDistance >= 0) ? maxXDistance : -maxXDistance;
+        }
+
+        else if (Mathf.Abs(horizontalDistance) <= minXDistance)
+        {
+            horizontalDistance = (horizontalDistance >= 0) ? minXDistance : -minXDistance;
+        }
     }
 }
