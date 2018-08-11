@@ -16,7 +16,7 @@ public class blaze : MonoBehaviour, IFPoolObject
     {
         wizardAttackScript = WizardAttack.Instance;
         wizardMovementScript = WizardMovement.Instance;
-        distance = Vector3.Distance(wizardAttackScript.blazeSpawnArea.transform.GetChild(wizardAttackScript.RanX).position, wizardAttackScript.blazeSpawnArea.transform.GetChild(2).position);
+        distance = Vector3.Distance(wizardAttackScript.blazeSpawnArea.transform.GetChild(wizardAttackScript.RanX).position, wizardAttackScript.blazeSpawnArea.transform.GetChild(1).position);
         startTime = Time.time;
         Debug.Log("WIZARDPOINT" + wizardAttackScript.blazeSpawnArea.transform.GetChild(wizardAttackScript.RanX));
         StartCoroutine(Disappear(wizardAttackScript.blazeDuration));
@@ -28,7 +28,7 @@ public class blaze : MonoBehaviour, IFPoolObject
 
         reachSpeed = speedX / distance;
 
-        transform.position = Vector3.Lerp(wizardAttackScript.blazeSpawnArea.transform.GetChild(wizardAttackScript.RanX).position, wizardAttackScript.blazeSpawnArea.transform.GetChild(2).position, reachSpeed);
+        transform.position = Vector3.Lerp(wizardAttackScript.blazeSpawnArea.transform.GetChild(wizardAttackScript.RanX).position, wizardAttackScript.blazeSpawnArea.transform.GetChild(1).position, reachSpeed);
 
         Debug.Log(reachSpeed);
     }

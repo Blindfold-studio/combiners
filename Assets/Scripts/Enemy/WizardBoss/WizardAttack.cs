@@ -171,7 +171,7 @@ public class WizardAttack : MonoBehaviour {
         }
         else if (blazeshot <= 0.2 && !blazeActivate)
         {
-            RanX = Random.RandomRange(0, 2);
+            RanX = Random.RandomRange(0, 1);
             if (wizardMovement.inPlayer1)
             {
                 blazeSpawnArea.transform.position = new Vector3(0f, 50f, 0f);
@@ -194,7 +194,7 @@ public class WizardAttack : MonoBehaviour {
 
     void RandomState()
     {
-        int ranState = Random.Range(0, 3);
+        int ranState = Random.Range(2, 3);
         switch (ranState)
         {
             case 0:
