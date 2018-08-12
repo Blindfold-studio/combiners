@@ -28,6 +28,7 @@ public class ShortRangeAttackState : State<BossKnightAI>
         shortAttackDuration = owner.ShortAttackDuration;
         timer = 0f;
         owner.SetActiveShield(false);
+        owner.CanMeleeAttack = false;
         owner.MeleeAttack();
     }
 

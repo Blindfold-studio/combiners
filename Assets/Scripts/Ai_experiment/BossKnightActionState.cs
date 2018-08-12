@@ -29,15 +29,11 @@ public class BossKnightActionState : State<BossKnightAI>
         shortAttackBox = owner.GetShortAttackBox();
         timer = 0f;
         prepareAttackTime = owner.PrepareAttackTime;
+        owner.CanMeleeAttack = true;
     }
 
     public override void ExecuteState()
     {
-        if (Physics2D.OverlapBox(owner.TargetPlayer.transform.position, owner.TargetPlayer.transform.localScale, 0f))
-        {
-            owner.stateMachine.ChangeState(new ShortRangeAttackState(owner));
-        }
-
         timer += Time.deltaTime;
 
         if (timer >= prepareAttackTime)
@@ -54,6 +50,7 @@ public class BossKnightActionState : State<BossKnightAI>
     public override void ExitState()
     {
         Debug.Log("Exit Action state");
+        owner.CanMeleeAttack = false;
     }
 
     void RandomAttack()

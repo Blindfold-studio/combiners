@@ -39,6 +39,7 @@ public class BossKnightAI : MonoBehaviour {
     public bool isFacingRight;
     public bool IsTimeToSwap { get { return isTimeToSwap; } }
     public bool AlreadySwap { get; set; }
+    public bool CanMeleeAttack { get; set; }
     public float idleStateTime;
     public float moveStateTime;
     public float ChargeSpeed { get { return chargeSpeed; } }
@@ -57,6 +58,7 @@ public class BossKnightAI : MonoBehaviour {
         isFacingRight = false;
         isTimeToSwap = false;
         AlreadySwap = false;
+        CanMeleeAttack = false;
         TargetPlayer = FindTheClosestPlayer();
 
         bossHealth = GetComponent<BossHealth>();
