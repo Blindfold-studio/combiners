@@ -26,6 +26,7 @@ public class Sword : MonoBehaviour {
     {
         if (collision.CompareTag("Boss"))
         {
+            Debug.Log("Hit boss");
             collision.gameObject.GetComponent<BossHealth>().Health = -damage;
         }
 

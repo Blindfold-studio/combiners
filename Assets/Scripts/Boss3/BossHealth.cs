@@ -54,9 +54,9 @@ public class BossHealth : MonoBehaviour {
         } else if(currentHealth % (maxHealth/numberOfTimeBossSwap) == 0 && currentHealth < maxHealth) {    
             // SwapBoss();
             if(SwapingEvent != null) {
-                bossCollider.enabled = false;
+                //bossCollider.enabled = false;
                 SwapingEvent();
-                bossCollider.enabled = true;
+                //bossCollider.enabled = true;
             }
         }
     }

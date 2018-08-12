@@ -19,8 +19,10 @@ public class Boss3LongRangeAttack : MonoBehaviour {
         {
             if(transform.GetChild(i).gameObject.name == "StraightAxe") {
                 straightAxe = transform.GetChild(i).gameObject;
+                straightAxe.SetActive(false);
             } else if(transform.GetChild(i).gameObject.name == "ProjectileAxe") {
                 projectileAxe = transform.GetChild(i).gameObject;
+                projectileAxe.SetActive(false);
             }
         }
 	}
@@ -67,6 +69,7 @@ public class Boss3LongRangeAttack : MonoBehaviour {
         boss3Movement.SetActiveShield(false);
         Debug.Log("Start throwing an axe in a projectile line.");
         projectileAxe.SetActive(true);
+        projectileAxe.GetComponent<ProjectileAxeBehavior>().ObjectSpawn();
         projectileAxe.GetComponent<ProjectileAxeBehavior>().Moving(boss3Movement.TargetPlayer);
     }
 
@@ -87,6 +90,7 @@ public class Boss3LongRangeAttack : MonoBehaviour {
         Debug.Log("Start throwing an axe in a straight line.");
         straightAxe.transform.position = new Vector2(straightAxe.transform.position.x, boss3Movement.TargetPlayer.transform.position.y);
         straightAxe.SetActive(true);
+        straightAxe.GetComponent<StraightAxeBehavior>().ObjectSpawn();
         straightAxe.GetComponent<StraightAxeBehavior>().Moving(boss3Movement.TargetPlayer);
     }
 
