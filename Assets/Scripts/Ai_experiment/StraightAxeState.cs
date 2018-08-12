@@ -66,7 +66,8 @@ public class StraightAxeState : State<BossKnightAI>
         {
             StraightAxeBehavior straightAxe = ProjectilePool.Instance.GetElementInPool("StraightAxe", owner.transform.position, Quaternion.identity).GetComponent<StraightAxeBehavior>();
             Debug.Log(straightAxe);
-            straightAxe.SetTargetPlayer(owner.TargetPlayer);
+            //straightAxe.SetTargetPlayer(owner.TargetPlayer);
+            straightAxe.SetDirectionFromBoss(owner);
             canThrowAxe = false;
         }
 
