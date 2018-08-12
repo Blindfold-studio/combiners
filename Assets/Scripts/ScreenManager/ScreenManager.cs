@@ -12,7 +12,7 @@ public class ScreenManager : MonoBehaviour {
 	
 	public void StartGame ()
     {
-        gameManager.LoadNextScene();
+        gameManager.StartGame();
     }
 
     public void Restart ()

@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour {
         bossSceneList = new List<int>();
 
         SetDefaultPlayerData();
-        GenerateRandomSceneList();
         menuBuildIndex = 0;
     }
     
@@ -132,8 +131,10 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(menuBuildIndex);
     }
 
-    public void GenerateRandomSceneList ()
+    public void StartGame ()
     {
+        bossSceneList.Clear();
+
         for (int i = 0; i < bossSceneCount; i++)
         {
             int rand = Random.Range(0, bossSceneCount);
@@ -144,6 +145,8 @@ public class GameManager : MonoBehaviour {
             bossSceneList.Add(rand);
             Debug.Log(bossSceneList[i]);
         }
+
+        LoadNextScene();
     }
 
     public void TestList ()
