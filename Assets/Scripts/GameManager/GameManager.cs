@@ -131,6 +131,11 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(menuBuildIndex);
     }
 
+    public void LoadGameOverScene()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+
     public void StartGame ()
     {
         bossSceneList.Clear();

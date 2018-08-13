@@ -24,7 +24,7 @@ public class MissionManager : MonoBehaviour {
     private SpawnEnemyOnGround spawnSkeleton;
     private GameObject bossObject;
     private GameObject upgradePanel;
-    private GameObject losePanel;
+    private LoseScreen loseScreen;
 
     void Start () {
         bossObject = GameObject.FindGameObjectWithTag("Boss");
@@ -32,11 +32,10 @@ public class MissionManager : MonoBehaviour {
         healthSystem = GetComponent<HealthSystem>();
 
         upgradePanel = GameObject.FindGameObjectWithTag("WinAndUpgrade");
-        losePanel = GameObject.FindGameObjectWithTag("LosePanel");
+        loseScreen = GameObject.FindGameObjectWithTag("LosePanel").GetComponent<LoseScreen>();
         spawnFly = GetComponent<SpawnEnemyFly>();
         spawnSkeleton = GetComponent<SpawnEnemyOnGround>();
         upgradePanel.SetActive(false);
-        losePanel.SetActive(false);
 
         InitialBossSpawn();
 
@@ -53,8 +52,7 @@ public class MissionManager : MonoBehaviour {
 
         if (healthSystem.CurrentHealth <= 0)
         {
-            losePanel.SetActive(true);
-            Time.timeScale = 0f;
+            loseScreen.FadeToGameOverScene();
         }
     }
 
