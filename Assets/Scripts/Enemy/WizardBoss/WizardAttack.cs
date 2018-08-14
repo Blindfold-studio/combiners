@@ -24,7 +24,15 @@ public class WizardAttack : MonoBehaviour {
     public float beforeLightning;
     [SerializeField]
     public float lightningDuration;
-
+    [SerializeField]
+    private float blazeCooldown;
+    private float blazeshot;
+    [SerializeField]
+    public float blazeDuration;
+    [SerializeField]
+    private bool blazeActivate;
+    public int RanX;
+    bool randomStateDone;
     
     
 
@@ -33,6 +41,7 @@ public class WizardAttack : MonoBehaviour {
     public GameObject iceSprite;
     public GameObject lightningSprite;
     public GameObject lightPoint;
+    public GameObject blazeSpawnArea;
 
     ProjectilePool pool;
     private WizardMovement wizardMovement;
@@ -51,8 +60,8 @@ public class WizardAttack : MonoBehaviour {
     public enum AttackElementType
     {
         ice,
-        blaze,
-        lightning
+        lightning,
+        blaze
     }
     public AttackElementType attackElementType;
 
@@ -62,29 +71,43 @@ public class WizardAttack : MonoBehaviour {
         wizardMovement = GetComponent<WizardMovement>();
         iceFire = iceCooldown;
         lightningshot = lightningCooldown;
+        blazeshot = blazeCooldown;
+        randomStateDone = false;
     }
 
     public void AttackState()
     {
-        switch (attackElementType)
+        // If take out if statement you can use more than one elements in once time
+        if (!randomStateDone)
         {
-            case AttackElementType.ice:
-                IceAttack(numOfIceBullet, rangeIceBullet, speedIceBullet);
-                break;
-
-            case AttackElementType.lightning:
-                StartCoroutine("lightingAttack");
-                break;
+            RandomState();
+            randomStateDone = true;
         }
+        else
+        {
+            switch (attackElementType)
+            {
+                case AttackElementType.ice:
+                    IceAttack(numOfIceBullet, rangeIceBullet, speedIceBullet);
+                    break;
+
+                case AttackElementType.lightning:
+                    StartCoroutine("lightingAttack");
+                    break;
+
+                case AttackElementType.blaze:
+                    blazeAttack();
+                    break;
+            }
+        }
+        
     }
 
     private void IceAttack(int numOfP, float range, float speedBullet)
     {
         if (stateTimer <= 0)
         {
-            wizardMovement.state = WizardMovement.State.Move;
-            stateTimer = setStateTimer;
-            iceFire = iceCooldown;
+            ResetAllAttack();
         }
         else if (iceFire <= 0.2)
         {
@@ -122,10 +145,7 @@ public class WizardAttack : MonoBehaviour {
     {
         if (stateTimer <= 0)
         {
-            wizardMovement.state = WizardMovement.State.Move;
-            stateTimer = setStateTimer;
-            lightningshot = lightningCooldown;
-            
+            ResetAllAttack();
         }
         else if (lightningshot <= 0.2)
         {
@@ -143,6 +163,63 @@ public class WizardAttack : MonoBehaviour {
   
     }
 
+    void blazeAttack()
+    {
+        if(stateTimer <= 0)
+        {
+            ResetAllAttack();
+        }
+        else if (blazeshot <= 0.2 && !blazeActivate)
+        {
+            RanX = Random.RandomRange(0, 1);
+            if (wizardMovement.inPlayer1)
+            {
+                blazeSpawnArea.transform.position = new Vector3(0f, 50f, 0f);
+                blazeSprite = pool.GetElementInPool("blaze", blazeSpawnArea.transform.GetChild(RanX).position, gameObject.transform.rotation);
+            }
+            else
+            {
+                blazeSpawnArea.transform.position = new Vector3(0f, 0f, 0f);
+                blazeSprite = pool.GetElementInPool("blaze", blazeSpawnArea.transform.GetChild(RanX).position, gameObject.transform.rotation);
+            }
+            blazeActivate = true;
+        }
+        else
+        {
+            stateTimer -= Time.deltaTime;
+            blazeshot -= Time.deltaTime;
+        }
+
+    }
+
+    void RandomState()
+    {
+        int ranState = Random.Range(0, 3);
+        switch (ranState)
+        {
+            case 0:
+                attackElementType = AttackElementType.ice;
+                break;
+            case 1:
+                attackElementType = AttackElementType.lightning;
+                break;
+            case 2:
+                attackElementType = AttackElementType.blaze;
+                break;
+
+        }
+    }
+
+    void ResetAllAttack()
+    {
+        randomStateDone = false;
+        wizardMovement.state = WizardMovement.State.Move;
+        blazeshot = blazeCooldown;
+        stateTimer = setStateTimer;
+        blazeActivate = false;
+        lightningshot = lightningCooldown;
+        iceFire = iceCooldown;
+    }
     
 
 }
