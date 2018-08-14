@@ -21,7 +21,6 @@ public class HealthUI : MonoBehaviour {
         healthSystem = HealthSystem.instance;
         hpText = GetComponent<TextMeshProUGUI>();
         maxHp = healthSystem.MaxHealth;
-        Debug.Log("MaxHP: " + maxHp);
         // hpText.text = "HP: " + hp.ToString() + "/" + maxHp.ToString();
     }
 	

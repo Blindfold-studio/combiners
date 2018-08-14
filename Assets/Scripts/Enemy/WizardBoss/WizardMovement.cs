@@ -229,6 +229,7 @@ public class WizardMovement : MonoBehaviour {
         CheckBossPosition();
         TargetPlayer = FindTheClosestPlayer();
         state = State.Idle;
+        wizardAttackScript.ResetAllAttack();
     }
 
     private float UpdatePosition()
