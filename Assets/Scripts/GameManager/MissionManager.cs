@@ -17,6 +17,8 @@ public class MissionManager : MonoBehaviour {
     private List<Transform> bossPosition_P1;
     [SerializeField]
     private List<Transform> bossPosition_P2;
+    [SerializeField]
+    private GameObject spawnPoint;
 
     private BossHealth bossHealth;
     private HealthSystem healthSystem;
@@ -79,15 +81,17 @@ public class MissionManager : MonoBehaviour {
 
     public Vector3 GetBossPosition_P1()
     {
-        int rand = Random.Range(0, bossPosition_P1.Count);
-        
-        return bossPosition_P1[rand].position;
+        int rand = Random.Range(0, spawnPoint.transform.childCount);
+        spawnPoint.transform.position = new Vector3(0f, 50f, 0f);
+
+        return spawnPoint.transform.GetChild(rand).position;
     }
 
     public Vector3 GetBossPosition_P2()
     {
-        int rand = Random.Range(0, bossPosition_P2.Count);
+        int rand = Random.Range(0, spawnPoint.transform.childCount);
+        spawnPoint.transform.position = new Vector3(0f, 0f, 0f);
 
-        return bossPosition_P2[rand].position;
+        return spawnPoint.transform.GetChild(rand).position;
     }
 }
