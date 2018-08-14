@@ -27,6 +27,7 @@ public class SwappingState : State<BossKnightAI>
     {
         Debug.Log("Enter Swapping state");
         owner.Rb.velocity = Vector2.zero;
+        owner.DisableHitBox();
         missionManager = MissionManager.instance;
         swappingDuration = owner.SwappingDuration;
         timer = 0f;
