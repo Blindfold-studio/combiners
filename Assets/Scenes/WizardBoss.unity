@@ -155,7 +155,7 @@ Prefab:
     - target: {fileID: 114855052239744156, guid: 5e08229ec818b9b42b3bdcd9c39be987,
         type: 2}
       propertyPath: playerData.maxHealth
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e08229ec818b9b42b3bdcd9c39be987, type: 2}
@@ -4074,7 +4074,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: -0.07}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0.004
+  m_EdgeRadius: 0.04
   m_ColliderPaths:
   - m_Collider: {fileID: 378021897}
     m_ColliderPaths:
@@ -4846,6 +4846,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1471709901306066, guid: f201fd38b0d0f5648a9a7984f8da4684, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114678586131493262, guid: f201fd38b0d0f5648a9a7984f8da4684,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114944305855525802, guid: f201fd38b0d0f5648a9a7984f8da4684,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114536868399765444, guid: f201fd38b0d0f5648a9a7984f8da4684,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f201fd38b0d0f5648a9a7984f8da4684, type: 2}
   m_IsPrefabParent: 0
@@ -5002,7 +5021,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0.02
+  m_EdgeRadius: 0.04
   m_ColliderPaths:
   - m_Collider: {fileID: 976186278}
     m_ColliderPaths:
@@ -5985,7 +6004,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0.02
+  m_EdgeRadius: 0.04
   m_ColliderPaths:
   - m_Collider: {fileID: 1227890274}
     m_ColliderPaths:
