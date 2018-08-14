@@ -25,7 +25,6 @@ public class PlayerAttribute : MonoBehaviour {
 
     void Start()
     {
-        //gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         gameManager = GameManager.instance;
 
         arrowCapacity = gameManager.MaxArrow;
@@ -33,13 +32,13 @@ public class PlayerAttribute : MonoBehaviour {
 
         currentArrow = arrowCapacity;
 
-        arrowText.text = "Arrow: " + currentArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
+        //arrowText.text = "Arrow: " + currentArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
         speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
     void Update ()
     {
-        arrowText.text = "Arrow: " + currentArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
+        //arrowText.text = "Arrow: " + currentArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
         speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
