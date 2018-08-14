@@ -14,10 +14,6 @@ public class MissionManager : MonoBehaviour {
     #endregion
 
     [SerializeField]
-    private List<Transform> bossPosition_P1;
-    [SerializeField]
-    private List<Transform> bossPosition_P2;
-    [SerializeField]
     private GameObject spawnPoint;
 
     private BossHealth bossHealth;
@@ -38,6 +34,7 @@ public class MissionManager : MonoBehaviour {
         spawnFly = GetComponent<SpawnEnemyFly>();
         spawnSkeleton = GetComponent<SpawnEnemyOnGround>();
         upgradePanel.SetActive(false);
+        loseScreen.gameObject.SetActive(false);
 
         InitialBossSpawn();
 
@@ -54,6 +51,7 @@ public class MissionManager : MonoBehaviour {
 
         if (healthSystem.CurrentHealth <= 0)
         {
+            loseScreen.gameObject.SetActive(true);
             loseScreen.FadeToGameOverScene();
         }
     }
