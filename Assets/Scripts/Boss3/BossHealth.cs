@@ -20,6 +20,7 @@ public class BossHealth : MonoBehaviour {
     private float waitTime;
 
     private float currentHealth;
+    private bool isSwapTime;
     private BoxCollider2D bossCollider;
 
 
@@ -39,24 +40,27 @@ public class BossHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        isSwapTime = false;
 		currentHealth = maxHealth;
         bossCollider = GetComponent<BoxCollider2D>();
         UpdateHpText();
 	}
 	
 	void CheckingBossHealth() {
+        isSwapTime = false;
         UpdateHpText();
         StartCoroutine("ProtectionAfterReceivedAnAttack");
         if (currentHealth <= 0) {
             if(DeathEvent != null) {
                 DeathEvent();
             }
-        } else if(currentHealth % (maxHealth/numberOfTimeBossSwap) == 0 && currentHealth < maxHealth) {    
+        } else if(currentHealth % (maxHealth/numberOfTimeBossSwap) == 0 && currentHealth < maxHealth) {
+            isSwapTime = true;
             // SwapBoss();
             if(SwapingEvent != null) {
-                //bossCollider.enabled = false;
+                bossCollider.enabled = false;
                 SwapingEvent();
-                //bossCollider.enabled = true;
+                bossCollider.enabled = true;
             }
         }
     }
@@ -70,7 +74,8 @@ public class BossHealth : MonoBehaviour {
         bossCollider.enabled = false;
         GetComponent<Animation>().Play("BossGetDamage");
         yield return new WaitForSeconds(colliderDisableTime);
-        bossCollider.enabled = true;
+        if (!isSwapTime)
+            bossCollider.enabled = true;
         GetComponent<Animation>().Stop("BossGetDamage");
         yield return null;
     }
