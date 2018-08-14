@@ -81,8 +81,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8125, y: 1.875}
-    newSize: {x: 0.13, y: 0.3}
+    oldSize: {x: 0.40625, y: 0.9375}
+    newSize: {x: 0.40625, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   state: 0
   inPlayer1: 0
   teleportTimeDelay: 3
-  coolDownAction: 3
+  setCoolDownAction: 0
   portalPoint: {fileID: 0}
 --- !u!114 &114716122365520064
 MonoBehaviour:
@@ -135,13 +135,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbbca71ce7e004498ba2dbce7e14701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateTimer: 0
+  setStateTimer: 0
   numOfIceBullet: 3
   rangeIceBullet: 5
   speedIceBullet: 3
-  magazine: 2
-  reloadShot: 1
-  startShot: 1
-  bullet: {fileID: 1654566454427350, guid: 63433797020897a49b7520b8f79dd71a, type: 2}
+  iceCooldown: 0
+  lightningCooldown: 0
+  beforeLightning: 0
+  lightningDuration: 0
+  blazeCooldown: 0
+  blazeDuration: 0
+  blazeActivate: 0
+  RanX: 0
+  lightningValue: {x: 0, y: 0, z: 0}
+  blazeSprite: {fileID: 0}
+  iceSprite: {fileID: 0}
+  lightningSprite: {fileID: 0}
+  lightPoint: {fileID: 0}
+  blazeSpawnArea: {fileID: 0}
   attackElementType: 0
 --- !u!212 &212427776752440646
 SpriteRenderer:
@@ -183,7 +195,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.3}
+  m_Size: {x: 0.40625, y: 0.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

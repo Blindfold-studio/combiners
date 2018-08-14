@@ -4949,7 +4949,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8125, y: 1.875}
+  m_Size: {x: 0.40625, y: 0.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6345,6 +6345,24 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114258441738399596, guid: 1803c712d80e4f24a94c6940045782fe,
+        type: 2}
+      propertyPath: arrowSprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 91a0633409499664a90066c25ae1d950,
+        type: 3}
+    - target: {fileID: 114664699875505302, guid: 1803c712d80e4f24a94c6940045782fe,
+        type: 2}
+      propertyPath: healthSprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300002, guid: 45dc4ff5099517d44ae84cdf3ce5bc78,
+        type: 3}
+    - target: {fileID: 114664699875505302, guid: 1803c712d80e4f24a94c6940045782fe,
+        type: 2}
+      propertyPath: healthSprite.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 45dc4ff5099517d44ae84cdf3ce5bc78,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1803c712d80e4f24a94c6940045782fe, type: 2}
   m_IsPrefabParent: 0
@@ -6786,6 +6804,24 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114874965034083540, guid: 35a076787e1cd654198de8a954f57265,
+        type: 2}
+      propertyPath: arrowSprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 91a0633409499664a90066c25ae1d950,
+        type: 3}
+    - target: {fileID: 114336048110867948, guid: 35a076787e1cd654198de8a954f57265,
+        type: 2}
+      propertyPath: healthSprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300002, guid: 45dc4ff5099517d44ae84cdf3ce5bc78,
+        type: 3}
+    - target: {fileID: 114336048110867948, guid: 35a076787e1cd654198de8a954f57265,
+        type: 2}
+      propertyPath: healthSprite.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 45dc4ff5099517d44ae84cdf3ce5bc78,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35a076787e1cd654198de8a954f57265, type: 2}
   m_IsPrefabParent: 0
