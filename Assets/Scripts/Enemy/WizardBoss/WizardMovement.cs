@@ -159,7 +159,6 @@ public class WizardMovement : MonoBehaviour {
             teleportTime = teleportTimeDelay;
             state = State.Idle;
         }
-        Debug.Log("RANDOM " + randomPositionBoss);
         Flip();
         transform.position = portalPoint.transform.GetChild(randomPositionBoss).position;
     }
