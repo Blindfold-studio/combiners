@@ -49,11 +49,10 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        bossSceneCount = SceneManager.sceneCountInBuildSettings - 1;
+        bossSceneCount = SceneManager.sceneCountInBuildSettings - 2;
         bossSceneList = new List<int>();
 
         SetDefaultPlayerData();
-        GenerateRandomSceneList();
         menuBuildIndex = 0;
     }
     
@@ -100,7 +99,7 @@ public class GameManager : MonoBehaviour {
     {
         if (bossSceneList.Count != 0)
         {
-            int index = bossSceneList[0] + 1;
+            int index = bossSceneList[0];
 
             bossSceneList.RemoveAt(0);
             Time.timeScale = 1f;
@@ -132,18 +131,16 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(menuBuildIndex);
     }
 
-    public void GenerateRandomSceneList ()
+    public void LoadGameOverScene()
     {
-        for (int i = 0; i < bossSceneCount; i++)
-        {
-            int rand = Random.Range(0, bossSceneCount);
-            while (bossSceneList.Contains(rand))
-            {
-                rand = Random.Range(0, bossSceneCount);
-            }
-            bossSceneList.Add(rand);
-            Debug.Log(bossSceneList[i]);
-        }
+        SceneManager.LoadScene("GameOver");
+    }
+
+    public void StartGame ()
+    {
+        bossSceneList.Clear();
+        GenerateScene();
+        LoadNextScene();
     }
 
     public void TestList ()
@@ -154,6 +151,20 @@ public class GameManager : MonoBehaviour {
         {
             Debug.Log(bossSceneList[0]);
             bossSceneList.RemoveAt(0);
+        }
+    }
+
+    private void GenerateScene ()
+    {
+        for (int i = 0; i < bossSceneCount; i++)
+        {
+            int rand = Random.Range(1, bossSceneCount + 1);
+            while (bossSceneList.Contains(rand))
+            {
+                rand = Random.Range(1, bossSceneCount + 1);
+            }
+            bossSceneList.Add(rand);
+            Debug.Log(bossSceneList[i]);
         }
     }
 
