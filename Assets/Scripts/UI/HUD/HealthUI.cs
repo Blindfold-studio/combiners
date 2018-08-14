@@ -21,18 +21,7 @@ public class HealthUI : MonoBehaviour {
         healthSystem = HealthSystem.instance;
         hpText = GetComponent<TextMeshProUGUI>();
         maxHp = healthSystem.MaxHealth;
-
-        for (int i = 0; i < healthImage.Length; i++)
-        {
-            Debug.Log("MAx" + maxHp);
-            Debug.Log("I" + i);
-            if (i >= maxHp)
-            {
-                healthImage[i].gameObject.SetActive(false);
-            }
-        }
-
-
+        Debug.Log("MaxHP: " + maxHp);
         // hpText.text = "HP: " + hp.ToString() + "/" + maxHp.ToString();
     }
 	
@@ -45,10 +34,16 @@ public class HealthUI : MonoBehaviour {
 
     void CheckHealth()
     {
+        maxHp = healthSystem.MaxHealth;
         hp = healthSystem.CurrentHealth;
 
-        for (int i = 0; i < maxHp; i++)
+        for (int i = 0; i < healthImage.Length; i++)
         {
+            if (i >= maxHp)
+            {
+                healthImage[i].gameObject.SetActive(false);
+            }
+
             if (i < hp)
             {
                 healthImage[i].sprite = healthSprite[1];
