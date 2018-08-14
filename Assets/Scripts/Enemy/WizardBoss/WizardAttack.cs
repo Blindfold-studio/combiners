@@ -33,9 +33,9 @@ public class WizardAttack : MonoBehaviour {
     private bool blazeActivate;
     public int RanX;
     bool randomStateDone;
-    
-    
 
+
+    Vector3 lightningPosition;
     public Vector3 lightningValue;
     public GameObject blazeSprite;
     public GameObject iceSprite;
@@ -149,11 +149,21 @@ public class WizardAttack : MonoBehaviour {
         }
         else if (lightningshot <= 0.2)
         {
-            Vector3 lightningPosition = new Vector3(Random.Range(-lightningValue.x, lightningValue.x), 0, 0);
-            lightPoint = pool.GetElementInPool("lightPoint", lightningPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
+            if (wizardMovement.inPlayer1)
+            {
+                lightningPosition = new Vector3(Random.Range(this.transform.position.x -lightningValue.x, this.transform.position.x + lightningValue.x), 50, 0);
+            }
+            else
+            {
+                lightningPosition = new Vector3(Random.Range(this.transform.position.x - lightningValue.x, this.transform.position.x + lightningValue.x), 0, 0);
+            }
+            
+            //lightPoint = pool.GetElementInPool("lightPoint", lightningPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
+            lightPoint = pool.GetElementInPool("lightPoint", lightningPosition , gameObject.transform.rotation);
             lightningshot = lightningCooldown;
             yield return new WaitForSeconds(beforeLightning);
-            lightningSprite = pool.GetElementInPool("lightning", lightningPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
+            //lightningSprite = pool.GetElementInPool("lightning", lightningPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
+            lightningSprite = pool.GetElementInPool("lightning", lightningPosition, gameObject.transform.rotation);
         }
         else
         {
@@ -194,7 +204,7 @@ public class WizardAttack : MonoBehaviour {
 
     void RandomState()
     {
-        int ranState = Random.Range(0, 3);
+        int ranState = Random.Range(1, 2);
         switch (ranState)
         {
             case 0:
@@ -210,7 +220,7 @@ public class WizardAttack : MonoBehaviour {
         }
     }
 
-    void ResetAllAttack()
+    public void ResetAllAttack()
     {
         randomStateDone = false;
         wizardMovement.state = WizardMovement.State.Move;
