@@ -24,8 +24,6 @@ public class HealthUI : MonoBehaviour {
 
         for (int i = 0; i < healthImage.Length; i++)
         {
-            Debug.Log("MAx" + maxHp);
-            Debug.Log("I" + i);
             if (i >= maxHp)
             {
                 healthImage[i].gameObject.SetActive(false);
