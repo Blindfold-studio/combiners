@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
+
 
 public class WizardMovement : MonoBehaviour {
 
@@ -21,11 +22,13 @@ public class WizardMovement : MonoBehaviour {
     private WizardAttack wizardAttackScript;
 
     public bool inPlayer1;
+    private int randomPositionBoss;
     private int currentPosition;
     [SerializeField]
     private float teleportTimeDelay;
     [SerializeField]
-    public float coolDownAction;
+    public float setCoolDownAction;
+    private float coolDownAction;
 
     private float teleportTime;
     bool facingR;
@@ -62,7 +65,7 @@ public class WizardMovement : MonoBehaviour {
         missionManager = MissionManager.instance;
         wizardAttackScript = GetComponent<WizardAttack>();
         facingR = true;
-        currentPosition = 0;
+        coolDownAction = setCoolDownAction;
         state = State.Idle;
         StartCoroutine("DelayBossSpawn");
     }
@@ -108,6 +111,7 @@ public class WizardMovement : MonoBehaviour {
         if(coolDownAction <= 0)
         {
             state = State.Attack;
+            coolDownAction = setCoolDownAction;
         }
         else
         {
@@ -136,17 +140,28 @@ public class WizardMovement : MonoBehaviour {
         
         if(teleportTime <= 0)
         {
+            randomPositionBoss = UnityEngine.Random.Range(0, portalPoint.transform.childCount);
+            if(randomPositionBoss == currentPosition)
+            {
+                if(randomPositionBoss == portalPoint.transform.childCount - 1)
+                {
+                    randomPositionBoss--;
+                }
+                else
+                {
+                    randomPositionBoss++;
+                }
+            }
+            else
+            {
+                currentPosition = randomPositionBoss;
+            }
             teleportTime = teleportTimeDelay;
             state = State.Idle;
-            currentPosition++;
-            
         }
-        if (currentPosition == portalPoint.transform.childCount )
-        {
-            currentPosition = 0;
-        }
+        Debug.Log("RANDOM " + randomPositionBoss);
         Flip();
-        transform.position = portalPoint.transform.GetChild(currentPosition).position;
+        transform.position = portalPoint.transform.GetChild(randomPositionBoss).position;
     }
 
     void Flip()
