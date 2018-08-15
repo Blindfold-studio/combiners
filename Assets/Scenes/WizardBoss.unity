@@ -6427,7 +6427,7 @@ Prefab:
     - target: {fileID: 114741478241249224, guid: 18d43e096a939704ea8b046da6a1146d,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 212427776752440646, guid: 18d43e096a939704ea8b046da6a1146d, type: 2}
