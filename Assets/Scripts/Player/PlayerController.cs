@@ -25,15 +25,17 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private string arrowTag;
     [SerializeField]
-    private float groundedSkin = 0.05f;
-    [SerializeField]
     private float shotDelay = 0.1f;
     [SerializeField]
     private float knockbackForce;
     [SerializeField]
+    private float knockbackTime;
+    [SerializeField]
+    private float invicibleTime;
+    [SerializeField]
     private Vector3 offsetArrow; 
 
-    private bool isOnGround;
+    public bool IsOnGround { get; set; }
     private bool faceRight;
     private bool jumpRequest;
     private bool isInvicible;
@@ -44,23 +46,23 @@ public class PlayerController : MonoBehaviour {
     private float xMin;
     private float xMax;
     private Animator anim;
-    private BoxCollider2D playerBox;
     private Rigidbody2D rb;
+    private PlayerAttribute playerAttr;
+    private PlayerAttack playerAttack;
+    private HealthSystem playerHealth;
+
+    private BoxCollider2D playerBox;
     private Vector2 playerSize;
     private Vector2 boxSize;
     private Vector2 playerBoxOffset;
-    private PlayerAttribute playerAttr;
-    private PlayerAttack playerAttack;
+    [SerializeField]
+    private float groundedSkin = 0.05f;
 
     ProjectilePool arrowPool;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerBox = GetComponent<BoxCollider2D>();
-        playerSize = playerBox.size;
-        playerBoxOffset = playerBox.offset;
-        boxSize = new Vector2(playerSize.x, groundedSkin);
 
         anim = GetComponent<Animator>();
         playerAttr = GetComponent<PlayerAttribute>();
@@ -78,10 +80,15 @@ public class PlayerController : MonoBehaviour {
     {
         faceRight = true;
         isInvicible = false;
-        isOnGround = false;
+        IsOnGround = false;
         jumpRequest = false;
 
         arrowPool = ProjectilePool.Instance;
+        playerHealth = HealthSystem.instance;
+        playerBox = GetComponent<BoxCollider2D>();
+        playerSize = playerBox.size;
+        playerBoxOffset = playerBox.offset;
+        boxSize = new Vector2(playerSize.x, groundedSkin);
 
         SetPositionNotOverViewPort();
     }
@@ -93,7 +100,7 @@ public class PlayerController : MonoBehaviour {
             SwitchToJoyController();
         }
         
-        if (Input.GetButtonDown(button.jumpButton) && isOnGround)
+        if (Input.GetButtonDown(button.jumpButton) && IsOnGround)
         {
             jumpRequest = true;
         }
@@ -134,12 +141,12 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(Vector2.up * playerAttr.JumpPower, ForceMode2D.Impulse);
 
             jumpRequest = false;
-            isOnGround = false;
+            IsOnGround = false;
         }
         else
         {
             Vector2 boxCenter = ((Vector2)transform.position + playerBoxOffset) + Vector2.down * (playerSize.y + boxSize.y) * 0.5f;
-            isOnGround = (Physics2D.OverlapBox(boxCenter, boxSize, 0f, groundLayer) != null);
+            IsOnGround = (Physics2D.OverlapBox(boxCenter, boxSize, 0f, groundLayer) != null);
         }
     }
 
@@ -245,11 +252,31 @@ public class PlayerController : MonoBehaviour {
         yield return null;
     }
 
+    /*
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") || collision.CompareTag("NoneEffectOnPlayer"))
+        //Debug.Log("HitBox: " + collision.name);
+        if ((collision.CompareTag("Boss") || collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !IsInvicble())
         {
-            Physics2D.IgnoreCollision(playerBox, collision, true);
-        }    
+            playerHealth.CurrentHealth = -1;
+            StartCoroutine(Hurt(knockbackTime, invicibleTime));
+        }
+
+        else
+        {
+            return;
+        }
+    }
+    */
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("Boot check tag: " + other.gameObject.tag);
+
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss" || other.gameObject.tag == "Player" || other.gameObject.tag == "NoneEffectOnPlayer")
+        {
+            Debug.Log("Ignore");
+            Physics2D.IgnoreCollision(other.collider, this.GetComponent<BoxCollider2D>(), true);
+        }
     }
 }
