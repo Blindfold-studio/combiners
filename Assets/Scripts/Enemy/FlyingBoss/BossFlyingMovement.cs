@@ -20,11 +20,12 @@ public class BossFlyingMovement : Boss {
     private float offSetY;
     public Vector3 curPosition;
     public bool inPlayer1;
-
     public enum State { Idle, Moving, MoveToPlayer, MoveCircle, MoveToCheckBox, HorizontalMove};
     private State state;
+    private float curHpBoss;
     private MissionManager missionManager;
     private BossFlyingAround bossFlyingAround;
+    private BossHealth bossHealth;
     private Transform player1_screen;
     private Transform player2_screen;
     public static event Action StopCoroutineEvent;
@@ -69,7 +70,10 @@ public class BossFlyingMovement : Boss {
     {
         missionManager = MissionManager.instance;
         bossFlyingAround = GetComponent<BossFlyingAround>();
+        bossHealth = GetComponent<BossHealth>();
+        //curHpBoss = bossHealth.maxHealth;
         state = State.Idle;
+        
         StartCoroutine("SetOffSet");
     }
 
@@ -95,13 +99,22 @@ public class BossFlyingMovement : Boss {
 
     void Controll()
     {
-        if (count % 2 == 0)
+        /*if (count % 2 == 0)
         {
             initiatePoint -= Time.deltaTime;
         }
         else if (count % 2 == 1)
         {
             initiatePoint += Time.deltaTime;
+        }
+        */
+        if( bossHealth.Health % 2 == 0)
+        {
+            initiatePoint += Time.deltaTime;
+        }
+        else
+        {
+            initiatePoint -= Time.deltaTime;
         }
         x = rangeX * Mathf.Cos(speedX * initiatePoint);
         y = rangeY * Mathf.Sin(speedY * initiatePoint) + offSetY;

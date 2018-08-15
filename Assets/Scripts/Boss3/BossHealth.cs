@@ -7,7 +7,7 @@ using TMPro;
 
 public class BossHealth : MonoBehaviour {
 
-    public Image bossHpBar;
+    
     public TextMeshProUGUI hp1;
     public TextMeshProUGUI hp2;
     [SerializeField]
@@ -19,7 +19,7 @@ public class BossHealth : MonoBehaviour {
     [SerializeField]
     private float waitTime;
 
-    private float currentHealth;
+    public static float currentHealth;
     private bool isSwapTime;
     private BoxCollider2D bossCollider;
 
@@ -34,19 +34,19 @@ public class BossHealth : MonoBehaviour {
 
         set {
             currentHealth += value;
-            CheckingBossHealth();
+            CheckingBossHealth();   
         }
     }
 
 	// Use this for initialization
 	void Start () {
-        isSwapTime = false;
+        isSwapTime = false;  
 		currentHealth = maxHealth;
         bossCollider = GetComponent<BoxCollider2D>();
         UpdateHpText();
 	}
-	
-	void CheckingBossHealth() {
+
+    void CheckingBossHealth() {
         isSwapTime = false;
         UpdateHpText();
         StartCoroutine("ProtectionAfterReceivedAnAttack");
