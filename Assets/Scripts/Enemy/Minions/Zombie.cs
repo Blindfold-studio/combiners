@@ -48,17 +48,11 @@ public class Zombie : Minions, IFPoolObject {
 
     void Movement()
     {
-        if(distance > 5 || distance < -5)
-        {
-            transform.position = Vector3.SmoothDamp(transform.position, TargetPlayer.transform.position, ref smoothVector3, timeReach);
-        }
-        else
-        {
+        
             if(facingR)
                 rg2d.velocity = new Vector2( -speed, rg2d.velocity.y);
             else
                 rg2d.velocity = new Vector2(speed, rg2d.velocity.y);
-        }
         
     }
 
