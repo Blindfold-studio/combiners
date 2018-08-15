@@ -5,7 +5,7 @@ using TMPro;
 
 public class PlayerAttribute : MonoBehaviour {
     public TextMeshProUGUI arrowText;
-    public TextMeshProUGUI speedText;
+    //public TextMeshProUGUI speedText;
 
     [SerializeField]
     private int arrowCapacity;
@@ -33,13 +33,13 @@ public class PlayerAttribute : MonoBehaviour {
         currentArrow = arrowCapacity;
 
         //arrowText.text = "Arrow: " + currentArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
-        speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
+        //speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
     void Update ()
     {
         //arrowText.text = "Arrow: " + currentArrow.ToString() + "/" + gameManager.MaxArrow.ToString();
-        speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
+        //speedText.text = "Speed: " + speed.ToString() + "/" + gameManager.Speed.ToString();
     }
 
     public int Arrow

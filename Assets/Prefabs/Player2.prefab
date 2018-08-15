@@ -11,6 +11,23 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1623535236077610}
   m_IsPrefabParent: 1
+--- !u!1 &1362273552852680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4391028072758434}
+  - component: {fileID: 61987643944912054}
+  - component: {fileID: 114108725644344182}
+  m_Layer: 8
+  m_Name: Leg
+  m_TagString: NoneEffectOnPlayer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1416740054089352
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,6 +96,7 @@ GameObject:
   - component: {fileID: 61950522554733320}
   - component: {fileID: 111288205372769068}
   - component: {fileID: 95113733231100382}
+  - component: {fileID: 58490257797364482}
   m_Layer: 8
   m_Name: Player2
   m_TagString: Player
@@ -98,8 +116,22 @@ Transform:
   m_Children:
   - {fileID: 4979780770457752}
   - {fileID: 4946717749587808}
+  - {fileID: 4391028072758434}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4391028072758434
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362273552852680}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4201266912698280}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4519592296241532
 Transform:
@@ -161,6 +193,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &58490257797364482
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1623535236077610}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!61 &61047921674534776
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -223,7 +270,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -234,7 +281,32 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.09, y: 0.5}
+  m_Size: {x: 0.25, y: 0.85}
+  m_EdgeRadius: 0
+--- !u!61 &61987643944912054
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362273552852680}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.5}
   m_EdgeRadius: 0
 --- !u!95 &95113733231100382
 Animator:
@@ -311,6 +383,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Sword
   damage: 1
+--- !u!114 &114108725644344182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362273552852680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221089d9d2d5493478fd3cb2d562f8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundedSkin: 0.05
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &114366089066430152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,10 +451,12 @@ MonoBehaviour:
   arrowPrefab: {fileID: 1279825735518926, guid: f12a68008dfcf164688fce45627cd115,
     type: 2}
   arrowTag: Arrow_P2
-  groundedSkin: 0.05
   shotDelay: 0.1
   knockbackForce: 3
+  knockbackTime: 0.3
+  invicibleTime: 2
   offsetArrow: {x: 0.55, y: 0, z: 0}
+  groundedSkin: 0.05
 --- !u!114 &114841386148215264
 MonoBehaviour:
   m_ObjectHideFlags: 1
