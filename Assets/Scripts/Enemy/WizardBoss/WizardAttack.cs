@@ -209,7 +209,7 @@ public class WizardAttack : MonoBehaviour {
 
     void RandomState()
     {
-        int ranState = Random.Range(2, 3);
+        int ranState = Random.Range(0, 3);
         switch (ranState)
         {
             case 0:
