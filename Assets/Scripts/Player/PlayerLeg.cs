@@ -35,6 +35,7 @@ public class PlayerLeg : MonoBehaviour {
 
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss" || other.gameObject.tag == "Player" || other.gameObject.tag == "NoneEffectOnPlayer")
         {
+            Debug.Log("Ignore");
             Physics2D.IgnoreCollision(other.collider, this.GetComponent<BoxCollider2D>(), true);
         }
     }

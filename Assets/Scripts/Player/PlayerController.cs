@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float knockbackForce;
     [SerializeField]
+    private float knockbackTime;
+    [SerializeField]
+    private float invicibleTime;
+    [SerializeField]
     private Vector3 offsetArrow; 
 
     public bool IsOnGround { get; set; }
@@ -45,6 +49,14 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb;
     private PlayerAttribute playerAttr;
     private PlayerAttack playerAttack;
+    private HealthSystem playerHealth;
+
+    private BoxCollider2D playerBox;
+    private Vector2 playerSize;
+    private Vector2 boxSize;
+    private Vector2 playerBoxOffset;
+    [SerializeField]
+    private float groundedSkin = 0.05f;
 
     ProjectilePool arrowPool;
 
@@ -72,6 +84,11 @@ public class PlayerController : MonoBehaviour {
         jumpRequest = false;
 
         arrowPool = ProjectilePool.Instance;
+        playerHealth = HealthSystem.instance;
+        playerBox = GetComponent<BoxCollider2D>();
+        playerSize = playerBox.size;
+        playerBoxOffset = playerBox.offset;
+        boxSize = new Vector2(playerSize.x, groundedSkin);
 
         SetPositionNotOverViewPort();
     }
@@ -125,6 +142,11 @@ public class PlayerController : MonoBehaviour {
 
             jumpRequest = false;
             IsOnGround = false;
+        }
+        else
+        {
+            Vector2 boxCenter = ((Vector2)transform.position + playerBoxOffset) + Vector2.down * (playerSize.y + boxSize.y) * 0.5f;
+            IsOnGround = (Physics2D.OverlapBox(boxCenter, boxSize, 0f, groundLayer) != null);
         }
     }
 
@@ -228,5 +250,33 @@ public class PlayerController : MonoBehaviour {
         GetComponent<Animation>().Stop("GetDamage");
 
         yield return null;
+    }
+
+    /*
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log("HitBox: " + collision.name);
+        if ((collision.CompareTag("Boss") || collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !IsInvicble())
+        {
+            playerHealth.CurrentHealth = -1;
+            StartCoroutine(Hurt(knockbackTime, invicibleTime));
+        }
+
+        else
+        {
+            return;
+        }
+    }
+    */
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("Boot check tag: " + other.gameObject.tag);
+
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss" || other.gameObject.tag == "Player" || other.gameObject.tag == "NoneEffectOnPlayer")
+        {
+            Debug.Log("Ignore");
+            Physics2D.IgnoreCollision(other.collider, this.GetComponent<BoxCollider2D>(), true);
+        }
     }
 }
