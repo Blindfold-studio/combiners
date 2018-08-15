@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using StateSystem;
 
-public class BossKnightAI : MonoBehaviour {
+public class GolemBoss : BossKnightAI {
     [SerializeField]
     private float speed = 2f;
     [SerializeField]
@@ -36,26 +36,9 @@ public class BossKnightAI : MonoBehaviour {
     private Rigidbody2D rb;
     private BossHealth bossHealth;
 
-    public bool isFacingRight;
-    public bool IsTimeToSwap { get { return isTimeToSwap; } }
-    public bool AlreadySwap { get; set; }
-    public bool CanMeleeAttack { get; set; }
-    public float idleStateTime;
-    public float moveStateTime;
-    public float ChargeSpeed { get { return chargeSpeed; } }
-    public float ChargeTimeLimit { get { return chargeSpeed; } }
-    public float PrepareAttackTime { get { return prepareAttackTime; } }
-    public float PrepareToChargeTime { get { return prepareToChargeTime; } }
-    public float ShortAttackDuration { get { return shortAttackDuration; } }
-    public float SwappingDuration { get { return swappingDuration; } }
-    public float XMin { get { return xMin; } }
-    public float XMax { get { return xMax; } }
-    public GameObject TargetPlayer { get; set; }
-    public StateMachine<BossKnightAI> stateMachine { get; set; }
-
-    void Start ()
+    void Start()
     {
-        isFacingRight = true;
+        isFacingRight = false;
         isTimeToSwap = false;
         AlreadySwap = false;
         CanMeleeAttack = false;
@@ -69,7 +52,7 @@ public class BossKnightAI : MonoBehaviour {
         SetPositionNotOverViewPort();
     }
 
-    void Update ()
+    void Update()
     {
         stateMachine.Update();
 
@@ -108,7 +91,7 @@ public class BossKnightAI : MonoBehaviour {
         return targetPlayer;
     }
 
-    public void SetActiveShield (bool value)
+    public void SetActiveShield(bool value)
     {
         shield.SetActive(value);
     }
@@ -129,32 +112,32 @@ public class BossKnightAI : MonoBehaviour {
         }
     }
 
-    public BoxCollider2D GetShortAttackBox ()
+    public BoxCollider2D GetShortAttackBox()
     {
         return shortAttackBox;
     }
 
-    public void MeleeAttack ()
+    public void MeleeAttack()
     {
         float angleSword = isFacingRight ? -90f : 90f;
         shortWeapon.SetActive(true);
         shortWeapon.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angleSword));
     }
 
-    public void StopMeleeAttack ()
+    public void StopMeleeAttack()
     {
         shortWeapon.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
         shortWeapon.SetActive(false);
     }
 
-    public void DisableHitBox ()
+    public void DisableHitBox()
     {
         GetComponent<BoxCollider2D>().enabled = false;
         isTimeToSwap = true;
         AlreadySwap = false;
     }
 
-    public void EnableHitBox ()
+    public void EnableHitBox()
     {
         GetComponent<BoxCollider2D>().enabled = true;
         isTimeToSwap = false;
