@@ -42,6 +42,7 @@ public class WizardAttack : MonoBehaviour {
     public GameObject lightningSprite;
     public GameObject lightPoint;
     public GameObject blazeSpawnArea;
+    public GameObject blazeAlert;
 
     ProjectilePool pool;
     private WizardMovement wizardMovement;
@@ -185,12 +186,16 @@ public class WizardAttack : MonoBehaviour {
             if (wizardMovement.inPlayer1)
             {
                 blazeSpawnArea.transform.position = new Vector3(0f, 50f, 0f);
+                blazeAlert.transform.position = new Vector3(0f, 45.2f, 0);
                 blazeSprite = pool.GetElementInPool("blaze", blazeSpawnArea.transform.GetChild(RanX).position, gameObject.transform.rotation);
+                blazeAlert = pool.GetElementInPool("blazeAlert", blazeAlert.transform.position, gameObject.transform.rotation);
             }
             else
             {
                 blazeSpawnArea.transform.position = new Vector3(0f, 0f, 0f);
+                blazeAlert.transform.position = new Vector3(0f, -4.7f, 0);
                 blazeSprite = pool.GetElementInPool("blaze", blazeSpawnArea.transform.GetChild(RanX).position, gameObject.transform.rotation);
+                blazeAlert = pool.GetElementInPool("blazeAlert", blazeAlert.transform.position, gameObject.transform.rotation);
             }
             blazeActivate = true;
         }
@@ -204,7 +209,7 @@ public class WizardAttack : MonoBehaviour {
 
     void RandomState()
     {
-        int ranState = Random.Range(1, 2);
+        int ranState = Random.Range(2, 3);
         switch (ranState)
         {
             case 0:

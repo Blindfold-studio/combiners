@@ -162,7 +162,7 @@ MonoBehaviour:
   GroundDetect:
   - {fileID: 4249788355600142}
   - {fileID: 4266110610167898}
-  groundRadius: 0.1
+  groundRadius: 0.15
   isGroundnow:
     serializedVersion: 2
     m_Bits: 1024
