@@ -15,6 +15,7 @@ TagManager:
   - NoneEffectOnPlayer
   - Boss
   - PlayerHitBox
+  - DestroyObject
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Player
   - Enemy
   - Ground
-  - 
+  - Floor
   - 
   - 
   - 
@@ -51,4 +52,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 266458293
     locked: 0

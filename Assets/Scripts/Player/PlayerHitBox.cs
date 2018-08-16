@@ -19,12 +19,27 @@ public class PlayerHitBox : MonoBehaviour {
         player = GetComponentInParent<PlayerController>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyWeapon") && !player.IsInvicble())
+        {
+            playerHealth.CurrentHealth = -1;
+            player.StartCoroutine(player.Hurt(knockbackTime, invicibleTime));
+        }
+
+        else
+        {
+            return;
+        }
+    }
+
     void OnTriggerStay2D(Collider2D collision)
     {
+        //Debug.Log("HitBox: " + collision.name);
         if ((collision.CompareTag("Boss") || collision.CompareTag("Enemy") || collision.CompareTag("EnemyWeapon")) && !player.IsInvicble())
         {
             playerHealth.CurrentHealth = -1;
-            player.StartCoroutine(player.Hurt(knockbackTime ,invicibleTime));
+            player.StartCoroutine(player.Hurt(knockbackTime, invicibleTime));
         }    
 
         else

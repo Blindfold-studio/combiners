@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour {
@@ -17,16 +18,17 @@ public class HealthSystem : MonoBehaviour {
     private int currentHealth;
     [SerializeField]
     private int maxHealth;
-
+    
     private GameManager gameManager;
 
     void Start ()
     {
         gameManager = GameManager.instance;
-
         maxHealth = gameManager.MaxHealth;
         currentHealth = maxHealth;
     }
+
+   
 
 	public int CurrentHealth
     {
@@ -47,6 +49,7 @@ public class HealthSystem : MonoBehaviour {
             {
                 currentHealth = 0;
             }
+          
         }
     }
 

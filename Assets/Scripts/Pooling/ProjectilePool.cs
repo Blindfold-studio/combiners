@@ -81,7 +81,7 @@ public class ProjectilePool : MonoBehaviour {
 
                 elementDictionary[tag].Enqueue(objectToSpawn);
 
-                Debug.Log("Return object: " + objectToSpawn);
+                //Debug.Log("Return object: " + objectToSpawn);
 
                 return objectToSpawn;
             }
@@ -105,7 +105,7 @@ public class ProjectilePool : MonoBehaviour {
 
                     elementDictionary[tag].Enqueue(objectToSpawn);
 
-                    Debug.Log("Return object: " + objectToSpawn);
+                   // Debug.Log("Return object: " + objectToSpawn);
 
                     return objectToSpawn;
                 }

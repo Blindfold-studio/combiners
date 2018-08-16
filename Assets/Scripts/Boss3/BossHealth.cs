@@ -7,7 +7,7 @@ using TMPro;
 
 public class BossHealth : MonoBehaviour {
 
-    public Image bossHpBar;
+    
     public TextMeshProUGUI hp1;
     public TextMeshProUGUI hp2;
     [SerializeField]
@@ -19,7 +19,8 @@ public class BossHealth : MonoBehaviour {
     [SerializeField]
     private float waitTime;
 
-    private float currentHealth;
+    public static float currentHealth;
+    private bool isSwapTime;
     private BoxCollider2D bossCollider;
 
 
@@ -33,25 +34,28 @@ public class BossHealth : MonoBehaviour {
 
         set {
             currentHealth += value;
-            CheckingBossHealth();
+            CheckingBossHealth();   
         }
     }
 
 	// Use this for initialization
 	void Start () {
+        isSwapTime = false;  
 		currentHealth = maxHealth;
         bossCollider = GetComponent<BoxCollider2D>();
         UpdateHpText();
 	}
-	
-	void CheckingBossHealth() {
+
+    void CheckingBossHealth() {
+        isSwapTime = false;
         UpdateHpText();
         StartCoroutine("ProtectionAfterReceivedAnAttack");
         if (currentHealth <= 0) {
             if(DeathEvent != null) {
                 DeathEvent();
             }
-        } else if(currentHealth % (maxHealth/numberOfTimeBossSwap) == 0 && currentHealth < maxHealth) {    
+        } else if(currentHealth % (maxHealth/numberOfTimeBossSwap) == 0 && currentHealth < maxHealth) {
+            isSwapTime = true;
             // SwapBoss();
             if(SwapingEvent != null) {
                 bossCollider.enabled = false;
@@ -70,7 +74,8 @@ public class BossHealth : MonoBehaviour {
         bossCollider.enabled = false;
         GetComponent<Animation>().Play("BossGetDamage");
         yield return new WaitForSeconds(colliderDisableTime);
-        bossCollider.enabled = true;
+        if (!isSwapTime)
+            bossCollider.enabled = true;
         GetComponent<Animation>().Stop("BossGetDamage");
         yield return null;
     }

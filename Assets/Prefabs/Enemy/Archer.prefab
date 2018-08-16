@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4037672768054060}
   - component: {fileID: 212772095660233012}
-  - component: {fileID: 114845062561351348}
   - component: {fileID: 114638434473729720}
   - component: {fileID: 50434976071717746}
   - component: {fileID: 61294149012460242}
@@ -97,7 +96,7 @@ BoxCollider2D:
     border: {x: 0.11, y: 0, z: 0, w: 0.099999994}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.38, y: 0.5}
-    newSize: {x: 1.2, y: 0.7}
+    newSize: {x: 0.38, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -123,18 +122,6 @@ MonoBehaviour:
   retreat: 3
   startShotReload: 4
   arrow: {fileID: 1470708020820740, guid: d245f6ff2e0caac4dbfc2899161c747c, type: 2}
---- !u!114 &114845062561351348
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1137649772912554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9acbbdeae318f4a4f8d723c44905c567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingR: 0
 --- !u!212 &212772095660233012
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -175,7 +162,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.2, y: 0.7}
+  m_Size: {x: 0.38, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

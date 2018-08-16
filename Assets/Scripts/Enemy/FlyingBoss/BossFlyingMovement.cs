@@ -16,21 +16,19 @@ public class BossFlyingMovement : Boss {
     public float initiatePoint;
     private float x, y;
     private int count = 0;
-    private float offSet;
+    private float offSetX;
+    private float offSetY;
     public Vector3 curPosition;
     public bool inPlayer1;
-
-    public enum State { Idle, Moving, MoveCircle, MoveToCheckBox, HorizontalMove};
+    public enum State { Idle, Moving, MoveToPlayer, MoveCircle, MoveToCheckBox, HorizontalMove};
     private State state;
+    private float curHpBoss;
     private MissionManager missionManager;
+    private BossFlyingAround bossFlyingAround;
+    private BossHealth bossHealth;
     private Transform player1_screen;
     private Transform player2_screen;
     public static event Action StopCoroutineEvent;
-
-    GameObject minion, minion2;
-    SpawnEnemyFly minionFly;
-    SpawnEnemyOnGround minionOnGround;
-
     private GameObject targetPlayer;
 
     public State CurrentState
@@ -71,7 +69,20 @@ public class BossFlyingMovement : Boss {
     void Start ()
     {
         missionManager = MissionManager.instance;
-        offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
+        bossFlyingAround = GetComponent<BossFlyingAround>();
+        bossHealth = GetComponent<BossHealth>();
+        //curHpBoss = bossHealth.maxHealth;
+        state = State.Idle;
+        
+        StartCoroutine("SetOffSet");
+    }
+
+    IEnumerator SetOffSet()
+    {
+
+        yield return new WaitForSeconds(0);
+        offSetY = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
+        //offSetX = rangeX * Mathf.Cos(speedX * initiatePoint) + this.transform.position.x;
         curPosition = this.transform.position;
         CheckBossPosition();
         state = State.Moving;
@@ -79,20 +90,16 @@ public class BossFlyingMovement : Boss {
 
     void Update()
     {
-       
         TargetPlayer = FindTheClosestPlayer();
         if(state == State.Moving)
         {
             Controll();
-        }
-        
-        
+        }    
     }
 
     void Controll()
     {
-
-        if (count % 2 == 0)
+        /*if (count % 2 == 0)
         {
             initiatePoint -= Time.deltaTime;
         }
@@ -100,10 +107,18 @@ public class BossFlyingMovement : Boss {
         {
             initiatePoint += Time.deltaTime;
         }
+        */
+        if( bossHealth.Health % 2 == 0)
+        {
+            initiatePoint += Time.deltaTime;
+        }
+        else
+        {
+            initiatePoint -= Time.deltaTime;
+        }
         x = rangeX * Mathf.Cos(speedX * initiatePoint);
-        y = rangeY * Mathf.Sin(speedY * initiatePoint) + offSet;
+        y = rangeY * Mathf.Sin(speedY * initiatePoint) + offSetY;
         transform.localPosition = new Vector3(x, y, 0);
-
     }
 
     public GameObject FindTheClosestPlayer()
@@ -133,21 +148,21 @@ public class BossFlyingMovement : Boss {
         {
            
             this.transform.position = missionManager.GetBossPosition_P2();
-            offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
+            offSetY = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
             
         }
         else if (TargetPlayer.name == "Player2")
         {
           
             this.transform.position = missionManager.GetBossPosition_P1();
-            offSet = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
-            
+            offSetY = rangeY * Mathf.Sin(speedY * initiatePoint) + this.transform.position.y;
         }
         curPosition = this.transform.position;
         CheckBossPosition();
         TargetPlayer = FindTheClosestPlayer();
         CurrentState = State.Moving;
         initiatePoint = 0;
+        bossFlyingAround.RecurrentPosition();
 
     }
 
