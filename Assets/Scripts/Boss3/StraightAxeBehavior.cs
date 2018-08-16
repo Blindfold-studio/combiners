@@ -91,4 +91,18 @@ public class StraightAxeBehavior : MonoBehaviour, IFPoolObject {
             dir = new Vector2(1f, rb.velocity.y);
         }
     }
+
+    public void SetDirectionFromBoss(GolemBoss boss)
+    {
+        if (!boss.isFacingRight)
+        {
+            //rb.velocity = new Vector2(-1 * axeSpeed, rb.velocity.y);
+            dir = new Vector2(-1f, rb.velocity.y);
+        }
+        else
+        {
+            //rb.velocity = new Vector2(axeSpeed, rb.velocity.y);
+            dir = new Vector2(1f, rb.velocity.y);
+        }
+    }
 }

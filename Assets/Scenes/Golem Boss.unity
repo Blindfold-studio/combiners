@@ -1424,11 +1424,11 @@ GameObject:
   - component: {fileID: 2088074982}
   - component: {fileID: 2088074981}
   - component: {fileID: 2088074980}
-  - component: {fileID: 2088074979}
   - component: {fileID: 2088074978}
   - component: {fileID: 2088074977}
   - component: {fileID: 2088074976}
   - component: {fileID: 2088074975}
+  - component: {fileID: 2088074979}
   m_Layer: 0
   m_Name: Golem Boss
   m_TagString: Boss
@@ -1443,7 +1443,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2088074974}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b43acd362e139042a56f034989e8756, type: 3}
   m_Name: 
@@ -1520,18 +1520,28 @@ MonoBehaviour:
 --- !u!114 &2088074979
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114503283466554344, guid: 43aa9381bc1941f4da2a01e6c63a0070,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2088074974}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5dd0149ec120411db501e7e198928cd, type: 3}
+  m_Script: {fileID: 11500000, guid: da594e399463d494b91bf208b7e57b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  chargeSpeed: 8
+  chargeTimeLimit: 3
+  prepareAttackTime: 2
+  prepareToChargeTime: 1
+  shortAttackDuration: 1
   stuntAfterPlayerJumpOverHead: 0.6
-  shield: {fileID: 0}
+  swappingDuration: 2
+  shield: {fileID: 1384640881}
+  shortWeapon: {fileID: 597814080}
+  shortAttackBox: {fileID: 663247876}
+  isFacingRight: 0
+  idleStateTime: 2
+  moveStateTime: 3
 --- !u!61 &2088074980
 BoxCollider2D:
   m_ObjectHideFlags: 0

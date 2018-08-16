@@ -73,6 +73,7 @@ public class GolemActionState : State<GolemBoss> {
         {
             //owner.stateMachine.ChangeState(new ProjectileAxeState(owner));
         }
-        owner.stateMachine.ChangeState(new GolemChargeState(owner));
+        //owner.stateMachine.ChangeState(new GolemChargeState(owner));
+        owner.stateMachine.ChangeState(new StraightRockState(owner));
     }
 }
