@@ -33,7 +33,6 @@ public class GolemChargeState : State<GolemBoss> {
         this.prepareToChargeTime = owner.PrepareToChargeTime;
         timer = 0f;
         canCharge = false;
-        LockTargetPlayer();
         //owner.anim.SetBool("IsCharging", true);
     }
 
