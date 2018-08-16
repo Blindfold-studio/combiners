@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BossFlyingTest.unity
     guid: ef6b0bc5eb1ab064b8ad39dc077c0d9d
   - enabled: 1
+    path: Assets/Scenes/WizardBoss.unity
+    guid: 027cf5585ae4e1847bc17d5059ed0de4
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 38b6efbd13feaa7479182836509cc31c
   m_configObjects: {}
