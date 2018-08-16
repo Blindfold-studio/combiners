@@ -33,7 +33,8 @@ public class WizardAttack : MonoBehaviour {
     private bool blazeActivate;
     public int RanX;
     bool randomStateDone;
-
+    [SerializeField]
+    private float lightspect;
 
     Vector3 lightningPosition;
     public Vector3 lightningValue;
@@ -153,10 +154,12 @@ public class WizardAttack : MonoBehaviour {
             if (wizardMovement.inPlayer1)
             {
                 lightningPosition = new Vector3(Random.Range(this.transform.position.x -lightningValue.x, this.transform.position.x + lightningValue.x), 50, 0);
+                //lightningPosition = new Vector3(Random.Range(wizardMovement.FindTheClosestPlayer().transform.position.x, wizardMovement.FindTheClosestPlayer().transform.position.x), 50, 0);
             }
             else
             {
                 lightningPosition = new Vector3(Random.Range(this.transform.position.x - lightningValue.x, this.transform.position.x + lightningValue.x), 0, 0);
+                //lightningPosition = new Vector3(Random.Range(wizardMovement.FindTheClosestPlayer().transform.position.x, wizardMovement.FindTheClosestPlayer().transform.position.x), 0, 0);
             }
             
             //lightPoint = pool.GetElementInPool("lightPoint", lightningPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
@@ -209,7 +212,7 @@ public class WizardAttack : MonoBehaviour {
 
     void RandomState()
     {
-        int ranState = Random.Range(0, 3);
+        int ranState = Random.Range(1, 2);
         switch (ranState)
         {
             case 0:

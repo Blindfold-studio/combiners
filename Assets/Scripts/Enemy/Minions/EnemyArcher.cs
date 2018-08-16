@@ -21,6 +21,7 @@ public class EnemyArcher : Minions, IFPoolObject
     private GameObject targetPlayer;
     public GameObject arrow;
     ProjectilePool pool;
+    Animator animation;
 
     public GameObject TargetPlayer
     {
@@ -44,6 +45,7 @@ public class EnemyArcher : Minions, IFPoolObject
         StartCoroutine(Flip());
         pool = ProjectilePool.Instance;
         heal = 1;
+        animation = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -126,6 +128,7 @@ public class EnemyArcher : Minions, IFPoolObject
     {
         if (reloadShot <= 0)
         {
+            //animation.SetBool("isShoot", true);
             TargetPlayer = FindTheClosestPlayer();
             if (targetPlayer.transform.position.x - transform.position.x > 0)
             {
@@ -141,6 +144,7 @@ public class EnemyArcher : Minions, IFPoolObject
         else
         {
             reloadShot -= Time.deltaTime;
+            //animation.SetBool("isShoot", false);
         }
     }
 

@@ -6,6 +6,9 @@ public class FollowLineBullet : MonoBehaviour,IFPoolObject {
     
     public float speed;
     private Vector3 dir;
+    private bool rotation =false;
+    private float rotationTime;
+    private Quaternion targetRotation;
     private GameObject targetPlayer;
 
     public GameObject TargetPlayer
@@ -30,12 +33,19 @@ public class FollowLineBullet : MonoBehaviour,IFPoolObject {
 
     void Update()
     {
+        Rotation();
         FollowBullet();
     }
 
     void FollowBullet()
     {
         transform.position = Vector2.MoveTowards(transform.position, targetPlayer.transform.position, speed * Time.deltaTime);
+    }
+    void Rotation()
+    {
+        var rotation = Quaternion.LookRotation(FindTheClosestPlayer().transform.position - transform.position,transform.TransformDirection(Vector3.up));
+        
+        transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
     }
 
     public GameObject FindTheClosestPlayer()

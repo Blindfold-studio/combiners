@@ -30,6 +30,17 @@ public class StraightLineBullet : MonoBehaviour, IFPoolObject
         rg2d = GetComponent<Rigidbody2D>();
         TargetPlayer = FindTheClosestPlayer();
         dir = Vector3.Normalize(targetPlayer.transform.position - this.transform.position);
+        
+        var rotation = Quaternion.LookRotation(FindTheClosestPlayer().transform.position - transform.position, transform.TransformDirection(Vector3.up));
+        if(FindTheClosestPlayer().transform.position.x < transform.position.x)
+        {
+            transform.rotation = new Quaternion(0, 0, rotation.z - 180, rotation.w);
+        }
+        else
+        {
+            transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
+        }
+        
         Invoke("Disappear", 15);
     }
 	
@@ -40,6 +51,7 @@ public class StraightLineBullet : MonoBehaviour, IFPoolObject
     void StraightBullet(Vector3 dir)
     {   
         rg2d.velocity = dir*speed;
+        
     }
 
     public GameObject FindTheClosestPlayer()
@@ -60,6 +72,10 @@ public class StraightLineBullet : MonoBehaviour, IFPoolObject
     }
 
     void Disappear()
+    {
+        gameObject.SetActive(false);
+    }
+    void OnBecameInvisible()
     {
         gameObject.SetActive(false);
     }
