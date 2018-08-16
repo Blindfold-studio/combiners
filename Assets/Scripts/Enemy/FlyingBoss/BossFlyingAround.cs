@@ -26,19 +26,21 @@ public class BossFlyingAround : MonoBehaviour {
     private bool reCurrent = true;
 
     public GameObject[] bossCheckBox;
-    private int pattern;
-    private int currentPosition;
+    public int pattern;
+    public int currentPosition;
     [SerializeField]
     private float speedCheckBox = 30;
     [SerializeField]
     private float speedUpdate;
     [SerializeField]
     private float stop;
+    private BoxCollider2D bossCollider;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         bossFlyingMovement = GetComponent<BossFlyingMovement>();
         bossHealth = GetComponent<BossHealth>();
+        bossCollider = GetComponent<BoxCollider2D>();
         rg2d = GetComponent<Rigidbody2D>();
         pattern = 0;
     }
@@ -64,7 +66,8 @@ public class BossFlyingAround : MonoBehaviour {
             timer -= Time.deltaTime;
             if(timer <= 0)
             {
-                CircleMovement();
+                //CircleMovement();
+                HorizontalMove();
             }
             else
             {
@@ -107,10 +110,12 @@ public class BossFlyingAround : MonoBehaviour {
             if (currentPosition == bossCheckBox[pattern].transform.childCount - 1)
             {
                 currentPosition = bossCheckBox[pattern].transform.childCount - 1;
-            }
+                bossCollider.enabled = true;
+        }
             else if (Vector3.Distance(bossCheckBox[pattern].transform.GetChild(currentPosition).transform.position, transform.position) <= stop)
             {
                 currentPosition++;
+                bossCollider.enabled = false;
             }
        
         
@@ -118,6 +123,21 @@ public class BossFlyingAround : MonoBehaviour {
 
     }
 
+    void HorizontalMove()
+    {
+        if (bossFlyingMovement.inPlayer1)
+        {
+            transform.position = new Vector3(-20f, 47f, 0f);
+        }
+        else
+        {
+            transform.position = new Vector3(-20f, -3f, 0f);
+        }
+
+        bossFlyingMovement.CurrentState = BossFlyingMovement.State.HorizontalMove;
+        pattern = 2;
+        currentPosition = 0;
+    }
     void CircleMovement()
     {
         
@@ -127,17 +147,7 @@ public class BossFlyingAround : MonoBehaviour {
         if (widthX <= 5 && bossFlyingMovement.CurrentState == BossFlyingMovement.State.MoveCircle)
         {
 
-            if (bossFlyingMovement.inPlayer1)
-            {
-                transform.position = new Vector3(-20f, 47f, 0f);
-            }
-            else
-            {
-                transform.position = new Vector3(-20f, -3f, 0f);
-            }
-
-            bossFlyingMovement.CurrentState = BossFlyingMovement.State.HorizontalMove;
-            pattern = 2;
+            
 
         }
         else

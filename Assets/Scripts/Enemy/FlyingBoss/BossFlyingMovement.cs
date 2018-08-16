@@ -114,7 +114,7 @@ public class BossFlyingMovement : Boss {
         }
         else
         {
-            initiatePoint -= Time.deltaTime;
+            initiatePoint += Time.deltaTime;
         }
         x = rangeX * Mathf.Cos(speedX * initiatePoint);
         y = rangeY * Mathf.Sin(speedY * initiatePoint) + offSetY;
