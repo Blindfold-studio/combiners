@@ -29,10 +29,14 @@ public class BossFlyingAttack : MonoBehaviour {
     void EnemyShot() {
         if (reloadShot <= 0) {
             CheckState();
+            Vector3 relativePos = FindTheClosestPlayer().transform.position - transform.position;
             if (number == 0) {
-                pool.GetElementInPool("Boss-StraightBullet", transform.position, Quaternion.identity);
+
+                pool.GetElementInPool("Boss-StraightBullet", transform.position, Quaternion.Euler(relativePos.x,relativePos.y,relativePos.y));
+                Debug.Log("CXhe");
+                Debug.Log("Eure" + relativePos.y);
             }
-            else if (number == 1) {
+            else if (number == 1) { 
                 pool.GetElementInPool("Boss-FollowBullet", transform.position, Quaternion.identity);
             } else if (number == 2) {
                 FireThreeProjectile();

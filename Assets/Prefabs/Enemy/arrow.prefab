@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4415051289148826}
   - component: {fileID: 212159537524537128}
-  - component: {fileID: 50825375650730256}
   - component: {fileID: 114582084556557090}
   - component: {fileID: 61020854155284840}
+  - component: {fileID: 50825375650730256}
   m_Layer: 0
   m_Name: arrow
   m_TagString: EnemyWeapon
