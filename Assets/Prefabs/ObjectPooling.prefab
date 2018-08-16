@@ -62,8 +62,28 @@ MonoBehaviour:
     sizeOfEachElement: 10
     canExpand: 1
   - tag: Enemy_Arrow
-    elements: {fileID: 1470708020820740, guid: d245f6ff2e0caac4dbfc2899161c747c, type: 2}
+    elements: {fileID: 1314483573675188, guid: 53f8944da4d60e941a08f82bfa255457, type: 2}
+    sizeOfEachElement: 10
+    canExpand: 1
+  - tag: ice
+    elements: {fileID: 1510640343525614, guid: bd67085b9f6c9d64ab783576f966d4f3, type: 2}
+    sizeOfEachElement: 10
+    canExpand: 1
+  - tag: lightning
+    elements: {fileID: 1306911757136356, guid: a917f73d057ae8b4a9cd009f13c2dc61, type: 2}
     sizeOfEachElement: 5
+    canExpand: 1
+  - tag: lightPoint
+    elements: {fileID: 1746293281925242, guid: 794700078850a8746b4279503afa1987, type: 2}
+    sizeOfEachElement: 5
+    canExpand: 1
+  - tag: blaze
+    elements: {fileID: 1988491762872906, guid: f59e62694e5d8724a9e20486013076f2, type: 2}
+    sizeOfEachElement: 3
+    canExpand: 1
+  - tag: blazeAlert
+    elements: {fileID: 1957732031970392, guid: 18b7ced49e7b60540951ac127ef51fa8, type: 2}
+    sizeOfEachElement: 2
     canExpand: 1
 --- !u!114 &114929965360994778
 MonoBehaviour:
@@ -76,4 +96,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9848e8cba6d4041df8716bf110ee0aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementPools: []
+  elementPools:
+  - tag: FlyMinions
+    elements:
+    - {fileID: 1109796896291814, guid: 9ff2872736c5f20489490a56000b083c, type: 2}
+    sizeOfEachElement: 5
+    canExpand: 0
+  - tag: GroundMinions
+    elements:
+    - {fileID: 1137649772912554, guid: 00af57b8ffea29743a7e64d51ce070b7, type: 2}
+    - {fileID: 1146276841646634, guid: c552426a176b48143868f4232d9673a4, type: 2}
+    - {fileID: 1607767056712162, guid: 663575fc20fab9c44ab3157f643127df, type: 2}
+    sizeOfEachElement: 5
+    canExpand: 0
+  - tag: Items
+    elements:
+    - {fileID: 1178258745008998, guid: ff7eda03be7e6416fa5372432d025b82, type: 2}
+    - {fileID: 1265260745460624, guid: 417286cbd3b804d1da8df9ec5210034f, type: 2}
+    - {fileID: 1412608708053984, guid: 7dac9de0347ee4d2298de8f429c7ec18, type: 2}
+    sizeOfEachElement: 10
+    canExpand: 0
