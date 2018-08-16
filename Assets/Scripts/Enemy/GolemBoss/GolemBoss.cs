@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using StateSystem;
 
-public class GolemBoss : BossKnightAI {
+public class GolemBoss : MonoBehaviour {
     [SerializeField]
     private float speed = 2f;
     [SerializeField]
@@ -36,18 +36,37 @@ public class GolemBoss : BossKnightAI {
     private Rigidbody2D rb;
     private BossHealth bossHealth;
 
+    public bool isFacingRight;
+    public bool IsTimeToSwap { get { return isTimeToSwap; } }
+    public bool AlreadySwap { get; set; }
+    public bool CanMeleeAttack { get; set; }
+    public float idleStateTime;
+    public float moveStateTime;
+    public float ChargeSpeed { get { return chargeSpeed; } }
+    public float ChargeTimeLimit { get { return chargeSpeed; } }
+    public float PrepareAttackTime { get { return prepareAttackTime; } }
+    public float PrepareToChargeTime { get { return prepareToChargeTime; } }
+    public float ShortAttackDuration { get { return shortAttackDuration; } }
+    public float SwappingDuration { get { return swappingDuration; } }
+    public float XMin { get { return xMin; } }
+    public float XMax { get { return xMax; } }
+    public GameObject TargetPlayer { get; set; }
+    public StateMachine<GolemBoss> stateMachine { get; set; }
+    public Animator anim { get; set; }
+
     void Start()
     {
-        isFacingRight = false;
+        isFacingRight = true;
         isTimeToSwap = false;
         AlreadySwap = false;
         CanMeleeAttack = false;
         TargetPlayer = FindTheClosestPlayer();
 
+        anim = GetComponent<Animator>();
         bossHealth = GetComponent<BossHealth>();
         rb = GetComponent<Rigidbody2D>();
-        stateMachine = new StateMachine<BossKnightAI>(this);
-        stateMachine.ChangeState(new BossKnightMoveState(this));
+        stateMachine = new StateMachine<GolemBoss>(this);
+        stateMachine.ChangeState(new GolemMoveState(this));
         shortWeapon.SetActive(false);
         SetPositionNotOverViewPort();
     }
